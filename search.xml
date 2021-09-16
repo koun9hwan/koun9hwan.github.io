@@ -23,9 +23,9 @@
     <url>/2021/08/17/2021-08-18-SSTF_2021_SQLi101/</url>
     <content><![CDATA[<h1 id="SQLi101"><a href="#SQLi101" class="headerlink" title="SQLi101"></a>SQLi101</h1><br>
 
-<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_1.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi101/SQLi101_1.png" weight="400px" height="400px">
 
-<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_2.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi101/SQLi101_2.png" weight="400px" height="400px">
 
 <br>
 
@@ -34,7 +34,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_3.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi101/SQLi101_3.png" weight="400px" height="400px">
 
 <br>
 
@@ -51,7 +51,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_4.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi101/SQLi101_4.png" weight="400px" height="400px">
 
 <br>
 
@@ -75,7 +75,7 @@
 
 <h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
 
-<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_5.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi101/SQLi101_5.png" weight="400px" height="400px">
 
 <br>
 
@@ -96,7 +96,7 @@
 
 <h4 id="FLAG"><a href="#FLAG" class="headerlink" title="FLAG"></a>FLAG</h4><br>
 
-<img src = "/assets/images/SSTF 2021/SQLi101/SQLi101_6.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi101/SQLi101_6.png" weight="400px" height="400px">
 
 <br>
 
@@ -121,9 +121,9 @@
     <url>/2021/08/17/2021-08-18-SSTF_2021_SQLi102/</url>
     <content><![CDATA[<h1 id="SQLi102"><a href="#SQLi102" class="headerlink" title="SQLi102"></a>SQLi102</h1><br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_1.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_1.png" weight="400px" height="400px">
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_2.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_2.png" weight="400px" height="400px">
 
 <br>
 
@@ -132,7 +132,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_3.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_3.png" weight="400px" height="400px">
 
 <br>
 
@@ -149,7 +149,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_4.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_4.png" weight="400px" height="400px">
 
 <br>
 
@@ -198,14 +198,14 @@
 <p><code>1&#39;or&#39;1&#39;=&#39;1&#39; order by 8#</code>을 입력했을 때 아래와 같이 검색 결과가 나오는 것을 볼 수 있습니다.</p>
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_5.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_5.png" weight="400px" height="400px">
 
 <br>
 
 <p><code>1&#39;or&#39;1&#39;=&#39;1&#39; order by 9#</code>를 입력했을 때 아래와 같이 검색 결과가 안 나오는 것을 볼 수 있습니다.</p>
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_6.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_6.png" weight="400px" height="400px">
 
 <br>
 
@@ -230,7 +230,7 @@
 <p><code>null</code>을 이용하여 <code>UNION</code>구문을 실행시켰습니다.</p>
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_7.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_7.png" weight="400px" height="400px">
 
 <br>
 
@@ -243,7 +243,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_8.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_8.png" weight="400px" height="400px">
 
 <br>
 
@@ -261,7 +261,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_9.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_9.png" weight="400px" height="400px">
 
 <br>
 
@@ -282,7 +282,7 @@
 
 <br>
 
-<img src = "/assets/images/SSTF 2021/SQLi102/SQLi102_10.png" weight="400px" height="400px">
+<img src = "/images/posts/SSTF 2021/SQLi102/SQLi102_10.png" weight="400px" height="400px">
 
 <br>
 
@@ -341,7 +341,7 @@
 <h1 id="쿠키-변조"><a href="#쿠키-변조" class="headerlink" title="쿠키 변조"></a>쿠키 변조</h1><br>
 
 <p>쿠키 변조 프로그램은 크롬의 확장 프로그램인 <code>EditThisCookie</code>를 사용했습니다.<br><br><br></p>
-<img src = "/assets/images/Webhacking.kr/old-1/EditThisCookie.png" weight="400px" height="400px">
+<img src = "/images/posts/Webhacking.kr/old-1/EditThisCookie.png" weight="400px" height="400px">
 <br><br>
 이렇게 `3보다 크고 4미만인 실수`를 넣어준 후 페이지를 새로고침을 해주면 해당 문제가 풀립니다.
 
@@ -362,7 +362,7 @@
 <p>1번 문제인 gremlin을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
 <br>
 
-<img src="/assets/images/Lord of SQLInjection/gremlin/source.png">
+<img src="/images/posts/Lord of SQLInjection/gremlin/source.png">
 
 <br>
 
@@ -381,7 +381,7 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
 <br>
 
-<img src="/assets/images/Lord of SQLInjection/gremlin/preg.png">
+<img src="/images/posts/Lord of SQLInjection/gremlin/preg.png">
 
 <br>
 
@@ -399,10 +399,12 @@
 <h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
 
 <p><code>id</code> 부분에 아무 문자를 넣고 <code>pw</code> 부분을 참으로 만들었습니다.<br><br><br></p>
-<img src = "/assets/images/Lord of SQLInjection/gremlin/solved.png">
+<img src = "/images/posts/Lord of SQLInjection/gremlin/solved.png">
 <br><br>
 
-<p><strong>SOLVED !!!</strong></p>
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Lord of SQLInjection</category>
@@ -491,7 +493,7 @@
 
 <h1 id="달라진-점"><a href="#달라진-점" class="headerlink" title="달라진 점"></a>달라진 점</h1><br>
 
-<img src="/assets/images/OWASP/owasp_top_10_2021.png">
+<img src="/images/posts/OWASP/owasp_top_10_2021.png">
 
 <br>
 
@@ -571,7 +573,7 @@
 <p>2번 문제인 cobolt을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
 <br>
 
-<img src="/assets/images/Lord of SQLInjection/cobolt/source.png">
+<img src="/images/posts/Lord of SQLInjection/cobolt/source.png">
 
 <br>
 
@@ -591,7 +593,7 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
 <br>
 
-<img src="/assets/images/Lord of SQLInjection/cobolt/preg.png">
+<img src="/images/posts/Lord of SQLInjection/cobolt/preg.png">
 
 <br>
 
@@ -609,10 +611,12 @@
 <h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
 
 <p><code>id</code> 부분에 <code>admin&#39; or &#39;1&#39; = &#39;1</code>를 넣어주고 <code>pw</code>에 아무 문자를 넣어주었습니다.<br><br><br></p>
-<img src = "/assets/images/Lord of SQLInjection/cobolt/solved.png">
+<img src = "/images/posts/Lord of SQLInjection/cobolt/solved.png">
 <br><br>
 
-<p><strong>SOLVED !!!</strong></p>
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Lord of SQLInjection</category>
