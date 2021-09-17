@@ -28,7 +28,7 @@
 <meta property="og:description" content="[SSTF 2021] [SQLi102]">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-17T08:25:00.000Z">
-<meta property="article:modified_time" content="2021-09-17T08:02:34.334Z">
+<meta property="article:modified_time" content="2021-09-17T08:33:39.942Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write UP">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQLi102"><span class="nav-text">SQLi102</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SOLVE"><span class="nav-text">SOLVE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%B9%BC%EB%9F%BC-%EA%B0%9C%EC%88%98-%EC%B0%BE%EA%B8%B0"><span class="nav-text">칼럼 개수 찾기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%85%B8%EC%B6%9C%EB%90%98%EB%8A%94-%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B0%80-%EB%AA%87-%EB%B2%88%EC%A7%B8-%EC%B9%BC%EB%9F%BC%EC%9D%B8%EC%A7%80-%ED%99%95%EC%9D%B8"><span class="nav-text">노출되는 데이터가 몇 번째 칼럼인지 확인</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9D%B4%EB%A6%84-%EC%B6%94%EC%B6%9C"><span class="nav-text">테이블 이름 추출</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findme-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%98-%EC%B9%BC%EB%9F%BC%EC%9D%B4%EB%A6%84-%EC%B6%94%EC%B6%9C"><span class="nav-text">findme 테이블의 칼럼이름 추출</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG"><span class="nav-text">FLAG</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%A8-SQLi102"><span class="nav-text">✨ SQLi102</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%9A%A9-SOLVE"><span class="nav-text">🚩 SOLVE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%B9%BC%EB%9F%BC-%EA%B0%9C%EC%88%98-%EC%B0%BE%EA%B8%B0"><span class="nav-text">칼럼 개수 찾기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%85%B8%EC%B6%9C%EB%90%98%EB%8A%94-%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B0%80-%EB%AA%87-%EB%B2%88%EC%A7%B8-%EC%B9%BC%EB%9F%BC%EC%9D%B8%EC%A7%80-%ED%99%95%EC%9D%B8"><span class="nav-text">노출되는 데이터가 몇 번째 칼럼인지 확인</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9D%B4%EB%A6%84-%EC%B6%94%EC%B6%9C"><span class="nav-text">테이블 이름 추출</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findme-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%98-%EC%B9%BC%EB%9F%BC%EC%9D%B4%EB%A6%84-%EC%B6%94%EC%B6%9C"><span class="nav-text">findme 테이블의 칼럼이름 추출</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG"><span class="nav-text">FLAG</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-17 17:02:34" itemprop="dateModified" datetime="2021-09-17T17:02:34+09:00">2021-09-17</time>
+        <time title="Modified: 2021-09-17 17:33:39" itemprop="dateModified" datetime="2021-09-17T17:33:39+09:00">2021-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,7 +275,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="SQLi102"><a href="#SQLi102" class="headerlink" title="SQLi102"></a>SQLi102</h1><br>
+        <h1 id="✨-SQLi102"><a href="#✨-SQLi102" class="headerlink" title="✨ SQLi102"></a>✨ SQLi102</h1><br>
 
 <img src = "/images/SSTF 2021/SQLi102/SQLi102_1.png">
 
@@ -324,7 +324,7 @@
 <hr>
 <br>
 
-<h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
+<h1 id="🚩-SOLVE"><a href="#🚩-SOLVE" class="headerlink" title="🚩 SOLVE"></a>🚩 SOLVE</h1><br>
 
 <p><code>UNION SQL injection</code>을 사용하여 <code>테이블 이름</code>과 <code>칼럼 이름</code>을 추출해보았습니다.</p>
 <br>

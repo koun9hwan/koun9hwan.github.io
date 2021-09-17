@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/gremlin/source.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/gremlin/preg.png">
 <meta property="article:published_time" content="2021-09-14T20:58:00.000Z">
-<meta property="article:modified_time" content="2021-09-16T21:15:48.373Z">
+<meta property="article:modified_time" content="2021-09-17T08:42:10.578Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write UP">
@@ -152,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">첫번째 줄 해석</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%91%90%EB%B2%88%EC%A7%B8-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">두번째 줄 해석</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%84%B8%EB%B2%88%EC%A7%B8-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">세번째 줄 해석</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SOLVE"><span class="nav-text">SOLVE</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%96-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">📖 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">✅ 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">첫번째 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%91%90%EB%B2%88%EC%A7%B8-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">두번째 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%84%B8%EB%B2%88%EC%A7%B8-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">세번째 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8F%81-SOLVE"><span class="nav-text">🏁 SOLVE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -254,7 +254,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-17 06:15:48" itemprop="dateModified" datetime="2021-09-17T06:15:48+09:00">2021-09-17</time>
+        <time title="Modified: 2021-09-17 17:42:10" itemprop="dateModified" datetime="2021-09-17T17:42:10+09:00">2021-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +277,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="전체-소스코드"><a href="#전체-소스코드" class="headerlink" title="전체 소스코드"></a>전체 소스코드</h1><br>
+        <h1 id="📖-전체-소스코드"><a href="#📖-전체-소스코드" class="headerlink" title="📖 전체 소스코드"></a>📖 전체 소스코드</h1><br>
 
 <p>1번 문제인 gremlin을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
 <br>
@@ -288,14 +288,14 @@
 
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>;</span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) solve(<span class="string">&quot;gremlin&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p><br><br></p>
-<h1 id="중요-소스코드-해석"><a href="#중요-소스코드-해석" class="headerlink" title="중요 소스코드 해석"></a>중요 소스코드 해석</h1><br>
+<h1 id="✅-중요-소스코드-해석"><a href="#✅-중요-소스코드-해석" class="headerlink" title="✅ 중요 소스코드 해석"></a>✅ 중요 소스코드 해석</h1><br>
 
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
 <p>일단 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
 <br>
 
 <hr>
-<h4 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h4><p><code>preg_match</code>라는 함수가 있습니다.</p>
+<h2 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h2><p><code>preg_match</code>라는 함수가 있습니다.</p>
 <p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
 <p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
@@ -308,15 +308,15 @@
 <br>
 
 <hr>
-<h4 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h4><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
+<h2 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h2><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
 <p><br><br></p>
 <hr>
-<h4 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h4><p>세번째 줄은 쿼리문입니다.</p>
+<h2 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h2><p>세번째 줄은 쿼리문입니다.</p>
 <p><code>id</code>와 <code>pw</code> 둘 중 하나를 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
 <p><br><br></p>
-<h1 id="SOLVE"><a href="#SOLVE" class="headerlink" title="SOLVE"></a>SOLVE</h1><br>
+<h1 id="🏁-SOLVE"><a href="#🏁-SOLVE" class="headerlink" title="🏁 SOLVE"></a>🏁 SOLVE</h1><br>
 
 <p><code>id</code> 부분에 아무 문자를 넣고 <code>pw</code> 부분을 참으로 만들었습니다.<br><br><br></p>
 <img src = "/images/Lord of SQLInjection/gremlin/solved.png">
