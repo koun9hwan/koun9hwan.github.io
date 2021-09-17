@@ -320,8 +320,7 @@
 <p><strong>3개의 조건문을 합쳐보면 <code>user_lv</code>쿠키는 <code>숫자</code>이고, 값이 <code>3보다 크고 4미만</code>이여야 합니다.</strong></p>
 </blockquote>
 <p><br><br></p>
-<p>🍪 쿠키변조</p>
-<br>
+<h1 id="🍪-쿠키변조"><a href="#🍪-쿠키변조" class="headerlink" title="🍪 쿠키변조"></a>🍪 쿠키변조</h1><br>
 
 <p>쿠키 변조 프로그램은 크롬의 확장 프로그램인 <code>EditThisCookie</code>를 사용했습니다.<br><br><br></p>
 <img src = "/images/Webhacking.kr/old-1/EditThisCookie.png" weight="400px" height="400px">
