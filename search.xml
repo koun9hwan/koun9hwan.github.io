@@ -264,8 +264,9 @@
 
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_10.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_10.png">
 
+<p>![](/images/SSTF 2021/SQLi102/SQLi102_10.png)</p>
 <br>
 
 <p>findme 테이블의 칼럼이름을 추출했더니 FLAG가 나왔습니다.</p>
