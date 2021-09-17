@@ -103,9 +103,9 @@
     <url>/2021/08/17/2021-08-18-SSTF_2021_SQLi102/</url>
     <content><![CDATA[<h1 id="SQLi102"><a href="#SQLi102" class="headerlink" title="SQLi102"></a>SQLi102</h1><br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_1.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_1.png">
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_2.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_2.png">
 
 <br>
 
@@ -114,7 +114,7 @@
 
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_3.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_3.png">
 
 <br>
 
@@ -131,7 +131,7 @@
 
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_4.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_4.png">
 
 <br>
 
@@ -180,14 +180,14 @@
 <p><code>1&#39;or&#39;1&#39;=&#39;1&#39; order by 8#</code>을 입력했을 때 아래와 같이 검색 결과가 나오는 것을 볼 수 있습니다.</p>
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_5.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_5.png">
 
 <br>
 
 <p><code>1&#39;or&#39;1&#39;=&#39;1&#39; order by 9#</code>를 입력했을 때 아래와 같이 검색 결과가 안 나오는 것을 볼 수 있습니다.</p>
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_6.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_6.png">
 
 <br>
 
@@ -212,7 +212,7 @@
 <p><code>null</code>을 이용하여 <code>UNION</code>구문을 실행시켰습니다.</p>
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_7.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_7.png">
 
 <br>
 
@@ -225,7 +225,7 @@
 
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_8.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_8.png">
 
 <br>
 
@@ -243,7 +243,7 @@
 
 <br>
 
-<img src = "/images/SSTF 2021/SQLi102/SQLi102_9.png" weight="400px" height="400px">
+<img src = "/images/SSTF 2021/SQLi102/SQLi102_9.png">
 
 <br>
 
@@ -266,7 +266,6 @@
 
 <img src = "/images/SSTF 2021/SQLi102/SQLi102_10.png">
 
-<p>![](/images/SSTF 2021/SQLi102/SQLi102_10.png)</p>
 <br>
 
 <p>findme 테이블의 칼럼이름을 추출했더니 FLAG가 나왔습니다.</p>
