@@ -504,7 +504,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-17 17:34:29" itemprop="dateModified" datetime="2021-09-17T17:34:29+09:00">2021-09-17</time>
+        <time title="Modified: 2021-09-17 17:52:48" itemprop="dateModified" datetime="2021-09-17T17:52:48+09:00">2021-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -526,15 +526,92 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>[SSTF 2021] [SQLi101]</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/17/2021-08-18-SSTF_2021_SQLi101/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h1 id="🎈-SQLi101"><a href="#🎈-SQLi101" class="headerlink" title="🎈 SQLi101"></a>🎈 SQLi101</h1><br>
+
+<img src = "/images/SSTF 2021/SQLi101/SQLi101_1.png">
+
+<img src = "/images/SSTF 2021/SQLi101/SQLi101_2.png">
+
+<br>
+
+<p>해당 문제는 <code>Tutorial</code>에 있는 <code>SQL injection</code>문제입니다.</p>
+<br>
+
+<br>
+
+<img src = "/images/SSTF 2021/SQLi101/SQLi101_3.png">
+
+<br>
+
+<p>문제 페이지에 들어가면 위 사진과 같이 <code>php</code>로 만들어진 로그인 페이지가 보입니다.</p>
+<br>
+
+<blockquote>
+<p>Mission: login as an admin using SQL Injection</p>
+</blockquote>
+<p>SQL Injection을 사용하여 <code>admin</code>으로 로그인을 하라고 알려줍니다.</p>
+<br>
+
+<br>
+
+<br>
+
+<img src = "/images/SSTF 2021/SQLi101/SQLi101_4.png">
+
+<br>
+
+<p><code>USERNAME</code>에 <code>admin</code>을 입력해주고 <code>PASSWORD</code>에 <code>1&#39;or&#39;1&#39;=&#39;1</code>을 입력했습니다.</p>
+<br>
+
+<blockquote>
+<p>Fail: Don’t use ‘OR’! NO Hack!!</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#Hint <span class="operator">-</span> <span class="keyword">SQL</span> query</span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> users <span class="keyword">where</span> id<span class="operator">=</span><span class="string">&#x27;&#123;$_GET[&quot;id&quot;]&#125;&#x27;</span> <span class="keyword">and</span> pw<span class="operator">=</span><span class="string">&#x27;&#123;$_GET[&quot;pw&quot;]&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>OR</code>을 사용하지 말라는 문구와 힌트가 나왔습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🚩-SOLVE"><a href="#🚩-SOLVE" class="headerlink" title="🚩 SOLVE"></a>🚩 SOLVE</h1><br>
+
+<img src = "/images/SSTF 2021/SQLi101/SQLi101_5.png">
+
+<br>
+
+<p><code>USERNAME</code>에 <code>admin&#39;#</code>을 입력해주고 <code>PASSWORD</code>에 <code>아무거나</code>를 입력했습니다.</p>
+<br>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">SQL</span> injection</span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> users <span class="keyword">where</span> id<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span>#<span class="string">&#x27; and pw=&#x27;</span>anything<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>주석을 사용하여 <code>and pw=&#39;anything&#39;</code>조건을 무력화 시켰습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h4 id="FLAG"><a href="#FLAG" class="headerlink" title="FLAG"></a>FLAG</h4><br>
+
+<img src = "/images/SSTF 2021/SQLi101/SQLi101_6.png">
+
+<br>
+
+<p>로그인 우회가 되면서 FLAG가 출력되었습니다.</p>
+<br>
+
+<blockquote>
+<p>SCTF{th3_f1rs7_5t3p_t0_the_w3B_h4ckEr}</p>
+</blockquote>
+
       
     </div>
 
