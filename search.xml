@@ -320,15 +320,18 @@
 <p><strong>3개의 조건문을 합쳐보면 <code>user_lv</code>쿠키는 <code>숫자</code>이고, 값이 <code>3보다 크고 4미만</code>이여야 합니다.</strong></p>
 </blockquote>
 <hr>
-<p><br><br><h3></h3><h2></h2></p>
-<h1 id="🍪-쿠키변조"><a href="#🍪-쿠키변조" class="headerlink" title="🍪 쿠키변조"></a>🍪 쿠키변조</h1><br>
+<p><br><br></p>
+<p>🍪 쿠키변조</p>
+<br>
 
 <p>쿠키 변조 프로그램은 크롬의 확장 프로그램인 <code>EditThisCookie</code>를 사용했습니다.<br><br><br></p>
 <img src = "/images/Webhacking.kr/old-1/EditThisCookie.png" weight="400px" height="400px">
 <br><br>
 이렇게 <code>3보다 크고 4미만인 실수</code>를 넣어준 후 페이지를 새로고침을 해주면 해당 문제가 풀립니다.
 
-]]></content>
+
+
+<h1 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h1>]]></content>
       <categories>
         <category>Webhacking.kr</category>
       </categories>
