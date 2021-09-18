@@ -541,6 +541,11 @@
 <hr>
 <p><strong>참고</strong></p>
 <p><a href="https://owasp.org/Top10/#whats-changed-in-the-top-10-for-2021">OWASP TOP 10</a></p>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/avatar.gif"></object>
+<p>OWASP TOP 10</p><p>https://owasp.org/Top10/#whats-changed-in-the-top-10-for-2021</p>
+<a href="https://owasp.org/Top10/#whats-changed-in-the-top-10-for-2021"></a>
+</div></div>
 ]]></content>
       <categories>
         <category>OWASP TOP 10 2021</category>
