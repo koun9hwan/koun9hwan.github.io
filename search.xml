@@ -707,18 +707,20 @@ section 진행 기간
 
 <br>
 
+<blockquote>
 <p>메인 페이지입니다. 저희 팀 로고와 팀명이 있고 각 메뉴가 있습니다.</p>
+</blockquote>
 <br>
 
-<p>회원가입 &amp; 로그인</p>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/register.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/login.png"></div></div></div>
+<h2 id="회원가입-amp-로그인"><a href="#회원가입-amp-로그인" class="headerlink" title="회원가입 &amp; 로그인"></a>회원가입 &amp; 로그인</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/register.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/login.png"></div></div></div>
 
 <br>
 
+<blockquote>
 <p>회원가입 페이지와 로그인 페이지입니다.</p>
 <p>회원가입 페이지에는 <code>아이디</code>,<code>닉네임</code> 중복확인 버튼이 있고 <code>패스워드</code>를 입력하는 입력란이 있습니다.</p>
 <p>로그인 페이지에는 <code>아이디</code>, <code>패스워드</code> 입력란이 있습니다.</p>
-<p>22222</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Project</category>
