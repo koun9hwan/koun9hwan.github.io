@@ -691,6 +691,8 @@ section 진행 기간
 
 <p>위 구성도와 같이 <code>AWS EC2</code>에 DB 서버인 <code>MySQL</code>과 <code>Apache Web Server</code>를 구축했습니다.</p>
 <p>워게임 문제같은 경우에는 <code>Docker</code>에 구축하였습니다.</p>
+<br>
+
 <h3 id="왜-도커에-구축"><a href="#왜-도커에-구축" class="headerlink" title="왜 도커에 구축?"></a>왜 도커에 구축?</h3><p>워게임 문제같은 경우에는 문제 의도 상 취약하게 만들어야 하기 때문에 같은 서버에서 서비스하게 되면 메인 시스템에 악영향을 끼치는 의도치 못한 상황이 발생할 수 있기 때문에 <code>Docker</code>에 구축하였습니다.</p>
 <br>
 
@@ -701,6 +703,20 @@ section 진행 기간
 
 <h1 id="워게임-사이트-제작-및-기능-구현"><a href="#워게임-사이트-제작-및-기능-구현" class="headerlink" title="워게임 사이트 제작 및 기능 구현"></a>워게임 사이트 제작 및 기능 구현</h1><br>
 
+<h2 id="메인-페이지"><a href="#메인-페이지" class="headerlink" title="메인 페이지"></a>메인 페이지</h2><p>![](/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/main.png)</p>
+<br>
+
+<p>메인 페이지입니다. 저희 팀 로고와 팀명이 있고 각 메뉴가 있습니다.</p>
+<br>
+
+<p>회원가입 &amp; 로그인</p>
+<p>![](/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/register.png)</p>
+<p>![](/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/login.png)</p>
+<br>
+
+<p>회원가입 페이지와 로그인 페이지입니다.</p>
+<p>회원가입 페이지에는 <code>아이디</code>,<code>닉네임</code> 중복확인 버튼이 있고 <code>패스워드</code>를 입력하는 입력란이 있습니다.</p>
+<p>로그인 페이지에는 <code>아이디</code>, <code>패스워드</code> 입력란이 있습니다.</p>
 ]]></content>
       <categories>
         <category>Project</category>
