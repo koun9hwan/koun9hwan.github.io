@@ -618,12 +618,12 @@
   <entry>
     <title>[프로젝트] Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성</title>
     <url>/2021/09/19/2021-09-10-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_Wargame%20%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EC%A0%9C%EC%9E%91%20%EB%B0%8F%20%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9%20%EC%A7%84%EB%8B%A8%20%ED%9B%84%20%EB%B3%B4%EA%B3%A0%EC%84%9C%20%EC%9E%91%EC%84%B1/</url>
-    <content><![CDATA[<h1 id="🧶-프로젝트-개요"><a href="#🧶-프로젝트-개요" class="headerlink" title="🧶 프로젝트 개요"></a>🧶 프로젝트 개요</h1><p>Web, Reversing, Forensic, System 등 여러 분야의 해킹 기법을 학습하고 연습할 수 있는 Wargame 홈페이지를 제작하였습니다.<br>또한 해당 홈페이지에 대하여 모의 해킹 진단(침투테스트)을 수행하여 보고서를 쓰고, 취약한 부분에 대하여는 Secure Coding을 통하여 보완하였습니다.</p>
+    <content><![CDATA[<h1 id="🧶-프로젝트-개요"><a href="#🧶-프로젝트-개요" class="headerlink" title="🧶 프로젝트 개요"></a>🧶 프로젝트 개요</h1><p><br>Web, Reversing, Forensic, System 등 여러 분야의 해킹 기법을 학습하고 연습할 수 있는 Wargame 홈페이지를 제작하였습니다.<br>또한 해당 홈페이지에 대하여 모의 해킹 진단(침투테스트)을 수행하여 보고서를 쓰고, 취약한 부분에 대하여는 Secure Coding을 통하여 보완하였습니다.</p>
 <br>
 
 <br>
 
-<h2 id="해당-프로젝트를-한-이유"><a href="#해당-프로젝트를-한-이유" class="headerlink" title="해당 프로젝트를 한 이유?"></a>해당 프로젝트를 한 이유?</h2><p>직접 사이트를 만들어보면서 PHP에 대한 이해와 DB에 대한 이해를 할 수 있고, 직접 워게임 문제를 만들어보면서 다양한 해킹 기법을 공부할 수 있다고 생각되어 이 프로젝트를 하게 되었습니다.</p>
+<h2 id="해당-프로젝트를-한-이유"><a href="#해당-프로젝트를-한-이유" class="headerlink" title="해당 프로젝트를 한 이유?"></a>해당 프로젝트를 한 이유?</h2><p><br>직접 사이트를 만들어보면서 PHP에 대한 이해와 DB에 대한 이해를 할 수 있고, 직접 워게임 문제를 만들어보면서 다양한 해킹 기법을 공부할 수 있다고 생각되어 이 프로젝트를 하게 되었습니다.</p>
 <br>
 
 <br>
@@ -662,9 +662,8 @@ section 진행 기간
 
 <br>
 
-<h2 id="프로젝트-진행-환경"><a href="#프로젝트-진행-환경" class="headerlink" title="프로젝트 진행 환경"></a>프로젝트 진행 환경</h2><div class="note default"><h3 id="운영체제-amp-가상화"><a href="#운영체제-amp-가상화" class="headerlink" title="운영체제 &amp; 가상화"></a>운영체제 &amp; 가상화</h3><p>APM 환경은 <code>AWS EC2 Ubuntu 20.04.2 LTS</code>에 구축하였습니다.<br>워게임 문제같은 경우에는 <code>Docker</code>를 사용하였습니다.<br>해당 사이트 모의 해킹에는 <code>Windows 10</code>과 <code>Kali</code>를 사용하였습니다.</p>
-</div>
-
+<h2 id="프로젝트-진행-환경"><a href="#프로젝트-진행-환경" class="headerlink" title="프로젝트 진행 환경"></a>프로젝트 진행 환경</h2><p><br><div class="note default"><h3 id="운영체제-amp-가상화"><a href="#운영체제-amp-가상화" class="headerlink" title="운영체제 &amp; 가상화"></a>운영체제 &amp; 가상화</h3><p>APM 환경은 <code>AWS EC2 Ubuntu 20.04.2 LTS</code>에 구축하였습니다.<br>워게임 문제같은 경우에는 <code>Docker</code>를 사용하였습니다.<br>해당 사이트 모의 해킹에는 <code>Windows 10</code>과 <code>Kali</code>를 사용하였습니다.</p>
+</div></p>
 <br>
 
 <div class="note default"><h3 id="도구"><a href="#도구" class="headerlink" title="도구"></a>도구</h3><p>코드를 작성하는 도구로는 <code>Putty</code>와 <code>Visual Studio Code</code>를 사용하였습니다.<br>로컬에서 작성한 코드를 서버로 옮기는 도구로는 <code>WinSCP</code>를 사용하였습니다.</p>
