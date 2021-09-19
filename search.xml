@@ -716,11 +716,43 @@ section 진행 기간
 
 <br>
 
-<blockquote>
-<p>회원가입 페이지와 로그인 페이지입니다.</p>
+<div class="note default"><p>회원가입 페이지와 로그인 페이지입니다.</p>
 <p>회원가입 페이지에는 <code>아이디</code>,<code>닉네임</code> 중복확인 버튼이 있고 <code>패스워드</code>를 입력하는 입력란이 있습니다.</p>
 <p>로그인 페이지에는 <code>아이디</code>, <code>패스워드</code> 입력란이 있습니다.</p>
-</blockquote>
+</div>
+
+<br>
+
+<h2 id="문제-풀이-페이지"><a href="#문제-풀이-페이지" class="headerlink" title="문제 풀이 페이지"></a>문제 풀이 페이지</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/challenges.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/challenges_2.png"></div></div></div>
+
+<br>
+
+<div class="note default"><p>워게임 문제 풀이 페이지입니다. 여러가지 카테고리가 있습니다.</p>
+<p>프로젝트의 목표가 웹해킹이라서 다른 카테고리의 문제는 없습니다.</p>
+</div>
+
+<br>
+
+<h2 id="랭킹-페이지"><a href="#랭킹-페이지" class="headerlink" title="랭킹 페이지"></a>랭킹 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/rank.png" width="70%" heigth="70%">
+
+<br>
+
+<div class="note default"><p>랭킹 페이지 입니다. </p>
+<p>문제 풀이에 따른 점수로 레벨과 순위가 공개됩니다.</p>
+</div>
+
+<br>
+
+<h2 id="플래그-입력-페이지"><a href="#플래그-입력-페이지" class="headerlink" title="플래그 입력 페이지"></a>플래그 입력 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/auth.png" width="70%" heigth="70%">
+
+<br>
+
+<div class="note default"><p>플래그 입력 페이지 입니다.</p>
+<p>문제를 풀면 플래그가 나오는데 그 플래그를 입력하면 점수가 주어집니다.</p>
+</div>
+
+<br>
+
 ]]></content>
       <categories>
         <category>Project</category>
