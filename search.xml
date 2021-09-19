@@ -812,7 +812,7 @@ section 진행 기간
 
 <h2 id="UNION-SQL-Injection"><a href="#UNION-SQL-Injection" class="headerlink" title="UNION SQL Injection"></a>UNION SQL Injection</h2><br>
 
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_1.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_2.png"></div></div><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_3.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_4.png"></div></div></div>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_1.png" width="70%" height="70%"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_2.png"></div></div><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_3.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/union_sqli_4.png"></div></div></div>
 
 <br>
 
@@ -865,6 +865,7 @@ section 진행 기간
 <br>
 
 <h1 id="📰-게시판-제작-및-기능-구현"><a href="#📰-게시판-제작-및-기능-구현" class="headerlink" title="📰 게시판 제작 및 기능 구현"></a>📰 게시판 제작 및 기능 구현</h1><br>
+
 ]]></content>
       <categories>
         <category>Project</category>
