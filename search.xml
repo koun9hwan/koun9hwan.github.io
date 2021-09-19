@@ -804,10 +804,10 @@ section 진행 기간
 
 <br>
 
-<div class="note info no-icon"><p><strong>DataBase</strong></p>
+<blockquote>
+<p><strong>DataBase</strong></p>
 <p>+———–+——–+—————————+<br>| id         | pw    | flag                          |<br>+———–+——–+—————————+<br>| admin | 1234 | flag{Simpl3_Sq1i} |<br>+———–+——–+—————————+</p>
-</div>
-
+</blockquote>
 ]]></content>
       <categories>
         <category>Project</category>
