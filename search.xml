@@ -662,22 +662,22 @@ section 진행 기간
 
 <br>
 
-<h2 id="프로젝트-진행-환경"><a href="#프로젝트-진행-환경" class="headerlink" title="프로젝트 진행 환경"></a>프로젝트 진행 환경</h2><div class="note default"><h4 id="운영체제-amp-가상화"><a href="#운영체제-amp-가상화" class="headerlink" title="운영체제 &amp; 가상화"></a>운영체제 &amp; 가상화</h4><p>APM 환경은 <code>AWS EC2 Ubuntu 20.04.2 LTS</code>에 구축하였습니다.<br>워게임 문제같은 경우에는 <code>Docker</code>를 사용하였습니다.<br>해당 사이트 모의 해킹에는 <code>Windows 10</code>과 <code>Kali</code>를 사용하였습니다.</p>
+<h2 id="프로젝트-진행-환경"><a href="#프로젝트-진행-환경" class="headerlink" title="프로젝트 진행 환경"></a>프로젝트 진행 환경</h2><div class="note default"><h3 id="운영체제-amp-가상화"><a href="#운영체제-amp-가상화" class="headerlink" title="운영체제 &amp; 가상화"></a>운영체제 &amp; 가상화</h3><p>APM 환경은 <code>AWS EC2 Ubuntu 20.04.2 LTS</code>에 구축하였습니다.<br>워게임 문제같은 경우에는 <code>Docker</code>를 사용하였습니다.<br>해당 사이트 모의 해킹에는 <code>Windows 10</code>과 <code>Kali</code>를 사용하였습니다.</p>
 </div>
 
 <br>
 
-<div class="note default"><h4 id="도구"><a href="#도구" class="headerlink" title="도구"></a>도구</h4><p>코드를 작성하는 도구로는 <code>Putty</code>와 <code>Visual Studio Code</code>를 사용하였습니다.<br>로컬에서 작성한 코드를 서버로 옮기는 도구로는 <code>WinSCP</code>를 사용하였습니다.</p>
+<div class="note default"><h3 id="도구"><a href="#도구" class="headerlink" title="도구"></a>도구</h3><p>코드를 작성하는 도구로는 <code>Putty</code>와 <code>Visual Studio Code</code>를 사용하였습니다.<br>로컬에서 작성한 코드를 서버로 옮기는 도구로는 <code>WinSCP</code>를 사용하였습니다.</p>
 </div>
 
 <br>
 
-<div class="note default"><h4 id="프로그램"><a href="#프로그램" class="headerlink" title="프로그램"></a>프로그램</h4><p>모의해킹에 사용한 프로그램으로는 <code>WireShark</code>, <code>Burp Suite</code>, <code>Nmap</code>, <code>sqlmap</code>, <code>Nikto</code>, <code>WAFW00F</code>등을 사용하였습니다.</p>
+<div class="note default"><h3 id="프로그램"><a href="#프로그램" class="headerlink" title="프로그램"></a>프로그램</h3><p>모의해킹에 사용한 프로그램으로는 <code>WireShark</code>, <code>Burp Suite</code>, <code>Nmap</code>, <code>sqlmap</code>, <code>Nikto</code>, <code>WAFW00F</code>등을 사용하였습니다.</p>
 </div>
 
 <br>
 
-<div class="note default"><h4 id="언어"><a href="#언어" class="headerlink" title="언어"></a>언어</h4><p>사용 언어로는 <code>PHP</code>, <code>HTML</code>, <code>CSS</code>, <code>MySQL</code>를 사용하였습니다.</p>
+<div class="note default"><h3 id="언어"><a href="#언어" class="headerlink" title="언어"></a>언어</h3><p>사용 언어로는 <code>PHP</code>, <code>HTML</code>, <code>CSS</code>, <code>MySQL</code>를 사용하였습니다.</p>
 </div>
 
 <br>
