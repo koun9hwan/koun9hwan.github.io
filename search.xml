@@ -703,8 +703,7 @@ section 진행 기간
 
 <h1 id="🎈-워게임-사이트-제작-및-기능-구현"><a href="#🎈-워게임-사이트-제작-및-기능-구현" class="headerlink" title="🎈 워게임 사이트 제작 및 기능 구현"></a>🎈 워게임 사이트 제작 및 기능 구현</h1><br>
 
-<h2 id="메인-페이지"><a href="#메인-페이지" class="headerlink" title="메인 페이지"></a>메인 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/main.png" width="70%" heigth="70%">
-
+<h2 id="메인-페이지"><a href="#메인-페이지" class="headerlink" title="메인 페이지"></a>메인 페이지</h2><p><br><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/main.png" width="70%" heigth="70%"></p>
 <br>
 
 <div class="note default"><p>메인 페이지입니다. 저희 팀 로고와 팀명이 있고 각 메뉴가 있습니다.</p>
@@ -714,8 +713,7 @@ section 진행 기간
 
 <br>
 
-<h2 id="회원가입-amp-로그인"><a href="#회원가입-amp-로그인" class="headerlink" title="회원가입 &amp; 로그인"></a>회원가입 &amp; 로그인</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/register.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/login.png"></div></div></div>
-
+<h2 id="회원가입-amp-로그인"><a href="#회원가입-amp-로그인" class="headerlink" title="회원가입 &amp; 로그인"></a>회원가입 &amp; 로그인</h2><p><br><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/register.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/login.png"></div></div></div></p>
 <br>
 
 <div class="note default"><p>회원가입 페이지와 로그인 페이지입니다.</p>
@@ -727,8 +725,7 @@ section 진행 기간
 
 <br>
 
-<h2 id="문제-풀이-페이지"><a href="#문제-풀이-페이지" class="headerlink" title="문제 풀이 페이지"></a>문제 풀이 페이지</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/challenges.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/challenges_2.png"></div></div></div>
-
+<h2 id="문제-풀이-페이지"><a href="#문제-풀이-페이지" class="headerlink" title="문제 풀이 페이지"></a>문제 풀이 페이지</h2><p><br><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/challenges.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/challenges_2.png"></div></div></div></p>
 <br>
 
 <div class="note default"><p>워게임 문제 풀이 페이지입니다. 여러가지 카테고리가 있습니다.</p>
@@ -739,8 +736,7 @@ section 진행 기간
 
 <br>
 
-<h2 id="랭킹-페이지"><a href="#랭킹-페이지" class="headerlink" title="랭킹 페이지"></a>랭킹 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/rank.png" width="70%" heigth="70%">
-
+<h2 id="랭킹-페이지"><a href="#랭킹-페이지" class="headerlink" title="랭킹 페이지"></a>랭킹 페이지</h2><p><br><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/rank.png" width="70%" heigth="70%"></p>
 <br>
 
 <div class="note default"><p>랭킹 페이지 입니다. </p>
@@ -751,8 +747,7 @@ section 진행 기간
 
 <br>
 
-<h2 id="플래그-입력-페이지"><a href="#플래그-입력-페이지" class="headerlink" title="플래그 입력 페이지"></a>플래그 입력 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/auth.png" width="70%" heigth="70%">
-
+<h2 id="플래그-입력-페이지"><a href="#플래그-입력-페이지" class="headerlink" title="플래그 입력 페이지"></a>플래그 입력 페이지</h2><p><br><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/auth.png" width="70%" heigth="70%"></p>
 <br>
 
 <div class="note default"><p>플래그 입력 페이지 입니다.</p>
@@ -763,8 +758,7 @@ section 진행 기간
 
 <br>
 
-<h2 id="소개-amp-설명-페이지"><a href="#소개-amp-설명-페이지" class="headerlink" title="소개 &amp; 설명 페이지"></a>소개 &amp; 설명 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/about.png" width="70%" heigth="70%">
-
+<h2 id="소개-amp-설명-페이지"><a href="#소개-amp-설명-페이지" class="headerlink" title="소개 &amp; 설명 페이지"></a>소개 &amp; 설명 페이지</h2><p><br><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/about.png" width="70%" heigth="70%"></p>
 <br>
 
 <div class="note default"><p>저희 팀명 소개와 워게임 사이트 사용 방법을 적어놓은 페이지입니다.</p>
@@ -774,8 +768,7 @@ section 진행 기간
 
 <br>
 
-<h2 id="마이-페이지"><a href="#마이-페이지" class="headerlink" title="마이 페이지"></a>마이 페이지</h2><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/mypage.png" width="70%" heigth="70%">
-
+<h2 id="마이-페이지"><a href="#마이-페이지" class="headerlink" title="마이 페이지"></a>마이 페이지</h2><p><br><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/mypage.png" width="70%" heigth="70%"></p>
 <br>
 
 <div class="note default"><p>마이 페이지 입니다.</p>
@@ -784,6 +777,13 @@ section 진행 기간
 </div>
 
 <br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙄-워게임-Web-문제-제작"><a href="#🙄-워게임-Web-문제-제작" class="headerlink" title="🙄 워게임 Web 문제 제작"></a>🙄 워게임 Web 문제 제작</h1><br>
 
 ]]></content>
       <categories>
