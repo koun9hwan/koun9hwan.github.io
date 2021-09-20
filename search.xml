@@ -365,7 +365,7 @@ section 진행 기간
 
 게시판 제작 및 기능 구현:         des3, 2021-07-15,2021-07-23
 
-게시판 취약점 보고서 작성:active, des4, 2021-07-23,2021-08-06
+게시판 모의해킹 보고서 작성:active, des4, 2021-07-23,2021-08-06
 
 보고서 취합 및 시큐어 코딩:done, des5, 2021-08-03,2021-08-13
 
@@ -379,7 +379,7 @@ section 진행 기간
 <p><code>0 ~ 1.5</code>주차 : 워게임 사이트 제작 및 기능 구현을 하였습니다.</p>
 <p><code>1.5 ~ 4</code>주차 : 워게임 Web 문제를 제작하였습니다.</p>
 <p><code>3.2 ~ 4.2</code>주차 : 게시판 제작 및 기능 구현을 하였습니다.</p>
-<p><code>4.3 ~ 6.5</code>주차 : 게시판 취약점 점검 및 보고서를 작성하였습니다.</p>
+<p><code>4.3 ~ 6.5</code>주차 : 게시판 모의해킹 및 보고서를 작성하였습니다.</p>
 <p><code>6 ~ 7.2</code>주차 : 팀원 별로 작성한 보고서를 취합하고 시큐어 코딩을 했습니다.</p>
 <p><code>7 ~ 8</code>주차 : 발표 준비 및 발표를 하였습니다.</p>
 <br>
@@ -563,7 +563,7 @@ section 진행 기간
 
 <br>
 
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">#shop 페이지입니다. shop.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$conn</span> = mysqli_connect(<span class="string">&#x27;~~&#x27;</span>,<span class="string">&#x27;~~&#x27;</span>,<span class="string">&#x27;~~&#x27;</span>,<span class="string">&#x27;shop&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(mysqli_connect_error())&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Failed to Connect MySQL : &quot;</span>.mysqli_connect_error();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//$post = $_GET[&#x27;list&#x27;];</span></span><br><span class="line"><span class="variable">$par</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;list&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from book where idx =<span class="subst">$par</span>&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = mysqli_fetch_array(<span class="variable">$result</span>))</span><br><span class="line">&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;BOOK NAME : &#x27;</span>.<span class="variable">$row</span>[<span class="string">&#x27;bookname&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;PRICE : &#x27;</span>.<span class="variable">$row</span>[<span class="string">&#x27;price&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;STOCK : &#x27;</span>.<span class="variable">$row</span>[<span class="string">&#x27;count&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;&#x27;</span>;</span><br><span class="line">        <span class="comment">//$i=$i+1;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">#shop 페이지입니다. shop.php</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$conn</span> = mysqli_connect(<span class="string">&#x27;~~&#x27;</span>,<span class="string">&#x27;~~&#x27;</span>,<span class="string">&#x27;~~&#x27;</span>,<span class="string">&#x27;shop&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(mysqli_connect_error())&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Failed to Connect MySQL : &quot;</span>.mysqli_connect_error();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//$post = $_GET[&#x27;list&#x27;];</span></span><br><span class="line"><span class="variable">$par</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;list&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from book where idx =<span class="subst">$par</span>&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = mysqli_fetch_array(<span class="variable">$result</span>))</span><br><span class="line">&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;BOOK NAME : &#x27;</span>.<span class="variable">$row</span>[<span class="string">&#x27;bookname&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;PRICE : &#x27;</span>.<span class="variable">$row</span>[<span class="string">&#x27;price&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;STOCK : &#x27;</span>.<span class="variable">$row</span>[<span class="string">&#x27;count&#x27;</span>];</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;&#x27;</span>;</span><br><span class="line">        <span class="comment">//$i=$i+1;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -596,7 +596,79 @@ section 진행 기간
 
 <h1 id="📰-게시판-제작-및-기능-구현"><a href="#📰-게시판-제작-및-기능-구현" class="headerlink" title="📰 게시판 제작 및 기능 구현"></a>📰 게시판 제작 및 기능 구현</h1><br>
 
-<p>22222</p>
+<h2 id="메인-페이지-1"><a href="#메인-페이지-1" class="headerlink" title="메인 페이지"></a>메인 페이지</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_main.png">
+
+<br>
+
+<div class="note default"><p>메인 페이지입니다. 최근에 올라온 게시물이 보이고 포인트 랭킹이 있습니다.</p>
+</div>
+
+<br>
+
+<br>
+
+<h2 id="회원가입-amp-로그인-1"><a href="#회원가입-amp-로그인-1" class="headerlink" title="회원가입 &amp; 로그인"></a>회원가입 &amp; 로그인</h2><p><br><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_register.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_login.png"></div></div></div></p>
+<br>
+
+<div class="note default"><p>회원가입 페이지와 로그인 페이지입니다.</p>
+<p>워게임 사이트와 별도로 회원가입을 해야합니다.</p>
+<p>회원가입 페이지에는 <code>아이디</code> 중복확인 버튼이 있고 <code>패스워드</code>를 입력하는 입력란이 있습니다.</p>
+<p>로그인 페이지에는 <code>아이디</code>, <code>패스워드</code> 입력란이 있습니다.</p>
+</div>
+
+<br>
+
+<br>
+
+<h2 id="쪽지-페이지"><a href="#쪽지-페이지" class="headerlink" title="쪽지 페이지"></a>쪽지 페이지</h2><p><br><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_note.png"></div><div class="group-picture-column"><img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_note_2.png"></div></div></div></p>
+<br>
+
+<div class="note default"><p>쪽지 송수신 페이지입니다..</p>
+<p>유저 간 쪽지를 주고 받는 기능이 있습니다.</p>
+</div>
+
+<br>
+
+<br>
+
+<h2 id="게시글-작성-페이지"><a href="#게시글-작성-페이지" class="headerlink" title="게시글 작성 페이지"></a>게시글 작성 페이지</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_write.png">
+
+<br>
+
+<div class="note default"><p>게시글 작성 페이지 입니다.</p>
+<p>자유게시판과 Q&amp;A 게시판을 선택할 수 있으며 파일을 업로드 할 수 있습니다.</p>
+</div>
+
+<br>
+
+<br>
+
+<h2 id="게시글-리스트"><a href="#게시글-리스트" class="headerlink" title="게시글 리스트"></a>게시글 리스트</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/board_list.png">
+
+<br>
+
+<div class="note default"><p>게시판에 쓴 글이 보이는 페이지입니다.</p>
+</div>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💉-게시판-모의해킹-및-보고서-작성"><a href="#💉-게시판-모의해킹-및-보고서-작성" class="headerlink" title="💉 게시판 모의해킹 및 보고서 작성"></a>💉 게시판 모의해킹 및 보고서 작성</h1><br>
+
+<p>팀원 별로 각자 보고서를 작성하여 서로 공유하고 부족한 부분을 채워 하나의 보고서를 완성했습니다.</p>
+<p>보고서는 <code>OWASP TOP 10</code> 기반으로 작성하였습니다.</p>
+<br>
+
 ]]></content>
       <categories>
         <category>Project</category>
