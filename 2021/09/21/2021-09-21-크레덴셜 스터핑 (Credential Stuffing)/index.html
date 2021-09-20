@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-20T16:37:34.000Z">
-<meta property="article:modified_time" content="2021-09-20T16:39:57.214Z">
+<meta property="article:modified_time" content="2021-09-20T18:02:54.441Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="보안용어">
@@ -136,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -149,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91%EC%9D%B4%EB%9E%80"><span class="nav-text">크레덴셜 스터핑이란?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-text">특징</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EA%B3%B5%EA%B2%A9%EC%9C%BC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%ED%94%BC%ED%95%B4"><span class="nav-text">크레덴셜 스터핑 공격으로 인한 피해</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%ED%94%BC%ED%95%B4-%EC%82%AC%EB%A1%80"><span class="nav-text">크레덴셜 스터핑 피해 사례</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EB%B0%A9%EC%96%B4-%EB%B0%8F-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">크레덴셜 스터핑 방어 및 예방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B8%B0%EC%97%85-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%A9%EB%B2%95%EA%B3%BC-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">기업 관점에서의 방법과 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EA%B0%9C%EC%9D%B8-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">사용자(개인) 관점에서의 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C-%EB%AA%A8%EB%8B%88%ED%84%B0-%EA%B8%B0%EB%8A%A5"><span class="nav-text">패스워드 모니터 기능</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -244,7 +245,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-09-21 01:37:34 / Modified: 01:39:57" itemprop="dateCreated datePublished" datetime="2021-09-21T01:37:34+09:00">2021-09-21</time>
+      <time title="Created: 2021-09-21 01:37:34 / Modified: 03:02:54" itemprop="dateCreated datePublished" datetime="2021-09-21T01:37:34+09:00">2021-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,7 +268,97 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
+        <h1 id="크레덴셜-스터핑이란"><a href="#크레덴셜-스터핑이란" class="headerlink" title="크레덴셜 스터핑이란?"></a>크레덴셜 스터핑이란?</h1><br>
+
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
+
+<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
+
+<br>
+
+<br>
+
+<h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
+
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="크레덴셜-스터핑-공격으로-인한-피해"><a href="#크레덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="크레덴셜 스터핑 공격으로 인한 피해"></a>크레덴셜 스터핑 공격으로 인한 피해</h1><br>
+
+<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
+
+<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
+<br>
+
+<br>
+
+<h2 id="크레덴셜-스터핑-피해-사례"><a href="#크레덴셜-스터핑-피해-사례" class="headerlink" title="크레덴셜 스터핑 피해 사례"></a>크레덴셜 스터핑 피해 사례</h2><br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/avatar.gif"></object>
+<p>보안뉴스</p><p>크레덴셜 스터핑 피해 사례</p>
+<a target="_blank" rel="noopener" href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="크레덴셜-스터핑-방어-및-예방법"><a href="#크레덴셜-스터핑-방어-및-예방법" class="headerlink" title="크레덴셜 스터핑 방어 및 예방법"></a>크레덴셜 스터핑 방어 및 예방법</h1><br>
+
+<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
+
+<p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
+<br>
+
+<br>
+
+<h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
+
+<ul>
+<li><mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
+그러므로 탐지를 통해 방어를 해야 합니다.</li>
+<li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
+<li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
+<li>회원 가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="사용자-개인-관점에서의-예방법"><a href="#사용자-개인-관점에서의-예방법" class="headerlink" title="사용자(개인) 관점에서의 예방법"></a>사용자(개인) 관점에서의 예방법</h2><br>
+
+<ul>
+<li>사이트에 다중 인증 옵션이 있을 경우 사용합니다.</li>
+<li>각 사이트 별로 다른 비밀번호를 사용해야 합니다.</li>
+<li>비밀번호는 영문, 숫자, 특수 문자, 영어 대문자를 포함하여 강력하게 만들어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/avatar.gif"></object>
+<p>보안뉴스</p><p>패스워드 모니터</p>
+<a target="_blank" rel="noopener" href="https://www.boannews.com/media/view.asp?idx=97978"></a>
+</div></div>
+
+<br>
+
+<p><strong>기사 내용 요약</strong></p>
+<p>엣지 브라우저에서의 ‘패스워드 모니터’ 기능을 키면 다크웹 등 을 스캔해 사용자의 계정 정보가 유출됐는지 파악하고 그것을 알려 주는 기능이 있다고 알려 주는 내용입니다.</p>
+
     </div>
 
     
