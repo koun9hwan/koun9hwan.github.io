@@ -60,7 +60,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/프로젝트/Wargame%20사이트%20제작%20및%20모의해킹%20진단%20후%20보고서%20작성/report_8.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/프로젝트/Wargame%20사이트%20제작%20및%20모의해킹%20진단%20후%20보고서%20작성/report_9.png">
 <meta property="article:published_time" content="2021-09-18T18:49:06.000Z">
-<meta property="article:modified_time" content="2021-09-20T12:53:09.187Z">
+<meta property="article:modified_time" content="2021-09-20T12:57:52.387Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Project">
@@ -284,7 +284,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-20 21:53:09" itemprop="dateModified" datetime="2021-09-20T21:53:09+09:00">2021-09-20</time>
+        <time title="Modified: 2021-09-20 21:57:52" itemprop="dateModified" datetime="2021-09-20T21:57:52+09:00">2021-09-20</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -726,9 +726,16 @@ section 진행 기간
 
 <br>
 
-<div class="note danger"><h3 id="A1-Injection"><a href="#A1-Injection" class="headerlink" title="A1 Injection"></a>A1 Injection</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#기존 소스코드 #search_result.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$catagory</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;catgo&#x27;</span>];</span><br><span class="line"><span class="variable">$search_con</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;search&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from board where <span class="subst">$catagory</span> like &#x27;%<span class="subst">$search_con</span>%&#x27; order by num desc&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+<div class="note danger"><h3 id="A1-Injection"><a href="#A1-Injection" class="headerlink" title="A1 Injection"></a>A1 Injection</h3><p><strong>기존 소스코드</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#search_result.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$catagory</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;catgo&#x27;</span>];</span><br><span class="line"><span class="variable">$search_con</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;search&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from board where <span class="subst">$catagory</span> like &#x27;%<span class="subst">$search_con</span>%&#x27; order by num desc&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+</div>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#시큐어 코딩 소스코드 #search_result.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$catagory</span> = mysqli_real_escape_string(<span class="variable">$con</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;catgo&#x27;</span>]);</span><br><span class="line"><span class="variable">$search_con</span> = mysqli_real_escape_string(<span class="variable">$con</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;search&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from board where <span class="subst">$catagory</span> like &#x27;%<span class="subst">$search_con</span>%&#x27; order by num desc&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+<br>
+
+<div class="note success"><p><strong>시큐어 코딩 소스코드</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#search_result.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$catagory</span> = mysqli_real_escape_string(<span class="variable">$con</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;catgo&#x27;</span>]);</span><br><span class="line"><span class="variable">$search_con</span> = mysqli_real_escape_string(<span class="variable">$con</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;search&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from board where <span class="subst">$catagory</span> like &#x27;%<span class="subst">$search_con</span>%&#x27; order by num desc&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+
+
 
 <p><code>mysqli_real_escape_string</code> 함수를 사용하여 시큐어 코딩을 해주었습니다.</p>
 <p><code>mysqli_real_escape_string</code> 함수는 <code>&#39;</code>, <code>&quot;</code>, <code>\x00</code>, <code>\n</code>, <code>\r</code>, <code>\</code>, <code>\x1a</code> 와 같은 문자 앞에 <code>\</code> 를 붙여서 해당 문자가 실제 작동하지 않도록 이스케이프 해주었습니다.</p>
