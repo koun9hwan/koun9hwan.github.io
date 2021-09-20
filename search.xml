@@ -669,6 +669,105 @@ section 진행 기간
 <p>보고서는 <code>OWASP TOP 10</code> 기반으로 작성하였습니다.</p>
 <br>
 
+<br>
+
+<h2 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_contents.png">
+
+<br>
+
+<p>보고서의 <code>목차</code> 부분입니다. </p>
+<p><code>개요</code>, <code>수행 절차</code>, <code>모의해킹 세부 분석</code>, <code>대응방안</code>, <code>시큐어 코딩</code>, <code>참고 자료</code> 로 나눠져 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_2.png">
+
+<br>
+
+<p>보고서의 <code>개요</code> 부분입니다. 본 모의해킹의 설명이 적혀있습니다.</p>
+<p><code>취약점 요약</code>에는 본 사이트에서 나온 취약점을 모아놓았습니다. 어떤 취약점이 있는지 한번에 볼 수 있습니다.</p>
+<p><code>대상</code>에는 본 모의해킹의 대상에 대해 설명이 적혀있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="수행-절차"><a href="#수행-절차" class="headerlink" title="수행 절차"></a>수행 절차</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_3.png">
+
+<br>
+
+<p>보고서의 <code>수행 절차</code> 부분입니다. </p>
+<p><code>점검 방법</code>에는 본 모의해킹의 수행 절차를 설명해놓은 표가 있습니다.</p>
+<p><code>점검 할 취약점 항목</code>에는 취약점 항목에 대한 설명이 있습니다. OWSASP TOP 10 기반으로 모의해킹을 하기 때문에 OWASP TOP 10의 항목과 설명을 적어놓은 표가 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="모의해킹-세부-분석"><a href="#모의해킹-세부-분석" class="headerlink" title="모의해킹 세부 분석"></a>모의해킹 세부 분석</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_4.png">
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_5.png">
+
+<br>
+
+<p>모의해킹 세부 분석의 <code>정보수집</code> 부분입니다.</p>
+<p><code>nikto</code>, <code>Nmap</code>, <code>Wafw00f</code>를 이용하여 <code>정보수집</code>을 하였습니다.</p>
+<p><code>정보수집</code> 결과를 표로 정리해놨습니다.</p>
+<br>
+
+<br>
+
+<p><code>세부 분석</code>과 <code>대응 방법</code>은 내용이 많아 <code>A1</code>부분만 적었습니다.</p>
+<br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_6.png">
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_7.png">
+
+<br>
+
+<p><code>A1 Injection</code> 입니다. 모의해킹 대상 페이지의 <code>url</code>을 적어놨습니다.</p>
+<p>또한 모의해킹 과정(SQL Injection)을 작성했습니다.</p>
+<br>
+
+<br>
+
+<h2 id="대응방안"><a href="#대응방안" class="headerlink" title="대응방안"></a>대응방안</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_8.png">
+
+<br>
+
+<p>해당 취약점의 <code>대응방안</code>을 정리해놨습니다.</p>
+<br>
+
+<br>
+
+<h2 id="시큐어-코딩"><a href="#시큐어-코딩" class="headerlink" title="시큐어 코딩"></a>시큐어 코딩</h2><br>
+
+<img src="/images/프로젝트/Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성/report_9.png">
+
+<br>
+
+<p>대상 페이지의 <code>url</code>과 <code>기존 소스코드</code>와 <code>시큐어 코딩이</code> 적용된 코드와 설명이 있습니다.</p>
+<br>
+
+<br>
+
+<div class="note danger"><h3 id="A1-Injection"><a href="#A1-Injection" class="headerlink" title="A1 Injection"></a>A1 Injection</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">#기존 소스코드 #search_result.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$catagory</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;catgo&#x27;</span>];</span><br><span class="line"><span class="variable">$search_con</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;search&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from board where <span class="subst">$catagory</span> like &#x27;%<span class="subst">$search_con</span>%&#x27; order by num desc&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">#시큐어 코딩 소스코드 #search_result.php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$catagory</span> = mysqli_real_escape_string(<span class="variable">$con</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;catgo&#x27;</span>]);</span><br><span class="line"><span class="variable">$search_con</span> = mysqli_real_escape_string(<span class="variable">$con</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;search&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;select * from board where <span class="subst">$catagory</span> like &#x27;%<span class="subst">$search_con</span>%&#x27; order by num desc&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = mysqli_query(<span class="variable">$con</span>, <span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>mysqli_real_escape_string</code> 함수를 사용하여 시큐어 코딩을 해주었습니다.</p>
+<p><code>mysqli_real_escape_string</code> 함수는 <code>&#39;</code>, <code>&quot;</code>, <code>\x00</code>, <code>\n</code>, <code>\r</code>, <code>\</code>, <code>\x1a</code> 와 같은 문자 앞에 <code>\</code> 를 붙여서 해당 문자가 실제 작동하지 않도록 이스케이프 해주었습니다.</p>
+</div>
 ]]></content>
       <categories>
         <category>Project</category>
