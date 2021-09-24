@@ -340,6 +340,127 @@
       </tags>
   </entry>
   <entry>
+    <title>[Lord of SQLInjection] [1번_gremlin] Write UP</title>
+    <url>/2021/09/15/2021-09-15-Lord_of_SQLIjection_1_gremlin/</url>
+    <content><![CDATA[<h1 id="📖-전체-소스코드"><a href="#📖-전체-소스코드" class="headerlink" title="📖 전체 소스코드"></a>📖 전체 소스코드</h1><br>
+
+<p>1번 문제인 gremlin을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/gremlin/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>;</span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) solve(<span class="string">&quot;gremlin&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="✅-중요-소스코드-해석"><a href="#✅-중요-소스코드-해석" class="headerlink" title="✅ 중요 소스코드 해석"></a>✅ 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>일단 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
+<br>
+
+<hr>
+<h2 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h2><p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<br>
+
+<img src="/images/Lord of SQLInjection/gremlin/preg.png">
+
+<br>
+
+<br>
+
+<hr>
+<h2 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h2><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<h2 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h2><p>세번째 줄은 쿼리문입니다.</p>
+<p><code>id</code>와 <code>pw</code> 둘 중 하나를 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="🏁-SOLVE"><a href="#🏁-SOLVE" class="headerlink" title="🏁 SOLVE"></a>🏁 SOLVE</h1><br>
+
+<p><code>id</code> 부분에 아무 문자를 넣고 <code>pw</code> 부분을 참으로 만들었습니다.<br><br><br></p>
+<img src = "/images/Lord of SQLInjection/gremlin/solved.png">
+<br><br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [2번_cobolt] Write UP</title>
+    <url>/2021/09/16/2021-09-16-Lord_of_SQLIjection_2_cobolt/</url>
+    <content><![CDATA[<h1 id="📕-전체-소스코드"><a href="#📕-전체-소스코드" class="headerlink" title="📕 전체 소스코드"></a>📕 전체 소스코드</h1><br>
+
+<p>2번 문제인 cobolt을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/cobolt/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;cobolt&quot;</span>);</span><br><span class="line">  <span class="keyword">elseif</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[&#x27;id&#x27;]&#125;</span>&lt;br&gt;You are not admin :(&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="❕❕-중요-소스코드-해석"><a href="#❕❕-중요-소스코드-해석" class="headerlink" title="❕❕ 중요 소스코드 해석"></a>❕❕ 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>; </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;cobolt&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>1번 문제와 같이 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
+<p>또한 <code>id</code> 파라미터가 <code>admin</code> 이어야 하는 <code>조건문</code>도 있습니다.</p>
+<br>
+
+<hr>
+<h2 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h2><p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<br>
+
+<img src="/images/Lord of SQLInjection/cobolt/preg.png">
+
+<br>
+
+<br>
+
+<hr>
+<h2 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h2><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<hr>
+<h2 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h2><p>세번째 줄은 쿼리문입니다.</p>
+<p><code>id</code>를 <code>admin</code>으로 만들어주는 동시에 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p><br><br></p>
+<h1 id="🚩-SOLVE"><a href="#🚩-SOLVE" class="headerlink" title="🚩 SOLVE"></a>🚩 SOLVE</h1><br>
+
+<p><code>id</code> 부분에 <code>admin&#39; or &#39;1&#39; = &#39;1</code>를 넣어주고 <code>pw</code>에 아무 문자를 넣어주었습니다.<br><br><br></p>
+<img src = "/images/Lord of SQLInjection/cobolt/solved.png">
+<br><br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OWASP TOP 10 2021</title>
     <url>/2021/09/14/2021-09-14-OWASP_TOP_10_2021/</url>
     <content><![CDATA[<h1 id="🌎-OWASP"><a href="#🌎-OWASP" class="headerlink" title="🌎 OWASP"></a>🌎 OWASP</h1><br>
@@ -560,124 +681,118 @@
       </tags>
   </entry>
   <entry>
-    <title>[Lord of SQLInjection] [1번_gremlin] Write UP</title>
-    <url>/2021/09/15/2021-09-15-Lord_of_SQLIjection_1_gremlin/</url>
-    <content><![CDATA[<h1 id="📖-전체-소스코드"><a href="#📖-전체-소스코드" class="headerlink" title="📖 전체 소스코드"></a>📖 전체 소스코드</h1><br>
+    <title>크레덴셜 스터핑 (Credential Stuffing)</title>
+    <url>/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/</url>
+    <content><![CDATA[<h1 id="🤔-크레덴셜-스터핑이란"><a href="#🤔-크레덴셜-스터핑이란" class="headerlink" title="🤔 크레덴셜 스터핑이란?"></a>🤔 크레덴셜 스터핑이란?</h1><br>
 
-<p>1번 문제인 gremlin을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
+
+<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
+
 <br>
 
-<img src="/images/Lord of SQLInjection/gremlin/source.png">
-
 <br>
 
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>;</span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) solve(<span class="string">&quot;gremlin&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<h1 id="✅-중요-소스코드-해석"><a href="#✅-중요-소스코드-해석" class="headerlink" title="✅ 중요 소스코드 해석"></a>✅ 중요 소스코드 해석</h1><br>
+<h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
 
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">// do not try to attack another table, database!</span></span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p>일단 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
-<br>
-
-<hr>
-<h2 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h2><p><code>preg_match</code>라는 함수가 있습니다.</p>
-<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
-<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
-<br>
-
-<img src="/images/Lord of SQLInjection/gremlin/preg.png">
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
 
 <br>
 
 <br>
 
 <hr>
-<h2 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h2><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
-<p><br><br></p>
+<br>
+
+<h1 id="🧨-크레덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크레덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크레덴셜 스터핑 공격으로 인한 피해"></a>🧨 크레덴셜 스터핑 공격으로 인한 피해</h1><br>
+
+<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
+
+<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
+<br>
+
+<br>
+
+<h2 id="크레덴셜-스터핑-피해-사례"><a href="#크레덴셜-스터핑-피해-사례" class="headerlink" title="크레덴셜 스터핑 피해 사례"></a>크레덴셜 스터핑 피해 사례</h2><br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
+<p>크레덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
+<a href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
+</div></div>
+
+<br>
+
+<br>
+
 <hr>
-<h2 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h2><p>세번째 줄은 쿼리문입니다.</p>
-<p><code>id</code>와 <code>pw</code> 둘 중 하나를 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_gremlin where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<h1 id="🏁-SOLVE"><a href="#🏁-SOLVE" class="headerlink" title="🏁 SOLVE"></a>🏁 SOLVE</h1><br>
+<br>
 
-<p><code>id</code> 부분에 아무 문자를 넣고 <code>pw</code> 부분을 참으로 만들었습니다.<br><br><br></p>
-<img src = "/images/Lord of SQLInjection/gremlin/solved.png">
-<br><br>
+<h1 id="😄-크레덴셜-스터핑-방어-및-예방법"><a href="#😄-크레덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크레덴셜 스터핑 방어 및 예방법"></a>😄 크레덴셜 스터핑 방어 및 예방법</h1><br>
 
-<blockquote>
-<p>SOLVED !!!</p>
-</blockquote>
+<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
+
+<p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
+<br>
+
+<br>
+
+<h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
+
+<ul>
+<li><mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
+그러므로 탐지를 통해 방어를 해야 합니다.</li>
+<li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
+<li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
+<li>회원 가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="사용자-개인-관점에서의-예방법"><a href="#사용자-개인-관점에서의-예방법" class="headerlink" title="사용자(개인) 관점에서의 예방법"></a>사용자(개인) 관점에서의 예방법</h2><br>
+
+<ul>
+<li>사이트에 다중 인증 옵션이 있을 경우 사용합니다.</li>
+<li>각 사이트 별로 다른 비밀번호를 사용해야 합니다.</li>
+<li>비밀번호는 영문, 숫자, 특수 문자, 영어 대문자를 포함하여 강력하게 만들어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
+<p>패스워드 모니터</p><p>보안뉴스</p>
+<a href="https://www.boannews.com/media/view.asp?idx=97978"></a>
+</div></div>
+
+<br>
+
+<p><strong>기사 내용 요약</strong></p>
+<p>엣지 브라우저에서의 ‘패스워드 모니터’ 기능을 키면 다크웹 등 을 스캔해 사용자의 계정 정보가 유출됐는지 파악하고 그것을 알려 주는 기능이 있다고 알려 주는 내용입니다.</p>
 ]]></content>
       <categories>
-        <category>Lord of SQLInjection</category>
+        <category>보안용어</category>
       </categories>
       <tags>
         <tag>Web</tag>
-        <tag>Write UP</tag>
+        <tag>보안용어</tag>
       </tags>
   </entry>
   <entry>
-    <title>[Lord of SQLInjection] [2번_cobolt] Write UP</title>
-    <url>/2021/09/16/2021-09-16-Lord_of_SQLIjection_2_cobolt/</url>
-    <content><![CDATA[<h1 id="📕-전체-소스코드"><a href="#📕-전체-소스코드" class="headerlink" title="📕 전체 소스코드"></a>📕 전체 소스코드</h1><br>
-
-<p>2번 문제인 cobolt을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
-<br>
-
-<img src="/images/Lord of SQLInjection/cobolt/source.png">
-
-<br>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;cobolt&quot;</span>);</span><br><span class="line">  <span class="keyword">elseif</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[&#x27;id&#x27;]&#125;</span>&lt;br&gt;You are not admin :(&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<h1 id="❕❕-중요-소스코드-해석"><a href="#❕❕-중요-소스코드-해석" class="headerlink" title="❕❕ 중요 소스코드 해석"></a>❕❕ 중요 소스코드 해석</h1><br>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>; </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;cobolt&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>1번 문제와 같이 <code>조건문</code>과 밑에 <code>query문</code>이 보입니다. </p>
-<p>또한 <code>id</code> 파라미터가 <code>admin</code> 이어야 하는 <code>조건문</code>도 있습니다.</p>
-<br>
-
-<hr>
-<h2 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h2><p><code>preg_match</code>라는 함수가 있습니다.</p>
-<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
-<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//id 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
-<br>
-
-<img src="/images/Lord of SQLInjection/cobolt/preg.png">
-
-<br>
-
-<br>
-
-<hr>
-<h2 id="두번째-줄-해석"><a href="#두번째-줄-해석" class="headerlink" title="두번째 줄 해석"></a>두번째 줄 해석</h2><p>첫번째 줄과 마찬가지로 필터링 하는 것을 확인할 수 있습니다.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); <span class="comment">//pw 파라미터에서 필터링 중</span></span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<hr>
-<h2 id="세번째-줄-해석"><a href="#세번째-줄-해석" class="headerlink" title="세번째 줄 해석"></a>세번째 줄 해석</h2><p>세번째 줄은 쿼리문입니다.</p>
-<p><code>id</code>를 <code>admin</code>으로 만들어주는 동시에 참으로 만들어주면 해당 쿼리문을 우회할 수 있습니다.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_cobolt where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27; and pw=md5(&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;)&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p><br><br></p>
-<h1 id="🚩-SOLVE"><a href="#🚩-SOLVE" class="headerlink" title="🚩 SOLVE"></a>🚩 SOLVE</h1><br>
-
-<p><code>id</code> 부분에 <code>admin&#39; or &#39;1&#39; = &#39;1</code>를 넣어주고 <code>pw</code>에 아무 문자를 넣어주었습니다.<br><br><br></p>
-<img src = "/images/Lord of SQLInjection/cobolt/solved.png">
-<br><br>
-
-<blockquote>
-<p>SOLVED !!!</p>
-</blockquote>
+    <title>NoSQL</title>
+    <url>/2021/09/23/2021-09-23-NoSQL/</url>
+    <content><![CDATA[<p>작성중 …</p>
 ]]></content>
       <categories>
-        <category>Lord of SQLInjection</category>
+        <category>보안용어</category>
       </categories>
       <tags>
         <tag>Web</tag>
-        <tag>Write UP</tag>
+        <tag>보안용어</tag>
       </tags>
   </entry>
   <entry>
@@ -1165,121 +1280,6 @@ section 진행 기간
       <tags>
         <tag>Web</tag>
         <tag>Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>크레덴셜 스터핑 (Credential Stuffing)</title>
-    <url>/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/</url>
-    <content><![CDATA[<h1 id="🤔-크레덴셜-스터핑이란"><a href="#🤔-크레덴셜-스터핑이란" class="headerlink" title="🤔 크레덴셜 스터핑이란?"></a>🤔 크레덴셜 스터핑이란?</h1><br>
-
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
-
-<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
-
-<br>
-
-<br>
-
-<h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
-
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
-
-<br>
-
-<br>
-
-<hr>
-<br>
-
-<h1 id="🧨-크레덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크레덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크레덴셜 스터핑 공격으로 인한 피해"></a>🧨 크레덴셜 스터핑 공격으로 인한 피해</h1><br>
-
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
-
-<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
-<br>
-
-<br>
-
-<h2 id="크레덴셜-스터핑-피해-사례"><a href="#크레덴셜-스터핑-피해-사례" class="headerlink" title="크레덴셜 스터핑 피해 사례"></a>크레덴셜 스터핑 피해 사례</h2><br>
-
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>크레덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
-<a href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
-</div></div>
-
-<br>
-
-<br>
-
-<hr>
-<br>
-
-<h1 id="😄-크레덴셜-스터핑-방어-및-예방법"><a href="#😄-크레덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크레덴셜 스터핑 방어 및 예방법"></a>😄 크레덴셜 스터핑 방어 및 예방법</h1><br>
-
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
-
-<p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
-<br>
-
-<br>
-
-<h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
-
-<ul>
-<li><mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
-그러므로 탐지를 통해 방어를 해야 합니다.</li>
-<li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
-<li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
-<li>회원 가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
-</ul>
-<br>
-
-<br>
-
-<h2 id="사용자-개인-관점에서의-예방법"><a href="#사용자-개인-관점에서의-예방법" class="headerlink" title="사용자(개인) 관점에서의 예방법"></a>사용자(개인) 관점에서의 예방법</h2><br>
-
-<ul>
-<li>사이트에 다중 인증 옵션이 있을 경우 사용합니다.</li>
-<li>각 사이트 별로 다른 비밀번호를 사용해야 합니다.</li>
-<li>비밀번호는 영문, 숫자, 특수 문자, 영어 대문자를 포함하여 강력하게 만들어야 합니다.</li>
-</ul>
-<br>
-
-<br>
-
-<h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
-
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>패스워드 모니터</p><p>보안뉴스</p>
-<a href="https://www.boannews.com/media/view.asp?idx=97978"></a>
-</div></div>
-
-<br>
-
-<p><strong>기사 내용 요약</strong></p>
-<p>엣지 브라우저에서의 ‘패스워드 모니터’ 기능을 키면 다크웹 등 을 스캔해 사용자의 계정 정보가 유출됐는지 파악하고 그것을 알려 주는 기능이 있다고 알려 주는 내용입니다.</p>
-]]></content>
-      <categories>
-        <category>보안용어</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>보안용어</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NoSQL</title>
-    <url>/2021/09/23/2021-09-23-NoSQL/</url>
-    <content><![CDATA[<p>작성중 …</p>
-]]></content>
-      <categories>
-        <category>보안용어</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>보안용어</tag>
       </tags>
   </entry>
 </search>
