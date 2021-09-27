@@ -1504,7 +1504,7 @@ section 진행 기간
 <br>
 
 <p><code>substring</code> 함수를 사용한 문자 추출은 중첩 반복문을 사용해 구해줬습니다.</p>
-<p><code>i</code>는 1부터 <code>length + 1</code> 값 까지 돌아갑니다.</p>
+<p><code>i</code>는 <code>1 ~ length+1</code> 까지 돌아갑니다.</p>
 <p><code>j</code>는 아스키코드 <code>48 ~ 122</code>까지 돌아갑니다.</p>
 <br>
 
@@ -1531,7 +1531,7 @@ section 진행 기간
 
 <br>
 
-<p><code>substring</code>으로 4번째 문자를 추출해보면 ‘A’ 대문자인데? Clear가 안되어 소문자 ‘a’를 써주니 Clear 됐다!</p>
+<p><code>substring</code>으로 4번째 문자를 추출해보면 ‘A’ 대문자인데..? Clear가 안되어 소문자 ‘a’를 써주니 Clear 됐습니다!</p>
 <br>
 
 <blockquote>
