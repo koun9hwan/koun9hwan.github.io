@@ -1346,7 +1346,7 @@ section 진행 기간
 <br>
 
 <p><code>no</code> 파라미터에 <code>1</code>을 넣었더니 Hello guest가 나오는 것을 보아 <code>1</code>은 guest 값인 것을 알 수 있습니다.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#예상 DB</span><br><span class="line"></span><br><span class="line">+-------+----+</span><br><span class="line">| id    | no |</span><br><span class="line">+-------+----+</span><br><span class="line">| guest | 1  |</span><br><span class="line">| admin | ?  |</span><br><span class="line">+-------+----+</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 예상 DB</span></span><br><span class="line"></span><br><span class="line">+-------+----+</span><br><span class="line">| id    | no |</span><br><span class="line">+-------+----+</span><br><span class="line">| guest | <span class="number">1</span>  |</span><br><span class="line">| admin | ?  |</span><br><span class="line">+-------+----+</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -1373,7 +1373,7 @@ section 진행 기간
 
 <br>
 
-<p>쿼리문에 select id from prob_goblin where id=’guest’ and no=2 or id=0x61646d696e 이렇게 들어가면</p>
+<p>쿼리문에 <code>select id from prob_goblin where id=&#39;guest&#39; and no=2 or id=0x61646d696e</code> 이렇게 들어가면</p>
 <p><code>id=&#39;gest&#39; and no=2</code>는 거짓이 되고 <code>id=0x61646d696e</code>가 들어가게 됩니다.</p>
 <br>
 
