@@ -1470,10 +1470,10 @@ section 진행 기간
 <p><code>pw</code>를 알아내기 위해 <code>Blind SQL Injection</code>을 사용하였습니다.</p>
 <br>
 
-<p><code>?pw=1&#39; or id=&#39;admin&#39; and length(pw)=&#39;1</code><br>mysql의 <code>length</code> 함수를 사용하여 길이를 구해줍니다.</p>
+<p><code>?pw=1&#39; or id=&#39;admin&#39; and length(pw)=&#39;1</code><br>MySQL의 <code>length</code> 함수를 사용하여 길이를 구해줍니다.</p>
 <br>
 
-<p><code>?pw=1&#39; or id=&#39;admin&#39; and substring(pw,1,1)=&#39;0</code><br>mysql의 <code>substring</code> 함수를 사용하여 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
+<p><code>?pw=1&#39; or id=&#39;admin&#39; and substring(pw,1,1)=&#39;0</code><br>MySQL의 <code>substring</code> 함수를 사용하여 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
 <br>
 
 <p><code>substring(str, pos, len)</code> 함수의 인자를 설명하겠습니다.</p>
