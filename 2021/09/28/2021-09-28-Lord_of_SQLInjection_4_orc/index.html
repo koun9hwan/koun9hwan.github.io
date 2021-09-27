@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/orc/solve_3.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/orc/solve_4.png">
 <meta property="article:published_time" content="2021-09-27T16:55:54.000Z">
-<meta property="article:modified_time" content="2021-09-27T18:49:29.843Z">
+<meta property="article:modified_time" content="2021-09-27T18:50:19.639Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write Up">
@@ -252,7 +252,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-09-28 01:55:54 / Modified: 03:49:29" itemprop="dateCreated datePublished" datetime="2021-09-28T01:55:54+09:00">2021-09-28</time>
+      <time title="Created: 2021-09-28 01:55:54 / Modified: 03:50:19" itemprop="dateCreated datePublished" datetime="2021-09-28T01:55:54+09:00">2021-09-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -359,10 +359,12 @@
 <p><code>?pw=1&#39; or id=&#39;admin&#39; and substring(pw,1,1)=&#39;0</code><br>MySQL의 <code>substring</code> 함수를 사용하여 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
 <br>
 
+<blockquote>
 <p><code>substring(str, pos, len)</code> 함수의 인자를 설명하겠습니다.</p>
 <p><code>str</code> : 원본 문자열</p>
 <p><code>pos</code> : 시작 위치 값</p>
 <p><code>len</code> : 가져올 길이 값</p>
+</blockquote>
 <br>
 
 <p>예를 들어 <code>substring(pw, 1, 1)</code> 이면 <code>pw</code> 문자열에서 <code>첫번째 위치</code>에 있는 문자 <code>한 개</code> 추출해 오는 것 입니다.</p>
