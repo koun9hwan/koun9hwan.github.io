@@ -1467,9 +1467,21 @@ section 진행 기간
 
 <br>
 
-<p> <code>pw</code>를 알아내기 위해 <code>Blind SQL Injection</code>을 사용하였습니다.</p>
-<p><code>?pw=1&#39; or id=&#39;admin&#39; and length(pw)=&#39;1</code> 이렇게 mysql의 <code>length</code> 함수를 사용하여 길이를 구하고 <code>?pw=1&#39; or id=&#39;admin&#39; and substring(pw,1,1)=&#39;0</code> mysql의 <code>substring</code> 함수를 사용하여 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
-<p><code>substring(str, pos, len)</code> 함수에서 <code>str</code> 인자는 원본 문자열이고 <code>pos</code> 인자는 시작 위치 값, <code>len</code> 인자는 가져올 길이 값 입니다.</p>
+<p><code>pw</code>를 알아내기 위해 <code>Blind SQL Injection</code>을 사용하였습니다.</p>
+<br>
+
+<p><code>?pw=1&#39; or id=&#39;admin&#39; and length(pw)=&#39;1</code><br>mysql의 <code>length</code> 함수를 사용하여 길이를 구해줍니다.</p>
+<br>
+
+<p><code>?pw=1&#39; or id=&#39;admin&#39; and substring(pw,1,1)=&#39;0</code><br>mysql의 <code>substring</code> 함수를 사용하여 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
+<br>
+
+<p><code>substring(str, pos, len)</code> 함수의 인자를 설명하겠습니다.</p>
+<p><code>str</code> : 원본 문자열</p>
+<p><code>pos</code> : 시작 위치 값</p>
+<p><code>len</code> : 가져올 길이 값</p>
+<br>
+
 <p>예를 들어 <code>substring(pw, 1, 1)</code> 이면 <code>pw</code> 문자열에서 <code>첫번째 위치</code>에 있는 문자 <code>한 개</code> 추출해 오는 것 입니다.</p>
 <br>
 
