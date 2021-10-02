@@ -171,6 +171,13 @@
   </url>
   
   <url>
+    <loc>https://koun9hwan.github.io/tags/Write-UP/</loc>
+    <lastmod>2021-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://koun9hwan.github.io/tags/SSTF-2021/</loc>
     <lastmod>2021-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -216,6 +223,13 @@
   
   <url>
     <loc>https://koun9hwan.github.io/categories/%EB%B3%B4%EC%95%88%EC%9A%A9%EC%96%B4/</loc>
+    <lastmod>2021-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://koun9hwan.github.io/categories/Webhacking-kr/Write-UP/</loc>
     <lastmod>2021-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
