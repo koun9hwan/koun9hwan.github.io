@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/troll/source.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/troll/solve_1.png">
 <meta property="article:published_time" content="2021-10-02T13:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-02T14:24:51.137Z">
+<meta property="article:modified_time" content="2021-10-02T14:30:01.776Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write UP">
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-2-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 ~ 2 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%EC%A4%84-amp-5-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">3 줄 &amp; 5 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-2-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 ~ 2 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%EC%A4%84-5-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">3 줄 ~ 5 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,7 +249,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-10-02 22:00:00 / Modified: 23:24:51" itemprop="dateCreated datePublished" datetime="2021-10-02T22:00:00+09:00">2021-10-02</time>
+      <time title="Created: 2021-10-02 22:00:00 / Modified: 23:30:01" itemprop="dateCreated datePublished" datetime="2021-10-02T22:00:00+09:00">2021-10-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -308,7 +308,7 @@
 
 <br>
 
-<h2 id="3-줄-amp-5-줄-해석"><a href="#3-줄-amp-5-줄-해석" class="headerlink" title="3 줄 &amp; 5 줄 해석"></a>3 줄 &amp; 5 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_troll where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;troll&quot;</span>);  </span><br></pre></td></tr></table></figure>
+<h2 id="3-줄-5-줄-해석"><a href="#3-줄-5-줄-해석" class="headerlink" title="3 줄 ~ 5 줄 해석"></a>3 줄 ~ 5 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_troll where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;troll&quot;</span>);  </span><br></pre></td></tr></table></figure>
 
 <p>마지막 줄 조건문을 보면 <code>id</code>가 admin 이어야 한다는 조건이 있습니다.</p>
 <p><code>&#39;</code>문자와 <code>admin</code> 문자열 필터링을 우회하여 <code>id</code>파라미터를 admin으로 만들어주면 됩니다.</p>
