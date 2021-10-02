@@ -1994,7 +1994,7 @@ section 진행 기간
 
 <br>
 
-<p><code>admin</code> 을 찾아 공백으로 치환해주기 때문에 ad<del>admin</del>min 이렇게 우회를 해주었습니다.</p>
+<p><code>str_replace</code>함수가 <code>admin</code> 을 찾아 공백으로 치환해주기 때문에 ad<del>admin</del>min 이렇게 우회를 해주었습니다.</p>
 <br>
 
 <blockquote>
