@@ -1614,7 +1614,7 @@ section 진행 기간
 <hr>
 <h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
 
-<img src="/images/Lord of SQLInjection/orc/solve_1.png">
+<img src="/images/Lord of SQLInjection/wolfman/solve_1.png">
 
 <br>
 
@@ -1623,6 +1623,76 @@ section 진행 기간
 <br>
 
 <p><code>%09</code>외 <code>%0a (\n, Line Feed)</code>, <code>%0d (\r, Carrage Return)</code>, <code>/**/ (주석)</code> 등 으로 우회가 가능합니다.</p>
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write Up</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [6번_darkelf] Write UP</title>
+    <url>/2021/10/02/2021-10-02-Lord_of_SQLInjection_6_darkelf/</url>
+    <content><![CDATA[<h1 id="전체-소스코드"><a href="#전체-소스코드" class="headerlink" title="전체 소스코드"></a>전체 소스코드</h1><br>
+
+<p>6번 문제인 darkelf을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/darkelf/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect();  </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/or|and/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_darkelf where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[id]&#125;</span>&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;darkelf&quot;</span>); </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/or|and/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_darkelf where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;  </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;darkelf&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="첫번째-amp-두번째-줄-해석"><a href="#첫번째-amp-두번째-줄-해석" class="headerlink" title="첫번째 &amp; 두번째 줄 해석"></a>첫번째 &amp; 두번째 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/or|and/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>, <code>or</code>, <code>and</code> 문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<br>
+
+<br>
+
+<h2 id="세번째줄-amp-다섯번째-줄-해석"><a href="#세번째줄-amp-다섯번째-줄-해석" class="headerlink" title="세번째줄 &amp; 다섯번째 줄 해석"></a>세번째줄 &amp; 다섯번째 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_darkelf where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;  </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;darkelf&quot;</span>);  </span><br></pre></td></tr></table></figure>
+
+<p>쿼리문을 보면 <code>id</code>에 guest가 고정으로 적혀있고 <code>pw</code>만 파라미터로 받고 있습니다.</p>
+<p>마지막 줄 조건문을 보면 <code>id</code>가 admin 이어야 한다는 조건이 있습니다.</p>
+<p>즉, <code>pw</code> 파라미터를 통해 쿼리문을 조작해야 합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<img src="/images/Lord of SQLInjection/darkelf/solve_1.png">
+
+<br>
+
+<p><code>preg_match</code> 함수로 <code>or</code>, <code>and</code> 문자열을 필터링 하고 있기 때문에 <code>|| (or)</code>으로 공백을 우회하였습니다.</p>
+<p><code>?pw=2&#39; || id=&#39;admin</code> 을 적으니 문제가 풀렸습니다.</p>
 <br>
 
 <blockquote>
