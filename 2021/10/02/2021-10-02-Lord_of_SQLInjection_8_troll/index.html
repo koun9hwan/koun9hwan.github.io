@@ -24,26 +24,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="크레덴셜 스터핑 (Credential Stuffing)">
-<meta property="og:url" content="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/index.html">
+<meta property="og:title" content="[Lord of SQLInjection] [7번_troll] Write UP">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/10/02/2021-10-02-Lord_of_SQLInjection_8_troll/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-20T16:37:34.000Z">
-<meta property="article:modified_time" content="2021-09-20T18:53:19.685Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/troll/source.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/troll/solve_1.png">
+<meta property="article:published_time" content="2021-10-02T13:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-02T13:48:36.736Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
-<meta property="article:tag" content="보안용어">
+<meta property="article:tag" content="Write UP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/troll/source.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/">
+<link rel="canonical" href="https://koun9hwan.github.io/2021/10/02/2021-10-02-Lord_of_SQLInjection_8_troll/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/","path":"2021/09/21/2021-09-21-크레덴셜 스터핑 (Credential Stuffing)/","title":"크레덴셜 스터핑 (Credential Stuffing)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/10/02/2021-10-02-Lord_of_SQLInjection_8_troll/","path":"2021/10/02/2021-10-02-Lord_of_SQLInjection_8_troll/","title":"[Lord of SQLInjection] [7번_troll] Write UP"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>크레덴셜 스터핑 (Credential Stuffing) | Koun9Hwan</title>
+<title>[Lord of SQLInjection] [7번_troll] Write UP | Koun9Hwan</title>
   
 
 
@@ -150,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91%EC%9D%B4%EB%9E%80"><span class="nav-text">🤔 크레덴셜 스터핑이란?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-text">특징</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%A8-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EA%B3%B5%EA%B2%A9%EC%9C%BC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%ED%94%BC%ED%95%B4"><span class="nav-text">🧨 크레덴셜 스터핑 공격으로 인한 피해</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%ED%94%BC%ED%95%B4-%EC%82%AC%EB%A1%80"><span class="nav-text">크레덴셜 스터핑 피해 사례</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%98%84-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EB%B0%A9%EC%96%B4-%EB%B0%8F-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">😄 크레덴셜 스터핑 방어 및 예방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B8%B0%EC%97%85-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%A9%EB%B2%95%EA%B3%BC-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">기업 관점에서의 방법과 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EA%B0%9C%EC%9D%B8-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">사용자(개인) 관점에서의 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C-%EB%AA%A8%EB%8B%88%ED%84%B0-%EA%B8%B0%EB%8A%A5"><span class="nav-text">패스워드 모니터 기능</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-2-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 ~ 2 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%EC%A4%84-amp-5-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">3 줄 &amp; 5 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/10/02/2021-10-02-Lord_of_SQLInjection_8_troll/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -234,7 +237,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          크레덴셜 스터핑 (Credential Stuffing)
+          [Lord of SQLInjection] [7번_troll] Write UP
         </h1>
 
         <div class="post-meta-container">
@@ -246,7 +249,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-09-21 01:37:34 / Modified: 03:53:19" itemprop="dateCreated datePublished" datetime="2021-09-21T01:37:34+09:00">2021-09-21</time>
+      <time title="Created: 2021-10-02 22:00:00 / Modified: 22:48:36" itemprop="dateCreated datePublished" datetime="2021-10-02T22:00:00+09:00">2021-10-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +257,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%EB%B3%B4%EC%95%88%EC%9A%A9%EC%96%B4/" itemprop="url" rel="index"><span itemprop="name">보안용어</span></a>
+          <a href="/categories/Lord-of-SQLInjection/" itemprop="url" rel="index"><span itemprop="name">Lord of SQLInjection</span></a>
         </span>
     </span>
 
@@ -269,43 +272,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="🤔-크레덴셜-스터핑이란"><a href="#🤔-크레덴셜-스터핑이란" class="headerlink" title="🤔 크레덴셜 스터핑이란?"></a>🤔 크레덴셜 스터핑이란?</h1><br>
+        <h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
 
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
+<p>8번 문제인 troll을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
 
-<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
+<img src="/images/Lord of SQLInjection/troll/source.png">
 
 <br>
 
-<br>
-
-<h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
-
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
-
-<br>
-
-<br>
-
-<hr>
-<br>
-
-<h1 id="🧨-크레덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크레덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크레덴셜 스터핑 공격으로 인한 피해"></a>🧨 크레덴셜 스터핑 공격으로 인한 피해</h1><br>
-
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
-
-<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
-<br>
-
-<br>
-
-<h2 id="크레덴셜-스터핑-피해-사례"><a href="#크레덴셜-스터핑-피해-사례" class="headerlink" title="크레덴셜 스터핑 피해 사례"></a>크레덴셜 스터핑 피해 사례</h2><br>
-
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>크레덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
-<a target="_blank" rel="noopener" href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
-</div></div>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\&#x27;/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&quot;/admin/&quot;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_troll where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;troll&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -314,51 +290,45 @@
 <hr>
 <br>
 
-<h1 id="😄-크레덴셜-스터핑-방어-및-예방법"><a href="#😄-크레덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크레덴셜 스터핑 방어 및 예방법"></a>😄 크레덴셜 스터핑 방어 및 예방법</h1><br>
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
 
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\&#x27;/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&quot;/admin/&quot;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_troll where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;troll&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
-<br>
-
-<br>
-
-<h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
-
-<ul>
-<li><mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
-그러므로 탐지를 통해 방어를 해야 합니다.</li>
-<li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
-<li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
-<li>회원 가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
-</ul>
 <br>
 
 <br>
 
-<h2 id="사용자-개인-관점에서의-예방법"><a href="#사용자-개인-관점에서의-예방법" class="headerlink" title="사용자(개인) 관점에서의 예방법"></a>사용자(개인) 관점에서의 예방법</h2><br>
+<h2 id="1-줄-2-줄-해석"><a href="#1-줄-2-줄-해석" class="headerlink" title="1 줄 ~ 2 줄 해석"></a>1 줄 ~ 2 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\&#x27;/i&#x27;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&quot;/admin/&quot;</span>, <span class="variable">$_GET</span>[id])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>사이트에 다중 인증 옵션이 있을 경우 사용합니다.</li>
-<li>각 사이트 별로 다른 비밀번호를 사용해야 합니다.</li>
-<li>비밀번호는 영문, 숫자, 특수 문자, 영어 대문자를 포함하여 강력하게 만들어야 합니다.</li>
-</ul>
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p>특수문자 <code>&#39;</code>를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<p><code>admin</code> 문자열을 필터링 하고있지만 대소문자는 구분하고 있지 않습니다.</p>
 <br>
 
 <br>
 
-<h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
+<h2 id="3-줄-amp-5-줄-해석"><a href="#3-줄-amp-5-줄-해석" class="headerlink" title="3 줄 &amp; 5 줄 해석"></a>3 줄 &amp; 5 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_troll where id=&#x27;<span class="subst">&#123;$_GET[id]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;troll&quot;</span>);  </span><br></pre></td></tr></table></figure>
 
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>패스워드 모니터</p><p>보안뉴스</p>
-<a target="_blank" rel="noopener" href="https://www.boannews.com/media/view.asp?idx=97978"></a>
-</div></div>
+<p>마지막 줄 조건문을 보면 <code>id</code>가 admin 이어야 한다는 조건이 있습니다.</p>
+<p><code>&#39;</code>문자와 <code>admin</code> 문자열 필터링을 우회하여 <code>id</code>파라미터를 admin으로 만들어주면 됩니다.</p>
+<br>
 
 <br>
 
-<p><strong>기사 내용 요약</strong></p>
-<p>엣지 브라우저에서의 ‘패스워드 모니터’ 기능을 키면 다크웹 등 을 스캔해 사용자의 계정 정보가 유출됐는지 파악하고 그것을 알려 주는 기능이 있다고 알려 주는 내용입니다.</p>
+<hr>
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<img src="/images/Lord of SQLInjection/troll/solve_1.png">
+
+<br>
+
+<p>소문자 <code>admin</code>만 필터링하고 있기 때문에 간단하게 대문자로 우회를 해주었습니다.</p>
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
 
     </div>
 
@@ -369,21 +339,18 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Web/" rel="tag"># Web</a>
-              <a href="/tags/%EB%B3%B4%EC%95%88%EC%9A%A9%EC%96%B4/" rel="tag"># 보안용어</a>
+              <a href="/tags/Write-UP/" rel="tag"># Write UP</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/09/19/2021-09-19-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_Wargame%20%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EC%A0%9C%EC%9E%91%20%EB%B0%8F%20%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9%20%EC%A7%84%EB%8B%A8%20%ED%9B%84%20%EB%B3%B4%EA%B3%A0%EC%84%9C%20%EC%9E%91%EC%84%B1/" rel="prev" title="[프로젝트] Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성">
-                  <i class="fa fa-chevron-left"></i> [프로젝트] Wargame 사이트 제작 및 모의해킹 진단 후 보고서 작성
+                <a href="/2021/10/02/2021-10-02-Lord_of_SQLInjection_7_orge/" rel="prev" title="[Lord of SQLInjection] [7번_orge] Write UP">
+                  <i class="fa fa-chevron-left"></i> [Lord of SQLInjection] [7번_orge] Write UP
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/09/23/2021-09-23-NoSQL/" rel="next" title="NoSQL">
-                  NoSQL <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -436,7 +403,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"da72465b5b2b6b36dd2d876fcd118816"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"36a5b399ae45a13b96f8ff8d130b4902"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
