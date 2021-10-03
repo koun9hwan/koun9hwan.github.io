@@ -1062,7 +1062,7 @@
 
 <br>
 
-<p><code>substring</code>으로 4번째 문자를 추출해보면 ‘A’ 대문자인데..? Clear가 안되어.. 소문자 ‘a’를 써주니 Clear 됐습니다!</p>
+<p><code>substring</code>으로 4번째 문자를 추출해보면 &#x27;A&#x27; 대문자인데..? Clear가 안되어.. 소문자 &#x27;a&#x27;를 써주니 Clear 됐습니다!</p>
 <br>
 
 <blockquote>
