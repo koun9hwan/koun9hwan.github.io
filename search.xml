@@ -2063,7 +2063,9 @@ section 진행 기간
 <br>
 
 <p>쿼리문 맨 뒤 <code>and 1=0</code>을 무력화 시키기 위해 주석을 사용하였습니다.</p>
+<blockquote>
 <p>?pw=1’ or id=’admin’#<span style="color:green"><del>‘ and 1=0</del></span></p>
+</blockquote>
 <br>
 
 <blockquote>
