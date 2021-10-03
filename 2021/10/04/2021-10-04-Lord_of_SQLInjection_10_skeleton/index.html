@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/skeleton/source.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/skeleton/solve_1.png">
 <meta property="article:published_time" content="2021-10-03T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-03T17:58:04.043Z">
+<meta property="article:modified_time" content="2021-10-03T18:01:43.556Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write UP">
@@ -249,7 +249,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-10-04 00:00:00 / Modified: 02:58:04" itemprop="dateCreated datePublished" datetime="2021-10-04T00:00:00+09:00">2021-10-04</time>
+      <time title="Created: 2021-10-04 00:00:00 / Modified: 03:01:43" itemprop="dateCreated datePublished" datetime="2021-10-04T00:00:00+09:00">2021-10-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,10 +323,8 @@
 <br>
 
 <p>쿼리문 맨 뒤 <code>and 1=0</code>를 무력화 시키기 위해 주석을 사용하였습니다.</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pw=<span class="number">1</span><span class="string">&#x27; or id=&#x27;</span>admin<span class="string">&#x27;#&#x27;</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
-<p>?pw=1&#x27; or id= &#x27;admin&#x27;#&#x27; and 1=0</p>
+<p>?pw=1&#x27; or id= &#x27;admin&#x27;#<del><span style="color:green">&#x27; and 1=0</span></del></p>
 </blockquote>
 <br>
 
