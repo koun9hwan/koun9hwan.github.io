@@ -2556,4 +2556,89 @@ section 진행 기간
         <tag>Write UP</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [14번_giant] Write UP</title>
+    <url>/2021/10/23/2021-10-23-Lord_of_SQLInjection_14_giant/</url>
+    <content><![CDATA[<h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
+
+<p>14번 문제인 giant를 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/giant/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(strlen(<span class="variable">$_GET</span>[shit])&gt;<span class="number">1</span>) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ |\n|\r|\t/i&#x27;</span>, <span class="variable">$_GET</span>[shit])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select 1234 from<span class="subst">&#123;$_GET[shit]&#125;</span>prob_giant where 1&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="number">1234</span>]) solve(<span class="string">&quot;giant&quot;</span>); </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(strlen(<span class="variable">$_GET</span>[shit])&gt;<span class="number">1</span>) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ |\n|\r|\t/i&#x27;</span>, <span class="variable">$_GET</span>[shit])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select 1234 from<span class="subst">&#123;$_GET[shit]&#125;</span>prob_giant where 1&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="1-줄-해석"><a href="#1-줄-해석" class="headerlink" title="1 줄 해석"></a>1 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(strlen(<span class="variable">$_GET</span>[shit])&gt;<span class="number">1</span>) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>shit</code>파라미터의 길이가 1보다 크면 <code>No Hack ~_~</code>을 출력합니다.</p>
+<br>
+
+<br>
+
+<h2 id="2-줄-3줄-해석"><a href="#2-줄-3줄-해석" class="headerlink" title="2 줄 ~ 3줄 해석"></a>2 줄 ~ 3줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ |\n|\r|\t/i&#x27;</span>, <span class="variable">$_GET</span>[shit])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select 1234 from<span class="subst">&#123;$_GET[shit]&#125;</span>prob_giant where 1&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>shit 파라미터</code>에서 특수문자 <code>\n</code> <code>\r</code> <code>\t</code> 를 필터링 하고 있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<img src="/images/Lord of SQLInjection/giant/solve_1.png">
+
+<br>
+
+<p><code>shit 파라미터</code>를 공백으로 처리해주면 풀립니다.</p>
+<p><code>/**/</code> 주석으로 우회를 시도했지만 문자의 길이가 1보다 커서 우회가 안됐습니다.</p>
+<br>
+
+<br>
+
+<p><code>%0b</code> : Vertical Tab</p>
+<p><code>%0c</code> : Form Feed</p>
+<br>
+
+<p>해당 문자로 우회를 하였습니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/giant/solve_2.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
 </search>
