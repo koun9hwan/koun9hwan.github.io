@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/giant/solve_1.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/giant/solve_2.png">
 <meta property="article:published_time" content="2021-10-23T13:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-23T13:17:58.266Z">
+<meta property="article:modified_time" content="2021-11-13T12:43:39.849Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write UP">
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%EC%A4%84-3%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">2 줄 ~ 3줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%EC%A4%84-3-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">2 줄 ~ 3 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -168,7 +168,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -248,10 +248,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-10-23 22:00:00 / Modified: 22:17:58" itemprop="dateCreated datePublished" datetime="2021-10-23T22:00:00+09:00">2021-10-23</time>
+      <time title="Created: 2021-10-23 22:00:00" itemprop="dateCreated datePublished" datetime="2021-10-23T22:00:00+09:00">2021-10-23</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-11-13 21:43:39" itemprop="dateModified" datetime="2021-11-13T21:43:39+09:00">2021-11-13</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -306,7 +312,7 @@
 
 <br>
 
-<h2 id="2-줄-3줄-해석"><a href="#2-줄-3줄-해석" class="headerlink" title="2 줄 ~ 3줄 해석"></a>2 줄 ~ 3줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ |\n|\r|\t/i&#x27;</span>, <span class="variable">$_GET</span>[shit])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select 1234 from<span class="subst">&#123;$_GET[shit]&#125;</span>prob_giant where 1&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="2-줄-3-줄-해석"><a href="#2-줄-3-줄-해석" class="headerlink" title="2 줄 ~ 3 줄 해석"></a>2 줄 ~ 3 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ |\n|\r|\t/i&#x27;</span>, <span class="variable">$_GET</span>[shit])) <span class="keyword">exit</span>(<span class="string">&quot;HeHe&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select 1234 from<span class="subst">&#123;$_GET[shit]&#125;</span>prob_giant where 1&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p><code>preg_match</code>라는 함수가 있습니다.</p>
 <p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
