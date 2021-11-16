@@ -3046,7 +3046,8 @@ section 진행 기간
 <br>
 
 <p><code>UNION</code>과 <code>@local_variable</code>이라는 것을 사용하여 푸는 방법입니다.</p>
-<p><a href="https://docs.microsoft.com/en-us/sql/t-sql/language-elements/select-local-variable-transact-sql?view=sql-server-2017">공식 페이지</a>에 보면 어떠한 값을 할당하기 위해 선언하는 지역변수라고 나와있습니다.</p>
+<p><code>@local_variable</code>은 어떠한 값을 할당하기 위해 선언하는 지역변수라고 나와있습니다. </p>
+<p><a href="https://docs.microsoft.com/en-us/sql/t-sql/language-elements/select-local-variable-transact-sql?view=sql-server-2017">[MS 공식 문서]</a> 참조</p>
 <br>
 
 <br>
