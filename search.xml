@@ -3093,4 +3093,88 @@ section 진행 기간
         <tag>Write UP</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [20번_dragon] Write UP</title>
+    <url>/2021/11/21/2021-11-21-Lord_of_SQLInjection_20_dragon/</url>
+    <content><![CDATA[<h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
+
+<p>20번 문제인 dragon을 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/dragon/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>; </span><br><span class="line">  login_chk(); </span><br><span class="line">  <span class="variable">$db</span> = dbconnect(); </span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id from prob_dragon where id=&#x27;guest&#x27;# and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&lt;br&gt;&quot;</span>; </span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>)); </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>]) <span class="keyword">echo</span> <span class="string">&quot;&lt;h2&gt;Hello <span class="subst">&#123;$result[id]&#125;</span>&lt;/h2&gt;&quot;</span>; </span><br><span class="line">  <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;dragon&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>); </span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_dragon where id=&#x27;guest&#x27;# and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;dragon&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="1-줄-해석"><a href="#1-줄-해석" class="headerlink" title="1 줄 해석"></a>1 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|\(\)/i&#x27;</span>, <span class="variable">$_GET</span>[pw])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링 할 때 사용합니다.</p>
+<p><code>pw 파라미터</code>에서 <code>prob</code>, <code>_</code>, <code>.</code>, <code>()</code>를 필터링 하고 있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<br>
+
+<br>
+
+<h2 id="2-줄-4-줄-해석"><a href="#2-줄-4-줄-해석" class="headerlink" title="2 줄 ~ 4 줄 해석"></a>2 줄 ~ 4 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id from prob_dragon where id=&#x27;guest&#x27;# and pw=&#x27;<span class="subst">&#123;$_GET[pw]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&#x27;admin&#x27;</span>) solve(<span class="string">&quot;dragon&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>쿼리문을 보면 <code>id</code>를 guest로 해주고 주석 처리 하는 것을 볼 수 있습니다.</p>
+<p><code>id</code> 를 admin으로 만들어주면 문제가 풀립니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<p><code>#</code>은 한 줄 주석입니다. </p>
+<p>즉, 다음 줄은 주석이 아닌 정상적인 쿼리문으로 작동 시킬 수 있습니다.</p>
+<br>
+
+<p><code>pw</code> 인자 부분에 <code>개행문자(%0a)</code>를 넣어 쿼리문을 완성 시키겠습니다.</p>
+<p><code>select id from prob_dragon where id=&#39;guest&#39;</code><font color="green"><del># and pw=’’</del></font><code>%0a and pw=&#39;1&#39; or id=&#39;admin&#39;%23&#39;</code> </p>
+<p>위 쿼리문을 넣으면 우회가 됩니다.</p>
+<br>
+
+<br>
+
+<p><code>select id from prob_dragon where id=&#39;guest&#39; </code><font color="green"><del># and pw=’’</del></font></p>
+<p><code>and pw=&#39;1&#39; or id=&#39;admin&#39;#</code> </p>
+<br>
+
+<img src="/images/Lord of SQLInjection/dragon/solve_1.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
 </search>
