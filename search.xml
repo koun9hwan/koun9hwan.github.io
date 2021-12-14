@@ -3777,7 +3777,7 @@ section 진행 기간
   <entry>
     <title>[Log4Shell] CVE-2021-44228</title>
     <url>/2021/12/14/2021-12-14-Log4Shell%20CVE-2021-44228/</url>
-    <content><![CDATA[<h1 id="Log4j-란"><a href="#Log4j-란" class="headerlink" title="Log4j 란"></a>Log4j 란</h1><br>
+    <content><![CDATA[<h1 id="🔎-Log4j-란"><a href="#🔎-Log4j-란" class="headerlink" title="🔎 Log4j 란"></a>🔎 Log4j 란</h1><br>
 
 <p>JAVA 기반의 Application에서 사용 가능한 오픈소스로 서비스 동작 과정에서 일어나는 모든 기록을 남겨 침해사고 및 이상징후를 점검하기 위해 필수적으로 필요한 기능입니다.</p>
 <br>
