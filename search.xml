@@ -4051,11 +4051,11 @@ section 진행 기간
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td>`#inetadm</td>
+<td><code>#inetadm | grep "finger"</code></td>
 </tr>
 <tr>
 <td>LINUX<br />(xinetd일 경우)</td>
-<td>`#ls -alL /etc/xinetd.d/*</td>
+<td><code>#ls -alL /etc/xinetd.d/* | egrep "echo finger"</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -4077,7 +4077,7 @@ section 진행 기간
 <p><code>주요정보통신기반시설 취약점 진단 가이드</code>에서 제시한 방법은 <code>| egrep &quot;echo finger&quot;</code>인데 왜 <code>echo</code>를 붙이는지 모르겠고 결과도 안 나왔습니다.</p>
 <br>
 
-<p>그냥 로컬 내에서 <code>finger</code> 명령어 사용과 외부에서 사용 가능한지 <code>finger Port(79번)</code>를 확인하면 될 것 같습니다.</p>
+<p>로컬 내에서 <code>finger</code> 명령어 사용과 외부에서 사용 가능한지 <code>finger Port(79번)</code>를 통해 점검하면 될 것 같습니다.</p>
 <br>
 
 <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/grep.png">
