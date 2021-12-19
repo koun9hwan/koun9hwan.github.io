@@ -4051,7 +4051,7 @@ section 진행 기간
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td><code>#inetadm | grep &quot;finger&quot;</code></td>
+<td><code>#inetadm | grep &quot;finger&quot;</code><br />#inetadm | grep “finger”</td>
 </tr>
 <tr>
 <td>LINUX<br />(xinetd일 경우)</td>
