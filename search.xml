@@ -3967,4 +3967,193 @@ section 진행 기간
         <tag>보안동향</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-19</title>
+    <url>/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-19/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>finger 서비스 비활성화 여부 점검입니다.</p>
+<p>항목코드는 <code>U-19</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<h2 id="Finger"><a href="#Finger" class="headerlink" title="Finger?"></a>Finger?</h2><br>
+
+<p>Finger은 로컬 사용자나 원격 사용자의 <code>계정 정보를 확인</code>할 수 있는 명령어입니다.</p>
+<p>해당 명령어는 지정된 사용자의 정보를 <code>/etc/passwd</code> 파일에서 읽고 보여 줍니다.</p>
+<br>
+
+<p>Finger 명령어로 확인할 수 있는 사용자의 정보는 <code>UID</code> <code>사용자명</code> <code>홈디렉토리 위치</code> <code>기본 사용 쉘</code> <code>현재 로그인 정보</code> 입니다.</p>
+<p>지정된 사용자 홈 디렉토리에 <code>.plan</code> 파일이 존재한다면 Finger 명령어 수행 결과 마지막에 그 내용을 추가하여 보여 줍니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>Finger를 통해서 네트워크 외부에서 해당 시스템에 등록된 사용자 정보를 확인할 수 있어 비인가자에게 사용자 정보가 조회 되는 것을 차단하기 위해 점검합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>비인가자에게 사용자 정보가 조회되어 패스워드 공격을 통한 시스템 권한 탈취 가능성이 있으므로 사용하지 않는다면 해당 서비스를 중지해야합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>네트워크 외부에서 해당 시스템에 등록된 사용자 정보를 확인할 수 있다고 해서 환경 구성 후 확인해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>finger 활성화된 서버</th>
+<th>외부 서버 (비인가자)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.105</td>
+<td>192.168.219.104</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINUX, AIX<br />HP-UX, <br />SOLARIS 5.9 이하 버전</td>
+<td><code>#cat /etc/inetd.conf</code><br /><code>#finger stream tcp nowait bin /usr/lbin/fingered</code><br /><code>fingerd</code> 주석처리 확인</td>
+</tr>
+<tr>
+<td>SOLARIS 5.10<br />이상 버전</td>
+<td>`#inetadm</td>
+</tr>
+<tr>
+<td>LINUX<br />(xinetd일 경우)</td>
+<td>`#ls -alL /etc/xinetd.d/*</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="Finger-서비스-활성화-여부-확인"><a href="#Finger-서비스-활성화-여부-확인" class="headerlink" title="Finger 서비스 활성화 여부 확인"></a>Finger 서비스 활성화 여부 확인</h2><br>
+
+<blockquote>
+<p># ls -alL /etc/xinetd.d/* | egrep finger</p>
+</blockquote>
+<blockquote>
+<p># netstat -tulpn | grep LISTEN</p>
+</blockquote>
+<br>
+
+<br>
+
+<p><code>주요정보통신기반시설 취약점 진단 가이드</code>에서 제시한 방법은 <code>| egrep &quot;echo finger&quot;</code>인데 왜 <code>echo</code>를 붙이는지 모르겠고 결과도 안 나왔습니다.</p>
+<br>
+
+<p>그냥 로컬 내에서 <code>finger</code> 명령어 사용과 외부에서 사용 가능한지 <code>finger Port(79번)</code>를 확인하면 될 것 같습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/grep.png">
+
+<br>
+
+<br>
+
+<h3 id="외부-서버에서-Finger-서비스-사용"><a href="#외부-서버에서-Finger-서비스-사용" class="headerlink" title="외부 서버에서 Finger 서비스 사용"></a>외부 서버에서 Finger 서비스 사용</h3><br>
+
+<blockquote>
+<p># finger @IP주소</p>
+</blockquote>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/finger.png">
+
+<br>
+
+<p>현재 로그인 중인 사용자들의 정보를 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>조치 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINUX, AIX<br />HP-UX, <br />SOLARIS 5.9 이하 버전</td>
+<td>1) <code>/etc/inetd.conf</code> 파일에서 finger 서비스 라인 <code>#(주석)</code>처리<br />    (수정 전) <code>finger stream tcp nowait bin /usr/lbin/fingered fingerd</code><br />    (수정 후) <code>#finger stream tcp no wait bin /usr/lbin/fingered fingerd</code><br /><br />2) <code>inetd</code> 서비스 재시작<br />    `#ps -ef</td>
+</tr>
+<tr>
+<td>SOLARIS 5.10<br />이상 버전</td>
+<td>inetadm -d “중지하고자 하는 데몬” 명령으로 서비스 데몬 중지<br />    <code>#inetadm -d svc:/etwork/finger:default</code></td>
+</tr>
+<tr>
+<td>LINUX<br />(xinetd일 경우)</td>
+<td>1) vi 편집기를 이용하여 “/etc/xinetd.d/finger” 파일 열기<br /><br />2) 아래와 같이 설정 (Disable = yes 설정)<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/vi.png"><br /><br />3) xinetd 서비스 재시작<br />    <code>#service xinetd restart</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<p><code>finger 파일</code>에서 <code>Disable = yes</code> 해준 결과 아래와 같이 연결이 안되는 것을 확인할 수 있습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/finger_2.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX</tag>
+      </tags>
+  </entry>
 </search>
