@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/vi.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/finger_2.png">
 <meta property="article:published_time" content="2021-12-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-19T19:23:14.886Z">
+<meta property="article:modified_time" content="2021-12-19T19:24:58.419Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
@@ -156,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Finger"><span class="nav-text">Finger?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finger-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%99%9C%EC%84%B1%ED%99%94-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">Finger 서비스 활성화 여부 확인</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%99%B8%EB%B6%80-%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-Finger-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%82%AC%EC%9A%A9"><span class="nav-text">외부 서버에서 Finger 서비스 사용</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Finger"><span class="nav-text">Finger?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finger-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%99%9C%EC%84%B1%ED%99%94-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">Finger 서비스 활성화 여부 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%99%B8%EB%B6%80-%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-Finger-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%82%AC%EC%9A%A9"><span class="nav-text">외부 서버에서 Finger 서비스 사용</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -252,7 +252,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-12-20 00:00:00 / Modified: 04:23:14" itemprop="dateCreated datePublished" datetime="2021-12-20T00:00:00+09:00">2021-12-20</time>
+      <time title="Created: 2021-12-20 00:00:00 / Modified: 04:24:58" itemprop="dateCreated datePublished" datetime="2021-12-20T00:00:00+09:00">2021-12-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -391,7 +391,7 @@
 
 <br>
 
-<h3 id="외부-서버에서-Finger-서비스-사용"><a href="#외부-서버에서-Finger-서비스-사용" class="headerlink" title="외부 서버에서 Finger 서비스 사용"></a>외부 서버에서 Finger 서비스 사용</h3><br>
+<h2 id="외부-서버에서-Finger-서비스-사용"><a href="#외부-서버에서-Finger-서비스-사용" class="headerlink" title="외부 서버에서 Finger 서비스 사용"></a>외부 서버에서 Finger 서비스 사용</h2><br>
 
 <blockquote>
 <p># finger @IP주소</p>

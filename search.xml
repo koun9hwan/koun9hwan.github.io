@@ -4086,7 +4086,7 @@ section 진행 기간
 
 <br>
 
-<h3 id="외부-서버에서-Finger-서비스-사용"><a href="#외부-서버에서-Finger-서비스-사용" class="headerlink" title="외부 서버에서 Finger 서비스 사용"></a>외부 서버에서 Finger 서비스 사용</h3><br>
+<h2 id="외부-서버에서-Finger-서비스-사용"><a href="#외부-서버에서-Finger-서비스-사용" class="headerlink" title="외부 서버에서 Finger 서비스 사용"></a>외부 서버에서 Finger 서비스 사용</h2><br>
 
 <blockquote>
 <p># finger @IP주소</p>
