@@ -4051,11 +4051,11 @@ section 진행 기간
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td><code>#inetadm | grep &quot;finger&quot;</code><br />#inetadm | grep “finger”</td>
+<td><code>#inetadm | grep &quot;finger&quot;</code></td>
 </tr>
 <tr>
 <td>LINUX<br />(xinetd일 경우)</td>
-<td>`#ls -alL /etc/xinetd.d/*</td>
+<td><code>#ls -alL /etc/xinetd.d/* | egrep &quot;echo finger&quot;</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -4116,7 +4116,7 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>LINUX, AIX<br />HP-UX, <br />SOLARIS 5.9 이하 버전</td>
-<td>1) <code>/etc/inetd.conf</code> 파일에서 finger 서비스 라인 <code>#(주석)</code>처리<br />    (수정 전) <code>finger stream tcp nowait bin /usr/lbin/fingered fingerd</code><br />    (수정 후) <code>#finger stream tcp no wait bin /usr/lbin/fingered fingerd</code><br /><br />2) <code>inetd</code> 서비스 재시작<br />    `#ps -ef</td>
+<td>1) <code>/etc/inetd.conf</code> 파일에서 finger 서비스 라인 <code>#(주석)</code>처리<br />    (수정 전) <code>finger stream tcp nowait bin /usr/lbin/fingered fingerd</code><br />    (수정 후) <code>#finger stream tcp no wait bin /usr/lbin/fingered fingerd</code><br /><br />2) <code>inetd</code> 서비스 재시작<br />    <code>#ps -ef |grep inetd</code><br />      <code>root 141 1 0 15:03:22 ? 0:01 /usr/sbin/inetd -s</code><br />    <code>#kill -HUP [PID]</code><br /></td>
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
