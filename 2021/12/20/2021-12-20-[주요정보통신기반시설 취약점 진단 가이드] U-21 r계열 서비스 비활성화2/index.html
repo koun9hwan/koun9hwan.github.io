@@ -25,29 +25,23 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
 <meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화">
-<meta property="og:url" content="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/index.html">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%942/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-21/grep.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-21/rsh.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-21/vi.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-21/vi.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-21/rsh_2.png">
 <meta property="article:published_time" content="2021-12-20T14:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-20T15:00:56.694Z">
+<meta property="article:modified_time" content="2021-12-20T15:00:42.217Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-21/grep.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
+<link rel="canonical" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%942/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/","path":"2021/12/20/2021-12-20-[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%942/","path":"2021/12/20/2021-12-20-[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화2/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화 | Koun9Hwan</title>
@@ -228,7 +222,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%942/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -259,7 +253,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-12-21 00:00:56" itemprop="dateModified" datetime="2021-12-21T00:00:56+09:00">2021-12-21</time>
+        <time title="Modified: 2021-12-21 00:00:42" itemprop="dateModified" datetime="2021-12-21T00:00:42+09:00">2021-12-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -358,7 +352,7 @@
 </tr>
 <tr>
 <td>AIX</td>
-<td><code># cat /etc/inetd.conf | grep rlogin</code> (# 처리 되어 있으면 비활성화)<br /><code># cat /etc/inetd.conf | grep rsh</code> (# 처리 되어 있으면 비활성화)</td>
+<td>`# cat /etc/inetd.conf</td>
 </tr>
 <tr>
 <td>HP-UX</td>
@@ -366,11 +360,11 @@
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td><code># inetadm | egrep &quot;shell|rlogin|rexec&quot;</code><br />r command 관련 데몬 확인</td>
+<td>`# inetadm</td>
 </tr>
 <tr>
 <td>LINUX<br />(xinetd일 경우)</td>
-<td>rsh, rlogin, rexec (shell, login, exec) 서비스 구동 확인<br /><code># ls -alL /etc/xinetd.d/* | egrep &quot;rsh|rlogin|rexec&quot; | egrep -v &quot;grep|klogin|kshell|kexec&quot;</code></td>
+<td>rsh, rlogin, rexec (shell, login, exec) 서비스 구동 확인<br />`# ls -alL /etc/xinetd.d/*</td>
 </tr>
 </tbody></table>
 <br>
@@ -386,8 +380,7 @@
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-21/grep.png">
-
+<p>![grep](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-21\grep.png)</p>
 <br>
 
 <br>
@@ -399,8 +392,7 @@
 </blockquote>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-21/rsh.png">
-
+<p>![rsh](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-21\rsh.png)</p>
 <p><br>인증 없이 접속이 되는 것을 볼 수 있습니다.</p>
 <br>
 
@@ -424,7 +416,7 @@
 </tr>
 <tr>
 <td>AIX</td>
-<td>1) r 계열 서비스 활성화 여부 확인<br />    <code># cat /etc/inetd.conf |grep rlogin</code> (# 처리 되어 있으면 비활성화)<br />    <code># cat /etc/inetd.conf |grep rsh</code> (# 처리 되어 있으면 비활성화)<br />    <code># cat /etc/inetd.conf |grep exec</code> (# 처리 되어 있으면 비활성화)<br /><br />2) <code>/etc/hosts.equiv</code> 파일은 TRUSTED 시스템을 등록<br /><br />3) <code>.rhosts</code> 파일은 사용자 별로 ‘r’command를 통해 접근이 가능하도록 설정할 수 있음($HOME/.rhosts)</td>
+<td>1) r 계열 서비스 활성화 여부 확인<br />    `# cat /etc/inetd.conf</td>
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
@@ -432,7 +424,7 @@
 </tr>
 <tr>
 <td>LINUX<br />(xinetd일 경우)</td>
-<td>1) vi 편집기를 이용하여 <code>/etc/xinetd.d/</code> 디렉터리 내 <code>rlogin</code>, <code>rsh</code>, <code>rexec</code> 파일 열기<br /><br />2) 아래와 같이 설정 (Disable = yes 설정)<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-21/vi.png"><br /><br />3) xinetd 서비스 재시작<br />    <code># service xinetd restart</code></td>
+<td>1) vi 편집기를 이용하여 <code>/etc/xinetd.d/</code> 디렉터리 내 <code>rlogin</code>, <code>rsh</code>, <code>rexec</code> 파일 열기<br /><br />2) 아래와 같이 설정 (Disable = yes 설정)<br />    ![vi](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-21\vi.png)<br /><br />3) xinetd 서비스 재시작<br />    <code># service xinetd restart</code></td>
 </tr>
 <tr>
 <td>r-command 사용시</td>
@@ -446,25 +438,19 @@
 <p><code>/etc/xinetd.d/rlogin</code> 파일에서 <code>disable=yes</code>로 설정해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-21/vi.png">
-
+<p>![vi](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-21\vi.png)</p>
 <br>
 
 <br>
 
 <p><code>rlogin</code> 접속 실패했습니다.<br><br></p>
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-21/rsh_2.png">
-
+<p>![rsh_2](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-21\rsh_2.png)</p>
 <br>
 
 <br>
 
 <hr>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
-<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
-<a target="_blank" rel="noopener" href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
-</div></div>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021 | <a target="_blank" rel="noopener" href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&amp;mode=view&amp;p_No=259&amp;b_No=259&amp;d_No=106&amp;ST=T&amp;SV=">https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&amp;mode=view&amp;p_No=259&amp;b_No=259&amp;d_No=106&amp;ST=T&amp;SV=</a></p>
 
     </div>
 
@@ -483,11 +469,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%942/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화
+                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화">
+                  [주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -540,7 +529,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"2fc560dd9480471fe54c0c9f19ae6d68"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"fb92ae5220bf159aebea00477f00ce23"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
