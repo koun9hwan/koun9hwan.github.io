@@ -4232,7 +4232,7 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td>/etc/passwd 파일에 ftp 계정 존재 여부 확인<br />`#cat /etc/passwd</td>
+<td>/etc/passwd 파일에 ftp 계정 존재 여부 확인<br /><code>#cat /etc/passwd | grep &quot;ftp&quot;</code></td>
 </tr>
 </tbody></table>
 <br>
