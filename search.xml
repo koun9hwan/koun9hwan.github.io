@@ -4153,7 +4153,7 @@ section 진행 기간
       <tags>
         <tag>시스템보안</tag>
         <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
-        <tag>UNIX</tag>
+        <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
   <entry>
@@ -4320,7 +4320,7 @@ section 진행 기간
       <tags>
         <tag>시스템보안</tag>
         <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
-        <tag>UNIX</tag>
+        <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
   <entry>
@@ -4516,7 +4516,7 @@ section 진행 기간
       <tags>
         <tag>시스템보안</tag>
         <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
-        <tag>UNIX</tag>
+        <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
 </search>
