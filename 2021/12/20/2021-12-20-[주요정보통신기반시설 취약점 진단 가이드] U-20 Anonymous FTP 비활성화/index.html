@@ -24,32 +24,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화">
-<meta property="og:url" content="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-19%20Finger%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/grep.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/finger.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/vi.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/finger_2.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/grep.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/ftp.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/anonymous.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/ftp_2.png">
 <meta property="article:published_time" content="2021-12-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-19T19:27:11.340Z">
+<meta property="article:modified_time" content="2021-12-20T08:44:34.708Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-19/grep.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/grep.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-19%20Finger%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
+<link rel="canonical" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-19%20Finger%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/","path":"2021/12/20/2021-12-20-[주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/","path":"2021/12/20/2021-12-20-[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화 | Koun9Hwan</title>
   
 
 
@@ -156,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Finger"><span class="nav-text">Finger?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finger-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%99%9C%EC%84%B1%ED%99%94-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">Finger 서비스 활성화 여부 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%99%B8%EB%B6%80-%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-Finger-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%82%AC%EC%9A%A9"><span class="nav-text">외부 서버에서 Finger 서비스 사용</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP"><span class="nav-text">FTP?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP-%EA%B3%84%EC%A0%95-%EC%A1%B4%EC%9E%AC-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">FTP 계정 존재 여부 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anonymous-FTP-%EC%A0%91%EC%86%8D-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">Anonymous FTP 접속 여부 확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,7 +227,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-19%20Finger%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -240,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화
+          [주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화
         </h1>
 
         <div class="post-meta-container">
@@ -252,7 +252,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-12-20 00:00:00 / Modified: 04:27:11" itemprop="dateCreated datePublished" datetime="2021-12-20T00:00:00+09:00">2021-12-20</time>
+      <time title="Created: 2021-12-20 00:00:00 / Modified: 17:44:34" itemprop="dateCreated datePublished" datetime="2021-12-20T00:00:00+09:00">2021-12-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,20 +277,16 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>finger 서비스 비활성화 여부 점검입니다.</p>
-<p>항목코드는 <code>U-19</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p>익명 FTP 접속 허용 여부 점검입니다.</p>
+<p>항목코드는 <code>U-20</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
 
-<h2 id="Finger"><a href="#Finger" class="headerlink" title="Finger?"></a>Finger?</h2><br>
+<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP?"></a>FTP?</h2><br>
 
-<p>Finger은 로컬 사용자나 원격 사용자의 <code>계정 정보를 확인</code>할 수 있는 명령어입니다.</p>
-<p>해당 명령어는 지정된 사용자의 정보를 <code>/etc/passwd</code> 파일에서 읽고 보여 줍니다.</p>
-<br>
-
-<p>Finger 명령어로 확인할 수 있는 사용자의 정보는 <code>UID</code> <code>사용자명</code> <code>홈디렉토리 위치</code> <code>기본 사용 쉘</code> <code>현재 로그인 정보</code> 입니다.</p>
-<p>지정된 사용자 홈 디렉토리에 <code>.plan</code> 파일이 존재한다면 Finger 명령어 수행 결과 마지막에 그 내용을 추가하여 보여 줍니다.</p>
+<p>파일 전송 프로토콜(File Transfer Protocol, FTP)은 TCP/IP 프로토콜을 가지고 서버와 클라이언트 사이의 파일 전송을 하기 위한 프로토콜입니다.</p>
+<p>포트는 <code>21</code>번 포트를 사용합니다.</p>
 <br>
 
 <br>
@@ -300,14 +296,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>Finger를 통해서 네트워크 외부에서 해당 시스템에 등록된 사용자 정보를 확인할 수 있어 비인가자에게 사용자 정보가 조회 되는 것을 차단하기 위해 점검합니다.</p>
+<p>실행중인 FTP 서비스에 익명 FTP 접속이 허용되고 있는지 확인하여 접속 허용을 차단하는 것을 목적으로 합니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>비인가자에게 사용자 정보가 조회되어 패스워드 공격을 통한 시스템 권한 탈취 가능성이 있으므로 사용하지 않는다면 해당 서비스를 중지해야합니다.</p>
+<p>익명 FTP를 사용 시 anonymous 계졍으로 로그인 후 디렉터리에 쓰기 권한이 설정되어 있다면 악의적인 사용자가 local Exploit을 사용하여 시스템에 대한 공격을 가능하게 합니다.</p>
 <br>
 
 <br>
@@ -317,7 +313,7 @@
 
 <h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
 
-<p>네트워크 외부에서 해당 시스템에 등록된 사용자 정보를 확인할 수 있다고 해서 환경 구성 후 확인해보았습니다.</p>
+<p>환경 구성 후 테스트 해보았습니다.</p>
 <blockquote>
 <p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
 </blockquote>
@@ -328,7 +324,7 @@
 <table>
 <thead>
 <tr>
-<th>finger 활성화된 서버</th>
+<th>FTP 활성화된 서버</th>
 <th>외부 서버 (비인가자)</th>
 </tr>
 </thead>
@@ -351,58 +347,41 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX<br />HP-UX, <br />SOLARIS 5.9 이하 버전</td>
-<td><code>#cat /etc/inetd.conf</code><br /><code>#finger stream tcp nowait bin /usr/lbin/fingered</code><br /><code>fingerd</code> 주석처리 확인</td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td><code>#inetadm | grep &quot;finger&quot;</code></td>
-</tr>
-<tr>
-<td>LINUX<br />(xinetd일 경우)</td>
-<td><code>#ls -alL /etc/xinetd.d/* | egrep &quot;echo finger&quot;</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>/etc/passwd 파일에 ftp 계정 존재 여부 확인<br />`#cat /etc/passwd</td>
 </tr>
 </tbody></table>
 <br>
 
 <br>
 
-<h2 id="Finger-서비스-활성화-여부-확인"><a href="#Finger-서비스-활성화-여부-확인" class="headerlink" title="Finger 서비스 활성화 여부 확인"></a>Finger 서비스 활성화 여부 확인</h2><br>
+<h2 id="FTP-계정-존재-여부-확인"><a href="#FTP-계정-존재-여부-확인" class="headerlink" title="FTP 계정 존재 여부 확인"></a>FTP 계정 존재 여부 확인</h2><br>
 
 <blockquote>
-<p># ls -alL /etc/xinetd.d/* | egrep finger</p>
-</blockquote>
-<blockquote>
-<p># netstat -tulpn | grep LISTEN</p>
+<p># cat /etc/passwd | grep “ftp”</p>
 </blockquote>
 <br>
 
 <br>
 
-<p><code>주요정보통신기반시설 취약점 진단 가이드</code>에서 제시한 방법은 <code>| egrep &quot;echo finger&quot;</code>인데 왜 <code>echo</code>를 붙이는지 모르겠고 결과도 안 나왔습니다.</p>
-<br>
-
-<p>로컬 내에서 <code>finger</code> 명령어 사용과 외부에서 사용 가능한지 <code>finger Port(79번)</code>를 통해 점검하면 될 것 같습니다.</p>
-<br>
-
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/grep.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/grep.png">
 
 <br>
 
 <br>
 
-<h2 id="외부-서버에서-Finger-서비스-사용"><a href="#외부-서버에서-Finger-서비스-사용" class="headerlink" title="외부 서버에서 Finger 서비스 사용"></a>외부 서버에서 Finger 서비스 사용</h2><br>
+<h2 id="Anonymous-FTP-접속-여부-확인"><a href="#Anonymous-FTP-접속-여부-확인" class="headerlink" title="Anonymous FTP 접속 여부 확인"></a>Anonymous FTP 접속 여부 확인</h2><br>
 
 <blockquote>
-<p># finger @IP주소</p>
+<p># ftp 192.168.219.105</p>
 </blockquote>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/finger.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/ftp.png">
 
 <br>
 
-<p>현재 로그인 중인 사용자들의 정보를 볼 수 있습니다.</p>
+<p><code>Anonymous</code> 계정으로 접속이 되는 것을 볼 수 있습니다.</p>
 <br>
 
 <br>
@@ -420,26 +399,25 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX<br />HP-UX, <br />SOLARIS 5.9 이하 버전</td>
-<td>1) <code>/etc/inetd.conf</code> 파일에서 finger 서비스 라인 <code>#(주석)</code>처리<br />    (수정 전) <code>finger stream tcp nowait bin /usr/lbin/fingered fingerd</code><br />    (수정 후) <code>#finger stream tcp no wait bin /usr/lbin/fingered fingerd</code><br /><br />2) <code>inetd</code> 서비스 재시작<br />    <code>#ps -ef |grep inetd</code><br />      <code>root 141 1 0 15:03:22 ? 0:01 /usr/sbin/inetd -s</code><br />    <code>#kill -HUP [PID]</code><br /></td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td>inetadm -d “중지하고자 하는 데몬” 명령으로 서비스 데몬 중지<br />    <code>#inetadm -d svc:/etwork/finger:default</code></td>
-</tr>
-<tr>
-<td>LINUX<br />(xinetd일 경우)</td>
-<td>1) vi 편집기를 이용하여 “/etc/xinetd.d/finger” 파일 열기<br /><br />2) 아래와 같이 설정 (Disable = yes 설정)<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/vi.png"><br /><br />3) xinetd 서비스 재시작<br />    <code>#service xinetd restart</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) 일반 FTP - Anonymous FTP 접속 제한 설정 방법<br /><code>/etc/passwd</code> 파일에서 <code>ftp</code> 또는 <code>anonymous</code> 계정 삭제<br />SOLARIS, LINUX, HP-UX 설정 : <code>#userdel ftp</code><br />AIX 설정 : <code>#rmuser ftp</code><br /><br />2) ProFTP - Anonymous FTP 접속 제한 설정 방법<br /><code>conf/proftpd.conf</code> 파일의 <code>anonymous</code> 관련 설정 중 <code>User</code>, <code>Useralias</code> 항목 주석처리<br />(proftpd.conf 파일의 위치는 운영체제 종류별로 상이함)<br /><br />3) vsFTP - Anonymous FTP 접속 제한 설정 방법<br />vsFTP 설정파일 (<code>/etc/vsftpd/vsftpd.conf</code> 또는 <code>/etc/vsftpd.conf</code>)에서 <code>anonymous_enable=NO</code> 설정</td>
 </tr>
 </tbody></table>
 <br>
 
 <br>
 
-<p><code>finger 파일</code>에서 <code>Disable = yes</code> 해준 결과 아래와 같이 연결이 안되는 것을 확인할 수 있습니다.</p>
+<p><code>/etc/vsftpd/vsftpd.conf</code> 파일에서 <code>anonymous_enable=NO</code>로 설정해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/finger_2.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/anonymous.png">
+
+<br>
+
+<br>
+
+<p><code>Anonymous</code> 계정으로 로그인 실패하였습니다.<br><br></p>
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/ftp_2.png">
 
 <br>
 
@@ -469,11 +447,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화
+                <a href="/2021/12/14/2021-12-14-Log4Shell%20CVE-2021-44228/" rel="prev" title="[Log4Shell] CVE-2021-44228">
+                  <i class="fa fa-chevron-left"></i> [Log4Shell] CVE-2021-44228
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-19%20Finger%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화">
+                  [주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -526,7 +507,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"345baf21482e8caaf76dd26d61c764e2"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"971f9cbdb24aa8d71996d8c96a4d942f"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
