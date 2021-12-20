@@ -4242,7 +4242,7 @@ section 진행 기간
 <h2 id="FTP-계정-존재-여부-확인"><a href="#FTP-계정-존재-여부-확인" class="headerlink" title="FTP 계정 존재 여부 확인"></a>FTP 계정 존재 여부 확인</h2><br>
 
 <blockquote>
-<p># cat /etc/passwd | grep “ftp”</p>
+<p># cat /etc/passwd | grep &quot;ftp&quot;</p>
 </blockquote>
 <br>
 
