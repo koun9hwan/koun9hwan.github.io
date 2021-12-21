@@ -24,32 +24,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화">
-<meta property="og:url" content="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-22 crond 파일 소유자 및 권한 설정">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/12/21/2021-12-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-22%20crond%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/grep.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/ftp.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/anonymous.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/ftp_2.png">
-<meta property="article:published_time" content="2021-12-20T09:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-20T15:07:19.021Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-22/ls.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-22/cron.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-22/cron_2.png">
+<meta property="article:published_time" content="2021-12-21T11:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-21T11:25:53.662Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-20/grep.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-22/ls.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
+<link rel="canonical" href="https://koun9hwan.github.io/2021/12/21/2021-12-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-22%20crond%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/","path":"2021/12/20/2021-12-20-[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/12/21/2021-12-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-22%20crond%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/","path":"2021/12/21/2021-12-21-[주요정보통신기반시설 취약점 진단 가이드] U-22 crond 파일 소유자 및 권한 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-22 crond 파일 소유자 및 권한 설정"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-22 crond 파일 소유자 및 권한 설정 | Koun9Hwan</title>
   
 
 
@@ -156,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP"><span class="nav-text">FTP?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP-%EA%B3%84%EC%A0%95-%EC%A1%B4%EC%9E%AC-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">FTP 계정 존재 여부 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anonymous-FTP-%EC%A0%91%EC%86%8D-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">Anonymous FTP 접속 여부 확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron"><span class="nav-text">Cron?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9D%BC%EB%B0%98-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8"><span class="nav-text">일반 사용자 사용 가능 여부 확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/12/20/2021-12-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-20%20Anonymous%20FTP%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/12/21/2021-12-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-22%20crond%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -240,7 +239,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-20 Anonymous FTP 비활성화
+          [주요정보통신기반시설 취약점 진단 가이드] U-22 crond 파일 소유자 및 권한 설정
         </h1>
 
         <div class="post-meta-container">
@@ -250,16 +249,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2021-12-20 18:00:00" itemprop="dateCreated datePublished" datetime="2021-12-20T18:00:00+09:00">2021-12-20</time>
+      <time title="Created: 2021-12-21 20:00:00 / Modified: 20:25:53" itemprop="dateCreated datePublished" datetime="2021-12-21T20:00:00+09:00">2021-12-21</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-12-21 00:07:19" itemprop="dateModified" datetime="2021-12-21T00:07:19+09:00">2021-12-21</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -283,16 +276,15 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>익명 FTP 접속 허용 여부 점검입니다.</p>
-<p>항목코드는 <code>U-20</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p>Cron 관련 파일의 권한 적절성 점검입니다.</p>
+<p>항목코드는 <code>U-22</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
 
-<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP?"></a>FTP?</h2><br>
+<h2 id="Cron"><a href="#Cron" class="headerlink" title="Cron?"></a>Cron?</h2><br>
 
-<p>파일 전송 프로토콜(File Transfer Protocol, FTP)은 TCP/IP 프로토콜을 가지고 서버와 클라이언트 사이의 파일 전송을 하기 위한 프로토콜입니다.</p>
-<p>포트는 <code>21</code>번 포트를 사용합니다.</p>
+<p>특정 작업을 정해진 시간에 주기적으로 반복적으로 실행하기 위한 데몬 및 설정입니다.</p>
 <br>
 
 <br>
@@ -302,14 +294,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>실행중인 FTP 서비스에 익명 FTP 접속이 허용되고 있는지 확인하여 접속 허용을 차단하는 것을 목적으로 합니다.</p>
+<p>관리자 외 cron 서비스를 사용할 수 없도록 설정하고 있는지 점검하는 것을 목적으로 합니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>익명 FTP를 사용 시 anonymous 계졍으로 로그인 후 디렉터리에 쓰기 권한이 설정되어 있다면 악의적인 사용자가 local Exploit을 사용하여 시스템에 대한 공격을 가능하게 합니다.</p>
+<p>root 외 일반 사용자에게도 crontab 명령어를 사용할 수 있도록 할 경우 고의 또는 실수로 불법적인 예약 파일 실행으로 시스템 피해를 일으킬 수 있습니다.</p>
 <br>
 
 <br>
@@ -330,13 +322,13 @@
 <table>
 <thead>
 <tr>
-<th>FTP 활성화된 서버</th>
+<th>cron 활성화된 서버</th>
 <th>외부 서버 (비인가자)</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>192.168.219.105</td>
-<td>192.168.219.104</td>
+<td>192.168.219.103</td>
 </tr>
 </tbody></table>
 <br>
@@ -354,40 +346,27 @@
 </thead>
 <tbody><tr>
 <td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td>/etc/passwd 파일에 ftp 계정 존재 여부 확인<br /><code>#cat /etc/passwd | grep &quot;ftp&quot;</code></td>
+<td>Cron 관련 파일 권한 확인<br /><code># ls -al /usr/bin/crontab</code><br /><code>rw-r----- root &lt;cron 접근제어 파일&gt;</code></td>
 </tr>
 </tbody></table>
 <br>
 
 <br>
 
-<h2 id="FTP-계정-존재-여부-확인"><a href="#FTP-계정-존재-여부-확인" class="headerlink" title="FTP 계정 존재 여부 확인"></a>FTP 계정 존재 여부 확인</h2><br>
+<h2 id="일반-사용자-사용-가능-여부-확인"><a href="#일반-사용자-사용-가능-여부-확인" class="headerlink" title="일반 사용자 사용 가능 여부 확인"></a>일반 사용자 사용 가능 여부 확인</h2><br>
 
 <blockquote>
-<p># cat /etc/passwd | grep &quot;ftp&quot;</p>
+<p># ls -al /usr/bin/crontab</p>
 </blockquote>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/grep.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/ls.png">
 
 <br>
 
-<br>
-
-<h2 id="Anonymous-FTP-접속-여부-확인"><a href="#Anonymous-FTP-접속-여부-확인" class="headerlink" title="Anonymous FTP 접속 여부 확인"></a>Anonymous FTP 접속 여부 확인</h2><br>
-
-<blockquote>
-<p># ftp 192.168.219.105</p>
-</blockquote>
-<br>
-
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/ftp.png">
-
-<br>
-
-<p><code>Anonymous</code> 계정으로 접속이 되는 것을 볼 수 있습니다.</p>
+<p>일반 사용자도 사용이 가능하므로 취약합니다.</p>
 <br>
 
 <br>
@@ -397,33 +376,118 @@
 
 <h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
 
+<blockquote>
+<p> <strong>공통설정</strong></p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>crontab 명령어 일반 사용자 권한 삭제 (crontab 명령어 위치는 OS별 다를 수 있음)</p>
+<blockquote>
+<p>crontab 명령어는 SUID가 설정되어 있으므로 SUID 설정 제거</p>
+<p><code># ls -l /usr/bin/crontab</code></p>
+<p><code># chmod 750 /usr/bin/crontab</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>cron 관련 설정파일 소유자 및 권한 설정</p>
+<blockquote>
+<p><code># chown root &lt;cron 관련 파일&gt;</code></p>
+<p><code># chmod 640 &lt;cron 관련 파일&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>관련 설정파일</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;cron 디렉터리&gt;/crontab</code></td>
+<td>예약 작업을 등록하는 파일</td>
+</tr>
+<tr>
+<td><code>/etc/cron.hourly</code> <code>/etc/cron.daily</code><br /><code>/etc/cron.weekly</code> <code>/etc/cron.monthly</code></td>
+<td>시간, 일, 주, 월 단위 실행 스크립트 등록</td>
+</tr>
+<tr>
+<td><code>/var/spool/cron/</code> 또는 <code>/var/spool/cron/crontabs/</code></td>
+<td>사용자 별 설정된 cron 작업 목록</td>
+</tr>
+<tr>
+<td><code>cron.allow</code> <code>cron.deny</code></td>
+<td>crontab 명령어 허용(차단) 사용자 등록</td>
+</tr>
+</tbody></table>
 <table>
 <thead>
 <tr>
 <th>OS</th>
-<th>조치 방법</th>
+<th>관련 설정파일 위치</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td>1) 일반 FTP - Anonymous FTP 접속 제한 설정 방법<br /><code>/etc/passwd</code> 파일에서 <code>ftp</code> 또는 <code>anonymous</code> 계정 삭제<br />SOLARIS, LINUX, HP-UX 설정 : <code>#userdel ftp</code><br />AIX 설정 : <code>#rmuser ftp</code><br /><br />2) ProFTP - Anonymous FTP 접속 제한 설정 방법<br /><code>conf/proftpd.conf</code> 파일의 <code>anonymous</code> 관련 설정 중 <code>User</code>, <code>Useralias</code> 항목 주석처리<br />(proftpd.conf 파일의 위치는 운영체제 종류별로 상이함)<br /><br />3) vsFTP - Anonymous FTP 접속 제한 설정 방법<br />vsFTP 설정파일 (<code>/etc/vsftpd/vsftpd.conf</code> 또는 <code>/etc/vsftpd.conf</code>)에서 <code>anonymous_enable=NO</code> 설정</td>
+<td>SOLARIS</td>
+<td><code>/etc/cron.d/</code></td>
+</tr>
+<tr>
+<td>LINUX</td>
+<td><code>/etc/</code></td>
+</tr>
+<tr>
+<td>AIX, HP-UX</td>
+<td><code>/var/adm/cron/</code></td>
 </tr>
 </tbody></table>
+</blockquote>
+</li>
+</ol>
+</blockquote>
 <br>
 
 <br>
 
-<p><code>/etc/vsftpd/vsftpd.conf</code> 파일에서 <code>anonymous_enable=NO</code>로 설정해주었습니다.</p>
+<blockquote>
+<p><strong>crontab 명령어를 일반사용자에게 허용하는 경우</strong></p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p><code>/etc/cron.d/cron.allow</code> 및 <code>/etc/cron.d/cron.deny</code> 파일의 소유자 및 권한 변경</p>
+<blockquote>
+<p><code># chown root /etc/cron.d/cron.allow</code></p>
+<p><code># chmod 640 /etc/cron.d/cron.allow</code></p>
+<p><code># chown root /etc/crond/cron.deny</code></p>
+<p><code># chmod 640 /etc/cron.d/cron.deny</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p><code>/etc/cron.d/cron.allow</code> 및 <code>/etc/cron.d/cron.deny</code> 파일에 사용자 등록</p>
+<blockquote>
+<p><code># cat /etc/cron.allow</code> (crontab 명령어 사용을 허용하는 사용자 등록)</p>
+<p><code># cat /etc/cron.deny</code> (crontab 명령어 사용을 차단하는 사용자 등록)</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/anonymous.png">
+<br>
+
+<p><code>crontab</code> 명령어 일반사용자 권한을 삭제하였습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/cron.png">
 
 <br>
 
 <br>
 
-<p><code>Anonymous</code> 계정으로 로그인 실패하였습니다.<br><br></p>
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/ftp_2.png">
+<p>권한이 없다고 나옵니다.<br><br></p>
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/cron_2.png">
 
 <br>
 
@@ -453,14 +517,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-19%20Finger%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-19 Finger 서비스 비활성화
+                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/12/20/2021-12-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-21%20r%EA%B3%84%EC%97%B4%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-21 r계열 서비스 비활성화 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -513,7 +574,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"971f9cbdb24aa8d71996d8c96a4d942f"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"9a72a8d508dd6475efce3acb6f204cb5"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

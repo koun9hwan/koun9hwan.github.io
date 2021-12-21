@@ -4519,4 +4519,242 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-22 crond 파일 소유자 및 권한 설정</title>
+    <url>/2021/12/21/2021-12-21-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-22%20crond%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>Cron 관련 파일의 권한 적절성 점검입니다.</p>
+<p>항목코드는 <code>U-22</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<h2 id="Cron"><a href="#Cron" class="headerlink" title="Cron?"></a>Cron?</h2><br>
+
+<p>특정 작업을 정해진 시간에 주기적으로 반복적으로 실행하기 위한 데몬 및 설정입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>관리자 외 cron 서비스를 사용할 수 없도록 설정하고 있는지 점검하는 것을 목적으로 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>root 외 일반 사용자에게도 crontab 명령어를 사용할 수 있도록 할 경우 고의 또는 실수로 불법적인 예약 파일 실행으로 시스템 피해를 일으킬 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>cron 활성화된 서버</th>
+<th>외부 서버 (비인가자)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.105</td>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>Cron 관련 파일 권한 확인<br /><code># ls -al /usr/bin/crontab</code><br /><code>rw-r----- root &lt;cron 접근제어 파일&gt;</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="일반-사용자-사용-가능-여부-확인"><a href="#일반-사용자-사용-가능-여부-확인" class="headerlink" title="일반 사용자 사용 가능 여부 확인"></a>일반 사용자 사용 가능 여부 확인</h2><br>
+
+<blockquote>
+<p># ls -al /usr/bin/crontab</p>
+</blockquote>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/ls.png">
+
+<br>
+
+<p>일반 사용자도 사용이 가능하므로 취약합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<blockquote>
+<p> <strong>공통설정</strong></p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>crontab 명령어 일반 사용자 권한 삭제 (crontab 명령어 위치는 OS별 다를 수 있음)</p>
+<blockquote>
+<p>crontab 명령어는 SUID가 설정되어 있으므로 SUID 설정 제거</p>
+<p><code># ls -l /usr/bin/crontab</code></p>
+<p><code># chmod 750 /usr/bin/crontab</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>cron 관련 설정파일 소유자 및 권한 설정</p>
+<blockquote>
+<p><code># chown root &lt;cron 관련 파일&gt;</code></p>
+<p><code># chmod 640 &lt;cron 관련 파일&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>관련 설정파일</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;cron 디렉터리&gt;/crontab</code></td>
+<td>예약 작업을 등록하는 파일</td>
+</tr>
+<tr>
+<td><code>/etc/cron.hourly</code> <code>/etc/cron.daily</code><br /><code>/etc/cron.weekly</code> <code>/etc/cron.monthly</code></td>
+<td>시간, 일, 주, 월 단위 실행 스크립트 등록</td>
+</tr>
+<tr>
+<td><code>/var/spool/cron/</code> 또는 <code>/var/spool/cron/crontabs/</code></td>
+<td>사용자 별 설정된 cron 작업 목록</td>
+</tr>
+<tr>
+<td><code>cron.allow</code> <code>cron.deny</code></td>
+<td>crontab 명령어 허용(차단) 사용자 등록</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>관련 설정파일 위치</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS</td>
+<td><code>/etc/cron.d/</code></td>
+</tr>
+<tr>
+<td>LINUX</td>
+<td><code>/etc/</code></td>
+</tr>
+<tr>
+<td>AIX, HP-UX</td>
+<td><code>/var/adm/cron/</code></td>
+</tr>
+</tbody></table>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<br>
+
+<br>
+
+<blockquote>
+<p><strong>crontab 명령어를 일반사용자에게 허용하는 경우</strong></p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p><code>/etc/cron.d/cron.allow</code> 및 <code>/etc/cron.d/cron.deny</code> 파일의 소유자 및 권한 변경</p>
+<blockquote>
+<p><code># chown root /etc/cron.d/cron.allow</code></p>
+<p><code># chmod 640 /etc/cron.d/cron.allow</code></p>
+<p><code># chown root /etc/crond/cron.deny</code></p>
+<p><code># chmod 640 /etc/cron.d/cron.deny</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p><code>/etc/cron.d/cron.allow</code> 및 <code>/etc/cron.d/cron.deny</code> 파일에 사용자 등록</p>
+<blockquote>
+<p><code># cat /etc/cron.allow</code> (crontab 명령어 사용을 허용하는 사용자 등록)</p>
+<p><code># cat /etc/cron.deny</code> (crontab 명령어 사용을 차단하는 사용자 등록)</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<br>
+
+<br>
+
+<p><code>crontab</code> 명령어 일반사용자 권한을 삭제하였습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/cron.png">
+
+<br>
+
+<br>
+
+<p>권한이 없다고 나옵니다.<br><br></p>
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/cron_2.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
