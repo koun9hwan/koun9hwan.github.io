@@ -5048,6 +5048,29 @@ section 진행 기간
 <br>
 
 <hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">cmd=`netstat -ltup | grep -e <span class="built_in">echo</span> -e daytime -e discard -e chargen`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$cmd</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=활성화</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=비활성화</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e DoS 공격에 취약한 서비스 활성화 여부: <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-23.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>echo</code> <code>daytime</code> <code>discard</code> <code>chargen</code> 서비스가 활성화 상태인지 확인합니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-23</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-23/script.png">
+
+<br>
+
+<br>
+
+<hr>
 <div class="link-grid"><div class="link-grid-container">
 <object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
 <p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
