@@ -4332,6 +4332,30 @@ section 진행 기간
 <br>
 
 <hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">AnonymousResult=<span class="string">&quot;&quot;</span></span><br><span class="line">FtpResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">Anonymous=`cat /etc/vsftpd/vsftpd.conf | grep anonymous_enable`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$Anonymous</span>&quot;</span> == *yes* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        AnonymousResult=X</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        AnonymousResult=O</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">ftp=`cat /etc/passwd | grep <span class="string">&quot;ftp&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$ftp</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        FtpResult=O</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        FtpResult=X</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e Anonymous FTP 접속 제한 여부: <span class="string">&quot;<span class="variable">$AnonymousResult</span>&quot;</span> <span class="string">&quot;\n&quot;</span>FTP 계정 존재 여부: <span class="string">&quot;<span class="variable">$FtpResult</span>&quot;</span> | tee /root/result/u-20.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>/etc/vsftpd/vsftpd.conf</code> 파일에서 <code>anonymous_enable</code> 단어가 포함된 줄을 변수에 저장 후 <code>yes</code>라는 단어가 포함되어 있으면 <code>Anonymous FTP</code> 접속이 가능하고, 아니라면 불가능이라고 판단할 수 있게 코딩을 하였습니다.</p>
+<p><code>/etc/passwd</code> 파일에서 <code>ftp</code>계정이 있는지 확인할 수 있도록 만들었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-20</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-20/script.png">
+
+<br>
+
+<br>
+
+<hr>
 <div class="link-grid"><div class="link-grid-container">
 <object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
 <p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
