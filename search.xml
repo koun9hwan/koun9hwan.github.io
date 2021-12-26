@@ -4812,6 +4812,30 @@ section 진행 기간
 <br>
 
 <hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">CronResult=<span class="string">&quot;&quot;</span></span><br><span class="line">EtcResult=<span class="string">&quot;&quot;</span></span><br><span class="line">UserResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">cmd=`find /usr/bin/crontab -perm 750 | grep crontab`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$cmd</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        CronResult=설정됨</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        CronResult=설정안됨</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">cmd=`find /etc/cron* -perm 640`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$cmd</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        EtcResult=설정됨</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        EtcResult=설정안됨</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">cmd=`find /var/spool/cron/ -perm 640`</span><br><span class="line">cmd2=`ls /var/spool/cron/`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$cmd2</span>&quot;</span> == <span class="string">&quot;&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        UserResult=비어있음</span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$cmd</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        UserResult=설정됨</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        UserResult=설정안됨</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e crontab 일반사용자 권한: <span class="string">&quot;<span class="variable">$CronResult</span>&quot;</span> <span class="string">&quot;\n&quot;</span>/etc/cron* 권한: <span class="string">&quot;<span class="variable">$EtcResult</span>&quot;</span> <span class="string">&quot;\n&quot;</span>사용자별 cron 작업 목록 권한: <span class="string">&quot;<span class="variable">$UserResult</span>&quot;</span> | tee /root/result/u-22.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>/usr/bin/crontab</code>의 권한이 <code>750</code>인지, <code>/etc/cron*</code> 파일들의 권한이 <code>640</code>인지 확인할 수 있도록 만들었습니다.</p>
+<p>사용자별 설정된 cron 작업 목록이 있는 <code>/var/spool/cron/</code> 경로에는 파일이 있는지 확인하고, 만약 있다면 권한이 <code>640</code>인지 확인할 수 있도록 만들었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-22</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-22/script.png">
+
+<br>
+
+<br>
+
+<hr>
 <div class="link-grid"><div class="link-grid-container">
 <object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
 <p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
