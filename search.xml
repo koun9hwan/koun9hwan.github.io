@@ -4141,6 +4141,30 @@ section 진행 기간
 <br>
 
 <hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ProcessResult=&quot;&quot;</span><br><span class="line">PortResult=&quot;&quot;</span><br><span class="line"></span><br><span class="line">process=`cat /etc/xinetd.d/finger | grep disable`</span><br><span class="line">if [[ &quot;$process&quot; == *no* ]]</span><br><span class="line">then</span><br><span class="line">        ProcessResult=O</span><br><span class="line">else</span><br><span class="line">        ProcessResult=X</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">port=`netstat -tulpn | grep LISTEN | grep 79`</span><br><span class="line">if [ &quot;$port&quot; ]</span><br><span class="line">then</span><br><span class="line">        PortResult=OPEN</span><br><span class="line">else</span><br><span class="line">        PortResult=CLOSE</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo -e finger 사용여부 : &quot;$ProcessResult&quot;&quot;\n&quot;finger 포트\(79번\) : &quot;$PortResult&quot; | tee /root/result/u-19.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>/etc/xinetd.d/finger</code> 파일에서 <code>disable</code> 단어가 포함된 줄을 변수에 저장 후 <code>no</code>라는 단어가 포함되어 있으면 <code>finger</code> 서비스가 실행되고 있는 상태로 판단하였습니다.</p>
+<p><code>finger</code> 포트인 <code>79</code>번 포트가 <code>OPEN / CLOSE</code> 상태인지 확인할 수 있도록 만들었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-19</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/script.png">
+
+<br>
+
+<br>
+
+<hr>
 <div class="link-grid"><div class="link-grid-container">
 <object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
 <p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
