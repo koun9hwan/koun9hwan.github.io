@@ -4552,6 +4552,30 @@ section 진행 기간
 <br>
 
 <hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line">RcommandResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ls -al /etc/xinetd.d/* | egrep <span class="string">&quot;rsh|rlogin|rexec&quot;</span> | egrep -v <span class="string">&quot;grep|klogin|kshell|kexec&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=활성화</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=비활성화</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">Rcommand=`cat /etc/xinetd.d/r* | grep <span class="built_in">disable</span>`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$Rcommand</span>&quot;</span> == *no* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        RcommandResult=설정 안됨</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        RcommandResult=설정됨</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e R-Command 활성화 여부: <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> <span class="string">&quot;\n&quot;</span>Disable 설정: <span class="string">&quot;<span class="variable">$RcommandResult</span>&quot;</span> | tee /root/result/u-21.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>rsh, rlogin, rexec</code> 서비스가 활성화 상태인지 확인할 수 있도록 만들었습니다.</p>
+<p><code>/etc/xinetd.d/r*</code> 파일에서 <code>disable</code> 단어가 포함된 줄을 변수에 저장 후 <code>no</code>라는 단어가 포함되어 있으면 해당 서비스가 비활성화 상태로 판단하고 아니면 활성 상태라고 판단할 수 있도록 만들었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-21</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-21/script.png">
+
+<br>
+
+<br>
+
+<hr>
 <div class="link-grid"><div class="link-grid-container">
 <object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
 <p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
