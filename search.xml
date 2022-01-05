@@ -5349,7 +5349,7 @@ section 진행 기간
 <p><code>PostLogin</code>의 <code>android:exported</code>를 <code>false</code>로 설정해주었습니다.</p>
 <br>
 
-<img src="/images/Android/취약한 인증 메커니즘/drozer.png">
+<img src="/images/Android/취약한 인증 메커니즘/drozer_2.png">
 
 <br>
 
