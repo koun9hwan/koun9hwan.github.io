@@ -5229,7 +5229,7 @@ section 진행 기간
 
 <br>
 
-<p><code>false</code>로 설정해주니 broadcast receiver 취약점이 없어졌습니다.</p>
+<p><code>false</code>로 설정해주니 <code>broadcast receiver</code> 취약점이 없어졌습니다.</p>
 <br>
 
 <br>
