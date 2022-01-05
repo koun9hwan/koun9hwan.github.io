@@ -5213,7 +5213,7 @@ section 진행 기간
 <h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
 
 <blockquote>
-<p>android:exported=”false” 설정</p>
+<p>android:exported=&quot;false&quot; 설정</p>
 </blockquote>
 <br>
 
