@@ -5244,4 +5244,142 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 취약한 인증 메커니즘</title>
+    <url>/2022/01/05/2022-01-05-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%B7%A8%EC%95%BD%ED%95%9C%20%EC%9D%B8%EC%A6%9D%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98/</url>
+    <content><![CDATA[<h1 id="🤔-취약한-인증-메커니즘이란"><a href="#🤔-취약한-인증-메커니즘이란" class="headerlink" title="🤔  취약한 인증 메커니즘이란?"></a>🤔  취약한 인증 메커니즘이란?</h1><br>
+
+<p>정상적인 인증 절차를 우회하여 비정상적인 인증으로 접근 권한을 취득하는 취약점입니다.</p>
+<br>
+
+<p>해당 취약점은 <code>OWASP Mobile Top 10 2016-M4</code>에 포함되는 취약점입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.LoginActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.FilePrefActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_file_pref&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:windowSoftInputMode</span>=<span class="string">&quot;stateVisible|adjustResize|adjustPan&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.DoLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_do_login&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.PostLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_post_login&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.WrongLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_wrong_login&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.DoTransfer&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_do_transfer&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.ViewStatement&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_view_statement&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;activity&gt;</code>의 속성이 <code>android:exported=&quot;true&quot;</code>로 설정되어있습니다.</p>
+<p>이런 경우 다른 <code>&lt;activity&gt;</code>에서 인증 없이 접근할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<blockquote>
+<p>dz&gt; run app.activity.info -a com.android.insecurebankv2</p>
+</blockquote>
+<br>
+
+<p><code>drozer</code>로 해당 애플리케이션의 <code>activity</code>와 <code>권한</code>을 확인해주었습니다.</p>
+<br>
+
+<img src="/images/Android/취약한 인증 메커니즘/drozer.png">
+
+<br>
+
+<p><code>LoginActivity</code> <code>PostLogin</code> <code>DoTransfer</code> <code>ViewStatement</code> <code>ChangePassword</code> Activity가 있는 것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="Activity-실행"><a href="#Activity-실행" class="headerlink" title="Activity 실행"></a>Activity 실행</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.PostLogin</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/취약한 인증 메커니즘/postlogin.png">
+
+<br>
+
+<p><code>PostLogin</code> Activity를 실행시키니 인증 절차 없이 <code>PostLogin</code> 화면으로 이동되었습니다.</p>
+<br>
+
+<br>
+
+<blockquote>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/취약한 인증 메커니즘/changepassword.png">
+
+<br>
+
+<p><code>ChangePassword</code> Activity를 실행시키니 인증 절차 없이 <code>ChangePassword</code> 화면으로 이동되었습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<blockquote>
+<p>android:exported=&quot;false&quot; 설정</p>
+</blockquote>
+<p>만일 <code>true</code>로 설정을 해야 하는 경우 별도의 <code>intent-filter</code>로 검증을 해야 합니다.</p>
+<br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.PostLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_post_login&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>PostLogin</code>의 <code>android:exported</code>를 <code>false</code>로 설정해주었습니다.</p>
+<br>
+
+<img src="/images/Android/취약한 인증 메커니즘/drozer.png">
+
+<br>
+
+<p>원래 <code>LoginActivity</code> <code>PostLogin</code> <code>DoTransfer</code> <code>ViewStatement</code> <code>ChangePassword</code> 5개의 Activity가 있었지만 <code>PostLogin</code> Activity는 없어졌습니다.</p>
+<br>
+
+<br>
+
+<blockquote>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.PostLogin</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/취약한 인증 메커니즘/postlogin_2.png">
+
+<br>
+
+<p><code>PostLogin</code> Activity를 실행시켰을 때 오류 메시지가 뜨고 아무런 반응도 없습니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
