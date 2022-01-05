@@ -5086,4 +5086,162 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 브로드캐스트 리시버 결함</title>
+    <url>/2022/01/05/2022-01-05-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EB%B8%8C%EB%A1%9C%EB%93%9C%EC%BA%90%EC%8A%A4%ED%8A%B8%20%EB%A6%AC%EC%8B%9C%EB%B2%84%20%EA%B2%B0%ED%95%A8/</url>
+    <content><![CDATA[<h1 id="🤔-브로드캐스트-리시버란"><a href="#🤔-브로드캐스트-리시버란" class="headerlink" title="🤔  브로드캐스트 리시버란?"></a>🤔  브로드캐스트 리시버란?</h1><br>
+
+<p>안드로이드 디바이스에서는 이벤트가 발생하면 브로드캐스트 신호를 전송하게 됩니다.</p>
+<p>그 신호를 받아 처리해주는 역할을 브로드캐스트 리시버가 해줍니다.</p>
+<br>
+
+<p>대상 애플리케이션에서 발생하는 브로드캐스트 신호를 받기 위해서는 브로드캐스트 리시버가 설정되어 있어야 합니다.</p>
+<p>신호를 받는 경우 애플리케이션에 정의해 놓은 작업을 수행합니다.</p>
+<p>브로드캐스트 리시버는 <code>AndroidManifest.xml</code>의 <code>&lt;receiver&gt; &lt;/receiver&gt;</code> 항목에 선언됩니다.</p>
+<br>
+
+<br>
+
+<h2 id="브로드캐스트-리시버-호출"><a href="#브로드캐스트-리시버-호출" class="headerlink" title="브로드캐스트 리시버 호출"></a>브로드캐스트 리시버 호출</h2><br>
+
+<p>브로드캐스트 리시버를 호출할 때 발생하는 브로드캐스트가 정상이면 부팅완료, 메시지 송수신, 시스템 메시지 등을 보내는 이벤트입니다.</p>
+<p>하지만 이를 <u>악의적인 목적</u>으로 수행할 경우에 <u>사용자가 받는 알림을 중간에서 가로챌 수 있으며, 특정 작업을 우회하여 수행하도록 조작할 수 있습니다.</u></p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MyBroadCastReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;theBroadcast&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>AndroidManifest.xml</code>에 리시버가 설정되어있습니다.</p>
+<br>
+
+<blockquote>
+<p>브로드캐스트 이름 : theBroadcast</p>
+</blockquote>
+<br>
+
+<p>브로드캐스트 신호를 받으면 <code>MyBroadCastReceiver</code>에 설정된 작업을 수행합니다.</p>
+<p><code>exported</code> 값이 <code>true</code>로 설정되어 있기 때문에 외부 애플리케이션으로부터 <code>intent</code>를 받을 수 있는 상태입니다.</p>
+<br>
+
+<br>
+
+<p>* intent : 애플리케이션 구성요소간에 작업 수행을 위한 정보를 전달하는 역할</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* MyBroadCastReceiver.class */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBroadCastReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">	String usernameBase64ByteString;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String MYPREFS = <span class="string">&quot;mySharedPreferences&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">        String phn = intent.getStringExtra(<span class="string">&quot;phonenumber&quot;</span>);</span><br><span class="line">        String newpass = intent.getStringExtra(<span class="string">&quot;newpass&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (phn != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">                SharedPreferences settings = context.getSharedPreferences(MYPREFS, Context.MODE_WORLD_READABLE);</span><br><span class="line">                <span class="keyword">final</span> String username = settings.getString(<span class="string">&quot;EncryptedUsername&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">                <span class="keyword">byte</span>[] usernameBase64Byte = Base64.decode(username, Base64.DEFAULT);</span><br><span class="line">                usernameBase64ByteString = <span class="keyword">new</span> String(usernameBase64Byte, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">                <span class="keyword">final</span> String password = settings.getString(<span class="string">&quot;superSecurePassword&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">                CryptoClass crypt = <span class="keyword">new</span> CryptoClass();</span><br><span class="line">                String decryptedPassword = crypt.aesDeccryptedString(password);</span><br><span class="line">                String textPhoneno = phn.toString();</span><br><span class="line">                String textMessage = <span class="string">&quot;Updated Password from: &quot;</span>+decryptedPassword+<span class="string">&quot; to: &quot;</span>+newpass;</span><br><span class="line">                SmsManager smsManager = SmsManager.getDefault();</span><br><span class="line">                System.out.println(<span class="string">&quot;For the changepassword - phonenumber: &quot;</span>+textPhoneno+<span class="string">&quot; password is: &quot;</span>+textMessage);</span><br><span class="line">                smsManager.sendTextMessage(textPhoneno, <span class="keyword">null</span>, textMessage, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Phone number is null&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>11~12 줄을 보면 <code>intent</code>가 <code>onReceive()</code> 메서드에 들어오고 있는 것을 볼 수 있습니다.</p>
+<p>만약 <code>intent-filter</code>를 사용하지 않는다면 해당 애플리케이션은 다른 애플리케이션에 의해 브로드캐스트 리시버가 남용될 수 있습니다.</p>
+<br>
+
+<p>24 줄을 보면 기존 비밀번호를 복호화 하여 새로 입력된 패스워드랑 같이 출력하고있습니다.</p>
+<br>
+
+<h2 id="브로드캐스트-생성"><a href="#브로드캐스트-생성" class="headerlink" title="브로드캐스트 생성"></a>브로드캐스트 생성</h2><br>
+
+<blockquote>
+<p># am broadcast -a theBroadcast -n com.android.insecurebankv2/.MyBroadCastReceiver</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/브로드캐스트 리시버/phone_am.png">
+
+<br>
+
+<p>브로드캐스트를 생성하기 위해 <code>am</code> 명령어를 사용하였습니다.</p>
+<br>
+
+<img src="/images/Android/브로드캐스트 리시버/phone_logcat.png">
+
+<br>
+
+<p><code>phonenumber</code>을 입력하지 않았기 때문에 <code>Phone number is null</code>이 출력되고있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="매개변수를-포함한-브로드캐스트-생성"><a href="#매개변수를-포함한-브로드캐스트-생성" class="headerlink" title="매개변수를 포함한 브로드캐스트 생성"></a>매개변수를 포함한 브로드캐스트 생성</h2><br>
+
+<blockquote>
+<p># am broadcast -a theBroadcast -n com.android.insecurebankv2/.MyBroadCastReceiver –es phonenumber 123 –es newpass kh</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/브로드캐스트 리시버/phone_am_2.png">
+
+<br>
+
+<p><code>phonenumber</code>과 <code>newpass</code>매개변수를 포함하여 브로드캐스트를 생성하였습니다.</p>
+<br>
+
+<img src="/images/Android/브로드캐스트 리시버/phone_logcat_2.png">
+
+<br>
+
+<p>기존 패스워드가 복호화 상태로 출력 되고 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<blockquote>
+<p>android:exported=”false” 설정</p>
+</blockquote>
+<br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MyBroadCastReceiver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;theBroadcast&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>android:exported=&quot;false&quot;</code>로 설정을 하여 외부에 노출이 안되도록 해야합니다.</p>
+<p>필요한 경우에는 각 리시버에 별도의 권한을 부여해야합니다.</p>
+<br>
+
+<img src="/images/Android/브로드캐스트 리시버/false.png">
+
+<br>
+
+<p><code>false</code>로 설정해주니 broadcast receiver 취약점이 없어졌습니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
