@@ -5382,4 +5382,155 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 로컬 암호화 이슈</title>
+    <url>/2022/01/06/2022-01-06-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EB%A1%9C%EC%BB%AC%20%EC%95%94%ED%98%B8%ED%99%94%20%EC%9D%B4%EC%8A%88/</url>
+    <content><![CDATA[<h1 id="🤔-로컬-암호화-이슈란"><a href="#🤔-로컬-암호화-이슈란" class="headerlink" title="🤔  로컬 암호화 이슈란?"></a>🤔  로컬 암호화 이슈란?</h1><br>
+
+<p>민감한 정보를 저장할 때 암호화하지 않고 저장하는 취약점입니다.</p>
+<br>
+
+<p>해당 취약점은 <code>OWASP Mobile Top 10 2016-M5</code>에 포함되는 취약점입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<p>인시큐어뱅크 앱에서 <code>Autofill Credentials</code> 버튼이 있습니다.</p>
+<p>이 버튼은 마지막으로 로그인 했던 사용자의 아이디와 패스워드를 불러와 로그인할 수 있는 기능입니다.</p>
+<br>
+
+<img src="/images/Android/로컬 암호화 이슈/login.png">
+
+<br>
+
+<br>
+
+<p>인시큐어뱅크 앱의 데이터가 저장되는 파일은 <code>mySharedPreferences.xml</code> <code>com.android.insecurebankv2_preferences.xml</code> 입니다.</p>
+<p>해당 파일의 경로는 <code>/data/data/com.android.insecurebankv2/shared_prefs/</code>입니다.</p>
+<br>
+
+<img src="/images/Android/로컬 암호화 이슈/ls.png">
+
+<br>
+
+<br>
+
+<h2 id="mySharedPreferences-xml"><a href="#mySharedPreferences-xml" class="headerlink" title="mySharedPreferences.xml"></a>mySharedPreferences.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* mySharedPreferences.xml */</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;utf-8&#x27; standalone=&#x27;yes&#x27; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;EncryptedUsername&quot;</span>&gt;</span>ZGluZXNo<span class="symbol">&amp;#13;</span><span class="symbol">&amp;#10;</span>    <span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;superSecurePassword&quot;</span>&gt;</span>DTrW2VXjSoFdg0e61fHxJg==<span class="symbol">&amp;#10;</span>    <span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>EncryptedUsername</code> <code>superSecurePassword</code> 변수에 사용자 아이디와 비밀번호를 암호화하여 저장하고 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="com-android-insecurebankv2-preferences-xml"><a href="#com-android-insecurebankv2-preferences-xml" class="headerlink" title="com.android.insecurebankv2_preferences.xml"></a>com.android.insecurebankv2_preferences.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* com.android.insecurebankv2_preferences.xml */</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;utf-8&#x27; standalone=&#x27;yes&#x27; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;serverport&quot;</span>&gt;</span>8888<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;serverip&quot;</span>&gt;</span>192.168.219.102<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>serverport</code> 변수에 포트 번호가 저장되어있고, <code>serverip</code> 변수에는 서버의 아이피가 저장되어있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p><code>mySharedPreferences</code> 파일을 수정하기 위해서는 특정 모듈로만 접근이 가능합니다.</p>
+<p>해당 애플리케이션에서는 <code>Dologin.java</code> 안에 <code>saveCreds()</code>함수에서 정보를 수정하고 있습니다.</p>
+<br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* DoLogin.java 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">saveCreds</span><span class="params">(String username, String password)</span> <span class="keyword">throws</span> UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		SharedPreferences mySharedPreferences;</span><br><span class="line">		mySharedPreferences = getSharedPreferences(MYPREFS, Activity.MODE_PRIVATE);</span><br><span class="line">		SharedPreferences.Editor editor = mySharedPreferences.edit();</span><br><span class="line">		rememberme_username = username;</span><br><span class="line">		rememberme_password = password;</span><br><span class="line">		String base64Username = <span class="keyword">new</span> String(Base64.encodeToString(rememberme_username.getBytes(), <span class="number">4</span>));</span><br><span class="line">		CryptoClass crypt = <span class="keyword">new</span> CryptoClass();;</span><br><span class="line">		superSecurePassword = crypt.aesEncryptedString(rememberme_password);</span><br><span class="line">		editor.putString(<span class="string">&quot;EncryptedUsername&quot;</span>, base64Username);</span><br><span class="line">		editor.putString(<span class="string">&quot;superSecurePassword&quot;</span>, superSecurePassword);</span><br><span class="line">		editor.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>8~9 줄을 보면 아이디와 패스워드를 변수에 할당합니다.</p>
+<p>10 줄을 보면 변수에 할당한 아이디를 <code>Base64</code>로 인코딩하여 저장합니다.</p>
+<p>11 줄을 보면 변수에 할당한 비밀번호를 <code>AES</code>로 암호화하여 저장합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p><code>AES</code>로 암호화되는 <code>Cryptoclass.java</code> 파일을 확인해줍니다.</p>
+<br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Cryptoclass.java 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.android.insecurebankv2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.crypto.BadPaddingException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.IllegalBlockSizeException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.NoSuchPaddingException;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.IvParameterSpec;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.util.Base64;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.security.InvalidKeyException;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"><span class="keyword">import</span> java.security.InvalidAlgorithmParameterException;</span><br><span class="line"><span class="keyword">import</span> java.security.spec.AlgorithmParameterSpec;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">The page that holds the logic for encryption and decryption used in the application</span></span><br><span class="line"><span class="comment">@author Dinesh Shetty</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CryptoClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	The super secret key used by the encryption function</span></span><br><span class="line">	String key = <span class="string">&quot;This is the super secret key 123&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	The initialization vector used by the encryption function</span></span><br><span class="line">	<span class="keyword">byte</span>[] ivBytes = &#123;</span><br><span class="line">		<span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">	&#125;;</span><br><span class="line">	String plainText;</span><br><span class="line">	<span class="keyword">byte</span>[] cipherData;</span><br><span class="line">	String base64Text;</span><br><span class="line">	String cipherText;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>CryptoClass.java</code> 파일을 보면 27 번째 줄에 </p>
+<br>
+
+<br>
+
+<h2 id="디코딩-복호화"><a href="#디코딩-복호화" class="headerlink" title="디코딩, 복호화"></a>디코딩, 복호화</h2><br>
+
+<blockquote>
+<p>아이디 : ZGluZXNo&amp;#13</p>
+</blockquote>
+<br>
+
+<p><code>base64</code>로 디코딩을 해줍니다.</p>
+<br>
+
+<img src="/images/Android/로컬 암호화 이슈/base64.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>비밀번호 : DTrW2VXjSoFdg0e61fHxJg==</p>
+</blockquote>
+<br>
+
+<p><code>key</code>를 이용해<code>AES</code>로 복호화를 해줍니다. </p>
+<br>
+
+<img src="/images/Android/로컬 암호화 이슈/aes.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>인시큐어뱅크 앱에서는 암호화를 시켰지만 <code>고유키</code>가 그대로 노출되어 복호화를 마음대로 할 수 있었습니다.</p>
+<p><code>key</code>를 관리하는 서버를 별도로 두고, <code>key</code>를 주기적으로 바꿔주어야 합니다.</p>
+<p><code>key</code>를 암호화하여 파일 시스템에서 관리하는 방법도 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
