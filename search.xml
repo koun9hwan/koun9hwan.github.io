@@ -5476,7 +5476,7 @@ section 진행 기간
 
 <br>
 
-<p><code>CryptoClass.java</code> 파일을 보면 27 번째 줄에 </p>
+<p><code>CryptoClass.java</code> 파일을 보면 27 번째 줄에 키가 그대로 노출되고 있는 것을 볼 수 있습니다.</p>
 <br>
 
 <br>
