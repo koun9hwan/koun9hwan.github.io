@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Android/로컬%20암호화%20이슈/base64.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Android/로컬%20암호화%20이슈/aes.png">
 <meta property="article:published_time" content="2022-01-06T12:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-06T15:19:16.868Z">
+<meta property="article:modified_time" content="2022-01-06T15:20:50.499Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="모바일">
@@ -155,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EB%A1%9C%EC%BB%AC-%EC%95%94%ED%98%B8%ED%99%94-%EC%9D%B4%EC%8A%88%EB%9E%80"><span class="nav-text">🤔  로컬 암호화 이슈란?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8"><span class="nav-text">🔎 취약점 진단</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mySharedPreferences-xml"><span class="nav-text">mySharedPreferences.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#com-android-insecurebankv2-preferences-xml"><span class="nav-text">com.android.insecurebankv2_preferences.xml</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%94%94%EC%BD%94%EB%94%A9-%EB%B3%B5%ED%98%B8%ED%99%94"><span class="nav-text">디코딩, 복호화</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="nav-text">🔒 대응 방안</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EB%A1%9C%EC%BB%AC-%EC%95%94%ED%98%B8%ED%99%94-%EC%9D%B4%EC%8A%88%EB%9E%80"><span class="nav-text">🤔  로컬 암호화 이슈란?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8"><span class="nav-text">🔎 취약점 진단</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mySharedPreferences-xml"><span class="nav-text">mySharedPreferences.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#com-android-insecurebankv2-preferences-xml"><span class="nav-text">com.android.insecurebankv2_preferences.xml</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%92%A1-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">💡 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%94%94%EC%BD%94%EB%94%A9-%EB%B3%B5%ED%98%B8%ED%99%94"><span class="nav-text">디코딩, 복호화</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="nav-text">🔒 대응 방안</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -257,7 +257,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-07 00:19:16" itemprop="dateModified" datetime="2022-01-07T00:19:16+09:00">2022-01-07</time>
+        <time title="Modified: 2022-01-07 00:20:50" itemprop="dateModified" datetime="2022-01-07T00:20:50+09:00">2022-01-07</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -345,7 +345,7 @@
 <hr>
 <br>
 
-<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
 
 <p><code>mySharedPreferences</code> 파일을 수정하기 위해서는 특정 모듈로만 접근이 가능합니다.</p>
 <p>해당 애플리케이션에서는 <code>Dologin.java</code> 안에 <code>saveCreds()</code>함수에서 정보를 수정하고 있습니다.</p>

@@ -5141,7 +5141,7 @@ section 진행 기간
 <hr>
 <br>
 
-<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
 
 <blockquote>
 <p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
@@ -5275,7 +5275,7 @@ section 진행 기간
 <hr>
 <br>
 
-<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
 
 <blockquote>
 <p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
@@ -5450,7 +5450,7 @@ section 진행 기간
 <hr>
 <br>
 
-<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
 
 <p><code>mySharedPreferences</code> 파일을 수정하기 위해서는 특정 모듈로만 접근이 가능합니다.</p>
 <p>해당 애플리케이션에서는 <code>Dologin.java</code> 안에 <code>saveCreds()</code>함수에서 정보를 수정하고 있습니다.</p>
