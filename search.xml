@@ -5645,7 +5645,7 @@ section 진행 기간
 <h2 id="비밀번호-변경"><a href="#비밀번호-변경" class="headerlink" title="비밀번호 변경"></a>비밀번호 변경</h2><br>
 
 <blockquote>
-<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword –extra string uname jack</p>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword --extra string uname jack</p>
 </blockquote>
 <br>
 
