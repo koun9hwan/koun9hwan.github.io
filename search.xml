@@ -5686,4 +5686,127 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 루팅 탐지 및 우회</title>
+    <url>/2022/01/07/2022-01-07-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EB%A3%A8%ED%8C%85%20%ED%83%90%EC%A7%80%20%EB%B0%8F%20%EC%9A%B0%ED%9A%8C/</url>
+    <content><![CDATA[<h1 id="🤔-루팅-탐지-및-우회"><a href="#🤔-루팅-탐지-및-우회" class="headerlink" title="🤔  루팅 탐지 및 우회?"></a>🤔  루팅 탐지 및 우회?</h1><br>
+
+<p>리눅스 같은 경우 시스템 루트 권한을 취득 가능합니다. 하지만 안드로이드같은 경우 보안상의 이유로 루트 권한을 막아놓습니다.</p>
+<p>이를 우회하여 루트 권한을 획득 시 시스템의 민감한 정보에 접근이 가능합니다. 특히 금융 애플리케이션은 루팅을 탐지하고 애플리케이션 실행을 차단합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>루팅을 탐지하기 위해 주로 체크하는 경로는 <code>/system/bin/su</code> <code>/system/xbin/su</code> <code>/system/app/superuser.apk</code> <code>/data/data/com.noshufou.android.su</code> 입니다.</p>
+<br>
+
+<br>
+
+<h2 id="PostLogin-java"><a href="#PostLogin-java" class="headerlink" title="PostLogin.java"></a>PostLogin.java</h2><br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* PostLogin.java */</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">showRootStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> isrooted = doesSuperuserApkExist(<span class="string">&quot;/system/app/Superuser.apk&quot;</span>)||</span><br><span class="line">                doesSUexist();</span><br><span class="line">        <span class="keyword">if</span>(isrooted==<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            root_status.setText(<span class="string">&quot;Rooted Device!!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            root_status.setText(<span class="string">&quot;Device not Rooted!!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">doesSUexist</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Process process = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            process = Runtime.getRuntime().exec(<span class="keyword">new</span> String[] &#123; <span class="string">&quot;/system/bin/which&quot;</span>, <span class="string">&quot;su&quot;</span> &#125;);</span><br><span class="line">            BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream()));</span><br><span class="line">            <span class="keyword">if</span> (in.readLine() != <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (process != <span class="keyword">null</span>) process.destroy();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">doesSuperuserApkExist</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        File rootFile = <span class="keyword">new</span> File(<span class="string">&quot;/system/app/Superuser.apk&quot;</span>);</span><br><span class="line">        Boolean doesexist = rootFile.exists();</span><br><span class="line">        <span class="keyword">if</span>(doesexist == <span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>(<span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>(<span class="keyword">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>로그인 하였을 때 루팅여부를 확인하는 코드입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<p>현재 저는 <code>nox</code>로 구동하기 때문에 <code>Superuser.apk</code>가 없기 때문에 <code>su</code> 명령어 여부로 점검을 해보았습니다.</p>
+<br>
+
+<br>
+
+<h2 id="su-명령어-확인"><a href="#su-명령어-확인" class="headerlink" title="su 명령어 확인"></a>su 명령어 확인</h2><br>
+
+<blockquote>
+<p># ls -l su</p>
+</blockquote>
+<br>
+
+<p><code>/system/xbin/</code> 경로에서 <code>su</code> 명령어를 찾았습니다.</p>
+<br>
+
+<img src="/images/Android/루팅 탐지 및 우회/su_shell.png">
+
+<br>
+
+<br>
+
+<p>인시큐어뱅크 앱에서도 로그인 했을 때 <code>Rooted Device!!</code> 라고 나옵니다.</p>
+<br>
+
+<img src="/images/Android/루팅 탐지 및 우회/su_nox.png">
+
+<br>
+
+<br>
+
+<h2 id="root-권한-해제"><a href="#root-권한-해제" class="headerlink" title="root 권한 해제"></a>root 권한 해제</h2><br>
+
+<blockquote>
+<p># ls -l su</p>
+</blockquote>
+<br>
+
+<p>root 권한을 해제 했더니 <code>su</code> 명령어가 없어졌습니다.</p>
+<br>
+
+<img src="/images/Android/루팅 탐지 및 우회/no_su_shell.png">
+
+<br>
+
+<br>
+
+<p>인시큐어뱅크 앱에서는 <code>Device not Rooted!!</code> 라고 나옵니다.</p>
+<br>
+
+<img src="/images/Android/루팅 탐지 및 우회/no_su_nox.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>인시큐어뱅크 애플리케이션에서는 <code>PostLogin.java</code>와 같이 루팅을 방지하는 소스 코드 로직이 그대로 노출되고 있습니다.</p>
+<p>이를 방지하기 위하여 문자열 난독화를 적용하여 어떤 명령어와 루팅 관련 파일을 검사하는지 알 수 없게 해야합니다.</p>
+<br>
+
+<p>apk 파일을 조작하여 루팅을 유지하는 경우가 있을 수 있기 때문에 무결성 검증도 필요하고, 디컴파일의 위험성도 있기 때문에 디컴파일 방지 솔루션을 적용시키는게 좋습니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
