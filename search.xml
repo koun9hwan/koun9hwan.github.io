@@ -5535,4 +5535,155 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 액티비티 컴포넌트 취약점</title>
+    <url>/2022/01/07/2022-01-07-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%A1%ED%8B%B0%EB%B9%84%ED%8B%B0%20%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%20%EC%B7%A8%EC%95%BD%EC%A0%90/</url>
+    <content><![CDATA[<h1 id="🤔-액티비티-컴포넌트-취약점"><a href="#🤔-액티비티-컴포넌트-취약점" class="headerlink" title="🤔  액티비티 컴포넌트 취약점?"></a>🤔  액티비티 컴포넌트 취약점?</h1><br>
+
+<p>각각의 액티비티들은 독립적으로 동작합니다. 하지만 액티비티가 보안적으로 취약하게 선언되어 있으면 로직을 무시하고 강제로 액티비티를 호출하고, 그 기능을 활성화할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml */</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.android.insecurebankv2&quot;</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.SEND_SMS&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect</span></span><br><span class="line"><span class="comment">     option is required to comply with the Google+ Sign-In developer policies</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.USE_CREDENTIALS&quot;</span> /&gt;</span> <span class="comment">&lt;!-- To retrieve the account name (email) as part of sign-in: --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.GET_ACCOUNTS&quot;</span> /&gt;</span> <span class="comment">&lt;!-- To auto-complete the email text field in the login form with the user&#x27;s emails --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PROFILE&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_CONTACTS&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android:uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">android:uses-permission</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxSdkVersion</span>=<span class="string">&quot;18&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">android:uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_CALL_LOG&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@android:style/Theme.Holo.Light.DarkActionBar&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        android:theme=&quot;@style/AppTheme&quot;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.LoginActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.FilePrefActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_file_pref&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:windowSoftInputMode</span>=<span class="string">&quot;stateVisible|adjustResize|adjustPan&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.DoLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_do_login&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.PostLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_post_login&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.WrongLogin&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_wrong_login&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.DoTransfer&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_do_transfer&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.ViewStatement&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_view_statement&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.MyBroadCastReceiver&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;theBroadcast&quot;</span> &gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.ChangePassword&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/title_activity_change_password&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>&lt;application&gt;</code> 안에 <code>&lt;activity&gt;</code>가 포함되어 있고 각각 선언되어 있는것으로 보입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="액티비티-정보-확인"><a href="#액티비티-정보-확인" class="headerlink" title="액티비티 정보 확인"></a>액티비티 정보 확인</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.activity.info -a com.android.insecurebankv2</p>
+</blockquote>
+<br>
+
+<p><code>drozer</code>로 노출된 액티비티의 정보를 확인했습니다.</p>
+<br>
+
+<img src="/images/Android/액티비티 컴포넌트 취약점/activity_info.png">
+
+<br>
+
+<p><code>LoginActivity</code> <code>PostLogin</code> <code>DoTransfer</code> <code>ViewStatement</code> <code>ChangePassword</code> 총 5개의 액티비티가 있으며 <code>Permission</code>이 설정되어 있지 않습니다.</p>
+<br>
+
+<br>
+
+<h2 id="액티비티-실행"><a href="#액티비티-실행" class="headerlink" title="액티비티 실행"></a>액티비티 실행</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword</p>
+</blockquote>
+<br>
+
+<p><code>drozer</code>로 <code>ChangePassword</code> 액티비티를 실행시켰습니다.</p>
+<br>
+
+<img src="/images/Android/액티비티 컴포넌트 취약점/activity_start.png">
+
+<br>
+
+<p>액티비티를 실행 후 비밀번호를 변경할 수 없습니다. 왜냐하면 정상적으로 접근하지 않았기 때문입니다.</p>
+<p>정상적으로 접근한다면 <code>Username</code>에 아이디가 입력되어있어야 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="ChangePassword-java-확인"><a href="#ChangePassword-java-확인" class="headerlink" title="ChangePassword.java 확인"></a>ChangePassword.java 확인</h2><br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* ChangePassword.java 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	setContentView(R.layout.activity_change_password);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get Server details from Shared Preference file.</span></span><br><span class="line">	serverDetails = PreferenceManager.getDefaultSharedPreferences(<span class="keyword">this</span>);</span><br><span class="line">	serverip = serverDetails.getString(<span class="string">&quot;serverip&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">	serverport = serverDetails.getString(<span class="string">&quot;serverport&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">	changePassword_text = (EditText) findViewById(R.id.editText_newPassword);</span><br><span class="line">	Intent intent = getIntent();</span><br><span class="line">	uname = intent.getStringExtra(<span class="string">&quot;uname&quot;</span>);</span><br><span class="line">	System.out.println(<span class="string">&quot;newpassword=&quot;</span> + uname);</span><br><span class="line">	textView_Username = (TextView) findViewById(R.id.textView_Username);</span><br><span class="line">	textView_Username.setText(uname);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Manage the change password button click</span></span><br><span class="line">	changePassword_button = (Button) findViewById(R.id.button_newPasswordSubmit);</span><br><span class="line">	changePassword_button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">	    <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			<span class="keyword">new</span> RequestChangePasswordTask().execute(uname);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>onCreate()</code>함수를 보면 <code>uname</code> 변수에 아이디를 넣고, 17 번째 줄을 통해 화면에 표시하고 있는것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="액티비티-실행-extra-옵션"><a href="#액티비티-실행-extra-옵션" class="headerlink" title="액티비티 실행 (extra 옵션)"></a>액티비티 실행 (extra 옵션)</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword –extra string uname jack</p>
+</blockquote>
+<br>
+
+<p><code>--extra</code> 옵션을 통해 <code>uname</code> 변수에 아이디를 추가하여 액티비티를 실행시켰습니다.</p>
+<br>
+
+<img src="/images/Android/액티비티 컴포넌트 취약점/activity_start_2.png">
+
+<br>
+
+<p><code>Username</code>에 아이디가 전달된것을 확인할 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="비밀번호-변경"><a href="#비밀번호-변경" class="headerlink" title="비밀번호 변경"></a>비밀번호 변경</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.activity.start –component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword –extra string uname jack</p>
+</blockquote>
+<br>
+
+<p>패스워드가 정상적으로 변경되었습니다.</p>
+<br>
+
+<img src="/images/Android/액티비티 컴포넌트 취약점/change_password.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>대응 방안은 아래와 같습니다.</p>
+<br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>취약한 인증 메커니즘</p><p>Koun9Hwan</p>
+<a href="https://koun9hwan.github.io/2022/01/05/2022-01-05-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%B7%A8%EC%95%BD%ED%95%9C%20%EC%9D%B8%EC%A6%9D%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98/#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
