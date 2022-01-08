@@ -5812,4 +5812,149 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 안전하지 않은 콘텐츠 프로바이더 접근</title>
+    <url>/2022/01/08/2022-01-08-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%BD%98%ED%85%90%EC%B8%A0%20%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EB%8D%94%20%EC%A0%91%EA%B7%BC/</url>
+    <content><![CDATA[<h1 id="🤔-안전하지-않은-콘텐츠-프로바이더-접근"><a href="#🤔-안전하지-않은-콘텐츠-프로바이더-접근" class="headerlink" title="🤔  안전하지 않은 콘텐츠 프로바이더 접근?"></a>🤔  안전하지 않은 콘텐츠 프로바이더 접근?</h1><br>
+
+<p>자신의 데이터에 다른 애플리케이션이 접근하거나 부여한 권한대로 이용할 수 있도록 하는 것이 프로바이더입니다.</p>
+<p>이 기능을 사용하기 위해서는 프로바이더가 선언이 되어 있어야 합니다. 프로바이더는 <code>Androidmanifest.xml</code>의 <code>&lt;provider&gt;</code> 요소에 정의되어 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="콘텐츠-프로바이더-취약점-존재-여부-확인"><a href="#콘텐츠-프로바이더-취약점-존재-여부-확인" class="headerlink" title="콘텐츠 프로바이더 취약점 존재 여부 확인"></a>콘텐츠 프로바이더 취약점 존재 여부 확인</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.package.attacksurface com.android.insecurebankv2</p>
+</blockquote>
+<br>
+
+<p><code>drozer</code>로 콘텐츠 프로바이더 취약점이 존재하는지 확인해보았습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/attacksurface.png">
+
+<br>
+
+<br>
+
+<h2 id="콘텐츠-프로바이더-정보-확인"><a href="#콘텐츠-프로바이더-정보-확인" class="headerlink" title="콘텐츠 프로바이더 정보 확인"></a>콘텐츠 프로바이더 정보 확인</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.provider.info -a com.android.insecurebankv2</p>
+</blockquote>
+<br>
+
+<p><code>drozer</code>로 콘텐츠 프로바이더의 정보를 확인했습니다. <code>AndroidManifest.xml</code> 에 선언된 프로바이더와 동일합니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/info.png">
+
+<br>
+
+<br>
+
+<h2 id="콘텐츠-프로바이더-URI-검색"><a href="#콘텐츠-프로바이더-URI-검색" class="headerlink" title="콘텐츠 프로바이더 URI 검색"></a>콘텐츠 프로바이더 URI 검색</h2><br>
+
+<blockquote>
+<p>dz&gt; run scanner.provider.finduris -a com.android.insecurebankv2</p>
+</blockquote>
+<br>
+
+<p>콘텐츠 프로바이더에 접근하려면 콘텐츠 프로바이더의 URI이 필요합니다.</p>
+<p><code>drozer</code>로 콘텐츠 프로바이더의 <code>URI</code>를 검색했습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/uri.png">
+
+<br>
+
+<p><code>content://com.android.insecurebankv2.TrackUserContentProvider/trackerusers</code>를 통해 애플리케이션의 데이터를 조회할 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="콘텐츠-프로바이더를-이용한-데이터-확인"><a href="#콘텐츠-프로바이더를-이용한-데이터-확인" class="headerlink" title="콘텐츠 프로바이더를 이용한 데이터 확인"></a>콘텐츠 프로바이더를 이용한 데이터 확인</h2><br>
+
+<blockquote>
+<p>dz&gt; run app.provider.query content://com.android.insecurebankv2.TrackUserContentProvider/trackerusers</p>
+</blockquote>
+<br>
+
+<p>프로바이더 <code>URI</code>를 통해 데이터베이스의 정보를 가져왔습니다.</p>
+<p>이를 이용해 <code>SQLi</code> 공격을 할 수 있습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/query.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p><code>AndroidManifest.xml</code> 파일에 프로바이더를 선언할 때 <code>exported</code>를 <code>false</code>로 설정해야합니다.</p>
+<br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/attacksurface_2.png">
+
+<br>
+
+<p>콘텐츠 프로바이더 취약점이 없다고 나옵니다.</p>
+<br>
+
+<br>
+
+<img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/query_2.png">
+
+<br>
+
+<p>콘텐츠 프로바이더 <code>URI</code>로 접근한 결과 권한이 없다는 메시지가 출력됩니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
