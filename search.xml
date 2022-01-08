@@ -5837,7 +5837,7 @@ section 진행 기간
 
 <h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
 
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -5860,6 +5860,9 @@ section 진행 기간
 
 <img src="/images/Android/안전하지 않은 콘텐츠 프로바이더 접근/attacksurface.png">
 
+<br>
+
+<p>1개의 콘텐츠 프로바이더 취약점이 있다고 나옵니다.</p>
 <br>
 
 <br>
@@ -5887,7 +5890,7 @@ section 진행 기간
 </blockquote>
 <br>
 
-<p>콘텐츠 프로바이더에 접근하려면 콘텐츠 프로바이더의 URI이 필요합니다.</p>
+<p>콘텐츠 프로바이더에 접근하려면 콘텐츠 프로바이더의 <code>URI</code>이 필요합니다.</p>
 <p><code>drozer</code>로 콘텐츠 프로바이더의 <code>URI</code>를 검색했습니다.</p>
 <br>
 
@@ -5925,7 +5928,7 @@ section 진행 기간
 <p><code>AndroidManifest.xml</code> 파일에 프로바이더를 선언할 때 <code>exported</code>를 <code>false</code>로 설정해야합니다.</p>
 <br>
 
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">&quot;.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:authorities</span>=<span class="string">&quot;com.android.insecurebankv2.TrackUserContentProvider&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:exported</span>=<span class="string">&quot;false&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -5942,7 +5945,7 @@ section 진행 기간
 
 <br>
 
-<p>콘텐츠 프로바이더 <code>URI</code>로 접근한 결과 권한이 없다는 메시지가 출력됩니다.</p>
+<p>콘텐츠 프로바이더 <code>URI</code>로 접근한 결과, 권한이 없다는 메시지가 출력됩니다.</p>
 <br>
 
 <br>
