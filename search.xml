@@ -6281,4 +6281,140 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 메모리 내 민감한 정보 저장</title>
+    <url>/2022/01/10/2022-01-10-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%82%B4%20%EB%AF%BC%EA%B0%90%ED%95%9C%20%EC%A0%95%EB%B3%B4%20%EC%A0%80%EC%9E%A5/</url>
+    <content><![CDATA[<h1 id="🤔-메모리-내-민감한-정보-저장"><a href="#🤔-메모리-내-민감한-정보-저장" class="headerlink" title="🤔  메모리 내 민감한 정보 저장?"></a>🤔  메모리 내 민감한 정보 저장?</h1><br>
+
+<p>애플리케이션이 실행이 되면 일정량의 메모리를 사용하고 필요한 정보들이 저장됩니다.</p>
+<p>메모리(RAM)은 휘발성이기 때문에 애플리케이션을 종료시키면 메모리에 저장된 데이터들이 삭제됩니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>메모리 안에 있는 데이터를 얻기 위해서는 <code>메모리 포렌식</code>을 해야합니다.</p>
+<p><code>메모리 포렌식</code>을 통해 획득 가능한 정보는 <code>프로세스</code> <code>스레드 정보</code> <code>모듈</code> <code>라이브러리 정보</code> 등이 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="PID-확인"><a href="#PID-확인" class="headerlink" title="PID 확인"></a>PID 확인</h2><br>
+
+<blockquote>
+<p># ps | grep inse</p>
+</blockquote>
+<br>
+
+<p>현재 실행중인 인시큐어뱅크의 PID를 확인해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/ps.png">
+
+<br>
+
+<br>
+
+<h2 id="메모리-정보-추출"><a href="#메모리-정보-추출" class="headerlink" title="메모리 정보 추출"></a>메모리 정보 추출</h2><br>
+
+<blockquote>
+<p>adb shell am dumpheap 17647 /data/local/tmp/insecurebank</p>
+</blockquote>
+<br>
+
+<p>adb 명령어로 메모리 정보를 추출해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/dump.png">
+
+<br>
+
+<br>
+
+<h2 id="저장된-메모리-정보-로컬로-가져오기"><a href="#저장된-메모리-정보-로컬로-가져오기" class="headerlink" title="저장된 메모리 정보 로컬로 가져오기"></a>저장된 메모리 정보 로컬로 가져오기</h2><br>
+
+<blockquote>
+<p>adb pull /data/local/tmp/insecurebank D:\dump</p>
+</blockquote>
+<br>
+
+<p>adb 명령어로 추출된 메모리 덤프를 로컬로 가져와줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/pull.png">
+
+<br>
+
+<br>
+
+<h2 id="hprof-conv를-이용한-포맷-변경"><a href="#hprof-conv를-이용한-포맷-변경" class="headerlink" title="hprof-conv를 이용한 포맷 변경"></a>hprof-conv를 이용한 포맷 변경</h2><br>
+
+<blockquote>
+<p>hprof-conv.exe D:\dump\insecurebank D:\dump\insecurebank_2</p>
+</blockquote>
+<br>
+
+<p><code>hprof-conv.exe</code>가 있는 경로로 가서 <code>MAT</code>에서 분석할 수 있도록 포맷을 변경해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/hprof.png">
+
+<br>
+
+<br>
+
+<h2 id="정보-확인"><a href="#정보-확인" class="headerlink" title="정보 확인"></a>정보 확인</h2><br>
+
+<p><code>HxD</code> 프로그램을 사용하여 메모리 덤프 파일을 분석해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/hxd.png">
+
+<br>
+
+<p>메모리 덤프 파일에 아이디와 비밀번호가 평문으로 남아있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>민감한 정보를 저장하고 싶을 때에는 메모리에 저장하는것보다 안전한 키로 암호화하여 서버에 저장하는것이 좋습니다.</p>
+<br>
+
+<p>금융권 애플리케이션같은 경우 서버 간의 종단 간 암호화(E2E)를 권고하고 있습니다.</p>
+<p>E2E는 입력되는 순간부터 암호화되어 서버까지 암호화된 상태를 유지하는 것을 말합니다. 공격자가 중간에 메모리를 가로채더라도 암호화상태라서 안전합니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>

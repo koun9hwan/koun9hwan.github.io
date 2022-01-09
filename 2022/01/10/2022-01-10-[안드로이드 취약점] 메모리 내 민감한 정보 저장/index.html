@@ -24,28 +24,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[안드로이드 취약점] 애플리케이션 패칭">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/09/2022-01-09-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%ED%8C%A8%EC%B9%AD/index.html">
+<meta property="og:title" content="[안드로이드 취약점] 메모리 내 민감한 정보 저장">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%82%B4%20%EB%AF%BC%EA%B0%90%ED%95%9C%20%EC%A0%95%EB%B3%B4%20%EC%A0%80%EC%9E%A5/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Android/애플리케이션%20패칭/change_kh.png">
-<meta property="article:published_time" content="2022-01-09T09:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-09T11:22:36.222Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/메모리%20내%20민감한%20정보%20저장/ps.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/메모리%20내%20민감한%20정보%20저장/dump.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/메모리%20내%20민감한%20정보%20저장/pull.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/메모리%20내%20민감한%20정보%20저장/hprof.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/메모리%20내%20민감한%20정보%20저장/hxd.png">
+<meta property="article:published_time" content="2022-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-09T16:08:50.134Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="모바일">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/Android/애플리케이션%20패칭/change_kh.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/Android/메모리%20내%20민감한%20정보%20저장/ps.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/09/2022-01-09-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%ED%8C%A8%EC%B9%AD/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%82%B4%20%EB%AF%BC%EA%B0%90%ED%95%9C%20%EC%A0%95%EB%B3%B4%20%EC%A0%80%EC%9E%A5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/09/2022-01-09-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%ED%8C%A8%EC%B9%AD/","path":"2022/01/09/2022-01-09-[안드로이드 취약점] 애플리케이션 패칭/","title":"[안드로이드 취약점] 애플리케이션 패칭"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%82%B4%20%EB%AF%BC%EA%B0%90%ED%95%9C%20%EC%A0%95%EB%B3%B4%20%EC%A0%80%EC%9E%A5/","path":"2022/01/10/2022-01-10-[안드로이드 취약점] 메모리 내 민감한 정보 저장/","title":"[안드로이드 취약점] 메모리 내 민감한 정보 저장"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[안드로이드 취약점] 애플리케이션 패칭 | Koun9Hwan</title>
+<title>[안드로이드 취약점] 메모리 내 민감한 정보 저장 | Koun9Hwan</title>
   
 
 
@@ -152,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%8C%A8%EC%B9%AD"><span class="nav-text">🤔  애플리케이션 패칭?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8"><span class="nav-text">🔎 취약점 진단</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PostLogin-java"><span class="nav-text">PostLogin.java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%92%A1-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">💡 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PostLogin-java-1"><span class="nav-text">PostLogin.java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NOX-%ED%99%95%EC%9D%B8"><span class="nav-text">NOX 확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="nav-text">🔒 대응 방안</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%82%B4-%EB%AF%BC%EA%B0%90%ED%95%9C-%EC%A0%95%EB%B3%B4-%EC%A0%80%EC%9E%A5"><span class="nav-text">🤔  메모리 내 민감한 정보 저장?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8"><span class="nav-text">🔎 취약점 진단</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%92%A1-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">💡 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PID-%ED%99%95%EC%9D%B8"><span class="nav-text">PID 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%B3%B4-%EC%B6%94%EC%B6%9C"><span class="nav-text">메모리 정보 추출</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A0%80%EC%9E%A5%EB%90%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%A0%95%EB%B3%B4-%EB%A1%9C%EC%BB%AC%EB%A1%9C-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0"><span class="nav-text">저장된 메모리 정보 로컬로 가져오기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hprof-conv%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%8F%AC%EB%A7%B7-%EB%B3%80%EA%B2%BD"><span class="nav-text">hprof-conv를 이용한 포맷 변경</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A0%95%EB%B3%B4-%ED%99%95%EC%9D%B8"><span class="nav-text">정보 확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="nav-text">🔒 대응 방안</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -223,7 +227,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/09/2022-01-09-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%ED%8C%A8%EC%B9%AD/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%82%B4%20%EB%AF%BC%EA%B0%90%ED%95%9C%20%EC%A0%95%EB%B3%B4%20%EC%A0%80%EC%9E%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -236,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [안드로이드 취약점] 애플리케이션 패칭
+          [안드로이드 취약점] 메모리 내 민감한 정보 저장
         </h1>
 
         <div class="post-meta-container">
@@ -248,7 +252,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-09 18:00:00 / Modified: 20:22:36" itemprop="dateCreated datePublished" datetime="2022-01-09T18:00:00+09:00">2022-01-09</time>
+      <time title="Created: 2022-01-10 01:00:00 / Modified: 01:08:50" itemprop="dateCreated datePublished" datetime="2022-01-10T01:00:00+09:00">2022-01-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,9 +275,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="🤔-애플리케이션-패칭"><a href="#🤔-애플리케이션-패칭" class="headerlink" title="🤔  애플리케이션 패칭?"></a>🤔  애플리케이션 패칭?</h1><br>
+        <h1 id="🤔-메모리-내-민감한-정보-저장"><a href="#🤔-메모리-내-민감한-정보-저장" class="headerlink" title="🤔  메모리 내 민감한 정보 저장?"></a>🤔  메모리 내 민감한 정보 저장?</h1><br>
 
-<p>정상적인 애플리케이션을 변조하고 배포하여 사용자들의 정보를 탈취 · 악성코드 유포하는 것을 말합니다.</p>
+<p>애플리케이션이 실행이 되면 일정량의 메모리를 사용하고 필요한 정보들이 저장됩니다.</p>
+<p>메모리(RAM)은 휘발성이기 때문에 애플리케이션을 종료시키면 메모리에 저장된 데이터들이 삭제됩니다.</p>
 <br>
 
 <br>
@@ -290,13 +295,8 @@
 
 <br>
 
-<h2 id="PostLogin-java"><a href="#PostLogin-java" class="headerlink" title="PostLogin.java"></a>PostLogin.java</h2><br>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* PostLogin.java 일부 */</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">showRootStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> isrooted = doesSuperuserApkExist(<span class="string">&quot;/system/app/Superuser.apk&quot;</span>)||</span><br><span class="line">                doesSUexist();</span><br><span class="line">        <span class="keyword">if</span>(isrooted==<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            root_status.setText(<span class="string">&quot;Rooted Device!!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            root_status.setText(<span class="string">&quot;Device not Rooted!!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p><code>PostLogin.java</code>에서 루팅했을때 나오는 문구를 수정해서 앱을 변조해보겠습니다.</p>
+<p>메모리 안에 있는 데이터를 얻기 위해서는 <code>메모리 포렌식</code>을 해야합니다.</p>
+<p><code>메모리 포렌식</code>을 통해 획득 가능한 정보는 <code>프로세스</code> <code>스레드 정보</code> <code>모듈</code> <code>라이브러리 정보</code> 등이 있습니다.</p>
 <br>
 
 <br>
@@ -306,24 +306,80 @@
 
 <h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
 
-<h2 id="PostLogin-java-1"><a href="#PostLogin-java-1" class="headerlink" title="PostLogin.java"></a>PostLogin.java</h2><br>
+<h2 id="PID-확인"><a href="#PID-확인" class="headerlink" title="PID 확인"></a>PID 확인</h2><br>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* PostLogin.java 일부 */</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">showRootStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> isrooted = doesSuperuserApkExist(<span class="string">&quot;/system/app/Superuser.apk&quot;</span>)||</span><br><span class="line">                doesSUexist();</span><br><span class="line">        <span class="keyword">if</span>(isrooted==<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            root_status.setText(<span class="string">&quot;KH&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            root_status.setText(<span class="string">&quot;Device not Rooted!!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p># ps | grep inse</p>
+</blockquote>
+<br>
+
+<p>현재 실행중인 인시큐어뱅크의 PID를 확인해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/ps.png">
 
 <br>
 
-<p>루팅했을 때 나오는 문구를 기존의 <code>Rooted Device!!</code>에서 <code>KH</code>으로 바꾸었습니다.</p>
+<br>
+
+<h2 id="메모리-정보-추출"><a href="#메모리-정보-추출" class="headerlink" title="메모리 정보 추출"></a>메모리 정보 추출</h2><br>
+
+<blockquote>
+<p>adb shell am dumpheap 17647 /data/local/tmp/insecurebank</p>
+</blockquote>
+<br>
+
+<p>adb 명령어로 메모리 정보를 추출해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/dump.png">
+
 <br>
 
 <br>
 
-<h2 id="NOX-확인"><a href="#NOX-확인" class="headerlink" title="NOX 확인"></a>NOX 확인</h2><br>
+<h2 id="저장된-메모리-정보-로컬로-가져오기"><a href="#저장된-메모리-정보-로컬로-가져오기" class="headerlink" title="저장된 메모리 정보 로컬로 가져오기"></a>저장된 메모리 정보 로컬로 가져오기</h2><br>
 
-<p>문구가 바뀐것을 확인할 수 있습니다.</p>
+<blockquote>
+<p>adb pull /data/local/tmp/insecurebank D:\dump</p>
+</blockquote>
 <br>
 
-<img src="/images/Android/애플리케이션 패칭/change_kh.png">
+<p>adb 명령어로 추출된 메모리 덤프를 로컬로 가져와줍니다.</p>
+<br>
 
+<img src="/images/Android/메모리 내 민감한 정보 저장/pull.png">
+
+<br>
+
+<br>
+
+<h2 id="hprof-conv를-이용한-포맷-변경"><a href="#hprof-conv를-이용한-포맷-변경" class="headerlink" title="hprof-conv를 이용한 포맷 변경"></a>hprof-conv를 이용한 포맷 변경</h2><br>
+
+<blockquote>
+<p>hprof-conv.exe D:\dump\insecurebank D:\dump\insecurebank_2</p>
+</blockquote>
+<br>
+
+<p><code>hprof-conv.exe</code>가 있는 경로로 가서 <code>MAT</code>에서 분석할 수 있도록 포맷을 변경해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/hprof.png">
+
+<br>
+
+<br>
+
+<h2 id="정보-확인"><a href="#정보-확인" class="headerlink" title="정보 확인"></a>정보 확인</h2><br>
+
+<p><code>HxD</code> 프로그램을 사용하여 메모리 덤프 파일을 분석해줍니다.</p>
+<br>
+
+<img src="/images/Android/메모리 내 민감한 정보 저장/hxd.png">
+
+<br>
+
+<p>메모리 덤프 파일에 아이디와 비밀번호가 평문으로 남아있습니다.</p>
 <br>
 
 <br>
@@ -333,11 +389,11 @@
 
 <h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
 
-<p>소스 코드 난독화를 하여 분석을 어렵게 해야합니다.</p>
-<p>안드로이드 스튜디오에서는 기본적으로 앱 난독화 도구 <code>프로가드</code>를 제공하고있습니다. 그 외에도 <code>DashOPro</code> <code>Allatori</code> <code>DexGuard</code>와 같은 오픈소스 난독화 도구가 있습니다.</p>
+<p>민감한 정보를 저장하고 싶을 때에는 메모리에 저장하는것보다 안전한 키로 암호화하여 서버에 저장하는것이 좋습니다.</p>
 <br>
 
-<p>또한 여러개의 보안 솔루션을 도입하여 방어해야합니다.</p>
+<p>금융권 애플리케이션같은 경우 서버 간의 종단 간 암호화(E2E)를 권고하고 있습니다.</p>
+<p>E2E는 입력되는 순간부터 암호화되어 서버까지 암호화된 상태를 유지하는 것을 말합니다. 공격자가 중간에 메모리를 가로채더라도 암호화상태라서 안전합니다.</p>
 <br>
 
 <br>
@@ -360,14 +416,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/09/2022-01-09-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%B7%A8%EC%95%BD%ED%95%9C%20%EC%95%94%ED%98%B8%ED%99%94%20%EC%8B%A4%ED%96%89/" rel="prev" title="[안드로이드 취약점] 취약한 암호화 실행">
-                  <i class="fa fa-chevron-left"></i> [안드로이드 취약점] 취약한 암호화 실행
+                <a href="/2022/01/09/2022-01-09-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%ED%8C%A8%EC%B9%AD/" rel="prev" title="[안드로이드 취약점] 애플리케이션 패칭">
+                  <i class="fa fa-chevron-left"></i> [안드로이드 취약점] 애플리케이션 패칭
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/10/2022-01-10-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%82%B4%20%EB%AF%BC%EA%B0%90%ED%95%9C%20%EC%A0%95%EB%B3%B4%20%EC%A0%80%EC%9E%A5/" rel="next" title="[안드로이드 취약점] 메모리 내 민감한 정보 저장">
-                  [안드로이드 취약점] 메모리 내 민감한 정보 저장 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -420,7 +473,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"973248d1d5b3fcc5e78f741294185ea2"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"ac6c2f9f5bbd403fefe820fcf2b027d1"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
