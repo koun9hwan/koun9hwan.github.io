@@ -6118,4 +6118,83 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 취약한 암호화 실행</title>
+    <url>/2022/01/09/2022-01-09-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%B7%A8%EC%95%BD%ED%95%9C%20%EC%95%94%ED%98%B8%ED%99%94%20%EC%8B%A4%ED%96%89/</url>
+    <content><![CDATA[<h1 id="🤔-취약한-암호화-실행"><a href="#🤔-취약한-암호화-실행" class="headerlink" title="🤔  취약한 암호화 실행?"></a>🤔  취약한 암호화 실행?</h1><br>
+
+<p>개발 단계에서 자주 발생하는 취약점으로 인코딩을 통해 민감한 데이터를 감추어 보내는 것 입니다.</p>
+<p><code>Base64</code>와 같은 인코딩은 암호 알고리즘이 아니고 키 값을 가지고 있지 않기 대문에 얼마든지 인코딩 함수로 똑같은 데이터를 만들어 변조할 수 있기 때문입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="LoginActivity-java"><a href="#LoginActivity-java" class="headerlink" title="LoginActivity.java"></a>LoginActivity.java</h2><br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* LoginActivity.java 일부 */</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">fillData</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		SharedPreferences settings = getSharedPreferences(MYPREFS, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">final</span> String username = settings.getString(<span class="string">&quot;EncryptedUsername&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">final</span> String password = settings.getString(<span class="string">&quot;superSecurePassword&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(username!=<span class="keyword">null</span> &amp;&amp; password!=<span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">byte</span>[] usernameBase64Byte = Base64.decode(username, Base64.DEFAULT);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                usernameBase64ByteString = <span class="keyword">new</span> String(usernameBase64Byte, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            Username_Text = (EditText) findViewById(R.id.loginscreen_username);</span><br><span class="line">            Password_Text = (EditText) findViewById(R.id.loginscreen_password);</span><br><span class="line">            Username_Text.setText(usernameBase64ByteString);</span><br><span class="line">            CryptoClass crypt = <span class="keyword">new</span> CryptoClass();</span><br><span class="line">            String decryptedPassword = crypt.aesDeccryptedString(password);</span><br><span class="line">            Password_Text.setText(decryptedPassword);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (username==<span class="keyword">null</span> || password==<span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">//  Toast.makeText(this, &quot;No stored credentials found!!&quot;, Toast.LENGTH_LONG).show();</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">//  Toast.makeText(this, &quot;No stored credentials found!!&quot;, Toast.LENGTH_LONG).show();</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아이디는 <code>Base64</code>로 인코딩을하고, 비밀번호는 <code>AES</code>로 암호화하고 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="CryptoClass-java"><a href="#CryptoClass-java" class="headerlink" title="CryptoClass.java"></a>CryptoClass.java</h2><br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CryptoClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	The super secret key used by the encryption function</span></span><br><span class="line">	String key = <span class="string">&quot;This is the super secret key 123&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	The initialization vector used by the encryption function</span></span><br><span class="line">	<span class="keyword">byte</span>[] ivBytes = &#123;</span><br><span class="line">		<span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></span><br><span class="line">	&#125;;</span><br><span class="line">	String plainText;</span><br><span class="line">	<span class="keyword">byte</span>[] cipherData;</span><br><span class="line">	String base64Text;</span><br><span class="line">	String cipherText;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>AES</code>에 사용되는 키를 그대로 노출 시키고 있습니다.</p>
+<p>이 키 값으로 비밀번호를 복호화 할 수 있기 때문에 취약합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>대응 방안은 아래와 같습니다.</p>
+<br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>취약한 인증 메커니즘</p><p>Koun9Hwan</p>
+<a href="https://koun9hwan.github.io/2022/01/06/2022-01-06-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EB%A1%9C%EC%BB%AC%20%EC%95%94%ED%98%B8%ED%99%94%20%EC%9D%B4%EC%8A%88/#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
