@@ -7007,7 +7007,7 @@ section 진행 기간
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td><code>automount</code> 서비스 데몬 확인<br />    <code># svcs -a | grep \&quot;autofs\&quot;</code></td>
+<td><code>automount</code> 서비스 데몬 확인<br />    <code># svcs -a | grep &quot;autofs&quot;</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -7035,7 +7035,7 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>LINUX, AIX,<br />SOLARIS 5.9<br />이하 버전</td>
-<td>1) <code>automountd</code> 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) 시동 스크립트 삭제 또는 스크립트 이름 변경<br />    - 위치 확인<br />        `# ls -al /etc/rc.d/rc*.d/*</td>
+<td>1) <code>automountd</code> 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) 시동 스크립트 삭제 또는 스크립트 이름 변경<br />    - 위치 확인<br />        <code># ls -al /etc/rc.d/rc*.d/* | grep automount</code> (or autofs)<br />    - 이름 변경<br />        <code># mv /etc/rc.d/rc2.d/S28automountd /etc/rc.d/rc2.d/_S28automountd</code></td>
 </tr>
 <tr>
 <td>HP-UX</td>
