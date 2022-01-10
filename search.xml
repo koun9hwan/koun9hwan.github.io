@@ -6584,4 +6584,185 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 안전하지 않은 로깅 메커니즘</title>
+    <url>/2022/01/10/2022-01-10-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EB%A1%9C%EA%B9%85%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98/</url>
+    <content><![CDATA[<h1 id="🤔-안전하지-않은-로깅-메커니즘"><a href="#🤔-안전하지-않은-로깅-메커니즘" class="headerlink" title="🤔  안전하지 않은 로깅 메커니즘?"></a>🤔  안전하지 않은 로깅 메커니즘?</h1><br>
+
+<p>민감한 정보를 로그에 남길 경우에 발생하는 취약점입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>커널 안에 있는 로거라는 커널 드라이브는 <code>main</code> <code>radio</code> <code>event</code> <code>system</code> 총 4가지의 버퍼를 관리하고 있습니다.</p>
+<p>사용자 공간안에 있는 애플리케이션들은 보안 정책에 의해 버퍼에 접근할 수 없습니다.</p>
+<p>대신에 <code>/dev</code>라는 디렉터리에 리눅스 디바이스 노드들을 제공하여 애플리케이션이 로그를 읽고 쓸 수 있도록 하고있습니다.</p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>버퍼</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Main</td>
+<td>메인 앱로그로 앱이나 플랫폼 내부에서 <code>android.util.Log</code> 클래스로 기록된 로그</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>시스템에서 발생하는 이벤트 정보를 위한 로그</td>
+</tr>
+<tr>
+<td>Radio</td>
+<td>이동통신망과 관련된 이벤트 정보를 위한 로그</td>
+</tr>
+<tr>
+<td>System</td>
+<td>안드로이드 플랫폼 내부의 하위 레벨에 있는 시스템이나 디버깅을 위한 로그</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<p>로그에는 5개의 static 메서드가 있고 등급이 있습니다.</p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>등급</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V (Verbose)</td>
+<td>별로 중요하지 않은 정보</td>
+</tr>
+<tr>
+<td>I (Info)</td>
+<td>일반 정보</td>
+</tr>
+<tr>
+<td>D (Debug)</td>
+<td>디버그 관련 정보</td>
+</tr>
+<tr>
+<td>W (Warning)</td>
+<td>경고 로그 정보</td>
+</tr>
+<tr>
+<td>E (Error)</td>
+<td>에러 로그</td>
+</tr>
+<tr>
+<td>F (Fatal)</td>
+<td>중요한 정보</td>
+</tr>
+<tr>
+<td>S (Slinet)</td>
+<td>가장 높은 우선순위로 다른 로그들은 출력이 안됨</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>이러한 등급을 지정하여 특정한 등급만 모아서 출력시킬 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="로그-확인"><a href="#로그-확인" class="headerlink" title="로그 확인"></a>로그 확인</h2><br>
+
+<blockquote>
+<p># logcat</p>
+</blockquote>
+<br>
+
+<p><code>adb</code>에서 <code>logcat</code> 명령어를 사용하여 로그를 확인할 수 있습니다.</p>
+<p>인시큐어뱅크 애플리케이션에서 로그인 했을 때 아이디/비밀번호가 평문으로 로그에 남았습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 로깅 메커니즘/logcat.png">
+
+<br>
+
+<br>
+
+<h2 id="로컬로-로그-정보-가져오기"><a href="#로컬로-로그-정보-가져오기" class="headerlink" title="로컬로 로그 정보 가져오기"></a>로컬로 로그 정보 가져오기</h2><br>
+
+<blockquote>
+<p>adb -e shell logcat&gt;log.txt</p>
+</blockquote>
+<br>
+
+<p>만약 공격자가 디바이스에 접근 권한을 얻었다고 가정한다면 이러한 로그들을 쉽게 추출할 수 있습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 로깅 메커니즘/log.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>애플리케이션을 개발할 때 민감한 정보 등을 로그로 발생시키지 않으면 됩니다.</p>
+<br>
+
+<h2 id="DoLogin-java"><a href="#DoLogin-java" class="headerlink" title="DoLogin.java"></a>DoLogin.java</h2><br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* DoLogin.java 일부 */</span></span><br><span class="line"></span><br><span class="line">InputStream in = responseBody.getEntity().getContent();</span><br><span class="line">result = convertStreamToString( in );</span><br><span class="line">result = result.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> (result.indexOf(<span class="string">&quot;Correct Credentials&quot;</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">//Log.d(&quot;Successful Login:&quot;, &quot;, account=&quot; + username + &quot;:&quot; + password);</span></span><br><span class="line">		saveCreds(username, password);</span><br><span class="line">		trackUserLogins();</span><br><span class="line">		Intent pL = <span class="keyword">new</span> Intent(getApplicationContext(), PostLogin.class);</span><br><span class="line">		pL.putExtra(<span class="string">&quot;uname&quot;</span>, username);</span><br><span class="line">		startActivity(pL);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			Intent xi = <span class="keyword">new</span> Intent(getApplicationContext(), WrongLogin.class);</span><br><span class="line">			startActivity(xi);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>DoLogin.java</code> 소스코드 일부분입니다.</p>
+<p>8 번째 줄을 보면 아이디와 비밀번호를 로그로 남기고 있습니다.</p>
+<p>해당 줄을 주석처리를 했습니다.</p>
+<br>
+
+<br>
+
+<h2 id="주석처리-후-로그인"><a href="#주석처리-후-로그인" class="headerlink" title="주석처리 후 로그인"></a>주석처리 후 로그인</h2><br>
+
+<p>해당 코드를 주석처리 해주니 로그가 안남았습니다.</p>
+<br>
+
+<img src="/images/Android/안전하지 않은 로깅 메커니즘/logcat_2.png">
+
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
