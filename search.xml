@@ -6490,11 +6490,11 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>LINUX, AIX<br />HP-UX,<br />SOLARIS 5.9<br />이하 버전</td>
-<td>NFS 서비스 데몬 확인<br />`# ps -ef</td>
+<td>NFS 서비스 데몬 확인<br /><code># ps -ef | egrep &quot;nfs|statd|lockd&quot;</code><br /></td>
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td>`# inetadm</td>
+<td><code># inetadm | egrep &quot;nfs|statd|lockd&quot;</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -6530,7 +6530,7 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>LINUX, AIX,<br />SOLARIS 5.9<br />이하 버전</td>
-<td>1) NFS 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) 시동 스크립트 삭제 또는 스크립트 이름 변경<br />    - 위치확인<br />        `# ls -al /etc/rc.d/rc*.d/*</td>
+<td>1) NFS 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) 시동 스크립트 삭제 또는 스크립트 이름 변경<br />    - 위치확인<br />        <code># ls -al /etc/rc.d/rc*.d/* | grep nfs</code><br />    - 이름변경<br />        <code># mv /etc/rc.d/rc2.d/S60nfs /etc/rc.d/rc2.d/_S60nfs</code></td>
 </tr>
 <tr>
 <td>HP-UX</td>
@@ -6538,7 +6538,7 @@ section 진행 기간
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td>1) NFS 서비스 데몬 확인<br />    <code>svc:/network/nfs/server:default</code><br /><br />2) inetadm -d “중지하고자 하는 데몬” 명령으로 서비스 데몬 중지<br />    <code># inetadm -d svc:/network/nfs/server:default</code></td>
+<td>1) NFS 서비스 데몬 확인<br />    <code>svc:/network/nfs/server:default</code><br /><br />2) inetadm -d &quot;중지하고자 하는 데몬&quot; 명령으로 서비스 데몬 중지<br />    <code># inetadm -d svc:/network/nfs/server:default</code></td>
 </tr>
 </tbody></table>
 <br>
