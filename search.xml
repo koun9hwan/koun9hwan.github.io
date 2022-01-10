@@ -6765,4 +6765,161 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제</title>
+    <url>/2022/01/10/2022-01-10-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-25%20NFS%20%EC%A0%91%EA%B7%BC%20%ED%86%B5%EC%A0%9C/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>NFS 서비스 사용 시 허가된 사용자만 접근할 수 있도록 접근통제를 해주어야합니다.</p>
+<p>항목코드는 <code>U-25</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<h2 id="NFS"><a href="#NFS" class="headerlink" title="NFS?"></a>NFS?</h2><br>
+
+<p>Network File System의 약자로 네트워크상에서 파일시스템을 공유하도록 설계된 파일 시스템입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>접근권한이 없는 비인가자의 접근을 통제함으로써 정보 유출의 위험을 줄입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>접근제한 설정이 적절하지 않을 경우 인증절차 없이 비인가자가 디렉터리나 파일의 접근이 가능하며 해당 공유 시스템에 원격으로 마운트하여 중요 파일을 변조하거나 유출할 위험이 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.102</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : 불필요한 NFS 서비스를 사용하지 않거나, 불가피하게 사용 시 everyone 공유를 제한한 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : 불필요한 NFS 서비스를 사용하고 있고, everyone 공유를 제한하지 않은 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />HP-UX</td>
+<td><code>/etc/dfs/dfstab</code> <code>/etc/dfs/sharetab</code> 파일</td>
+</tr>
+<tr>
+<td>LINUX, AIX,<br />HP-UX</td>
+<td><code>/etc/exports</code> 파일</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>파일</th>
+<th>조치 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/etc/dfs/dfstab</code> 파일</td>
+<td><code>rw=client</code>, <code>ro=client</code> 형식으로 접속 허용 client 지정<br />    - 사용자의 읽기, 쓰기 권한 접속 허용 : <code>share -F nfs -o rw, ro /export/home/test</code><br />    - 사용자의 권한 접속 제한 : <code>share -F nfs -o rw=client1:client2, ro=client1:client2 /export/home/test</code><br /><br />* 읽기, 쓰기 권한에 각각 사용자를 설정하여야 읽기, 쓰기 권한 모두 제한 가능</td>
+</tr>
+<tr>
+<td><code>/etc/exports</code> 파일</td>
+<td>1) <code>/etc/exports</code> 파일에 접근 가능한 호스트명 추가<br />    예) <code>/stand host1(또는 IP주소) host2</code><br /><br />2) 접속시 인증 및 클라이언트 권한 nobody 설정<br />    <code># vi /etc/exports</code><br />    <code># /stand host1 (root_squash)</code><br />        * () 옵션에 인증되지 않은 엑세스를 허용하는 &quot;insecure&quot; 구문 설정 금지<br /><br />3) NFS 서비스 재구동<br />    <code># /etc/exportfs -u</code><br />    <code># /etc/exportfs -a</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">process=`ps -ef | egrep <span class="string">&quot;nfs|statd|lockd&quot;</span>`</span><br><span class="line">exports=`cat /etc/exports`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *nfsd* ]] || [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *statd* ]] || [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *lockd* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$exports</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                ProcessResult=양호</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-25 [NFS 접근 통제] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-25.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>nfsd</code> <code>statd</code> <code>lockd</code> 프로세스가 활성화 상태인지 확인합니다.</p>
+<p>프로세스가 활성화 상태이면 <code>/etc/exports</code> 파일에 내용이 있는지 확인하고, 내용이 있으면 <code>양호</code>처리 없으면 <code>취약</code>처리 했습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-25</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-25/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
