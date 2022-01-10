@@ -6417,4 +6417,171 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-24 NFS 서비스 비활성화</title>
+    <url>/2022/01/10/2022-01-10-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-24%20NFS%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>불필요한 NFS 서비스 사용여부를 점검합니다.</p>
+<p>항목코드는 <code>U-24</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<h2 id="NFS"><a href="#NFS" class="headerlink" title="NFS?"></a>NFS?</h2><br>
+
+<p>Network File System의 약자로 네트워크상에서 파일시스템을 공유하도록 설계된 파일 시스템입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>한 서버의 파일을 많은 서비스 서버들이 공유하여 사용할 때 많이 이용되는 서비스이지만 이를 이용한 침해사고 위험성이 높으므로 사용하지 않는 경우 중지해야합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>서버의 디스크를 클라이언트와 공유하는 서비스로 적정한 보안설정이 적용되어 있지 않다면 불필요한 파일 공유로 인한 유출위험이 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.102</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINUX, AIX<br />HP-UX,<br />SOLARIS 5.9<br />이하 버전</td>
+<td>NFS 서비스 데몬 확인<br />`# ps -ef</td>
+</tr>
+<tr>
+<td>SOLARIS 5.10<br />이상 버전</td>
+<td>`# inetadm</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="취약한-서비스-활성화-여부-확인"><a href="#취약한-서비스-활성화-여부-확인" class="headerlink" title="취약한 서비스 활성화 여부 확인"></a>취약한 서비스 활성화 여부 확인</h2><br>
+
+<blockquote>
+<p># ps -ef | egrep &quot;nfs|statd|lockd&quot;</p>
+</blockquote>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-24/grep.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>조치 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINUX, AIX,<br />SOLARIS 5.9<br />이하 버전</td>
+<td>1) NFS 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) 시동 스크립트 삭제 또는 스크립트 이름 변경<br />    - 위치확인<br />        `# ls -al /etc/rc.d/rc*.d/*</td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td>1) NFS 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) <code>/etc/rc.config.d/nfsconf</code> 파일 설정 수정<br />    <code># vi /etc/rc.config.d/nfsconf</code><br />    (수정 전) NFS_SERVER=1<br />    (수정 후) NFS_SERVER=0</td>
+</tr>
+<tr>
+<td>SOLARIS 5.10<br />이상 버전</td>
+<td>1) NFS 서비스 데몬 확인<br />    <code>svc:/network/nfs/server:default</code><br /><br />2) inetadm -d “중지하고자 하는 데몬” 명령으로 서비스 데몬 중지<br />    <code># inetadm -d svc:/network/nfs/server:default</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | egrep <span class="string">&quot;nfs|statd|lockd&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *nfsd* ]] || [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *statd* ]] || [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *lockd* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-24 [NFS 서비스 비활성화] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-24.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>nfsd</code> <code>statd</code> <code>lockd</code> 프로세스가 활성화 상태인지 확인합니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-24</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-24/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
