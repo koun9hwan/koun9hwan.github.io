@@ -7560,7 +7560,7 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># ps -e | egrep “ypserv|ypbind|ypxfrd|rpc.yppasswdd|rpc.ypupdated”</p>
+<p># ps -e | egrep &quot;ypserv|ypbind|ypxfrd|rpc.yppasswdd|rpc.ypupdated&quot;</p>
 </blockquote>
 <br>
 
