@@ -7090,4 +7090,89 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 안드로이드 키보드 캐시 이슈</title>
+    <url>/2022/01/11/2022-01-11-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%ED%82%A4%EB%B3%B4%EB%93%9C%20%EC%BA%90%EC%8B%9C%20%EC%9D%B4%EC%8A%88/</url>
+    <content><![CDATA[<h1 id="🤔-안드로이드-키보드-캐시-이슈"><a href="#🤔-안드로이드-키보드-캐시-이슈" class="headerlink" title="🤔  안드로이드 키보드 캐시 이슈?"></a>🤔  안드로이드 키보드 캐시 이슈?</h1><br>
+
+<p>사용자가 클립보드에 중요 정보를 저장하면 해당 정보를 제3자가 획득할 수 있는 취약점입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p><code>키보드 캐시</code>는 안드로이드의 TextView와 같이 컴포넌트에서 사용자가 중요 정보를 클립보드에 복사할 수 있을 때 임시로 복사한 데이터를 저장하는 곳입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="정보-복사"><a href="#정보-복사" class="headerlink" title="정보 복사"></a>정보 복사</h2><br>
+
+<p>인시큐어뱅크 애플리케이션에서 데이터를 복사했습니다</p>
+<br>
+
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/Android/안드로이드 키보드 캐시 이슈/jack.png"></div><div class="group-picture-column"><img src="/images/Android/안드로이드 키보드 캐시 이슈/account.png"></div></div></div>
+
+<br>
+
+<br>
+
+<h2 id="저장된-데이터에-접근"><a href="#저장된-데이터에-접근" class="headerlink" title="저장된 데이터에 접근"></a>저장된 데이터에 접근</h2><br>
+
+<p><code>clipper</code>이라는 애플리케이션에서 클립보드에 저장된 데이터를 아무런 권한 없이 접근이 가능하다는 것을 볼 수 있습니다.</p>
+<p>만약 악의적인 애플리케이션이 설치되어 있다면 클립보드에 저장된 데이터를 가져갈 수 있습니다.</p>
+<br>
+
+<img src="/images/Android/안드로이드 키보드 캐시 이슈/clipper.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>중요한 정보는 마스킹 처리를 통해 사용자가 복사를 하지 못하도록 해야합니다.</p>
+<br>
+
+<h2 id="activity-do-transfer-xml"><a href="#activity-do-transfer-xml" class="headerlink" title="activity_do_transfer.xml"></a>activity_do_transfer.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* activity_do_transfer.xml 일부 */</span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">FrameLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">&quot;@+id/editText_from&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginLeft</span>=<span class="string">&quot;00dip&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginRight</span>=<span class="string">&quot;20dip&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:editable</span>=<span class="string">&quot;false&quot;</span> //속성 추가</span></span><br><span class="line"><span class="tag">                <span class="attr">android:singleLine</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">EditText</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>activity_do_transfer.xml</code> 소스코드 일부분입니다.</p>
+<p><code>&lt;EditText&gt;</code> 안에 <code>android:editable=&quot;false&quot;</code> 속성을 추가해 주면 사용자가 데이터를 변경 혹은 복사를 할 수 없게 됩니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>

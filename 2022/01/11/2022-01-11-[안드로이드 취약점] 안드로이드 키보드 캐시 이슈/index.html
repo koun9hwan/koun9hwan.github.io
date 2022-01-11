@@ -24,32 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[안드로이드 취약점] 안전하지 않은 웹 뷰 실행">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/08/2022-01-08-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%9B%B9%20%EB%B7%B0%20%EC%8B%A4%ED%96%89/index.html">
+<meta property="og:title" content="[안드로이드 취약점] 안드로이드 키보드 캐시 이슈">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%ED%82%A4%EB%B3%B4%EB%93%9C%20%EC%BA%90%EC%8B%9C%20%EC%9D%B4%EC%8A%88/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안전하지%20않은%20웹%20뷰%20실행/msf.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안전하지%20않은%20웹%20뷰%20실행/module.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안전하지%20않은%20웹%20뷰%20실행/set_ip.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안전하지%20않은%20웹%20뷰%20실행/exploit.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안전하지%20않은%20웹%20뷰%20실행/connect_url.png">
-<meta property="article:published_time" content="2022-01-08T12:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-08T14:20:05.911Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안드로이드%20키보드%20캐시%20이슈/jack.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안드로이드%20키보드%20캐시%20이슈/account.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/안드로이드%20키보드%20캐시%20이슈/clipper.png">
+<meta property="article:published_time" content="2022-01-11T09:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-11T10:05:42.547Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="모바일">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/Android/안전하지%20않은%20웹%20뷰%20실행/msf.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/Android/안드로이드%20키보드%20캐시%20이슈/jack.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/08/2022-01-08-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%9B%B9%20%EB%B7%B0%20%EC%8B%A4%ED%96%89/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%ED%82%A4%EB%B3%B4%EB%93%9C%20%EC%BA%90%EC%8B%9C%20%EC%9D%B4%EC%8A%88/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/08/2022-01-08-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%9B%B9%20%EB%B7%B0%20%EC%8B%A4%ED%96%89/","path":"2022/01/08/2022-01-08-[안드로이드 취약점] 안전하지 않은 웹 뷰 실행/","title":"[안드로이드 취약점] 안전하지 않은 웹 뷰 실행"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%ED%82%A4%EB%B3%B4%EB%93%9C%20%EC%BA%90%EC%8B%9C%20%EC%9D%B4%EC%8A%88/","path":"2022/01/11/2022-01-11-[안드로이드 취약점] 안드로이드 키보드 캐시 이슈/","title":"[안드로이드 취약점] 안드로이드 키보드 캐시 이슈"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[안드로이드 취약점] 안전하지 않은 웹 뷰 실행 | Koun9Hwan</title>
+<title>[안드로이드 취약점] 안드로이드 키보드 캐시 이슈 | Koun9Hwan</title>
   
 
 
@@ -156,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-%EC%9B%B9-%EB%B7%B0-%EC%8B%A4%ED%96%89"><span class="nav-text">🤔  안전하지 않은 웹 뷰 실행?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8"><span class="nav-text">🔎 취약점 진단</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AndroidManifest-xml"><span class="nav-text">AndroidManifest.xml</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%92%A1-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">💡 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%A9%94%ED%83%80%EC%9D%B5%EC%8A%A4%ED%94%8C%EB%A1%9C%EC%9E%87-%EC%8B%A4%ED%96%89"><span class="nav-text">메타익스플로잇 실행</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9B%B9-%EB%B7%B0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%AA%A8%EB%93%88-%EC%8B%A4%ED%96%89"><span class="nav-text">웹 뷰 취약점 모듈 실행</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9B%B9-%EB%B7%B0-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%AA%A8%EB%93%88-%EC%84%A4%EC%A0%95"><span class="nav-text">웹 뷰 취약점 모듈 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL-%EC%84%A4%EC%A0%95-amp-Exploit"><span class="nav-text">URL 설정 &amp; Exploit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B0%80%EC%83%81-%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4%EC%97%90%EC%84%9C-URL-%EC%A0%91%EC%86%8D"><span class="nav-text">가상 디바이스에서 URL 접속</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="nav-text">🔒 대응 방안</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%ED%82%A4%EB%B3%B4%EB%93%9C-%EC%BA%90%EC%8B%9C-%EC%9D%B4%EC%8A%88"><span class="nav-text">🤔  안드로이드 키보드 캐시 이슈?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%B7%A8%EC%95%BD%EC%A0%90-%EC%A7%84%EB%8B%A8"><span class="nav-text">🔎 취약점 진단</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%92%A1-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">💡 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A0%95%EB%B3%B4-%EB%B3%B5%EC%82%AC"><span class="nav-text">정보 복사</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A0%80%EC%9E%A5%EB%90%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC"><span class="nav-text">저장된 데이터에 접근</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EB%8C%80%EC%9D%91-%EB%B0%A9%EC%95%88"><span class="nav-text">🔒 대응 방안</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#activity-do-transfer-xml"><span class="nav-text">activity_do_transfer.xml</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/08/2022-01-08-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%9B%B9%20%EB%B7%B0%20%EC%8B%A4%ED%96%89/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90]%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%ED%82%A4%EB%B3%B4%EB%93%9C%20%EC%BA%90%EC%8B%9C%20%EC%9D%B4%EC%8A%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -240,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [안드로이드 취약점] 안전하지 않은 웹 뷰 실행
+          [안드로이드 취약점] 안드로이드 키보드 캐시 이슈
         </h1>
 
         <div class="post-meta-container">
@@ -252,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-08 21:00:00 / Modified: 23:20:05" itemprop="dateCreated datePublished" datetime="2022-01-08T21:00:00+09:00">2022-01-08</time>
+      <time title="Created: 2022-01-11 18:00:00 / Modified: 19:05:42" itemprop="dateCreated datePublished" datetime="2022-01-11T18:00:00+09:00">2022-01-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,9 +273,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="🤔-안전하지-않은-웹-뷰-실행"><a href="#🤔-안전하지-않은-웹-뷰-실행" class="headerlink" title="🤔  안전하지 않은 웹 뷰 실행?"></a>🤔  안전하지 않은 웹 뷰 실행?</h1><br>
+        <h1 id="🤔-안드로이드-키보드-캐시-이슈"><a href="#🤔-안드로이드-키보드-캐시-이슈" class="headerlink" title="🤔  안드로이드 키보드 캐시 이슈?"></a>🤔  안드로이드 키보드 캐시 이슈?</h1><br>
 
-<p>웹 뷰란 안드로이드에서 웹 브라우저에서 보이는 화면을 표시할 때 사용합니다.</p>
+<p>사용자가 클립보드에 중요 정보를 저장하면 해당 정보를 제3자가 획득할 수 있는 취약점입니다.</p>
 <br>
 
 <br>
@@ -294,13 +292,7 @@
 
 <br>
 
-<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p><code>AndroidManifest.xml</code> 파일에 인터넷 사용 권한이 존재합니다.</p>
+<p><code>키보드 캐시</code>는 안드로이드의 TextView와 같이 컴포넌트에서 사용자가 중요 정보를 클립보드에 복사할 수 있을 때 임시로 복사한 데이터를 저장하는 곳입니다.</p>
 <br>
 
 <br>
@@ -310,99 +302,25 @@
 
 <h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
 
-<blockquote>
-<p>칼리 버전 : Linux kali 5.15.0-kali2-amd64 #1 SMP Debian 5.15.5-2kali2 (2021-12-22) x86_64 GNU/Linux</p>
-</blockquote>
+<h2 id="정보-복사"><a href="#정보-복사" class="headerlink" title="정보 복사"></a>정보 복사</h2><br>
+
+<p>인시큐어뱅크 애플리케이션에서 데이터를 복사했습니다</p>
 <br>
 
-<p>칼리에 있는 메타익스플로잇을 이용해 점검을 하겠습니다.</p>
-<br>
-
-<br>
-
-<h2 id="메타익스플로잇-실행"><a href="#메타익스플로잇-실행" class="headerlink" title="메타익스플로잇 실행"></a>메타익스플로잇 실행</h2><br>
-
-<blockquote>
-<p># msfconsole</p>
-</blockquote>
-<br>
-
-<img src="/images/Android/안전하지 않은 웹 뷰 실행/msf.png">
-
-<br>
-
-<p>메타익스플로잇을 실행시켜줍니다.</p>
-<br>
-
-<br>
-
-<h2 id="웹-뷰-취약점-모듈-실행"><a href="#웹-뷰-취약점-모듈-실행" class="headerlink" title="웹 뷰 취약점 모듈 실행"></a>웹 뷰 취약점 모듈 실행</h2><br>
-
-<blockquote>
-<p>msf6 &gt; use exploit/android/browser/webview_addjavascriptinterface</p>
-</blockquote>
-<br>
-
-<p>메타익스플로잇의 웹 뷰 취약점 모듈을 실행시켜줍니다.</p>
-<br>
-
-<img src="/images/Android/안전하지 않은 웹 뷰 실행/module.png">
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/images/Android/안드로이드 키보드 캐시 이슈/jack.png"></div><div class="group-picture-column"><img src="/images/Android/안드로이드 키보드 캐시 이슈/account.png"></div></div></div>
 
 <br>
 
 <br>
 
-<h2 id="웹-뷰-취약점-모듈-설정"><a href="#웹-뷰-취약점-모듈-설정" class="headerlink" title="웹 뷰 취약점 모듈 설정"></a>웹 뷰 취약점 모듈 설정</h2><br>
+<h2 id="저장된-데이터에-접근"><a href="#저장된-데이터에-접근" class="headerlink" title="저장된 데이터에 접근"></a>저장된 데이터에 접근</h2><br>
 
-<blockquote>
-<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; set LHOST 192.168.219.105</p>
-</blockquote>
-<blockquote>
-<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; show options</p>
-</blockquote>
+<p><code>clipper</code>이라는 애플리케이션에서 클립보드에 저장된 데이터를 아무런 권한 없이 접근이 가능하다는 것을 볼 수 있습니다.</p>
+<p>만약 악의적인 애플리케이션이 설치되어 있다면 클립보드에 저장된 데이터를 가져갈 수 있습니다.</p>
 <br>
 
-<p><code>set LHOST IP</code> 명령어로 칼리 리눅스의 IP를 넣어줍니다.</p>
-<p><code>show options</code> 명령어로 옵션들과 <code>set LHOST IP</code>로 넣어준 IP가 맞는지 확인해줍니다.</p>
-<br>
+<img src="/images/Android/안드로이드 키보드 캐시 이슈/clipper.png">
 
-<img src="/images/Android/안전하지 않은 웹 뷰 실행/set_ip.png">
-
-<br>
-
-<br>
-
-<h2 id="URL-설정-amp-Exploit"><a href="#URL-설정-amp-Exploit" class="headerlink" title="URL 설정 &amp; Exploit"></a>URL 설정 &amp; Exploit</h2><br>
-
-<blockquote>
-<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; set URIPATH xitcsk</p>
-</blockquote>
-<blockquote>
-<p>msf6 exploit(android/browser/webview_addjavascriptinterface) &gt; exploit</p>
-</blockquote>
-<br>
-
-<p><code>set URIPATH xitcsk</code> 명령어로 공격에 사용할 <code>URL</code>을 설정했습니다.</p>
-<p><code>exploit</code> 명령어로 공격을 실행해줍니다.</p>
-<br>
-
-<img src="/images/Android/안전하지 않은 웹 뷰 실행/exploit.png">
-
-<br>
-
-<br>
-
-<h2 id="가상-디바이스에서-URL-접속"><a href="#가상-디바이스에서-URL-접속" class="headerlink" title="가상 디바이스에서 URL 접속"></a>가상 디바이스에서 URL 접속</h2><br>
-
-<p>가상 디바이스인 <code>NOX</code>에서 칼리 리눅스에서 생성했던 <code>URL</code>로 접속합니다.</p>
-<p><code>URL</code>에 접속해주면 칼리 리눅스에서 안드로이드 디바이스에 접근할 수 있습니다.</p>
-<br>
-
-<img src="/images/Android/안전하지 않은 웹 뷰 실행/connect_url.png">
-
-<br>
-
-<p>* 찾아보니 안드로이드 4.2 이하에서만 작동된다고 합니다. NOX 에서는 안드로이드 5 이상만 지원하기 때문에 실습이 불가능합니다.</p>
 <br>
 
 <br>
@@ -412,10 +330,17 @@
 
 <h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
 
-<p>해당 취약점의 경우 안드로이드 4.3 버전 이하 환경에서는 보안 패치를 중단했기 때문에 안드로이드 4.4 버전 이상을 사용해야 합니다.</p>
+<p>중요한 정보는 마스킹 처리를 통해 사용자가 복사를 하지 못하도록 해야합니다.</p>
 <br>
 
-<p>웹 뷰를 구현할 때 웹 뷰 대신에 <code>HTML5 런타임 프레임워크 Crosswalk</code>를 사용해 주는 것도 방법입니다.</p>
+<h2 id="activity-do-transfer-xml"><a href="#activity-do-transfer-xml" class="headerlink" title="activity_do_transfer.xml"></a>activity_do_transfer.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/* activity_do_transfer.xml 일부 */</span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">FrameLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">&quot;@+id/editText_from&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginLeft</span>=<span class="string">&quot;00dip&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginRight</span>=<span class="string">&quot;20dip&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:editable</span>=<span class="string">&quot;false&quot;</span> //속성 추가</span></span><br><span class="line"><span class="tag">                <span class="attr">android:singleLine</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">EditText</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>activity_do_transfer.xml</code> 소스코드 일부분입니다.</p>
+<p><code>&lt;EditText&gt;</code> 안에 <code>android:editable=&quot;false&quot;</code> 속성을 추가해 주면 사용자가 데이터를 변경 혹은 복사를 할 수 없게 됩니다.</p>
 <br>
 
 <br>
@@ -438,14 +363,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/08/2022-01-08-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EC%BD%98%ED%85%90%EC%B8%A0%20%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EB%8D%94%20%EC%A0%91%EA%B7%BC/" rel="prev" title="[안드로이드 취약점] 안전하지 않은 콘텐츠 프로바이더 접근">
-                  <i class="fa fa-chevron-left"></i> [안드로이드 취약점] 안전하지 않은 콘텐츠 프로바이더 접근
+                <a href="/2022/01/10/2022-01-10-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-26%20automountd%20%EC%A0%9C%EA%B1%B0/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/09/2022-01-09-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%B7%A8%EC%95%BD%ED%95%9C%20%EC%95%94%ED%98%B8%ED%99%94%20%EC%8B%A4%ED%96%89/" rel="next" title="[안드로이드 취약점] 취약한 암호화 실행">
-                  [안드로이드 취약점] 취약한 암호화 실행 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -498,7 +420,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"cf3f39b906bf4d0777fb01f18b6715fe"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"530b4baf3ab86ce243b358d6677b60c5"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
