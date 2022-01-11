@@ -7175,4 +7175,82 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 애플리케이션 디버깅 기능</title>
+    <url>/2022/01/11/2022-01-11-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%94%94%EB%B2%84%EA%B9%85%20%EA%B8%B0%EB%8A%A5/</url>
+    <content><![CDATA[<h1 id="🤔-애플리케이션-디버깅-기능"><a href="#🤔-애플리케이션-디버깅-기능" class="headerlink" title="🤔  애플리케이션 디버깅 기능?"></a>🤔  애플리케이션 디버깅 기능?</h1><br>
+
+<p>안드로이드 디버깅 모드의 설정 여부에 따라 발생하는 취약점입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>해당 취약점은 애플리케이션이 제작되는 과정에서 주로 발생합니다.</p>
+<p>애플리케이션을 개발 중에 편의상 디버깅 옵션을 <code>true</code>로 지정해 사용합니다.</p>
+<p>이를 수정 없이 그대로 배포하면 애플리케이션은 중대한 보안 결함이 발생할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><br>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/* AndroidManifest.xml 일부 */</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">application</span> <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span> <span class="attr">android:debuggable</span>=<span class="string">&quot;true&quot;</span> <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span> <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> <span class="attr">android:theme</span>=<span class="string">&quot;@android:style/Theme.Holo.Light.DarkActionBar&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>android:debuggable</code> 옵션을 보면 <code>true</code>로 설정되어 있습니다.</p>
+<p>해당 옵션이 <code>true</code>이면 디버깅이 가능합니다.</p>
+<br>
+
+<br>
+
+<h2 id="drozer-취약점-확인"><a href="#drozer-취약점-확인" class="headerlink" title="drozer 취약점 확인"></a>drozer 취약점 확인</h2><br>
+
+<p><code>drozer</code>로 <code>debuggable</code> 취약점이 있는지 확인해보았습니다.</p>
+<br>
+
+<img src="/images/Android/애플리케이션 디버깅 기능/drozer.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p><code>android:debuggable</code> 옵션을 <code>false</code>로 설정해줍니다.</p>
+<p>개발자가 애플리케이션을 배포하기 전 해당 옵션을 확인해주어야합니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
