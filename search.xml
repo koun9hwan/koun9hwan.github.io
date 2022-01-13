@@ -8022,7 +8022,7 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># ps -ef | grep sendmail | grep -v “grep”</p>
+<p># ps -ef | grep sendmail | grep -v &quot;grep&quot;</p>
 </blockquote>
 <br>
 
@@ -8031,6 +8031,17 @@ section 진행 기간
 
 <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-30/ps.png">
 
+<br>
+
+<br>
+
+<blockquote>
+<p># sendmail -d0.1 &lt; /dev/null | grep -i Version</p>
+</blockquote>
+<br>
+
+<p><code>Sendmail</code>의 버전정보를 확인해주었습니다.</p>
+<p><code>주요정보통신기발시설 취약점 진단 가이드</code> 에서는 <code>telnet localhost 25</code> 명령어로 점검하는것으로 나와있는데 <code>telnet</code> 서비스를 사용안하는 경우도 있을 수 있기 때문에 다른 방법으로 점검하였습니다.</p>
 <br>
 
 <br>
