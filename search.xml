@@ -8181,7 +8181,7 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td><code>SMTP</code> 서비스 사용 여부 및 릴레이 제한 옵션 확인<br />    <code># ps -ef | grep sendmail | grep -v &quot;grep&quot;</code><br />    <code># cat /etc/mail/sendmail.cf | grep &quot;R$\\*&quot; | grep &quot;Relaying denied&quot;</code></td>
+<td><code>SMTP</code> 서비스 사용 여부 및 릴레이 제한 옵션 확인<br />    <code># ps -ef | grep sendmail | grep -v &quot;grep&quot;</code><br />    <code># cat /etc/mail/sendmail.cf | grep &quot;R$\*&quot; | grep &quot;Relaying denied&quot;</code></td>
 </tr>
 </tbody></table>
 <br>
