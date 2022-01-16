@@ -8276,4 +8276,181 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-32 일반사용자의 Sendmail 실행 방지</title>
+    <url>/2022/01/16/2022-01-16-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-32%20%EC%9D%BC%EB%B0%98%EC%82%AC%EC%9A%A9%EC%9E%90%EC%9D%98%20Sendmail%20%EC%8B%A4%ED%96%89%20%EB%B0%A9%EC%A7%80/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p><code>SMTP</code> 서비스 사용 시 일반사용자의 <code>q</code> 옵션 제한 여부 점검입니다.</p>
+<p>항목코드는 <code>U-32</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP?"></a>SMTP?</h2><br>
+
+<p>Simple Mail Transfer Protocol의 약자로 간이 전자 우편 전송 프로토콜입니다.</p>
+<p>인터넷에서 이메일을 보내기 위해 이용되는 프로그램입니다. TCP <code>25번</code> 포트를 사용합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>일반사용자의 <code>q</code> 옵션을 제한하여 <code>Sendmail</code> 설정 및 메일큐를 강제적으로 drop 시킬 수 없게 하여 비인가자에 의한 <code>SMTP</code> 서비스 오류 방지하기 위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>일반 사용자가 <code>q</code> 옵션을 이용해서 메일큐, <code>Sendmail</code> 설정을 보거나 메일큐를 강제적으로 drop 시킬 수 있어 악의적으로 <code>SMTP</code> 서버의 오류를 발생 시킬 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : <code>SMTP</code> 서비스 미사용 또는 일반 사용자의 <code>Sendmail</code> 실행 방지가 설정된 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : <code>SMTP</code> 서비스 사용 및 일반 사용자의 <code>Sendmail</code> 실행 방지가 설정되어 있지 않은 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>SMTP</code> 서비스 사용 여부 및 <code>restrictqrun</code> 옵션 확인<br />    <code># ps -ef | grep sendmail | grep -v &quot;grep&quot;</code><br />    <code># grep -v &#39;^ *#&#39; /etc/mail/sendmail.cf | grep PrivacyOptions</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ps -ef | grep sendmail | grep -v &quot;grep&quot;</p>
+</blockquote>
+<br>
+
+<p><code>Sendmail</code>이 프로세스가 활성화되어 있는지 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-30/ps.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p># grep -v ‘^ *#’ /etc/mail/sendmail.cf | grep PrivacyOptions</p>
+</blockquote>
+<br>
+
+<p><code>restrictqrun</code> 옵션이 있는지 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-32/grep.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) vi 편집기를 이용하여 <code>sendmail.cf</code> 설정파일 열기<br />    설정파일은 <code>/etc/mail/sendmail.cf</code> 위치에 있음<br /><br />2) <code>O PrivacyOptions=</code> 설정 부분에 <code>restrictqrun</code> 옵션 추가<br />    (수정 전) <code>O PrivacyOptions=authwarnings,novrfy,noexpn</code><br />    (수정 후) <code>O PrivacyOptions=authwarnings,novrfy,noexpn,restrictqrun</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line">cf=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep sendmail | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=O</span><br><span class="line">        process=`grep -v <span class="string">&#x27;^ *#&#x27;</span> /etc/mail/sendmail.cf | grep PrivacyOptions`</span><br><span class="line">        <span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *<span class="string">&quot;restrictqrun&quot;</span>* ]]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                cf=양호</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                cf=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=X</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-32 [일반사용자의 Sendmail 실행 방지]<span class="string">&quot;\n&quot;</span>Sendmail 서비스 활성화 여부 : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span><span class="string">&quot;\n&quot;</span>restrictqrun 옵션 여부 : <span class="string">&quot;<span class="variable">$cf</span>&quot;</span> | tee /root/result/u-32.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>Sendmail</code> 프로세스가 활성화되어 있는지 확인하고 <code>restrictqrun</code> 옵션이 설정되어 있는지 확인해줍니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-32</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-32/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>

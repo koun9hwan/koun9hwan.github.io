@@ -24,30 +24,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-27 RPC 서비스 확인">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-27%20RPC%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%ED%99%95%EC%9D%B8/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-32 일반사용자의 Sendmail 실행 방지">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-32%20%EC%9D%BC%EB%B0%98%EC%82%AC%EC%9A%A9%EC%9E%90%EC%9D%98%20Sendmail%20%EC%8B%A4%ED%96%89%20%EB%B0%A9%EC%A7%80/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-27/ls.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-27/script.png">
-<meta property="article:published_time" content="2022-01-11T13:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T12:11:32.574Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-30/ps.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-32/grep.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-32/script.png">
+<meta property="article:published_time" content="2022-01-15T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-16T11:03:43.883Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-27/ls.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-30/ps.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-27%20RPC%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%ED%99%95%EC%9D%B8/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-32%20%EC%9D%BC%EB%B0%98%EC%82%AC%EC%9A%A9%EC%9E%90%EC%9D%98%20Sendmail%20%EC%8B%A4%ED%96%89%20%EB%B0%A9%EC%A7%80/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-27%20RPC%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%ED%99%95%EC%9D%B8/","path":"2022/01/11/2022-01-11-[주요정보통신기반시설 취약점 진단 가이드] U-27 RPC 서비스 확인/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-27 RPC 서비스 확인"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-32%20%EC%9D%BC%EB%B0%98%EC%82%AC%EC%9A%A9%EC%9E%90%EC%9D%98%20Sendmail%20%EC%8B%A4%ED%96%89%20%EB%B0%A9%EC%A7%80/","path":"2022/01/16/2022-01-16-[주요정보통신기반시설 취약점 진단 가이드] U-32 일반사용자의 Sendmail 실행 방지/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-32 일반사용자의 Sendmail 실행 방지"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-27 RPC 서비스 확인 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-32 일반사용자의 Sendmail 실행 방지 | Koun9Hwan</title>
   
 
 
@@ -154,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC"><span class="nav-text">RPC?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SMTP"><span class="nav-text">SMTP?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/11/2022-01-11-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-27%20RPC%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%ED%99%95%EC%9D%B8/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-32%20%EC%9D%BC%EB%B0%98%EC%82%AC%EC%9A%A9%EC%9E%90%EC%9D%98%20Sendmail%20%EC%8B%A4%ED%96%89%20%EB%B0%A9%EC%A7%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +239,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-27 RPC 서비스 확인
+          [주요정보통신기반시설 취약점 진단 가이드] U-32 일반사용자의 Sendmail 실행 방지
         </h1>
 
         <div class="post-meta-container">
@@ -250,7 +251,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-11 22:00:00 / Modified: 21:11:32" itemprop="dateCreated datePublished" datetime="2022-01-11T22:00:00+09:00">2022-01-11</time>
+      <time title="Created: 2022-01-16 00:00:00 / Modified: 20:03:43" itemprop="dateCreated datePublished" datetime="2022-01-16T00:00:00+09:00">2022-01-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,16 +276,16 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>불필요한 <code>RPC</code> 서비스의 실행 여부 점검입니다.</p>
-<p>항목코드는 <code>U-27</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p><code>SMTP</code> 서비스 사용 시 일반사용자의 <code>q</code> 옵션 제한 여부 점검입니다.</p>
+<p>항목코드는 <code>U-32</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
 
-<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC?"></a>RPC?</h2><br>
+<h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP?"></a>SMTP?</h2><br>
 
-<p>Remote Procedure Call의 약자로 별도의 원격 제어를 위한 코딩 없이 다른 주소 공간에서 함수나 프로시저를 실행할 수 있게하는 프로세스 간 통신 기술입니다.</p>
-<p><code>RPC</code>를 이용하면 프로그래머는 함수가 실행 프로그램에 로컬 위치에 있든 원격 위치에 있든 동일한 코드를 이용할 수 있습니다.</p>
+<p>Simple Mail Transfer Protocol의 약자로 간이 전자 우편 전송 프로토콜입니다.</p>
+<p>인터넷에서 이메일을 보내기 위해 이용되는 프로그램입니다. TCP <code>25번</code> 포트를 사용합니다.</p>
 <br>
 
 <br>
@@ -294,14 +295,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>다양한 취약성(버퍼 오버플로우, DOS, 원격실행 등)이 존재하는 <code>RPC</code> 서비스를 점검하여 해당 서비스를 비활성화 하도록 합니다.</p>
+<p>일반사용자의 <code>q</code> 옵션을 제한하여 <code>Sendmail</code> 설정 및 메일큐를 강제적으로 drop 시킬 수 없게 하여 비인가자에 의한 <code>SMTP</code> 서비스 오류 방지하기 위함입니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>버퍼 오버플로우, Dos, 원격실행 등의 취약성이 존재하는 <code>RPC</code> 취약점을 통해 비인가자의 root 권한 획득 및 침해사고 발생 위험이 있으므로 서비스를 중지해야합니다.</p>
+<p>일반 사용자가 <code>q</code> 옵션을 이용해서 메일큐, <code>Sendmail</code> 설정을 보거나 메일큐를 강제적으로 drop 시킬 수 있어 악의적으로 <code>SMTP</code> 서버의 오류를 발생 시킬 수 있습니다.</p>
 <br>
 
 <br>
@@ -326,7 +327,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>192.168.219.102</td>
+<td>192.168.219.103</td>
 </tr>
 </tbody></table>
 <br>
@@ -336,10 +337,10 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : 불필요한 <code>RPC</code> 서비스가 비활성화 되어 있는 경우</p>
+<p><strong>양호</strong> : <code>SMTP</code> 서비스 미사용 또는 일반 사용자의 <code>Sendmail</code> 실행 방지가 설정된 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : 불필요한 <code>RPC</code> 서비스가 활성화 되어 있는 경우</p>
+<p><strong>취약</strong> : <code>SMTP</code> 서비스 사용 및 일반 사용자의 <code>Sendmail</code> 실행 방지가 설정되어 있지 않은 경우</p>
 </blockquote>
 <br>
 
@@ -351,16 +352,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX,<br />HP-UX,<br />SOLARIS 5.9<br />이하 버전</td>
-<td>불필요한 <code>RPC</code> 서비스 비활성화 여부 확인<br />    <code># cat /etc/inetd.conf</code></td>
-</tr>
-<tr>
-<td>LINUX (xinetd)</td>
-<td><code>/etc/xinetd.d</code> 디렉터리 내 서비스별 파일 비활성화 여부 확인<br />    <code># vi /etc/xinetd.d/[서비스별 파일명]</code></td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td><code>RPC</code> 서비스 관련 데몬 확인<br />    <code># inetadm | grep rpc | grep enabled | egrep &quot;ttdbserver|rex|rstart|rusers|spray|wall|rquota&quot;</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>SMTP</code> 서비스 사용 여부 및 <code>restrictqrun</code> 옵션 확인<br />    <code># ps -ef | grep sendmail | grep -v &quot;grep&quot;</code><br />    <code># grep -v &#39;^ *#&#39; /etc/mail/sendmail.cf | grep PrivacyOptions</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -368,14 +361,28 @@
 <br>
 
 <blockquote>
-<p># ls /etc/xinetd.d/</p>
+<p># ps -ef | grep sendmail | grep -v &quot;grep&quot;</p>
 </blockquote>
 <br>
 
-<p><code>/etc/xinetd.d/</code> 디렉터리 내 서비스를 확인하였습니다.</p>
+<p><code>Sendmail</code>이 프로세스가 활성화되어 있는지 확인해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-27/ls.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-30/ps.png">
+
+<br>
+
+<br>
+
+<blockquote>
+<p># grep -v ‘^ *#’ /etc/mail/sendmail.cf | grep PrivacyOptions</p>
+</blockquote>
+<br>
+
+<p><code>restrictqrun</code> 옵션이 있는지 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-32/grep.png">
 
 <br>
 
@@ -389,21 +396,13 @@
 <table>
 <thead>
 <tr>
-<th>파일</th>
-<th>조치 방법</th>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX,<br />HP-UX, <br />SOLARIS 5.9<br />이하 버전</td>
-<td>1) <code>/etc/inetd.conf</code> 파일에서 해당 라인 주석처리<br /><br />2) <code>inetd</code> 서비스 재시작<br />    <code># ps -ef | grep inetd</code><br />    <code># kill -HUP [PID]</code></td>
-</tr>
-<tr>
-<td>LINUX (xinetd)</td>
-<td>1) vi 편집기를 사용하여 <code>/etc/xinetd.d/</code> 디렉터리 내의 불필요한 <code>RPC</code> 서비스 파일 열기<br /><br />2) 서비스 끄기<br /><br />3) <code>xinetd</code> 서비스 재시작</td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td>1) 불필요한 <code>RPC</code> 서비스 관련 데몬 확인<br /><br />2) <code>svcadm disable &quot;중지하고자 하는 데몬&quot;</code> 명령으로 서비스 데몬 중지<br />    <code># inetadm -d svc:/network/rpc/rusers:default</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) vi 편집기를 이용하여 <code>sendmail.cf</code> 설정파일 열기<br />    설정파일은 <code>/etc/mail/sendmail.cf</code> 위치에 있음<br /><br />2) <code>O PrivacyOptions=</code> 설정 부분에 <code>restrictqrun</code> 옵션 추가<br />    (수정 전) <code>O PrivacyOptions=authwarnings,novrfy,noexpn</code><br />    (수정 후) <code>O PrivacyOptions=authwarnings,novrfy,noexpn,restrictqrun</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -415,19 +414,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">process=`ls /etc/xinetd.d/`</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-27 [RPC 서비스 확인]<span class="string">&quot;\n&quot;</span>:::서비스 목록:::<span class="string">&quot;\n&quot;</span><span class="string">&quot;<span class="variable">$process</span>&quot;</span> | tee /root/result/u-27.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line">cf=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep sendmail | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=O</span><br><span class="line">        process=`grep -v <span class="string">&#x27;^ *#&#x27;</span> /etc/mail/sendmail.cf | grep PrivacyOptions`</span><br><span class="line">        <span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *<span class="string">&quot;restrictqrun&quot;</span>* ]]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                cf=양호</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                cf=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=X</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-32 [일반사용자의 Sendmail 실행 방지]<span class="string">&quot;\n&quot;</span>Sendmail 서비스 활성화 여부 : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span><span class="string">&quot;\n&quot;</span>restrictqrun 옵션 여부 : <span class="string">&quot;<span class="variable">$cf</span>&quot;</span> | tee /root/result/u-32.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p>점검자가 불필요한 <code>RPC</code> 서비스를 판단할 수 없기 때문에 해당 스크립트를 사용하면 <code>/etc/xinetd.d/</code> 디렉터리 내 서비스 파일들을 출력하도록 만들었습니다.</p>
+<p><code>Sendmail</code> 프로세스가 활성화되어 있는지 확인하고 <code>restrictqrun</code> 옵션이 설정되어 있는지 확인해줍니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-27</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-32</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-27/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-32/script.png">
 
 <br>
 
@@ -457,14 +456,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/11/2022-01-11-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EB%94%94%EB%B2%84%EA%B9%85%20%EA%B8%B0%EB%8A%A5/" rel="prev" title="[안드로이드 취약점] 애플리케이션 디버깅 기능">
-                  <i class="fa fa-chevron-left"></i> [안드로이드 취약점] 애플리케이션 디버깅 기능
+                <a href="/2022/01/14/2022-01-14-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-31%20%EC%8A%A4%ED%8C%B8%20%EB%A9%94%EC%9D%BC%20%EB%A6%B4%EB%A0%88%EC%9D%B4%20%EC%A0%9C%ED%95%9C/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-31 스팸 메일 릴레이 제한">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-31 스팸 메일 릴레이 제한
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/11/2022-01-11-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-28%20NIS,%20NIS+%20%EC%A0%90%EA%B2%80/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-28 NIS, NIS+ 점검">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-28 NIS, NIS+ 점검 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -517,7 +513,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"0a8deec254049d08bc5d7c08b31199e3"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"3ad00cf8b7e85e7322af4ca10fd6760c"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
