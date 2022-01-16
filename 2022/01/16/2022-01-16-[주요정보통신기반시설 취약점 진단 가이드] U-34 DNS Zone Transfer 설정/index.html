@@ -24,30 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-26%20automountd%20%EC%A0%9C%EA%B1%B0/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-26/ps.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-26/script.png">
-<meta property="article:published_time" content="2022-01-10T13:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-10T13:08:58.243Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-34/ps.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-34/script.png">
+<meta property="article:published_time" content="2022-01-16T12:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-16T13:13:27.952Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-26/ps.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-34/ps.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-26%20automountd%20%EC%A0%9C%EA%B1%B0/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-26%20automountd%20%EC%A0%9C%EA%B1%B0/","path":"2022/01/10/2022-01-10-[주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/","path":"2022/01/16/2022-01-16-[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정 | Koun9Hwan</title>
   
 
 
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#automountd"><span class="nav-text">automountd?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Zone-Transfer"><span class="nav-text">DNS Zone Transfer?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-26%20automountd%20%EC%A0%9C%EA%B1%B0/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거
+          [주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정
         </h1>
 
         <div class="post-meta-container">
@@ -250,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-10 22:00:00 / Modified: 22:08:58" itemprop="dateCreated datePublished" datetime="2022-01-10T22:00:00+09:00">2022-01-10</time>
+      <time title="Created: 2022-01-16 21:00:00 / Modified: 22:13:27" itemprop="dateCreated datePublished" datetime="2022-01-16T21:00:00+09:00">2022-01-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,15 +275,15 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p><code>automountd</code> 서비스 데몬의 실행 여부 점검입니다.</p>
-<p>항목코드는 <code>U-26</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p><code>Secondary Name Server</code>로만 <code>Zone</code> 정보 전송 제한 여부 점검입니다.</p>
+<p>항목코드는 <code>U-34</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
 
-<h2 id="automountd"><a href="#automountd" class="headerlink" title="automountd?"></a>automountd?</h2><br>
+<h2 id="DNS-Zone-Transfer"><a href="#DNS-Zone-Transfer" class="headerlink" title="DNS Zone Transfer?"></a>DNS Zone Transfer?</h2><br>
 
-<p>클라이언트가 서버에서 공유한 자원을 사용하려고 할 때 <code>mount</code>란 명령을 사용하지 않아도 자동적으로 <code>mount</code>되고 일정 시간 사용하지 않으면 자동으로 <code>unmount</code>됩니다.</p>
+<p>Primary Name Server와 Secondary Name Server 간에 Zone 정보를 일관성 있게 유지하기 위하여 사용하는 기능입니다.</p>
 <br>
 
 <br>
@@ -293,14 +293,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>로컬 공격자가 <code>automountd</code> 데몬에 RPC(Remote Procedure Call)를 보낼 수 있는 취약점이 존재하기 때문에 해당 서비스가 실행중일 경우 서비스를 중지해야합니다.</p>
+<p>허가되지 않는 사용자에게 <code>Zone Transfer</code>를 제한함으로써 호스트 정보, 시스템 정보 등 정보 유출의 방지를 목적으로 합니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>파일 시스템의 마운트 옵션을 변경하여 root 권한을 획득할 수 있으며, 로컬 공격자가 <code>automountd</code> 프로세스 권한으로 임의의 명령을 실행할 수 있습니다.</p>
+<p>비인가자 <code>Zone Transfer</code>를 이용해 <code>Zone</code> 정보를 전송받아 호스트 정보, 시스템 정보, 네트워크 구성 형태 등의 많은 정보를 파악할 수 있습니다.</p>
 <br>
 
 <br>
@@ -325,7 +325,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>192.168.219.102</td>
+<td>192.168.219.103</td>
 </tr>
 </tbody></table>
 <br>
@@ -335,13 +335,14 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : <code>automountd</code> 서비스가 비활성화 되어 있는 경우</p>
+<p><strong>양호</strong> : <code>DNS</code> 서비스 미사용 또는 <code>Zone Transfer</code>를 허가된 사용자에게만 허용한 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : <code>automountd</code> 서비스가 활성화 되어 있는 경우</p>
+<p><strong>취약</strong> : <code>DNS</code> 서비스를 사용하며 <code>Zone Transfer</code>를 모든 사용자에게 허용한 경우</p>
 </blockquote>
 <br>
 
+<p><strong>&lt; DNS 서비스를 사용할 경우 &gt;</strong></p>
 <table>
 <thead>
 <tr>
@@ -350,20 +351,42 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX,<br />HP-UX,<br />SOLARIS 5.9<br />이하 버전</td>
-<td><code>automountd</code> 서비스 데몬 확인 (automountd 동작 SID 확인)<br />    <code># ps -ef | grep automount</code> (or autofs)</td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td><code>automount</code> 서비스 데몬 확인<br />    <code># svcs -a | grep &quot;autofs&quot;</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>DNS</code> 서비스 사용 시 <code>/etc/named.conf</code> 파일의 <code>allow-transfer</code> 및 <code>xfmets</code> 확인<br />    <code># ps -ef | grep named | grep -v &quot;grep&quot;</code><br />    <code># cat /etc/named.conf | grep &#39;allow-transfer&#39;</code><br />    <code># cat /etc/named.boot | grep &quot;xfrnets&quot;</code></td>
 </tr>
 </tbody></table>
 <br>
 
-<p><code>automount</code> 서비스가 활성화되어 있습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-26/ps.png">
+<p><strong>&lt; DNS 서비스를 사용하지 않는 경우 &gt;</strong></p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINUX, AIX,<br />HP-UX<br />SOLARIS 5.9<br />이하 버전</td>
+<td><code>DNS</code> 서비스 데몬 확인<br />    <code># ps -ef | grep named</code></td>
+</tr>
+<tr>
+<td>SOLARIS 5.10<br />이상 버전</td>
+<td><code># svcs -a | egrep &quot;dns&quot;</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<blockquote>
+<p># ps -ef | grep named | grep -v “grep”</p>
+</blockquote>
+<br>
+
+<p><code>DNS</code> 서비스 데몬을 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-34/ps.png">
 
 <br>
 
@@ -377,21 +400,17 @@
 <table>
 <thead>
 <tr>
-<th>파일</th>
-<th>조치 방법</th>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX,<br />SOLARIS 5.9<br />이하 버전</td>
-<td>1) <code>automountd</code> 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) 시동 스크립트 삭제 또는 스크립트 이름 변경<br />    - 위치 확인<br />        <code># ls -al /etc/rc.d/rc*.d/* | grep automount</code> (or autofs)<br />    - 이름 변경<br />        <code># mv /etc/rc.d/rc2.d/S28automountd /etc/rc.d/rc2.d/_S28automountd</code></td>
-</tr>
-<tr>
-<td>HP-UX</td>
-<td>1) <code>automount</code> 서비스 데몬 중지<br />    <code># kill -9 [PID]</code><br /><br />2) <code>/etc/rc.config.d/nfsconf</code> 파일 설정 수정<br />    <code># vi /etc/rc.config.d/nfsconf</code><br />    (수정 전) <code>AUTOFS=1</code><br />    (수정 후) <code>AUTOFS=0</code></td>
+<td>LINUX, AIX,<br />HP-UX<br />SOLARIS 5.9<br />이하 버전</td>
+<td><code>DNS</code> 서비스 데몬 중지<br />    <code># kill -9 [PID]</code></td>
 </tr>
 <tr>
 <td>SOLARIS 5.10<br />이상 버전</td>
-<td>1) <code>autofs</code> 서비스 데몬 확인<br />    <code>svc:/system/filesystem/autofs:default</code><br /><br />2) <code>svcadm disable &quot;중지하고자 하는 데몬&quot;</code> 명령으로 서비스 데몬 중지<br />    <code># svcadm disable svc:/system/filesystem/autofs:default</code></td>
+<td>1) <code>DNS</code> 서비스 데몬 확인<br />    <code>enabled 16:22:31 svc:/network/dns/server:default</code><br /><br />2) <code>svcadm disable &quot;중지하고자 하는 데몬&quot;</code> 명령으로 서비스 데몬 중지<br />    <code># svcadm disable svc:/network/dns/server:default</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -403,20 +422,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep automount`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-26 [automountd 제거] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-26.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line">cf=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep named | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=O</span><br><span class="line">        process=`cat /etc/named.conf | grep <span class="string">&#x27;allow-transfer&#x27;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                cf=설정됨</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                cf=설정안됨</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        process=`cat /etc/named.conf | grep <span class="string">&quot;xfrnets&quot;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                cf2=설정됨</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                cf2=설정안됨</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=X</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-34 [DNS Zone Transfer 설정]<span class="string">&quot;\n&quot;</span>DNS 서비스 활성화 여부 : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span><span class="string">&quot;\n&quot;</span>allow-transfer 설정 여부 : <span class="string">&quot;<span class="variable">$cf</span>&quot;</span><span class="string">&quot;\n&quot;</span>xfrnets 설정 여부 : <span class="string">&quot;<span class="variable">$cf2</span>&quot;</span> | tee /root/result/u-34.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p><code>automount</code> 프로세스가 활성화 상태인지 확인합니다.</p>
-<p>프로세스가 활성화 상태이면 <code>취약</code>, 없으면 <code>양호</code>처리 했습니다.</p>
+<p><code>DNS</code> 서비스 데몬을 확인해주고 <code>allow-transfer</code> <code>xfrnets</code> 설정이 되어있는지 확인해줍니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-26</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-34</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-26/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-34/script.png">
 
 <br>
 
@@ -446,14 +464,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/10/2022-01-10-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-25%20NFS%20%EC%A0%91%EA%B7%BC%20%ED%86%B5%EC%A0%9C/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제
+                <a href="/2022/01/16/2022-01-16-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-33%20DNS%20%EB%B3%B4%EC%95%88%20%EB%B2%84%EC%A0%84%20%ED%8C%A8%EC%B9%98/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-33 DNS 보안 버전 패치">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-33 DNS 보안 버전 패치
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/11/2022-01-11-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%ED%82%A4%EB%B3%B4%EB%93%9C%20%EC%BA%90%EC%8B%9C%20%EC%9D%B4%EC%8A%88/" rel="next" title="[안드로이드 취약점] 안드로이드 키보드 캐시 이슈">
-                  [안드로이드 취약점] 안드로이드 키보드 캐시 이슈 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -506,7 +521,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"967423c1c53f87ce282e79446b4f12d2"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"b650680a1071ef1e5e080e6f11872c05"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
