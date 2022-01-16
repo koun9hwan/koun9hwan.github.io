@@ -8725,7 +8725,7 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># ps -ef | grep named | grep -v “grep”</p>
+<p># ps -ef | grep named | grep -v &quot;grep&quot;</p>
 </blockquote>
 <br>
 
