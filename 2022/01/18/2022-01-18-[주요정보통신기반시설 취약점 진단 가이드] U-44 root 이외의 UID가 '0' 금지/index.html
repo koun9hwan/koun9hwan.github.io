@@ -24,30 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-36 웹서비스 웹 프로세스 권한 제한">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/17/2022-01-17-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-36%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%9B%B9%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EA%B6%8C%ED%95%9C%20%EC%A0%9C%ED%95%9C/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 &#39;0&#39; 금지">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-44%20root%20%EC%9D%B4%EC%99%B8%EC%9D%98%20UID%EA%B0%80%20'0'%20%EA%B8%88%EC%A7%80/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-36/cat.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-36/script.png">
-<meta property="article:published_time" content="2022-01-17T10:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-17T11:02:36.432Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-44/cat.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-44/script.png">
+<meta property="article:published_time" content="2022-01-18T10:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-18T10:40:05.640Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-36/cat.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-44/cat.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/17/2022-01-17-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-36%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%9B%B9%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EA%B6%8C%ED%95%9C%20%EC%A0%9C%ED%95%9C/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-44%20root%20%EC%9D%B4%EC%99%B8%EC%9D%98%20UID%EA%B0%80%20'0'%20%EA%B8%88%EC%A7%80/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/17/2022-01-17-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-36%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%9B%B9%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EA%B6%8C%ED%95%9C%20%EC%A0%9C%ED%95%9C/","path":"2022/01/17/2022-01-17-[주요정보통신기반시설 취약점 진단 가이드] U-36 웹서비스 웹 프로세스 권한 제한/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-36 웹서비스 웹 프로세스 권한 제한"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-44%20root%20%EC%9D%B4%EC%99%B8%EC%9D%98%20UID%EA%B0%80%20'0'%20%EA%B8%88%EC%A7%80/","path":"2022/01/18/2022-01-18-[주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 '0' 금지/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 '0' 금지"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-36 웹서비스 웹 프로세스 권한 제한 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 '0' 금지 | Koun9Hwan</title>
   
 
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/17/2022-01-17-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-36%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%9B%B9%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%EA%B6%8C%ED%95%9C%20%EC%A0%9C%ED%95%9C/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-44%20root%20%EC%9D%B4%EC%99%B8%EC%9D%98%20UID%EA%B0%80%20'0'%20%EA%B8%88%EC%A7%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-36 웹서비스 웹 프로세스 권한 제한
+          [주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 '0' 금지
         </h1>
 
         <div class="post-meta-container">
@@ -250,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-17 19:00:00 / Modified: 20:02:36" itemprop="dateCreated datePublished" datetime="2022-01-17T19:00:00+09:00">2022-01-17</time>
+      <time title="Created: 2022-01-18 19:00:00 / Modified: 19:40:05" itemprop="dateCreated datePublished" datetime="2022-01-18T19:00:00+09:00">2022-01-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,8 +275,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>Apache 데몬이 root 권한으로 구동되는지 여부 점검입니다.</p>
-<p>항목코드는 <code>U-36</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p>사용자 계정 정보가 저장된 파일 (예 <code>/etc/passwd</code>)에 root(UID=0) 계정과 동일한 UID를 가진 계정이 존재하는지에 대한 점검입니다.</p>
+<p>항목코드는 <code>U-44</code>이며, 항목 주요도는 <code>중</code>입니다.</p>
 <br>
 
 <br>
@@ -286,14 +286,15 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>Apache 데몬을 root 권한으로 구동하지 않고 별도의 권한으로 구동하므로써 침해사고 발생시 피해범위 확산 방지를 목적으로 합니다.</p>
+<p>root 계정과 동일한 UID가 존재하는지 점검하여 root 권한이 일반 사용자 계정이나 비인가자의 접근 위협에 안전하게 보호되고 있는지 확인하기 위함입니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>웹서비스 데몬을 root 권한으로 실행시 파일을 생성, 수정하는 과정에서 웹서비스에 해당하지 않는 파일도 root 권한에 의해 쓰기가 가능하면 해킹 발생시 root 권한이 노출 될 수 있습니다.</p>
+<p>root 계정과 동일 UID가 설정되어 있는 일반사용자 계정도 root 권한을 부여받아 관리자가 실행 할 수 있는 모든 작업이 가능합니다.</p>
+<p>root와 동일한 UID를 사용하므로 사용자 감사 추적 시 어려움이 발생합니다.</p>
 <br>
 
 <br>
@@ -328,10 +329,10 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : Apache 데몬이 root 권한으로 구동되지 않는 경우</p>
+<p><strong>양호</strong> : root 계정과 동일한 UID를 갖는 계정이 존재하지 않는 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : Apahce 데몬이 root 권한으로 구동되는 경우</p>
+<p><strong>취약</strong> : root 계정과 동일한 UID를 갖는 계정이 존재하는 경우</p>
 </blockquote>
 <br>
 
@@ -344,7 +345,7 @@
 </thead>
 <tbody><tr>
 <td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td>Apache 데몬 구동 권한(User 및 Group) 확인<br />    <code># vi /[Apache_home]/conf/httpd.conf</code><br />    <code>User (root가 아닌 별도 계정명)</code><br />    <code>Group (root가 아닌 별도 계정명)</code></td>
+<td><code># cat /etc/passwd</code> 파일 내 UID 확인 (세 번째 필드 값)<br />root 이외의 계정이 <code>UID=0</code>인 경우 0이 아닌 적적한 UID 부여</td>
 </tr>
 </tbody></table>
 <br>
@@ -352,15 +353,14 @@
 <br>
 
 <blockquote>
-<p># cat /etc/httpd/conf/httpd.conf | grep &quot;User &quot;</p>
-<p># cat /etc/httpd/conf/httpd.conf | grep &quot;Group &quot;</p>
+<p># cat /etc/passwd | grep x:0: | grep -v root</p>
 </blockquote>
 <br>
 
-<p><code>User</code>와 <code>Group</code>에서 root 계정명인지 확인해주었습니다.</p>
+<p>root 이외의 계정의 UID가 0인지 검색해보았습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-36/cat.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-44/cat.png">
 
 <br>
 
@@ -379,8 +379,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td>1) 데몬 <code>User</code> &amp; <code>Group</code> 변경<br />    <code>User</code> &amp; <code>Group</code> 부분에 root가 아닌 별도 계정으로 변경<br /><br />2) Apache 서비스 재시작</td>
+<td>SOLARIS,<br />LINUX,<br />HP-UX</td>
+<td>1) <code>usermod</code> 명령으로 UID가 0인 일반 계정의 UID를 100 이상으로 수정<br />    SOLARIS, HP-UX의 경우 100 이상<br />    LINUX의 경우 500 이상</td>
+</tr>
+<tr>
+<td>AIX</td>
+<td>1) <code>chuser</code> 명령으로 UID가 0인 일반 계정의 UID를 100 이상으로 수정</td>
 </tr>
 </tbody></table>
 <br>
@@ -392,19 +396,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/httpd/conf/httpd.conf | grep <span class="string">&quot;User &quot;</span>`</span><br><span class="line">process2=`cat /etc/httpd/conf/httpd.conf | grep <span class="string">&quot;Group &quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *root* ]] || [[ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> == *root* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-36 [웹서비스 웹 프로세스 권한 제한] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-36.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/passwd | grep x:0: | grep -v root`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-44 [root 이외의 UID가 <span class="string">&#x27;0&#x27;</span> 금지] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-44.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p><code>User</code>와 <code>Group</code> 계정이 root 계정인지 확인하고 맞으면 <code>취약</code> 아니면 <code>양호</code>처리 했습니다.</p>
+<p><code>/etc/passwd</code> 파일에서 root 이외의 계정의 UID가 0인 계정이 있을 경우 <code>취약</code>, 없으면 <code>양호</code>처리 했습니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-36</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-44</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-36/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-44/script.png">
 
 <br>
 
@@ -434,14 +438,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/16/2022-01-16-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-35%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EB%A6%AC%EC%8A%A4%ED%8C%85%20%EC%A0%9C%EA%B1%B0/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-35 웹서비스 디렉토리 리스팅 제거">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-35 웹서비스 디렉토리 리스팅 제거
+                <a href="/2022/01/18/2022-01-18-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-41%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%98%81%EC%97%AD%EC%9D%98%20%EB%B6%84%EB%A6%AC/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-41 웹서비스 영역의 분리">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-41 웹서비스 영역의 분리
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/17/2022-01-17-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-37%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%83%81%EC%9C%84%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EC%A0%91%EA%B7%BC%20%EA%B8%88%EC%A7%80/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-37 웹서비스 상위 디렉토리 접근 금지">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-37 웹서비스 상위 디렉토리 접근 금지 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -494,7 +495,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"685895b58ca52db69c2fc501ae371456"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"f6f1c9db17ccec25c9662b58c8c86244"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
