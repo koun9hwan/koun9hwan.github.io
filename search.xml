@@ -10048,4 +10048,171 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-45 root 계정 su 제한</title>
+    <url>/2022/01/18/2022-01-18-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-45%20root%20%EA%B3%84%EC%A0%95%20su%20%EC%A0%9C%ED%95%9C/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p><code>su</code> 명령어 사용을 허용하는 사용자를 지정한 그룹이 설정되어 있는지에 대한 점검입니다.</p>
+<p>항목코드는 <code>U-45</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p><code>su</code> 관련 그룹만 <code>su</code> 명령어 사용 권한이 부여되어 있는지 점검하여 <code>su</code> 그룹에 포함되지 않은 일반 사용자의 <code>su</code> 명령 사용을 원천적으로 차단하는지 확인하기 위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>무분별한 사용자 변경으로 타 사용자 소유의 파일을 변경할 수 있으며 root 계정으로 변경하는 경우 관리자 권한을 획득할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : <code>su</code> 명령어를 특정 그룹에 속한 사용자만 사용하도록 제한되어 있는 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : <code>su</code> 명령어를 모든 사용자가 사용하도록 설정되어 있는 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) <code>wheel</code> 그룹 및 그룹 내 구성원 존재 여부 확인<br />    <code># cat /etc/group</code><br /><br />2) <code>wheel</code> 그룹이 <code>su</code> 명령어를 사용할 수 있는지 설정 여부 확인<br />    [SOLARIS] <code># ls -al /usr/bin/su</code><br />    [AIX] <code># cat /etc/security/user</code> default의 <code>sugroup-staff</code> 설정 확인<br />    [HP-UX] <code># vi /etc/default/security</code>의 <code>SU_ROOT_GROUP=wheel</code> 설정 확인<br /><br />3) 파일 권한 확인<br />    <code># ls -l /usr/bin/su</code></td>
+</tr>
+<tr>
+<td>LINUX PAM<br />모듈 이용 시</td>
+<td>1) <code>wheel</code> 그룹 및 그룹 내 구성원 존재 여부 확인<br />    <code># cat /etc/group</code><br /><br />2) 허용 그룹 설정 여부 확인<br />    <code># cat /etc/pam.d/su</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># cat /etc/pam.d/su | grep &quot;pam_wheel.so use_uid&quot;</p>
+</blockquote>
+<br>
+
+<p>root 이외의 계정에서 UID가 0인 계정이 있는지 검색해보았습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-45/cat.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX,<br />HP-UX</td>
+<td>1) <code>wheel</code> group 생성<br />    <code># groupadd wheel</code><br /><br />2) <code>su</code> 명령어 그룹 변경<br />    <code># chgrp wheel /usr/bin/su</code><br /><br />3) <code>su</code> 명령어 사용권한 변경<br />    <code># chmod 4750 /usr/bin/su</code><br /><br />4) <code>wheel</code> 그룹에 <code>su</code> 명령 허용 계정 등록<br />    <code># usermod -G wheel &lt;user_name&gt;</code></td>
+</tr>
+<tr>
+<td>AIX</td>
+<td>1) <code>wheel</code> group 생성<br />    <code># mkgroup wheel</code><br /><br />2) <code>su</code> 명령어 그룹 변경<br />    <code># chgrp wheel /usr/bin/su</code><br /><br />3) <code>su</code> 명령어 사용권한 변경<br />    <code># chmod 4750 /usr/bin/su</code><br /><br />4) <code>wheel</code> 그룹에 <code>su</code> 명령 허용 계정 등록<br />    <code># chgroup users=&lt;user_name&gt; wheel</code></td>
+</tr>
+<tr>
+<td>LINUX PAM<br />모듈 이용 시</td>
+<td>1) <code>/etc/pam.d/su</code> 파일 주석 제거<br />    auth sufficient /lib/security/pam_rootok.so<br />    auth required /lib/security/pam_wheel.so debug group=wheel<br />    auth sufficient /lib/security/$ISA/pam_rootok.so <br />    auth required /lib/security/$ISA/pam_wheel.so use_uid<br /><br />2) <code>wheel</code> 그룹에 <code>su</code> 명령어를 사용할 사용자 추가<br />    <code># usermod -G wheel &lt;user_name&gt;</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/pam.d/su | grep <span class="string">&quot;pam_wheel.so use_uid&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *<span class="string">&quot;#&quot;</span>* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-45 [root 계정 su 제한] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-45.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>/etc/pam.d/su</code> 파일에 있는 설정 구문이 주석 처리되어 있을 경우 <code>취약</code>, 아니라면 <code>양호</code>처리 했습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-45</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-45/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
