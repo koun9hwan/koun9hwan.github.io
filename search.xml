@@ -11386,4 +11386,77 @@ section 진행 기간
         <tag>모바일</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[안드로이드 취약점] 개발자 백도어</title>
+    <url>/2022/01/20/2022-01-20-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EA%B0%9C%EB%B0%9C%EC%9E%90%20%EB%B0%B1%EB%8F%84%EC%96%B4/</url>
+    <content><![CDATA[<h1 id="🤔-개발자-백도어"><a href="#🤔-개발자-백도어" class="headerlink" title="🤔  개발자 백도어?"></a>🤔  개발자 백도어?</h1><br>
+
+<p>개발자가 인증 과정을 거치지 않고 접속할 수 있는 통로를 만들어서 생기는 취약점입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-취약점-진단"><a href="#🔎-취약점-진단" class="headerlink" title="🔎 취약점 진단"></a>🔎 취약점 진단</h1><br>
+
+<blockquote>
+<p>본 취약점 점검 앱은 <code>Insecurebankv2</code>로 진행합니다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>개발자들이 유지보수나 디버깅 시 인증 시간 등을 단축하기 위한 요소로 백도어를 만듭니다.</p>
+<p>해당 백도어가 공격자에게 발견되면 시스템에 큰 위험을 초래할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="💡-점검-방법"><a href="#💡-점검-방법" class="headerlink" title="💡 점검 방법"></a>💡 점검 방법</h1><br>
+
+<h2 id="DoLogin-java"><a href="#DoLogin-java" class="headerlink" title="DoLogin.java"></a>DoLogin.java</h2><br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* DoLogin.java 일부 */</span>	</span><br><span class="line"></span><br><span class="line">			HttpClient httpclient = <span class="keyword">new</span> DefaultHttpClient();</span><br><span class="line">			HttpPost httppost = <span class="keyword">new</span> HttpPost(protocol + serverip + <span class="string">&quot;:&quot;</span> + serverport + <span class="string">&quot;/login&quot;</span>);</span><br><span class="line">			HttpPost httppost2 = <span class="keyword">new</span> HttpPost(protocol + serverip + <span class="string">&quot;:&quot;</span> + serverport + <span class="string">&quot;/devlogin&quot;</span>);</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Add your data</span></span><br><span class="line">			List &lt; NameValuePair &gt; nameValuePairs = <span class="keyword">new</span> ArrayList &lt; NameValuePair &gt; (<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">			<span class="comment">//                Delete below test accounts in production</span></span><br><span class="line">			<span class="comment">//                nameValuePairs.add(new BasicNameValuePair(&quot;username&quot;, &quot;jack&quot;));</span></span><br><span class="line">			<span class="comment">//                nameValuePairs.add(new BasicNameValuePair(&quot;password&quot;, &quot;jack@123$&quot;));</span></span><br><span class="line"></span><br><span class="line">			nameValuePairs.add(<span class="keyword">new</span> BasicNameValuePair(<span class="string">&quot;username&quot;</span>, username));</span><br><span class="line">			nameValuePairs.add(<span class="keyword">new</span> BasicNameValuePair(<span class="string">&quot;password&quot;</span>, password));</span><br><span class="line">			HttpResponse responseBody;</span><br><span class="line">			<span class="keyword">if</span> (username.equals(<span class="string">&quot;devadmin&quot;</span>)) &#123;</span><br><span class="line">				httppost2.setEntity(<span class="keyword">new</span> UrlEncodedFormEntity(nameValuePairs));</span><br><span class="line">				<span class="comment">// Execute HTTP Post Request</span></span><br><span class="line">				responseBody = httpclient.execute(httppost2);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				httppost.setEntity(<span class="keyword">new</span> UrlEncodedFormEntity(nameValuePairs));</span><br><span class="line">				<span class="comment">// Execute HTTP Post Request</span></span><br><span class="line">				responseBody = httpclient.execute(httppost);</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 코드를 보면 username이 <code>devadmin</code> 이면 암호 인증 없이 로그인이 가능하도록 만들어두었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/Android/개발자 백도어/devadmin.png">
+
+<br>
+
+<p><code>devadmin</code> 계정으로 암호 인증 없이 로그인이 됐습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-대응-방안"><a href="#🔒-대응-방안" class="headerlink" title="🔒 대응 방안"></a>🔒 대응 방안</h1><br>
+
+<p>앱을 배포하기 전 테스트 용도로 만든 계정을 삭제하거나 인증을 우회하는 코드를 삭제하고 앱을 배포해야 합니다.</p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
 </search>
