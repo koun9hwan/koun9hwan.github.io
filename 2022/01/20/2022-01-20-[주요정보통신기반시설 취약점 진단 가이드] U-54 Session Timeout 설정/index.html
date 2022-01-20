@@ -24,30 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-50 관리자 그룹에 최소한의 계정 포함">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/19/2022-01-19-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-50%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EA%B7%B8%EB%A3%B9%EC%97%90%20%EC%B5%9C%EC%86%8C%ED%95%9C%EC%9D%98%20%EA%B3%84%EC%A0%95%20%ED%8F%AC%ED%95%A8/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-54%20Session%20Timeout%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-50/cat.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-50/script.png">
-<meta property="article:published_time" content="2022-01-19T14:01:00.000Z">
-<meta property="article:modified_time" content="2022-01-19T15:16:42.105Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-54/cat.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-54/script.png">
+<meta property="article:published_time" content="2022-01-20T11:40:00.000Z">
+<meta property="article:modified_time" content="2022-01-20T12:19:58.198Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-50/cat.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-54/cat.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/19/2022-01-19-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-50%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EA%B7%B8%EB%A3%B9%EC%97%90%20%EC%B5%9C%EC%86%8C%ED%95%9C%EC%9D%98%20%EA%B3%84%EC%A0%95%20%ED%8F%AC%ED%95%A8/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-54%20Session%20Timeout%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/19/2022-01-19-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-50%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EA%B7%B8%EB%A3%B9%EC%97%90%20%EC%B5%9C%EC%86%8C%ED%95%9C%EC%9D%98%20%EA%B3%84%EC%A0%95%20%ED%8F%AC%ED%95%A8/","path":"2022/01/19/2022-01-19-[주요정보통신기반시설 취약점 진단 가이드] U-50 관리자 그룹에 최소한의 계정 포함/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-50 관리자 그룹에 최소한의 계정 포함"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-54%20Session%20Timeout%20%EC%84%A4%EC%A0%95/","path":"2022/01/20/2022-01-20-[주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-50 관리자 그룹에 최소한의 계정 포함 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정 | Koun9Hwan</title>
   
 
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/19/2022-01-19-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-50%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EA%B7%B8%EB%A3%B9%EC%97%90%20%EC%B5%9C%EC%86%8C%ED%95%9C%EC%9D%98%20%EA%B3%84%EC%A0%95%20%ED%8F%AC%ED%95%A8/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-54%20Session%20Timeout%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-50 관리자 그룹에 최소한의 계정 포함
+          [주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정
         </h1>
 
         <div class="post-meta-container">
@@ -248,16 +248,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-01-19 23:01:00" itemprop="dateCreated datePublished" datetime="2022-01-19T23:01:00+09:00">2022-01-19</time>
+      <time title="Created: 2022-01-20 20:40:00 / Modified: 21:19:58" itemprop="dateCreated datePublished" datetime="2022-01-20T20:40:00+09:00">2022-01-20</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-20 00:16:42" itemprop="dateModified" datetime="2022-01-20T00:16:42+09:00">2022-01-20</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -281,8 +275,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>시스템 관리자 그룹에 최소한의 계정만 존재하는지에 대한 점검입니다.</p>
-<p>항목코드는 <code>U-50</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
+<p>사용자 쉘에 대한 환경설정 파일에서 <code>session timeout</code> 설정 여부 점검입니다.</p>
+<p>항목코드는 <code>U-54</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
 <br>
 
 <br>
@@ -292,14 +286,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>관리자 그룹에 최소한의 계정만 조재하는지 점검하여 불필요하게 권한이 남용되고 있는지 확인하기 위함입니다.</p>
+<p>사용자의 고의 또는 실수로 시스템에 계정이 접속된 상태로 방치됨을 차단하기 위함입니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>시스템을 관리하는 root 계정이 속한 그룹은 시스템 운영 파일에 대한 접근 권한이 부여되어 있으므로 해당 관리자 그룹에 속한 계정이 비인가자에게 유출될 경우 관리자 권한으로 시스템에 접근하여 계정 정보 유출, 환경설정 파일 및 디렉터리 변조 등의 위험이 존재합니다.</p>
+<p><code>Session timeout</code> 값이 설정되지 않은 경우 유휴 시간 내 비인가자의 시스템 접근으로 인해 불필요한 내부 정보의 노출 위함이 존재합니다.</p>
 <br>
 
 <br>
@@ -324,7 +318,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>192.168.219.102</td>
+<td>192.168.219.103</td>
 </tr>
 </tbody></table>
 <br>
@@ -334,10 +328,10 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : 관리자 그룹에 불필요한 계정이 등록되어 있지 않은 경우</p>
+<p><strong>양호</strong> : <code>Session Timeout</code>이 600초(10분) 이하로 설정되어 있는 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : 관리자 그룹에 불필요한 계정이 등록되어 있는 경우</p>
+<p><strong>취약</strong> : <code>Session Timeout</code>이 600초(10분) 이하로 설정되지 않은 경우</p>
 </blockquote>
 <br>
 
@@ -349,12 +343,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, HP-UX</td>
-<td><code># cat /etc/group</code><br />    <code>root:x:0:root</code></td>
-</tr>
-<tr>
-<td>AIX</td>
-<td><code># cat /etc/group</code><br />    <code>system:!:0:root</code></td>
+<td>SOLARIS,<br />LINUX, HP-UX,<br />AIX</td>
+<td>&lt;sh, ksh, bash 사용 시&gt;<br />    <code># cat /etc/profile(.profile)</code><br />    TMOUT=600<br />    export TMOUT<br /><br />&lt;csh 사용 시&gt;<br />    <code># cat /etc/csh.login</code> 또는 <code># cat /etc/csh.cshrc</code><br />    set autologout=10</td>
 </tr>
 </tbody></table>
 <br>
@@ -362,14 +352,14 @@
 <br>
 
 <blockquote>
-<p># cat /etc/group | grep :0:</p>
+<p># cat /etc/profile | grep &quot;TMOUT&quot;</p>
 </blockquote>
 <br>
 
-<p>관리자 그룹에 포함된 계정이 등록되어있는지 확인해주었습니다.</p>
+<p><code>Session Timeout</code> 설정되어 있는지 확인해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-50/cat.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-54/cat.png">
 
 <br>
 
@@ -388,12 +378,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, HP-UX</td>
-<td>1) vi 편집기를 이용하여 <code>/etc/group</code> 파일 열기<br /><br />2) root 그룹에 등록된 불필요한 계정 삭제<br />    (수정 전) <code>root:x:0:root,test</code><br />    (수정 후) <code>root:x:0:root</code></td>
-</tr>
-<tr>
-<td>AIX</td>
-<td>1) vi 편집기를 이용하여 <code>/etc/group</code> 파일 열기<br /><br />2) system 그룹에 등록된 불필요한 계정 삭제<br />    (수정 전) <code>system:!:0:root,test</code><br />    (수정 후) <code>system:!:0:root</code></td>
+<td>SOLARIS,<br />LINUX, HP-UX,<br />AIX</td>
+<td>- sh, ksh, bash를 사용하는 경우<br />1) vi 편집기를 이용하여 <code>/etc/profile(.profile)</code> 파일 열기<br />2) 아래와 같이 수정 또는 추가<br />    <code>TMOUT=600</code><br />    <code>export TMOUT</code><br /><br />- csh를 사용하는 경우<br />1) vi 편집기를 이용하여 <code>/etc/csh.login</code> 또는 <code>/etc/csh.cshrc</code> 파일 열기<br />2) 아래와 같이 수정 또는 추가<br />    <code>set autologout=10</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -405,19 +391,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/group | grep :0:`</span><br><span class="line">ProcessResult=<span class="variable">$&#123;process:9&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-50 [관리자 그룹에 최소한의 계정 포함]<span class="string">&quot;\n&quot;</span>관리자 그룹에 포함된 계정 : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-50.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/profile | grep <span class="string">&quot;TMOUT&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process=`cat /etc/profile | grep <span class="string">&quot;TMOUT&quot;</span> | sed <span class="string">&#x27;s/[^0-9]//g&#x27;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -lt 600 ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=양호</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-54 [Session Timeout 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-54.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p><code>/etc/group</code> 파일에서 관리자 그룹에 포함된 계정들을 출력해줍니다.</p>
+<p><code>Session Timeout</code>이 설정 안되거나 600 이하라면 <code>취약</code>, 아니면 <code>양호</code> 처리했습니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-50</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-54</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-50/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-54/script.png">
 
 <br>
 
@@ -447,14 +433,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/19/2022-01-19-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-49%20%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C%20%EA%B3%84%EC%A0%95%20%EC%A0%9C%EA%B1%B0/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-49 불필요한 계정 제거">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-49 불필요한 계정 제거
+                <a href="/2022/01/20/2022-01-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-53%20%EC%82%AC%EC%9A%A9%EC%9E%90%20shell%20%EC%A0%90%EA%B2%80/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-53 사용자 shell 점검">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-53 사용자 shell 점검
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/20/2022-01-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-51%20%EA%B3%84%EC%A0%95%EC%9D%B4%20%EC%A1%B4%EC%9E%AC%ED%95%98%EC%A7%80%20%EC%95%8A%EB%8A%94%20GID%20%EA%B8%88%EC%A7%80/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-51 계정이 존재하지 않는 GID 금지">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-51 계정이 존재하지 않는 GID 금지 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -507,7 +490,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"36df49a81232bb9315f01e14b625f953"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"42ed070f5cbf3f10ab61454745aef64f"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
