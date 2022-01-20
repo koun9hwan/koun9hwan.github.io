@@ -24,30 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-55 hosts.lpd 파일 소유자 및 권한 설정">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-55%20hosts.lpd%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-34/ps.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-34/script.png">
-<meta property="article:published_time" content="2022-01-16T12:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-16T13:26:08.043Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-55/ls.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-55/script.png">
+<meta property="article:published_time" content="2022-01-20T12:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-20T12:54:11.458Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-34/ps.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-55/ls.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-55%20hosts.lpd%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/","path":"2022/01/16/2022-01-16-[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-55%20hosts.lpd%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/","path":"2022/01/20/2022-01-20-[주요정보통신기반시설 취약점 진단 가이드] U-55 hosts.lpd 파일 소유자 및 권한 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-55 hosts.lpd 파일 소유자 및 권한 설정"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-55 hosts.lpd 파일 소유자 및 권한 설정 | Koun9Hwan</title>
   
 
 
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Zone-Transfer"><span class="nav-text">DNS Zone Transfer?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hosts-lpd"><span class="nav-text">hosts.lpd ?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/16/2022-01-16-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-34%20DNS%20Zone%20Transfer%20%EC%84%A4%EC%A0%95/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/20/2022-01-20-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-55%20hosts.lpd%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-34 DNS Zone Transfer 설정
+          [주요정보통신기반시설 취약점 진단 가이드] U-55 hosts.lpd 파일 소유자 및 권한 설정
         </h1>
 
         <div class="post-meta-container">
@@ -250,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-16 21:00:00 / Modified: 22:26:08" itemprop="dateCreated datePublished" datetime="2022-01-16T21:00:00+09:00">2022-01-16</time>
+      <time title="Created: 2022-01-20 21:00:00 / Modified: 21:54:11" itemprop="dateCreated datePublished" datetime="2022-01-20T21:00:00+09:00">2022-01-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,15 +275,15 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p><code>Secondary Name Server</code>로만 <code>Zone</code> 정보 전송 제한 여부 점검입니다.</p>
-<p>항목코드는 <code>U-34</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p><code>/etc/hosts.lpd</code> 파일의 삭제 및 권한 적절성 점검입니다.</p>
+<p>항목코드는 <code>U-55</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
 <br>
 
 <br>
 
-<h2 id="DNS-Zone-Transfer"><a href="#DNS-Zone-Transfer" class="headerlink" title="DNS Zone Transfer?"></a>DNS Zone Transfer?</h2><br>
+<h2 id="hosts-lpd"><a href="#hosts-lpd" class="headerlink" title="hosts.lpd ?"></a>hosts.lpd ?</h2><br>
 
-<p>Primary Name Server와 Secondary Name Server 간에 Zone 정보를 일관성 있게 유지하기 위하여 사용하는 기능입니다.</p>
+<p>로컬 프린트 서비스를 사용할 수 있는 허가된 호스트 정보를 담고 있는 파일입니다. (hostname 또는 IP 주소를 포함하고 있음)</p>
 <br>
 
 <br>
@@ -293,14 +293,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>허가되지 않는 사용자에게 <code>Zone Transfer</code>를 제한함으로써 호스트 정보, 시스템 정보 등 정보 유출의 방지를 목적으로 합니다.</p>
+<p>비인가자의 임의적인 <code>hosts.lpd</code> 변조를 막기 위해 <code>hosts.lpd</code> 파일 삭제 또는  소유자 및 권한 관리를 해야합니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>비인가자 <code>Zone Transfer</code>를 이용해 <code>Zone</code> 정보를 전송받아 호스트 정보, 시스템 정보, 네트워크 구성 형태 등의 많은 정보를 파악할 수 있습니다.</p>
+<p><code>hosts.lpd</code> 파일의 접근 권한이 적절하지 않을 경우 비인가자가 <code>/etc/hosts.lpd</code>  파일을 수정하여 허용된 사용자의 서비스를 방해할 수 있으며, 호스트 정보를 획득 할 수 있습니다.</p>
 <br>
 
 <br>
@@ -335,14 +335,13 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : <code>DNS</code> 서비스 미사용 또는 <code>Zone Transfer</code>를 허가된 사용자에게만 허용한 경우</p>
+<p><strong>양호</strong> : <code>hosts.lpd</code> 파일이 삭제되어 있거나 불가피하게 <code>hosts.lpd</code> 파일을 사용할  시 파일의 소유자가 root이고 권한이 600인 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : <code>DNS</code> 서비스를 사용하며 <code>Zone Transfer</code>를 모든 사용자에게 허용한 경우</p>
+<p><strong>취약</strong> : <code>hosts.lpd</code> 파일이 삭제되어 있지 않거나 파일의 소유자가 root가 아니고  권한이 600이 아닌 경우</p>
 </blockquote>
 <br>
 
-<p><strong>&lt; DNS 서비스를 사용할 경우 &gt;</strong></p>
 <table>
 <thead>
 <tr>
@@ -351,42 +350,23 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td><code>DNS</code> 서비스 사용 시 <code>/etc/named.conf</code> 파일의 <code>allow-transfer</code> 및 <code>xfmets</code> 확인<br />    <code># ps -ef | grep named | grep -v &quot;grep&quot;</code><br />    <code># cat /etc/named.conf | grep &#39;allow-transfer&#39;</code><br />    <code># cat /etc/named.boot | grep &quot;xfrnets&quot;</code></td>
+<td>SOLARIS,<br />LINUX, HP-UX,<br />AIX</td>
+<td><code># ls -l /etc/hosts.lpd</code><br />    rw——- root &lt;hosts.lpd 파일&gt;</td>
 </tr>
 </tbody></table>
 <br>
 
-<br>
-
-<p><strong>&lt; DNS 서비스를 사용하지 않는 경우 &gt;</strong></p>
-<table>
-<thead>
-<tr>
-<th>OS</th>
-<th>파일 위치 및 점검 방법</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>LINUX, AIX,<br />HP-UX<br />SOLARIS 5.9<br />이하 버전</td>
-<td><code>DNS</code> 서비스 데몬 확인<br />    <code># ps -ef | grep named</code></td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td><code># svcs -a | egrep &quot;dns&quot;</code></td>
-</tr>
-</tbody></table>
 <br>
 
 <blockquote>
-<p># ps -ef | grep named | grep -v &quot;grep&quot;</p>
+<p># ls -l /etc/hosts.lpd</p>
 </blockquote>
 <br>
 
-<p><code>DNS</code> 서비스 데몬을 확인해주었습니다.</p>
+<p><code>hosts.lpd</code> 파일이 존재하는지, 존재할 경우 소유자와 권한을 확인해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-34/ps.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-55/ls.png">
 
 <br>
 
@@ -405,12 +385,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>LINUX, AIX,<br />HP-UX<br />SOLARIS 5.9<br />이하 버전</td>
-<td><code>DNS</code> 서비스 데몬 중지<br />    <code># kill -9 [PID]</code></td>
-</tr>
-<tr>
-<td>SOLARIS 5.10<br />이상 버전</td>
-<td>1) <code>DNS</code> 서비스 데몬 확인<br />    <code>enabled 16:22:31 svc:/network/dns/server:default</code><br /><br />2) <code>svcadm disable &quot;중지하고자 하는 데몬&quot;</code> 명령으로 서비스 데몬 중지<br />    <code># svcadm disable svc:/network/dns/server:default</code></td>
+<td>SOLARIS,<br />LINUX, HP-UX,<br />AIX</td>
+<td>1) <code>hosts.lpd</code> 파일 삭제<br />    <code># rm -rf /etc/hosts.lpd</code><br /><br />2) 파일의 퍼미션 변경 (<code>hosts.lpd</code> 파일이 필요시)<br />    <code># chmod 600 /etc/hosts.lpd</code><br /><br />3) 소유자를 root로 변경 (<code>hosts.lpd</code> 파일이 필요시)<br />    <code># chown root /etc/hosts.lpd</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -422,19 +398,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line">cf=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep named | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=O</span><br><span class="line">        process=`cat /etc/named.conf | grep <span class="string">&#x27;allow-transfer&#x27;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                cf=설정됨</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                cf=설정안됨</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        process=`cat /etc/named.conf | grep <span class="string">&quot;xfrnets&quot;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                cf2=설정됨</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                cf2=설정안됨</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=X</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-34 [DNS Zone Transfer 설정]<span class="string">&quot;\n&quot;</span>DNS 서비스 활성화 여부 : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span><span class="string">&quot;\n&quot;</span>allow-transfer 설정 여부 : <span class="string">&quot;<span class="variable">$cf</span>&quot;</span><span class="string">&quot;\n&quot;</span>xfrnets 설정 여부 : <span class="string">&quot;<span class="variable">$cf2</span>&quot;</span> | tee /root/result/u-34.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find / -name hosts.lpd`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process=`find / -name hosts.lpd -perm 600`</span><br><span class="line">        process2=`find /etc/hosts.lpd -user root`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                ProcessResult=양호</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-55 [hosts.lpd 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-55.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p><code>DNS</code> 서비스 데몬을 확인해주고 <code>allow-transfer</code> <code>xfrnets</code> 설정이 되어있는지 확인해줍니다.</p>
+<p>중첩 if문을 사용하여 <code>hosts.lpd</code> 파일이 있다면 소유자와 권한을 확인해주고 <code>hosts.lpd</code> 파일이 없다면 <code>양호</code>처리했습니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-34</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-55</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-34/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-55/script.png">
 
 <br>
 
@@ -464,14 +440,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/16/2022-01-16-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-33%20DNS%20%EB%B3%B4%EC%95%88%20%EB%B2%84%EC%A0%84%20%ED%8C%A8%EC%B9%98/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-33 DNS 보안 버전 패치">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-33 DNS 보안 버전 패치
+                <a href="/2022/01/20/2022-01-20-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-54%20Session%20Timeout%20%EC%84%A4%EC%A0%95/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-54 Session Timeout 설정
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/16/2022-01-16-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-35%20%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EB%A6%AC%EC%8A%A4%ED%8C%85%20%EC%A0%9C%EA%B1%B0/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-35 웹서비스 디렉토리 리스팅 제거">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-35 웹서비스 디렉토리 리스팅 제거 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -524,7 +497,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"b650680a1071ef1e5e080e6f11872c05"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"166a63113508a36f43d05f8e0b5aa472"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
