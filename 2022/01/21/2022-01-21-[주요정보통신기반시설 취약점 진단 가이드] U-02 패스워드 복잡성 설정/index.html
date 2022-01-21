@@ -24,30 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-45 root 계정 su 제한">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-45%20root%20%EA%B3%84%EC%A0%95%20su%20%EC%A0%9C%ED%95%9C/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/21/2022-01-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-02%20%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C%20%EB%B3%B5%EC%9E%A1%EC%84%B1%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-45/cat.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-45/script.png">
-<meta property="article:published_time" content="2022-01-18T11:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-18T11:27:29.160Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-02/cat.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-02/script.png">
+<meta property="article:published_time" content="2022-01-21T12:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-21T14:08:18.165Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-45/cat.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-02/cat.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-45%20root%20%EA%B3%84%EC%A0%95%20su%20%EC%A0%9C%ED%95%9C/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/21/2022-01-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-02%20%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C%20%EB%B3%B5%EC%9E%A1%EC%84%B1%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-45%20root%20%EA%B3%84%EC%A0%95%20su%20%EC%A0%9C%ED%95%9C/","path":"2022/01/18/2022-01-18-[주요정보통신기반시설 취약점 진단 가이드] U-45 root 계정 su 제한/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-45 root 계정 su 제한"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/21/2022-01-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-02%20%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C%20%EB%B3%B5%EC%9E%A1%EC%84%B1%20%EC%84%A4%EC%A0%95/","path":"2022/01/21/2022-01-21-[주요정보통신기반시설 취약점 진단 가이드] U-02 패스워드 복잡성 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-45 root 계정 su 제한 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한 | Koun9Hwan</title>
   
 
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/18/2022-01-18-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-45%20root%20%EA%B3%84%EC%A0%95%20su%20%EC%A0%9C%ED%95%9C/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/21/2022-01-21-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-02%20%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C%20%EB%B3%B5%EC%9E%A1%EC%84%B1%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-45 root 계정 su 제한
+          [주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한
         </h1>
 
         <div class="post-meta-container">
@@ -250,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-18 20:00:00 / Modified: 20:27:29" itemprop="dateCreated datePublished" datetime="2022-01-18T20:00:00+09:00">2022-01-18</time>
+      <time title="Created: 2022-01-21 21:00:00 / Modified: 23:08:18" itemprop="dateCreated datePublished" datetime="2022-01-21T21:00:00+09:00">2022-01-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,8 +275,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p><code>su</code> 명령어 사용을 허용하는 사용자를 지정한 그룹이 설정되어 있는지에 대한 점검입니다.</p>
-<p>항목코드는 <code>U-45</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
+<p>시스템 정책에 사용자 계정관련 설정이 되어 있는지에 대한 점검입니다.</p>
+<p>항목코드는 <code>U-02</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
@@ -286,14 +286,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p><code>su</code> 관련 그룹만 <code>su</code> 명령어 사용 권한이 부여되어 있는지 점검하여 <code>su</code> 그룹에 포함되지 않은 일반 사용자의 <code>su</code> 명령 사용을 원천적으로 차단하는지 확인하기 위함입니다.</p>
+<p>패스워드 복잡성 관련 정책이 설정되어 있는지 점검하여 비인가자의 공격에 대비가 되어 있는지 확인하기 위함입니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>무분별한 사용자 변경으로 타 사용자 소유의 파일을 변경할 수 있으며 root 계정으로 변경하는 경우 관리자 권한을 획득할 수 있습니다.</p>
+<p>복잡성 설정이 되어있지 않은 패스워드는 사회공학적인 유추가 가능할 수 있으며 암호화된 패스워드 해시값을 무작위 대입공격, 사전대입 공격 등으로 단시간에 패스워드 크렉이 가능합니다.</p>
 <br>
 
 <br>
@@ -328,10 +328,10 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : <code>su</code> 명령어를 특정 그룹에 속한 사용자만 사용하도록 제한되어 있는 경우</p>
+<p><strong>양호</strong> : 패스워드 최소길이 8자리 이상, 영문·숫자·특수문자 최소 입력 기능이  설정된 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : <code>su</code> 명령어를 모든 사용자가 사용하도록 설정되어 있는 경우</p>
+<p><strong>취약</strong> : 패스워드 최소길이 8자리 이상, 영문·숫자·특수문자 최소 입력 기능이  설정된 경우</p>
 </blockquote>
 <br>
 
@@ -343,12 +343,20 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td>1) <code>wheel</code> 그룹 및 그룹 내 구성원 존재 여부 확인<br />    <code># cat /etc/group</code><br /><br />2) <code>wheel</code> 그룹이 <code>su</code> 명령어를 사용할 수 있는지 설정 여부 확인<br />    [SOLARIS] <code># ls -al /usr/bin/su</code><br />    [AIX] <code># cat /etc/security/user</code> default의 <code>sugroup-staff</code> 설정 확인<br />    [HP-UX] <code># vi /etc/default/security</code>의 <code>SU_ROOT_GROUP=wheel</code> 설정 확인<br /><br />3) 파일 권한 확인<br />    <code># ls -l /usr/bin/su</code></td>
+<td>SOLARIS</td>
+<td><code>/etc/default/passwd</code></td>
 </tr>
 <tr>
-<td>LINUX PAM<br />모듈 이용 시</td>
-<td>1) <code>wheel</code> 그룹 및 그룹 내 구성원 존재 여부 확인<br />    <code># cat /etc/group</code><br /><br />2) 허용 그룹 설정 여부 확인<br />    <code># cat /etc/pam.d/su</code></td>
+<td>LINUX</td>
+<td><strong>[RHEL5]</strong><br /><code>/etc/pam.d/system-auth</code><br /><br /><strong>[RHEL7]</strong><br /><code>/etc/security/pwquality.conf</code></td>
+</tr>
+<tr>
+<td>AIX</td>
+<td><code>/etc/security/user</code></td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td><code>/etc/default/security</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -356,14 +364,14 @@
 <br>
 
 <blockquote>
-<p># cat /etc/pam.d/su | grep &quot;pam_wheel.so use_uid&quot;</p>
+<p># cat /etc/security/pwquality.conf | grep password | grep -v &quot;#&quot;</p>
 </blockquote>
 <br>
 
-<p>root 이외의 계정에서 UID가 0인 계정이 있는지 검색해보았습니다.</p>
+<p>패스워드 정책 설정이 되어있는지 확인해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-45/cat.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-02/cat.png">
 
 <br>
 
@@ -382,16 +390,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX,<br />HP-UX</td>
-<td>1) <code>wheel</code> group 생성<br />    <code># groupadd wheel</code><br /><br />2) <code>su</code> 명령어 그룹 변경<br />    <code># chgrp wheel /usr/bin/su</code><br /><br />3) <code>su</code> 명령어 사용권한 변경<br />    <code># chmod 4750 /usr/bin/su</code><br /><br />4) <code>wheel</code> 그룹에 <code>su</code> 명령 허용 계정 등록<br />    <code># usermod -G wheel &lt;user_name&gt;</code></td>
-</tr>
-<tr>
-<td>AIX</td>
-<td>1) <code>wheel</code> group 생성<br />    <code># mkgroup wheel</code><br /><br />2) <code>su</code> 명령어 그룹 변경<br />    <code># chgrp wheel /usr/bin/su</code><br /><br />3) <code>su</code> 명령어 사용권한 변경<br />    <code># chmod 4750 /usr/bin/su</code><br /><br />4) <code>wheel</code> 그룹에 <code>su</code> 명령 허용 계정 등록<br />    <code># chgroup users=&lt;user_name&gt; wheel</code></td>
-</tr>
-<tr>
-<td>LINUX PAM<br />모듈 이용 시</td>
-<td>1) <code>/etc/pam.d/su</code> 파일 주석 제거<br />    auth sufficient /lib/security/pam_rootok.so<br />    auth required /lib/security/pam_wheel.so debug group=wheel<br />    auth sufficient /lib/security/$ISA/pam_rootok.so <br />    auth required /lib/security/$ISA/pam_wheel.so use_uid<br /><br />2) <code>wheel</code> 그룹에 <code>su</code> 명령어를 사용할 사용자 추가<br />    <code># usermod -G wheel &lt;user_name&gt;</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><strong>&lt; 부적절한 패스워드 유형 &gt;</strong><br />1. 사전에 나오는 단어나 이들의 조합<br />2. 길이가 너무 짧거나, NULL(공백)인 패스워드<br />3. 키보드 자판의 일련의 나열 (예) abcd, qwert, etc<br />4. 사용자 계정 정보에서 유추 가능한 단어들<br />(예) 지역명, 부서명, 계정명, 사용자 이름의 이니셜, root, rootroot, root123, admin 등<br /><br /><strong>&lt; 패스워드 관리 방법 &gt;</strong><br />1. 영문, 숫자, 특수문자를 조합하여 계정명과 상이한 8자 이상의 패스워드 설정<br />※ 다음 각 목의 문자 종류 중 2종류 이상을 조합하여 최소 10자리 이상 또는, 3종류 이상을 조합하여 최소 8자리 이상의 길이로 구성<br />가. 영문 대문자(26개)<br />나. 영문 소문자(26개)<br />다. 숫자(10개)<br />라. 특수문자(32개)<br />2. 시스템마다 상이한 패스워드 사용<br />3. 패스워드를 기록해 놓을 경우 변형하여 기록</td>
 </tr>
 </tbody></table>
 <br>
@@ -403,19 +403,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/pam.d/su | grep <span class="string">&quot;pam_wheel.so use_uid&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *<span class="string">&quot;#&quot;</span>* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-45 [root 계정 su 제한] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-45.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">minlen=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;minlen&quot;</span> | sed <span class="string">&#x27;s/[^0-9]//g&#x27;</span>`</span><br><span class="line">lcredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;lcredit&quot;</span>`</span><br><span class="line">ucredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;ucredit&quot;</span>`</span><br><span class="line">dcredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;dcredit&quot;</span>`</span><br><span class="line">ocredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;ocredit&quot;</span>`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$minlen</span>&quot;</span> -lt 8 ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$lcredit</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$ucredit</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$dcredit</span>&quot;</span> ]</span><br><span class="line">                        <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$ocredit</span>&quot;</span> ]</span><br><span class="line">                                <span class="keyword">then</span></span><br><span class="line">                                        ProcessResult=양호</span><br><span class="line">                                <span class="keyword">else</span></span><br><span class="line">                                        ProcessResult=취약</span><br><span class="line">                                <span class="keyword">fi</span></span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                                ProcessResult=취약</span><br><span class="line">                        <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        ProcessResult=취약</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-02 [패스워드 복잡성 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-02.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p><code>/etc/pam.d/su</code> 파일에 있는 설정 구문이 주석 처리되어 있을 경우 <code>취약</code>, 아니라면 <code>양호</code>처리 했습니다.</p>
+<p>패스워드 최소길이가 8자 이상, 영문, 숫자, 특수문자 최소 입력 기능이 설정되어있으면 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-45</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-02</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-45/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-02/script.png">
 
 <br>
 
@@ -445,14 +445,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/18/2022-01-18-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-44%20root%20%EC%9D%B4%EC%99%B8%EC%9D%98%20UID%EA%B0%80%20'0'%20%EA%B8%88%EC%A7%80/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 '0' 금지">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-44 root 이외의 UID가 '0' 금지
+                <a href="/2022/01/21/2022-01-21-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-01%20root%20%EA%B3%84%EC%A0%95%20%EC%9B%90%EA%B2%A9%EC%A0%91%EC%86%8D%20%EC%A0%9C%ED%95%9C/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/19/2022-01-19-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-46%20%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C%20%EC%B5%9C%EC%86%8C%20%EA%B8%B8%EC%9D%B4%20%EC%84%A4%EC%A0%95/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-46 패스워드 최소 길이 설정">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-46 패스워드 최소 길이 설정 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -505,7 +502,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"0826d25ba8b8ff729137e12024f48764"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"49e6fc74292d7014297fcede3a90b4c2"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

@@ -12457,4 +12457,171 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-01 root 계정 원격접속 제한</title>
+    <url>/2022/01/21/2022-01-21-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-02%20%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C%20%EB%B3%B5%EC%9E%A1%EC%84%B1%20%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>시스템 정책에 사용자 계정관련 설정이 되어 있는지에 대한 점검입니다.</p>
+<p>항목코드는 <code>U-02</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>패스워드 복잡성 관련 정책이 설정되어 있는지 점검하여 비인가자의 공격에 대비가 되어 있는지 확인하기 위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>복잡성 설정이 되어있지 않은 패스워드는 사회공학적인 유추가 가능할 수 있으며 암호화된 패스워드 해시값을 무작위 대입공격, 사전대입 공격 등으로 단시간에 패스워드 크렉이 가능합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : 패스워드 최소길이 8자리 이상, 영문·숫자·특수문자 최소 입력 기능이  설정된 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : 패스워드 최소길이 8자리 이상, 영문·숫자·특수문자 최소 입력 기능이  설정된 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS</td>
+<td><code>/etc/default/passwd</code></td>
+</tr>
+<tr>
+<td>LINUX</td>
+<td><strong>[RHEL5]</strong><br /><code>/etc/pam.d/system-auth</code><br /><br /><strong>[RHEL7]</strong><br /><code>/etc/security/pwquality.conf</code></td>
+</tr>
+<tr>
+<td>AIX</td>
+<td><code>/etc/security/user</code></td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td><code>/etc/default/security</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># cat /etc/security/pwquality.conf | grep password | grep -v &quot;#&quot;</p>
+</blockquote>
+<br>
+
+<p>패스워드 정책 설정이 되어있는지 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-02/cat.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><strong>&lt; 부적절한 패스워드 유형 &gt;</strong><br />1. 사전에 나오는 단어나 이들의 조합<br />2. 길이가 너무 짧거나, NULL(공백)인 패스워드<br />3. 키보드 자판의 일련의 나열 (예) abcd, qwert, etc<br />4. 사용자 계정 정보에서 유추 가능한 단어들<br />(예) 지역명, 부서명, 계정명, 사용자 이름의 이니셜, root, rootroot, root123, admin 등<br /><br /><strong>&lt; 패스워드 관리 방법 &gt;</strong><br />1. 영문, 숫자, 특수문자를 조합하여 계정명과 상이한 8자 이상의 패스워드 설정<br />※ 다음 각 목의 문자 종류 중 2종류 이상을 조합하여 최소 10자리 이상 또는, 3종류 이상을 조합하여 최소 8자리 이상의 길이로 구성<br />가. 영문 대문자(26개)<br />나. 영문 소문자(26개)<br />다. 숫자(10개)<br />라. 특수문자(32개)<br />2. 시스템마다 상이한 패스워드 사용<br />3. 패스워드를 기록해 놓을 경우 변형하여 기록</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">minlen=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;minlen&quot;</span> | sed <span class="string">&#x27;s/[^0-9]//g&#x27;</span>`</span><br><span class="line">lcredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;lcredit&quot;</span>`</span><br><span class="line">ucredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;ucredit&quot;</span>`</span><br><span class="line">dcredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;dcredit&quot;</span>`</span><br><span class="line">ocredit=`cat /etc/security/pwquality.conf | grep password | grep -v <span class="string">&quot;#&quot;</span> | tr <span class="string">&quot; &quot;</span> <span class="string">&quot;\n&quot;</span> | grep <span class="string">&quot;ocredit&quot;</span>`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$minlen</span>&quot;</span> -lt 8 ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$lcredit</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$ucredit</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$dcredit</span>&quot;</span> ]</span><br><span class="line">                        <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$ocredit</span>&quot;</span> ]</span><br><span class="line">                                <span class="keyword">then</span></span><br><span class="line">                                        ProcessResult=양호</span><br><span class="line">                                <span class="keyword">else</span></span><br><span class="line">                                        ProcessResult=취약</span><br><span class="line">                                <span class="keyword">fi</span></span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                                ProcessResult=취약</span><br><span class="line">                        <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        ProcessResult=취약</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-02 [패스워드 복잡성 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-02.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>패스워드 최소길이가 8자 이상, 영문, 숫자, 특수문자 최소 입력 기능이 설정되어있으면 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-02</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-02/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
