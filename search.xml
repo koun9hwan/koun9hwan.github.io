@@ -13371,7 +13371,7 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
-<td><code>/etc/passwd</code> 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/passwd</code><br />    rw-r–r– root &lt;passwd 파일&gt;</td>
+<td><code>/etc/passwd</code> 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/passwd</code><br />    rw-r--r-- root &lt;passwd 파일&gt;</td>
 </tr>
 </tbody></table>
 <br>
@@ -13526,15 +13526,15 @@ section 진행 기간
 </thead>
 <tbody><tr>
 <td>SOLARIS,<br />LINUX</td>
-<td><code># ls -l /etc/shadow</code><br />    r——– root &lt;shadow 파일&gt;</td>
+<td><code># ls -l /etc/shadow</code><br />    r-------- root &lt;shadow 파일&gt;</td>
 </tr>
 <tr>
 <td>AIX</td>
-<td><code># ls -ld /etc/security/passwd</code><br />    r——– root &lt;passwd 파일&gt;</td>
+<td><code># ls -ld /etc/security/passwd</code><br />    r-------- root &lt;passwd 파일&gt;</td>
 </tr>
 <tr>
 <td>HP-UX</td>
-<td><code># ls -ld /tcb/files/auth</code><br />    r——– root &lt;auth 파일&gt;</td>
+<td><code># ls -ld /tcb/files/auth</code><br />    r-------- root &lt;auth 파일&gt;</td>
 </tr>
 </tbody></table>
 <br>
