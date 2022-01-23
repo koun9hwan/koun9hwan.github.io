@@ -14261,4 +14261,156 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-13 SUID, SGID 설정 파일점검</title>
+    <url>/2022/01/23/2022-01-23-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-13%20SUID,%20SGID%20%EC%84%A4%EC%A0%95%20%ED%8C%8C%EC%9D%BC%EC%A0%90%EA%B2%80/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>불필요하거나 악의적인 파일에 <code>SUID</code> <code>SGID</code> 설정 여부 점검</p>
+<p>항목코드는 <code>U-13</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p> 불필요한 <code>SUID</code> <code>SGID</code> 설정 제거로 악의적인 사용자의 권한상승을 방지하기  위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p><code>SUID</code> <code>SGID</code> 파일의 접근권한이 적절하지 않을 경우 <code>SUID</code> <code>SGID</code> 설정된 파 일로 특정 명령어를 실행하여 root 권한 획득 가능합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : 주요 실행파일의 권한에 <code>SUID</code>와 <code>SGID</code>에 대한 설정이 부여되어 있지 않은  경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : 주요 실행파일의 권한에 <code>SUID</code>와 <code>SGID</code>에 대한 설정이 부여되어 있는 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>OS별 주요 실행파일에 대한 <code>SUID</code> <code>SGID</code> 설정 여부 확인<br />    `# ls -alL [check_file]</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># find / -user root -type f ( -perm -04000 -o -perm -02000 ) -xdev -exec ls -al {} ; 2&gt;/dev/null</p>
+</blockquote>
+<br>
+
+<p><code>SUID</code> <code>SGID</code> 설정이 부여된 실행파일 목록을 출력해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-13/find.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) 제거 방법<br />    <code># chmod -s &lt;file_name&gt;</code><br /><br />2) 주기적인 검사 방법<br />    <code># find / -user root -type f \( -perm -04000 -o -perm -02000 \) -xdev -exec ls -al &#123;&#125; \;</code><br /><br />3) 반드시 사용이 필요한 경우 특정 그룹에서만 사용하도록 제한하는 방법<br />일반 사용자의 <code>Setuid</code> 사용을 제한함<br />    <code># /user/bin/chgrp &lt;group_name&gt; &lt;setuid_file_name&gt;</code><br />    <code># /usr/bin/chmod 4750 &lt;setuid_file_name&gt;</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">process=`find / -user root -<span class="built_in">type</span> f \( -perm -04000 -o -perm -02000 \) -xdev -<span class="built_in">exec</span> ls -al &#123;&#125; \; 2&gt;/dev/null`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$process</span>&quot;</span> &gt; /root/result/u-13.txt</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-13 [SUID, SGID 설정 파일점검] : /root/result/u-13.txt 파일 확인</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>/root/result/u-13.txt</code> 파일에 <code>SUID</code> <code>SGID</code> 설정이 부여된 실행파일 목록을 입력해주었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-13/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
