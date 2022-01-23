@@ -24,30 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-06 파일 및 디렉터리 소유자 설정">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/22/2022-01-22-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-06%20%ED%8C%8C%EC%9D%BC%20%EB%B0%8F%20%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EC%84%A4%EC%A0%95/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-10 &#x2F;etc&#x2F;(x)inetd.conf 파일 소유자 및 권한 설정">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-10%20(x)inetd.conf%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-06/find.png">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-06/script.png">
-<meta property="article:published_time" content="2022-01-22T14:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-22T15:09:32.817Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-10/ls.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-10/script.png">
+<meta property="article:published_time" content="2022-01-23T11:02:00.000Z">
+<meta property="article:modified_time" content="2022-01-23T11:48:38.197Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-06/find.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-10/ls.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/22/2022-01-22-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-06%20%ED%8C%8C%EC%9D%BC%20%EB%B0%8F%20%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EC%84%A4%EC%A0%95/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-10%20(x)inetd.conf%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/22/2022-01-22-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-06%20%ED%8C%8C%EC%9D%BC%20%EB%B0%8F%20%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EC%84%A4%EC%A0%95/","path":"2022/01/22/2022-01-22-[주요정보통신기반시설 취약점 진단 가이드] U-06 파일 및 디렉터리 소유자 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-06 파일 및 디렉터리 소유자 설정"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-10%20(x)inetd.conf%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/","path":"2022/01/23/2022-01-23-[주요정보통신기반시설 취약점 진단 가이드] U-10 (x)inetd.conf 파일 소유자 및 권한 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-10 /etc/(x)inetd.conf 파일 소유자 및 권한 설정"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-06 파일 및 디렉터리 소유자 설정 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-10 /etc/(x)inetd.conf 파일 소유자 및 권한 설정 | Koun9Hwan</title>
   
 
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/22/2022-01-22-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-06%20%ED%8C%8C%EC%9D%BC%20%EB%B0%8F%20%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EC%84%A4%EC%A0%95/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-10%20(x)inetd.conf%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-06 파일 및 디렉터리 소유자 설정
+          [주요정보통신기반시설 취약점 진단 가이드] U-10 /etc/(x)inetd.conf 파일 소유자 및 권한 설정
         </h1>
 
         <div class="post-meta-container">
@@ -248,16 +248,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-01-22 23:00:00" itemprop="dateCreated datePublished" datetime="2022-01-22T23:00:00+09:00">2022-01-22</time>
+      <time title="Created: 2022-01-23 20:02:00 / Modified: 20:48:38" itemprop="dateCreated datePublished" datetime="2022-01-23T20:02:00+09:00">2022-01-23</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-23 00:09:32" itemprop="dateModified" datetime="2022-01-23T00:09:32+09:00">2022-01-23</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -281,8 +275,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>소유자 불분명한 파일이나 디렉터리가 존재하는지 여부를 점검합니다.</p>
-<p>항목코드는 <code>U-06</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<p><code>/etc/(x)inetd.conf</code> 파일 권한 적절성 점검입니다.</p>
+<p>항목코드는 <code>U-10</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
@@ -292,14 +286,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>소유자가 존재하지 않는 파일 및 디렉터리를 삭제 및 관리하여 임의의 사용자가 해당파일을 열람, 수정하는 행위를 사전에 차단하기 위함입니다.</p>
+<p> <code>/etc/(x)inetd.conf</code> 파일을 관리자만 제어할 수 있게 하여 비인가자들의 임의 적인 파일 변조를 방지하기 위함입니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>소유자가 존재하지 않는 파일의 UID와 동일한 값으로 특정계정의 UID값을  변경하면 해당 파일의 소유자가 되어 모든 작업이 가능합니다.</p>
+<p>(x)inetd.conf 파일에 소유자외 쓰기 권한이 부여된 경우 일반사용자 권한으로 (x)inetd.conf 파일에 등록된 서비스를 변조하거나 악의적인 프로그램(서비스)를 등록할 수 있습니다.</p>
 <br>
 
 <br>
@@ -334,10 +328,10 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : 소유자가 존재하지 않는 파일 및 디렉터리가 존재하지 않는 경우</p>
+<p><strong>양호</strong> : <code>/etc/inetd.conf</code> 파일의 소유자가 root이고, 권한이 600인 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : 소유자가 존재하지 않는 파일 및 디렉터리가 존재하는 경우</p>
+<p><strong>취약</strong> : <code>/etc/inetd.conf</code> 파일의 소유자가 root가 아니거나, 권한이 600이 아닌 경우</p>
 </blockquote>
 <br>
 
@@ -349,16 +343,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS, AIX</td>
-<td>소유자가 <code>nouser</code> <code>nogroup</code>인 파일 이나 디렉터리 검색<br />    <code># find / -nouser -o -nogroup -xdev -ls 2 &gt; /dev/null</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>/etc/inetd.conf</code> 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/inetd.conf</code><br />    rw------- root &lt;inetd.conf 파일&gt;</td>
 </tr>
 <tr>
-<td>HP-UX</td>
-<td><code># find / \ &#123; -nouser -o -nogroup \&#125; -xdev -exec ls -al &#123; &#125; \; 2&gt; /dev/null</code></td>
-</tr>
-<tr>
-<td>LINUX</td>
-<td><code># find / -nouser -print</code><br /><code># find / -nogroup -print</code></td>
+<td>LINUX<br />(xinetd)</td>
+<td><code>/etc/xinetd.conf</code> 파일 및 <code>/etcxinetd.d/</code> 하위 모든 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/xinetd.conf</code><br />    <code># ls -al /etc/xinetd.d/*</code><br />    rw------- root &lt;xinetd.conf 파일&gt;<br />    rw------- root &lt;xinetd 디렉터리 내 모든 파일&gt;</td>
 </tr>
 </tbody></table>
 <br>
@@ -366,15 +356,15 @@
 <br>
 
 <blockquote>
-<p># find / -nouser -print</p>
-<p># find / -nogroup -print</p>
+<p># ls -l /etc/xinetd.conf</p>
+<p># ls -l /etc/xinetd.d/*</p>
 </blockquote>
 <br>
 
-<p>소유자가 <code>nouser</code> <code>nogroup</code>인 파일이나 디렉터리를 검색해주었습니다.</p>
+<p><code>/etc/xinetd.conf</code> <code>/etc/xinetd.d/*</code> 파일의 소유자와 권한을 확인해주었습니다.</p>
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-06/find.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-10/ls.png">
 
 <br>
 
@@ -393,8 +383,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />LINUX, AIX<br />HP-UX</td>
-<td>1) 소유자가 존재하지 않는 파일이나 디렉터리가 불필한 경우 <code>rm</code> 명령으로 삭제<br />    <code># rm &lt;file_name&gt;</code><br />    <code># rm &lt;directory_name&gt;</code><br /><br />2) 필요한 경우 <code>chown</code> 명령으로 소유자 및 그룹 변경<br />    <code># chown &lt;user_name&gt; &lt;file_name&gt;</code></td>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>/etc/inetd.conf</code> 파일의 소유자 및 권한 변경<br />    <code># chown root /etc/inetd.conf</code><br />    <code># chmod 600 /etc/inetd.conf</code></td>
+</tr>
+<tr>
+<td>LINUX<br />(xinetd)</td>
+<td><code>/etc/xinetd.conf</code> 파일의 소유자 및 권한 변경<br />    <code># chown root /etc/xinetd.conf</code><br />    <code># chmod 600 /etc/xinetd.conf</code><br /><code>/etc/xinetd.d/</code> 하위 디렉터리도 위와 동일한 방법으로 조치</td>
 </tr>
 </tbody></table>
 <br>
@@ -406,19 +400,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find / -nouser -o -nogroup 2&gt; /root/result/u-06.txt`</span><br><span class="line">process2=`sed <span class="string">&#x27;/No such file or directory/d&#x27;</span> /root/result/u-06.txt`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-06 [파일 및 디렉터리 소유자 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-06.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find /etc/xinetd.conf -not -perm 600`</span><br><span class="line">process2=`find /etc/xinetd.conf -not -user root`</span><br><span class="line">process3=`find /etc/xinetd.d/* -not -perm 600`</span><br><span class="line">process4=`find /etc/xinetd.d/* -not -user root`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process3</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process4</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-10 [/etc/\(x\)inetd.conf 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-10.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p>소유자가 존재하지 않는 파일이나 디렉터리가 있을경우 <code>취약</code>, 없을경우 <code>양호</code> 처리해주었습니다.</p>
+<p><code>/etc/xinetd.conf</code> <code>/etc/xinetd.d/*</code> 파일의 소유자가 root가 아니거나 권한이 600이 아닌경우 <code>취약</code>, 아니면 <code>양호</code> 처리해주었습니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-06</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-10</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-06/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-10/script.png">
 
 <br>
 
@@ -448,14 +442,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/22/2022-01-22-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-05%20root%ED%99%88,%20%ED%8C%A8%EC%8A%A4%20%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%20%EA%B6%8C%ED%95%9C%20%EB%B0%8F%20%ED%8C%A8%EC%8A%A4%20%EC%84%A4%EC%A0%95/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-05 root홈, 패스 디렉터리 권한 및 패스 설정">
-                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-05 root홈, 패스 디렉터리 권한 및 패스 설정
+                <a href="/2022/01/23/2022-01-23-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-09%20hosts%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-09 /etc/hosts 파일 소유자 및 권한 설정">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-09 /etc/hosts 파일 소유자 및 권한 설정
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/23/2022-01-23-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-07%20passwd%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-07 /etc/passwd 파일 소유자 및 권한 설정">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-07 /etc/passwd 파일 소유자 및 권한 설정 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -508,7 +499,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"558b6d1cb980ed0a474bf46613a6fc82"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"accbeea3e33b5143bcfd567d21cb78cf"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

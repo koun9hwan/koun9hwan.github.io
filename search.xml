@@ -13779,4 +13779,168 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-10 /etc/(x)inetd.conf 파일 소유자 및 권한 설정</title>
+    <url>/2022/01/23/2022-01-23-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-10%20(x)inetd.conf%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p><code>/etc/(x)inetd.conf</code> 파일 권한 적절성 점검입니다.</p>
+<p>항목코드는 <code>U-10</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p> <code>/etc/(x)inetd.conf</code> 파일을 관리자만 제어할 수 있게 하여 비인가자들의 임의 적인 파일 변조를 방지하기 위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>(x)inetd.conf 파일에 소유자외 쓰기 권한이 부여된 경우 일반사용자 권한으로 (x)inetd.conf 파일에 등록된 서비스를 변조하거나 악의적인 프로그램(서비스)를 등록할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : <code>/etc/inetd.conf</code> 파일의 소유자가 root이고, 권한이 600인 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : <code>/etc/inetd.conf</code> 파일의 소유자가 root가 아니거나, 권한이 600이 아닌 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>/etc/inetd.conf</code> 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/inetd.conf</code><br />    rw------- root &lt;inetd.conf 파일&gt;</td>
+</tr>
+<tr>
+<td>LINUX<br />(xinetd)</td>
+<td><code>/etc/xinetd.conf</code> 파일 및 <code>/etcxinetd.d/</code> 하위 모든 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/xinetd.conf</code><br />    <code># ls -al /etc/xinetd.d/*</code><br />    rw------- root &lt;xinetd.conf 파일&gt;<br />    rw------- root &lt;xinetd 디렉터리 내 모든 파일&gt;</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ls -l /etc/xinetd.conf</p>
+<p># ls -l /etc/xinetd.d/*</p>
+</blockquote>
+<br>
+
+<p><code>/etc/xinetd.conf</code> <code>/etc/xinetd.d/*</code> 파일의 소유자와 권한을 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-10/ls.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>/etc/inetd.conf</code> 파일의 소유자 및 권한 변경<br />    <code># chown root /etc/inetd.conf</code><br />    <code># chmod 600 /etc/inetd.conf</code></td>
+</tr>
+<tr>
+<td>LINUX<br />(xinetd)</td>
+<td><code>/etc/xinetd.conf</code> 파일의 소유자 및 권한 변경<br />    <code># chown root /etc/xinetd.conf</code><br />    <code># chmod 600 /etc/xinetd.conf</code><br /><code>/etc/xinetd.d/</code> 하위 디렉터리도 위와 동일한 방법으로 조치</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find /etc/xinetd.conf -not -perm 600`</span><br><span class="line">process2=`find /etc/xinetd.conf -not -user root`</span><br><span class="line">process3=`find /etc/xinetd.d/* -not -perm 600`</span><br><span class="line">process4=`find /etc/xinetd.d/* -not -user root`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process3</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process4</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-10 [/etc/\(x\)inetd.conf 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-10.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>/etc/xinetd.conf</code> <code>/etc/xinetd.d/*</code> 파일의 소유자가 root가 아니거나 권한이 600이 아닌경우 <code>취약</code>, 아니면 <code>양호</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-10</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-10/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
