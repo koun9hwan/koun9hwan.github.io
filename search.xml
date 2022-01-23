@@ -14879,4 +14879,165 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-17 $HOME/.rhosts, hosts.equiv 사용 금지</title>
+    <url>/2022/01/23/2022-01-23-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-17%20$HOME%20.rhosts,%20hosts.equiv%20%EC%82%AC%EC%9A%A9%20%EA%B8%88%EC%A7%80/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p><code>/etc/hosts.equiv</code> 파일 및 <code>.rhosts</code> 파일 사용자를 root 또는 해당 계정으로 설정한 뒤 권한을 600으로 설정하고 해당파일 설정에 <code>+</code> 설정이 포함되지 않도록 설정되어 있는지 점검합니다.</p>
+<p>항목코드는 <code>U-17</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>r command 사용을 통한 원격 접속은 인증 없이 관리자 원격접속이 가능하므로 서비스 포트를 차단해야 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p><code>rlogin</code> <code>rsh</code> 등과 같은 r command의 보안 설정이 적용되지 않은 경우 원격지의 공격자가 관리자 권한으로 목표 시스템상의 임의의 명령을 수행시킬 수 있으며 명령어 원격 실행을 통해 중요 정보 유출 및 시스템 장애를 유발시킬 수 있습니다. 또한 공격자 백도어 등으로도 활용될 수 있습니다.</p>
+<p>r command 서비스의 접근통제에 관련된 파일로 권한설정을 미 적용한 경우 r command 서비스 사용 권한을 임의로 등록하여 무단 사용이 가능합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : <code>login</code> <code>shell</code> <code>exec</code> 서비스를 사용하지 않거나 사용 시 아래와 같은 설정이 적용된 경우</p>
+<ol>
+<li> <code>/etc/hosts.equiv</code> 및 <code>$HOME/.rhosts</code> 파일 소유자가 root 또는 해당 계정인 경우</li>
+<li><code>/etc/hosts.equiv</code> 및 <code>$HOME/.rhosts</code> 파일 권한이 600 이하인 경우</li>
+<li><code>/etc/hosts.equiv</code> 및 <code>$HOME/.rhosts</code> 파일 설정에 <code>+</code> 설정이 없는 경우</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : <code>login</code> <code>shell</code> <code>exec</code> 서비스를 사용하고 위와 같은 설정이 적용되지 않은 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) 파일 소유자 및 권한 확인<br />    <code># ls -al /etc/hosts.equiv</code><br />    <code># ls -al $HOME/.rhosts</code><br />    rw------- root &lt;hosts.equiv 파일&gt;<br />    rw------- root &lt;$HOME/.rhosts 파일&gt;<br /><br />2) 계정 별 <code>+</code> 부여 적절성 확인<br />    <code># cat /etc/hosts.equiv</code><br />    <code># cat $HOME/.rhosts</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ls -al $HOME/.rhosts</p>
+</blockquote>
+<br>
+
+<p><code>.rhosts</code>의 소유자와 권한을 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-17/ls.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) <code>/etc/hosts.equiv</code> 및 <code>$HOME/.rhosts</code> 파일의 소유자를 root 또는 해당 계정으로 변경<br />    <code># chown root /etc/hosts.equiv</code><br />    <code># chown &lt;user_name&gt; $HOME/.rhosts</code><br /><br />2) <code>/etc/hosts.equiv</code> 및 <code>$HOME/.rhosts</code> 파일의 권한을 600 이하로 변경<br />    <code># chmod 600 /etc/hosts.equiv</code><br />    <code># chmod 600 $HOME/.rhosts</code><br /><br />3) <code>/etc/hosts.equiv</code> 및 <code>$HOME/.rhosts</code> 파일에서 <code>+</code>를 제거하고 허용 호스트 및 계정 등록<br />    <code># cat /etc/hosts.equiv</code> (or $HOME/.rhosts)</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">equivResult=<span class="string">&quot;&quot;</span></span><br><span class="line">rhostsResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find / -name hosts.equiv`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -user root`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -perm 601`</span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        equivResult=취약</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        process3=`cat <span class="string">&quot;<span class="variable">$process</span>&quot;</span> | grep <span class="string">&quot;+&quot;</span>`</span><br><span class="line">                        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process3</span>&quot;</span> ]</span><br><span class="line">                        <span class="keyword">then</span></span><br><span class="line">                                equivResult=취약</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                                equivResult=양호</span><br><span class="line">                        <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                equivResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        equivResult=<span class="string">&quot;파일 없음&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">process=`find / -name .rhosts`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -user root`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -perm 601`</span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        rhostsResult=취약</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        process3=`cat <span class="string">&quot;<span class="variable">$process</span>&quot;</span> | grep <span class="string">&quot;+&quot;</span>`</span><br><span class="line">                        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process3</span>&quot;</span> ]</span><br><span class="line">                        <span class="keyword">then</span></span><br><span class="line">                                rhostsResult=취약</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                                rhostsResult=양호</span><br><span class="line">                        <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                rhostsResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        rhostsResult=<span class="string">&quot;파일 없음&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-17 [<span class="variable">$Home</span>/.rhosts, hosts.equiv 사용 금지]<span class="string">&quot;\n&quot;</span>[hosts.equiv] : <span class="string">&quot;<span class="variable">$equivResult</span>&quot;</span><span class="string">&quot;\n&quot;</span>[.rhosts] : <span class="string">&quot;<span class="variable">$rhostsResult</span>&quot;</span> | tee /root/result/u-17.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>hosts.equiv</code> <code>.rhosts</code>의 위치를 찾고 파일의 소유자와 권한, <code>+</code> 설정여부에 따라 <code>양호 / 취약</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-17</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-17/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
