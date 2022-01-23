@@ -24,29 +24,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제">
-<meta property="og:url" content="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-25%20NFS%20%EC%A0%91%EA%B7%BC%20%ED%86%B5%EC%A0%9C/index.html">
+<meta property="og:title" content="[주요정보통신기반시설 취약점 진단 가이드] U-08 &#x2F;etc&#x2F;shadow 파일 소유자 및 권한 설정">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-08%20shadow%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-25/script.png">
-<meta property="article:published_time" content="2022-01-10T11:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-10T11:02:34.019Z">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-08/ls.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-08/script.png">
+<meta property="article:published_time" content="2022-01-23T10:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-23T10:48:54.331Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="시스템보안">
 <meta property="article:tag" content="주요정보통신기반시설 취약점 진단 가이드">
 <meta property="article:tag" content="UNIX&#x2F;LINUX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-25/script.png">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/주요정보통신기반시설%20취약점%20진단%20가이드/U-08/ls.png">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-25%20NFS%20%EC%A0%91%EA%B7%BC%20%ED%86%B5%EC%A0%9C/">
+<link rel="canonical" href="https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-08%20shadow%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-25%20NFS%20%EC%A0%91%EA%B7%BC%20%ED%86%B5%EC%A0%9C/","path":"2022/01/10/2022-01-10-[주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-08%20shadow%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/","path":"2022/01/23/2022-01-23-[주요정보통신기반시설 취약점 진단 가이드] U-08 shadow 파일 소유자 및 권한 설정/","title":"[주요정보통신기반시설 취약점 진단 가이드] U-08 /etc/shadow 파일 소유자 및 권한 설정"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제 | Koun9Hwan</title>
+<title>[주요정보통신기반시설 취약점 진단 가이드] U-08 /etc/shadow 파일 소유자 및 권한 설정 | Koun9Hwan</title>
   
 
 
@@ -153,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NFS"><span class="nav-text">NFS?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-%EC%A0%90%EA%B2%80%EB%82%B4%EC%9A%A9"><span class="nav-text">🔎  점검내용</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%94-%EC%A0%90%EA%B2%80-%EB%AA%A9%EC%A0%81"><span class="nav-text">🔔 점검 목적</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B4%EC%95%88%EC%9C%84%ED%98%91"><span class="nav-text">보안위협</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">🤔 점검 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%EB%B3%84-%EC%A0%90%EA%B2%80-%ED%8C%8C%EC%9D%BC-%EC%9C%84%EC%B9%98-%EB%B0%8F-%EC%A0%90%EA%B2%80-%EB%B0%A9%EB%B2%95"><span class="nav-text">OS별 점검 파일 위치 및 점검 방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%92-%EC%A1%B0%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="nav-text">🔒 조치방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%84-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8"><span class="nav-text">📄 스크립트</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -224,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/10/2022-01-10-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-25%20NFS%20%EC%A0%91%EA%B7%BC%20%ED%86%B5%EC%A0%9C/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/01/23/2022-01-23-[%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C]%20U-08%20shadow%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -237,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [주요정보통신기반시설 취약점 진단 가이드] U-25 NFS 접근 통제
+          [주요정보통신기반시설 취약점 진단 가이드] U-08 /etc/shadow 파일 소유자 및 권한 설정
         </h1>
 
         <div class="post-meta-container">
@@ -249,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-10 20:00:00 / Modified: 20:02:34" itemprop="dateCreated datePublished" datetime="2022-01-10T20:00:00+09:00">2022-01-10</time>
+      <time title="Created: 2022-01-23 19:00:00 / Modified: 19:48:54" itemprop="dateCreated datePublished" datetime="2022-01-23T19:00:00+09:00">2022-01-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -274,15 +275,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
 
-<p>NFS 서비스 사용 시 허가된 사용자만 접근할 수 있도록 접근통제를 해주어야합니다.</p>
-<p>항목코드는 <code>U-25</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
-<br>
-
-<br>
-
-<h2 id="NFS"><a href="#NFS" class="headerlink" title="NFS?"></a>NFS?</h2><br>
-
-<p>Network File System의 약자로 네트워크상에서 파일시스템을 공유하도록 설계된 파일 시스템입니다.</p>
+<p><code>/etc/shadow</code> 파일 권한 적절성 점검입니다.</p>
+<p>항목코드는 <code>U-08</code>이며, 항목 주요도는 <code>상</code>입니다.</p>
 <br>
 
 <br>
@@ -292,14 +286,14 @@
 
 <h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
 
-<p>접근권한이 없는 비인가자의 접근을 통제함으로써 정보 유출의 위험을 줄입니다.</p>
+<p><code>/etc/shadow</code> 파일을 관리자만 제어할 수 있게 하여 비인가자들의 접근을 차단하도록 shadow 파일 소유자 및 권한을 관리해야합니다.</p>
 <br>
 
 <br>
 
 <h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
 
-<p>접근제한 설정이 적절하지 않을 경우 인증절차 없이 비인가자가 디렉터리나 파일의 접근이 가능하며 해당 공유 시스템에 원격으로 마운트하여 중요 파일을 변조하거나 유출할 위험이 있습니다.</p>
+<p>shadow파일은 패스워드를 암호화하여 저장하는 파일이며 해당 파일의 암호 화된 해쉬값을 복호화하여(크래킹) 비밀번호를 탈취할 수 있습니다.</p>
 <br>
 
 <br>
@@ -324,7 +318,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>192.168.219.102</td>
+<td>192.168.219.103</td>
 </tr>
 </tbody></table>
 <br>
@@ -334,10 +328,10 @@
 <h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
 
 <blockquote>
-<p><strong>양호</strong> : 불필요한 NFS 서비스를 사용하지 않거나, 불가피하게 사용 시 everyone 공유를 제한한 경우</p>
+<p><strong>양호</strong> : <code>/etc/shadow</code> 파일의 소유자가 root이고, 권한이 400 이하인 경우</p>
 </blockquote>
 <blockquote>
-<p><strong>취약</strong> : 불필요한 NFS 서비스를 사용하고 있고, everyone 공유를 제한하지 않은 경우</p>
+<p><strong>취약</strong> : <code>/etc/shadow</code> 파일의 소유자가 root가 아니거나, 권한이 400 이하가  아닌 경우</p>
 </blockquote>
 <br>
 
@@ -349,14 +343,32 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SOLARIS,<br />HP-UX</td>
-<td><code>/etc/dfs/dfstab</code> <code>/etc/dfs/sharetab</code> 파일</td>
+<td>SOLARIS,<br />LINUX</td>
+<td><code># ls -l /etc/shadow</code><br />    r——– root &lt;shadow 파일&gt;</td>
 </tr>
 <tr>
-<td>LINUX, AIX,<br />HP-UX</td>
-<td><code>/etc/exports</code> 파일</td>
+<td>AIX</td>
+<td><code># ls -ld /etc/security/passwd</code><br />    r——– root &lt;passwd 파일&gt;</td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td><code># ls -ld /tcb/files/auth</code><br />    r——– root &lt;auth 파일&gt;</td>
 </tr>
 </tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ls -l /etc/passwd</p>
+</blockquote>
+<br>
+
+<p><code>/etc/passwd</code> 파일의 소유자와 권한을 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-08/ls.png">
+
 <br>
 
 <br>
@@ -369,17 +381,21 @@
 <table>
 <thead>
 <tr>
-<th>파일</th>
-<th>조치 방법</th>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>/etc/dfs/dfstab</code> 파일</td>
-<td><code>rw=client</code>, <code>ro=client</code> 형식으로 접속 허용 client 지정<br />    - 사용자의 읽기, 쓰기 권한 접속 허용 : <code>share -F nfs -o rw, ro /export/home/test</code><br />    - 사용자의 권한 접속 제한 : <code>share -F nfs -o rw=client1:client2, ro=client1:client2 /export/home/test</code><br /><br />* 읽기, 쓰기 권한에 각각 사용자를 설정하여야 읽기, 쓰기 권한 모두 제한 가능</td>
+<td>SOLARIS,<br />LINUX</td>
+<td>1) <code>/etc/shadow</code> 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/shadow</code><br /><br />2) <code>/etc/shadow</code> 파일의 소유자 및 권한 변경<br />    <code># chown root /etc/shadow</code><br />    <code># chmod 400 /etc/shadow</code></td>
 </tr>
 <tr>
-<td><code>/etc/exports</code> 파일</td>
-<td>1) <code>/etc/exports</code> 파일에 접근 가능한 호스트명 추가<br />    예) <code>/stand host1(또는 IP주소) host2</code><br /><br />2) 접속시 인증 및 클라이언트 권한 nobody 설정<br />    <code># vi /etc/exports</code><br />    <code># /stand host1 (root_squash)</code><br />        * () 옵션에 인증되지 않은 엑세스를 허용하는 &quot;insecure&quot; 구문 설정 금지<br /><br />3) NFS 서비스 재구동<br />    <code># /etc/exportfs -u</code><br />    <code># /etc/exportfs -a</code></td>
+<td>AIX</td>
+<td>AIX 서버는 기본적으로 <code>/etc/security/passwd</code> 파일에 패스워드를 암호화하여 저장, 관리하므로 해당 디렉터리를 권한을 기준에 맞게 설정<br />1) <code>/etc/security/passwd</code> 디렉터리의 소유자 및 권한 확인<br />    <code># ls -ld /etc/security/passwd</code><br /><br />2) <code>/etc/security/passwd</code> 디렉터리의 소유자 및 권한 변경<br />    <code># chown root /etc/security/passwd</code><br />    <code># chmod 400 /etc/security/passwd</code></td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td>HP-UX 서버는 Trusted Mode로 전환할 경우 패스워드를 암호화하여 <code>/tcb/files/auth</code> 디렉터리에 계정 이니셜과 계정명에 따라 파일로 저장, 관리 가능<br />1) <code>/tcb/files/auth</code> 디렉터리의 소유자 및 권한 확인<br />    <code># ls -ld /tcb/files/auth</code><br /><br />2) <code>/tcb/files/auth</code> 디렉터리의 소유자 및 권한 변경<br />    <code># chown root /tcb/files/auth</code><br />    <code># chmod 400 /tcb/files/auth</code></td>
 </tr>
 </tbody></table>
 <br>
@@ -391,20 +407,19 @@
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">process=`ps -ef | egrep <span class="string">&quot;nfs|statd|lockd&quot;</span>`</span><br><span class="line">exports=`cat /etc/exports`</span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *nfsd* ]] || [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *statd* ]] || [[ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> == *lockd* ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$exports</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                ProcessResult=양호</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-25 [NFS 접근 통제] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-25.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find /etc/shadow -perm 400`</span><br><span class="line">process2=`find /etc/shadow -user root`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-08 [/etc/shadow 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-08.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p><code>nfsd</code> <code>statd</code> <code>lockd</code> 프로세스가 활성화 상태인지 확인합니다.</p>
-<p>프로세스가 활성화 상태이면 <code>/etc/exports</code> 파일에 내용이 있는지 확인하고, 내용이 있으면 <code>양호</code>처리 없으면 <code>취약</code>처리 했습니다.</p>
+<p><code>/etc/shadow</code> 파일의 소유자가 root이고 권한이 400인 경우 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
 <br>
 
-<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-25</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-08</code> 파일에 결과가 저장되도록 만들었습니다.</p>
 <br>
 
 <br>
 
-<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-25/script.png">
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-08/script.png">
 
 <br>
 
@@ -434,14 +449,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/10/2022-01-10-%5B%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%B7%A8%EC%95%BD%EC%A0%90%5D%20%EC%95%88%EC%A0%84%ED%95%98%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EB%A1%9C%EA%B9%85%20%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98/" rel="prev" title="[안드로이드 취약점] 안전하지 않은 로깅 메커니즘">
-                  <i class="fa fa-chevron-left"></i> [안드로이드 취약점] 안전하지 않은 로깅 메커니즘
+                <a href="/2022/01/23/2022-01-23-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-07%20passwd%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-07 /etc/passwd 파일 소유자 및 권한 설정">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-07 /etc/passwd 파일 소유자 및 권한 설정
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/10/2022-01-10-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-26%20automountd%20%EC%A0%9C%EA%B1%B0/" rel="next" title="[주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거">
-                  [주요정보통신기반시설 취약점 진단 가이드] U-26 automountd 제거 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -494,7 +506,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"3c843a72b08435bc0f2e398ab9bea0af"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"223cb571b87ccfb9196ab9a1aee479b8"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
