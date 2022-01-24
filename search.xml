@@ -16148,4 +16148,159 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-63 ftpusers 파일 소유자 및 권한 설정</title>
+    <url>/2022/01/24/2022-01-24-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-63%20ftpusers%20%ED%8C%8C%EC%9D%BC%20%EC%86%8C%EC%9C%A0%EC%9E%90%20%EB%B0%8F%20%EA%B6%8C%ED%95%9C%20%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p><code>FTP</code> 접근제어 설정파일에 관리자 외 비인가자들이 수정 제한 여부 점검입니다.</p>
+<p>항목코드는 <code>U-63</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>비인가자들의 <code>FTP</code> 접속을 차단하기 위해 <code>ftpusers</code> 파일 소유자 및 권한을 관리해야합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p><code>ftpusers</code> 파일에 인가되지 않은 사용자를 등록하여 해당 계정을 이용, 불법적인 <code>FTP</code> 서비스에 접근이 가능합니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : <code>ftpusers</code> 파일의 소유자가 root 이고 권한이 640 이하인 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : <code>ftpusers</code> 파일의 소유자가 root가 아니거나 권한이 640 이하가 아닌 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td><code>ftpusers</code> 파일에 대한 일반사용자 쓰기권한 확인<br />    <code># ls -al /etc/ftpusers</code><br />    <code># ls -al /etc/ftpd/ftpusers</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ls -al /etc/vsftpd/ftpusers</p>
+</blockquote>
+<br>
+
+<p><code>ftpusers</code> 파일의 소유자와 권한을 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-63/ls.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) <code>/etc/ftpusers</code> 파일의 소유자 및 권한 확인<br />    <code># ls -l /etc/ftpusers</code><br /><br />2) <code>/etc/ftpusers</code> 파일의 소유자 및 권한 변경<br />    <code># chown root /etc/ftpusers</code><br />    <code># chmod 640 /etc/ftpusers</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find / -name ftpusers`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -user root`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -perm 641`</span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        ProcessResult=취약</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        ProcessResult=양호</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=<span class="string">&quot;파일 없음&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-63 [ftpusers 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-63.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>ftpusers</code> 파일 소유자가 root이고 권한이 640 이하인 경우 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-63</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-63/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
