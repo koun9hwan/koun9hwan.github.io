@@ -15598,8 +15598,8 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># find / -type f -name “.*”</p>
-<p># find / -type d -name “.*”</p>
+<p># find / -type f -name &quot;.*&quot;</p>
+<p># find / -type d -name &quot;.*&quot;</p>
 </blockquote>
 <br>
 
@@ -15755,8 +15755,8 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># ps -ef | grep “telnet.socket” | grep -v “grep”</p>
-<p># ps -ef | grep “vsftpd” | grep -v “grep”</p>
+<p># ps -ef | grep &quot;telnet.socket&quot; | grep -v &quot;grep&quot;</p>
+<p># ps -ef | grep &quot;vsftpd&quot; | grep -v &quot;grep&quot;</p>
 </blockquote>
 <br>
 
@@ -15915,8 +15915,8 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># ps -ef | grep ftp | grep -v “grep”</p>
-<p># ps -ef | egrep “vsftpd|proftp” | grep -v “grep”</p>
+<p># ps -ef | grep ftp | grep -v &quot;grep&quot;</p>
+<p># ps -ef | egrep &quot;vsftpd|proftp&quot; | grep -v &quot;grep&quot;</p>
 </blockquote>
 <br>
 
@@ -16075,7 +16075,7 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># cat /etc/passwd | grep “ftp”</p>
+<p># cat /etc/passwd | grep &quot;ftp&quot;</p>
 </blockquote>
 <br>
 
@@ -16269,7 +16269,7 @@ section 진행 기간
 
 <h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
 
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find / -name ftpusers`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -user root`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -perm 641`</span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        ProcessResult=취약</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        ProcessResult=양호</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=<span class="string">&quot;파일 없음&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-63 [ftpusers 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-63.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`find / -name ftpusers`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -user root`</span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                process2=`find <span class="string">&quot;<span class="variable">$process</span>&quot;</span> -perm -641`</span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        ProcessResult=취약</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        ProcessResult=양호</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                ProcessResult=취약</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=<span class="string">&quot;파일 없음&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-63 [ftpusers 파일 소유자 및 권한 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-63.txt</span><br></pre></td></tr></table></figure>
 
 <br>
 
@@ -16385,7 +16385,7 @@ section 진행 기간
 <br>
 
 <blockquote>
-<p># cat /etc/vsftpd/ftpusers | grep -v “#” | grep “root”</p>
+<p># cat /etc/vsftpd/ftpusers | grep -v &quot;#&quot; | grep &quot;root&quot;</p>
 </blockquote>
 <br>
 
@@ -16600,6 +16600,173 @@ section 진행 기간
 <br>
 
 <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-65/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-66 SNMP 서비스 구동 점검</title>
+    <url>/2022/01/24/2022-01-24-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-66%20SNMP%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EA%B5%AC%EB%8F%99%20%EC%A0%90%EA%B2%80/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p><code>SNMP</code> 서비스 활성화 여부 점검입니다.</p>
+<p>항목코드는 <code>U-66</code>이며, 항목 주요도는 <code>중</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>불필요한 <code>SNMP</code> 서비스 활성화로 인해 필요 이상의 정보가 노출되는 것을 막기 위해 <code>SNMP</code> 서비스를 중지해야합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p><code>SNMP</code> 서비스로 인하여 시스템의 주요 정보 유출 및 정보의 불법수정이 발생할 수 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : <code>SNMP</code> 서비스를 사용하지 않는 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : <code>SNMP</code> 서비스를 사용하는 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS</td>
+<td><code># ps -ef | grep snmp</code> 또는 <code># svcs -a | grep snmp</code></td>
+</tr>
+<tr>
+<td>LINUX, AIX,<br />HP-UX</td>
+<td><code># ps -ef | grep snmp</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ps -ef | grep snmp | grep -v &quot;grep&quot;</p>
+</blockquote>
+<br>
+
+<p><code>SNMP</code> 서비스가 활성화되어있는지 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-66/ps.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS 5.9 이하</td>
+<td>1) <code># ps -ef | grep snmp</code>로 검색하여 위치 확인 후 이름 변경<br /><br />2) <code># /etc/init.d/init.snmpdx stop</code><br /><br />3) <code># mv /etc/rc3.d/S76snmpdx /etc/rc3.d/_S76snmpdx</code> (rc*/_S**snmpdx 의 *수치는 각각 다름)</td>
+</tr>
+<tr>
+<td>SOLARIS 5.10</td>
+<td>1) <code># svcs -a | grep snmp</code> 명령으로 데몬 확인<br /><br />2) 데몬 활성화 확인<br />    <code># ps -ef | grep snmp</code> 또는 <code># svcs -a | grep snmp</code><br /><br />3) <code># svcadm disable</code> 명령으로 데몬 중지</td>
+</tr>
+<tr>
+<td>LINUX, AIX,<br />HP-UX</td>
+<td>1) <code># ps -ef | grep snmp</code>로 검색<br /><br />2) <code>SNMP</code> 사용하지 않을 시 서비스 중지<br /><br />&lt;LINUX&gt;<br />    <code># service snmpd stop</code><br /><br />&lt;AIX&gt;<br />    1) <code># kill -9 [PID]</code><br />    2) <code># vi /etc/rc.tcpip</code> 실행하여 다음 라인 주석처리<br /><br />&lt;HP-UX&gt;<br />    1) <code># kill -9 [PID]</code> 또는 <code>/sbin/SnmpAgtStart.d/S560SnmpMaster stop</code><br />    2) <code># mv /sbin/SnmpAgtStart.d/S560SnmpMaster/sbin/SnmpAgtStart.d/_S560SnmpMaster</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep snmp | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-66 [SNMP 서비스 구동 점검] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-66.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>SNMP</code> 서비스를 사용하지 않는 경우 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-66</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-66/script.png">
 
 <br>
 
