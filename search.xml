@@ -15673,4 +15673,160 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-60 ssh 원격접속 허용</title>
+    <url>/2022/01/24/2022-01-24-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-60%20ssh%20%EC%9B%90%EA%B2%A9%EC%A0%91%EC%86%8D%20%ED%97%88%EC%9A%A9/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>원격 접속 시 <code>SSH</code> 프로토콜을 사용하는지 점검합니다.</p>
+<p>항목코드는 <code>U-60</code>이며, 항목 주요도는 <code>중</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>비교적 안전한 <code>SSH</code> 프로토콜을 사용함으로써 스티핑 등 아이디/패스워드의 유출의 방지를 목적으로 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>원격 접속 시 <code>Telnet</code> <code>FTP</code> 등은 암호화되지 않은 상태로 데이터를 전송하기 때문에 아이디/패스워드 및 중요 정보가 외부로 유출될 위험성이 있습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : 원격 접속 시 <code>SSH</code> 프로토콜을 사용하는 경우 (<code>SSH</code> <code>TELNET</code>이 동시에 설치되어 있는 경우 취약으로 평가)</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : 원격 접속 시 <code>TELNET</code> <code>FTP</code> 등 안전하지 않은 프로토콜을 사용하는 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) <code>Telnet</code> <code>FTP</code> 서비스 실행 확인<br />    <code># ps -ef | grep &quot;telnet.socket&quot; | grep -v &quot;grep&quot;</code><br />    <code># ps -ef |grep &quot;vsftpd&quot; |grep -v &quot;grep&quot;</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># ps -ef | grep “telnet.socket” | grep -v “grep”</p>
+<p># ps -ef | grep “vsftpd” | grep -v “grep”</p>
+</blockquote>
+<br>
+
+<p><code>Telnet</code> <code>FTP</code> 서비스가 실행중인지 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-60/ps.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) <code>SSH</code> 서비스 활성화 명령어 실행<br /><br />&lt; SOLARIS 5.9 이하 버전 &gt;<br />    <code># /etc/init.d/sshd start</code><br />&lt; SOLARIS 5.10 이상 버전 &gt;<br />    <code># svcadm enable ssh</code><br /><br />&lt; LINUX &gt;<br />    <code># service start sshd</code> 또는 <code># service start ssh</code><br /><br />&lt; AIX &gt;<br />    <code># startsrc -s sshd</code><br /><br />&lt; HP-UX &gt;<br />    <code># /sbin/init.d/secsh start</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`ps -ef | grep <span class="string">&quot;telnet.socket&quot;</span> | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line">process2=`ps -ef | grep <span class="string">&quot;vsftpd&quot;</span> | grep -v <span class="string">&quot;grep&quot;</span>`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-60 [ssh 원격접속 허용] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-60.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>Telnet</code> <code>FTP</code> 서비스가 활성화 상태이면 <code>취약</code>, 아니면 <code>양호</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-60</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-60/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
