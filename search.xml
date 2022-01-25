@@ -17630,4 +17630,176 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-72 내부 정책에 따른 시스템 로깅 설정 적용 여부 점검</title>
+    <url>/2022/01/25/2022-01-25-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-72%20%EC%A0%95%EC%B1%85%EC%97%90%20%EB%94%B0%EB%A5%B8%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EB%A1%9C%EA%B9%85%20%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>웹페이지에서 오류 발생 시 출력되는 메시지 내용 점검입니다.</p>
+<p>항목코드는 <code>U-72</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>보안 사고 발생 시 원인 파악 및 각종 침해 사실에 대한 확인을 하기 위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>로깅 설정이 되어 있지 않을 경우 원인 규명이 어려우며 법적 대응을 위한 충분한 증거로 사용할 수 없습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : 로그 기록 정책이 정책에 따라 설정되어 수립되어 있으며 보안정책에 따라 로그를 남기고 있을 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : 로그 기록 정책 미수립 또는 정책에 따라 설정되어 있지 않거나 보안정책에 따라 로그를 남기고 있지 않을 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-72/solaris.png"><br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br /><strong>&lt; SOLARIS 9 이하 버전 &gt;</strong><br />    <code># ps -ef | grep syslogd</code><br />    <code># kill -HUP [PID]</code><br /><br /><strong>&lt; SOLARIS 10 이상 버전 &gt;</strong><br />    <code># svcs -a | grep system-log</code><br />    <code># svcadm disable svc:/system/system-log:default</code><br />    <code># svcadm enable svc:/system/system-log:default</code></td>
+</tr>
+<tr>
+<td>LINUX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code> (CentOS 6.x 이상 버전의 로그파일명 : <code>rsyslog.conf</code>)<br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-72/linux.png"><br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br />    <code># ps -ef | grep syslogd</code><br />    <code># kill -HUP [PID]</code></td>
+</tr>
+<tr>
+<td>AIX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-72/aix.png"><br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br />    <code># refresh -s syslogd</code> 또는<br />    <code># ps -ef | grep syslogd</code><br />    <code># kill -HUP [PID]</code></td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    <img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-72/hp-ux.png"><br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br />    <code># /sbin/init.d/syslogd start</code> 또는<br />    <code># ps -ef |grep syslogd</code><br />    <code># kill -HUP [PID]</code></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/messages&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/secure&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/maillog&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/cron&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/dev/console&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;*.emerg&quot; | grep -v &quot;#&quot;</p>
+</blockquote>
+<br>
+
+<p>로깅 설정 적용 여부를 확인해주었습니다.</p>
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-72/cat.png">
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일을 연 후<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 로깅 설정 구문을 수정 또는 신규 삽입</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/messages&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process2=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/secure&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process3=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/maillog&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process4=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/cron&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process5=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/dev/console&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process6=`cat /etc/rsyslog.conf | grep <span class="string">&quot;*.emerg&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process3</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process4</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process5</span>&quot;</span></span><br><span class="line">] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process6</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-72 [정책에 따른 시스템 로깅 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-72.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>로깅 설정이 되어있으면 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-72</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<img src="/images/주요정보통신기반시설 취약점 진단 가이드/U-72/script.png">
+
+<br>
+
+<br>
+
+<hr>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021</p><p>KISA</p>
+<a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&mode=view&p_No=259&b_No=259&d_No=106&ST=T&SV="></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>
