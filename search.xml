@@ -17802,4 +17802,296 @@ section 진행 기간
         <tag>UNIX/LINUX</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[OWASP-MSTG] UnCrackable-Level1</title>
+    <url>/2022/02/10/2022-02-10-%5BOWASP-MSTG%5D%20UnCrackable-Level1/</url>
+    <content><![CDATA[<h1 id="🤔-UnCrackable-이란"><a href="#🤔-UnCrackable-이란" class="headerlink" title="🤔  UnCrackable 이란?"></a>🤔  UnCrackable 이란?</h1><br>
+
+<p><code>OWASP</code>에서 만든 취약한 모바일 애플리케이션이며, Android뿐만 아니라 iOS용도 있습니다.</p>
+<br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>[OWASP-MSTG Crackmes]</p><p>GitHub</p>
+<a href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-Solve"><a href="#🔎-Solve" class="headerlink" title="🔎 Solve"></a>🔎 Solve</h1><br>
+
+<h2 id="진단-환경"><a href="#진단-환경" class="headerlink" title="진단 환경"></a>진단 환경</h2><br>
+
+<blockquote>
+<p>애플리케이션 : UnCrackable-Level1.apk</p>
+</blockquote>
+<blockquote>
+<p>기기 : 삼성 갤럭시 S7 (안드로이드 8.0), (루팅 O)</p>
+<p>기타 : Frida (12.6.11), jadx (1.3.2)</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="애플리케이션-설치"><a href="#애플리케이션-설치" class="headerlink" title="애플리케이션 설치"></a>애플리케이션 설치</h2><br>
+
+<blockquote>
+<p>&gt; adb install UnCrackable-Level1.apk</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/install.jpg">
+
+<br>
+
+<br>
+
+<h2 id="애플리케이션-분석"><a href="#애플리케이션-분석" class="headerlink" title="애플리케이션 분석"></a>애플리케이션 분석</h2><br>
+
+<p><strong>[ 애플리케이션 실행 ]</strong></p>
+<img src="/images/Android/UnCrackable-Level1/start.jpg">
+
+<br>
+
+<p>해당 애플리케이션을 실행하면 <code>루팅 감지</code>를 하고 OK 버튼을 누르면 애플리케이션이 꺼집니다.</p>
+<br>
+
+<br>
+
+<p><strong>[ 루팅 우회 소스코드 확인 ]</strong></p>
+<p>jadx로 해당 애플리케이션을 디컴파일하여 루팅탐지하는 부분의 코드를 확인해보았습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/jadx_search.png">
+
+<br>
+
+<p>루팅 탐지하는 문구의 내용을 <code>jadx</code>의 텍스트 검색 기능을 사용하여 해당 코드를 확인해보았습니다.</p>
+<br>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* MainActivity 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle bundle)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (c.a() || c.b() || c.c()) &#123;</span><br><span class="line">		a(<span class="string">&quot;Root detected!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (b.a(getApplicationContext())) &#123;</span><br><span class="line">		a(<span class="string">&quot;App is debuggable!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(bundle);</span><br><span class="line">	setContentView(R.layout.activity_main);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 코드를 보면 <code>onCreate</code> 메소드 내부에 <code>a</code> 메소드를 호출하면서 루팅탐지를 하고있습니다.</p>
+<p><code>a</code> 메소드 부분을 따라가서 확인해보았습니다.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* MainActivity 일부(a 메소드) */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        AlertDialog create = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>).create();</span><br><span class="line">        create.setTitle(str);</span><br><span class="line">        create.setMessage(<span class="string">&quot;This is unacceptable. The app is now going to exit.&quot;</span>);</span><br><span class="line">        create.setButton(-<span class="number">3</span>, <span class="string">&quot;OK&quot;</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123; <span class="comment">// from class: sg.vantagepoint.uncrackable1.MainActivity.1</span></span><br><span class="line">            <span class="meta">@Override</span> <span class="comment">// android.content.DialogInterface.OnClickListener</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>OnClick</code> 메소드가 작동하면 <code>System.exit(0);</code>이 작동되는 것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<p><strong>[ 후킹 ]</strong></p>
+<p>Frida를 사용해 <code>System.exit(0);</code> 부분을 후킹하여 OK 버튼을 눌러도 해당 코드 작동이 안되도록 재작성해보겠습니다.</p>
+<br>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">// 타임아웃을 방지</span></span><br><span class="line">	Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">// 현재 스레드가 가상머신에 연결되었는지 확인</span></span><br><span class="line">		<span class="keyword">var</span> root_bypass = Java.use(<span class="string">&quot;java.lang.System&quot;</span>); <span class="comment">// exit는 java.lang.System에서 가져오는 메소드</span></span><br><span class="line">		root_bypass.exit.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123; <span class="comment">// 정의된 메소드의 구현 내용을 재작성</span></span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;\nRoot Bypass success&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 <code>자바스크립트</code> 파일을 만들어 실행시켜주었습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/frida.png">
+
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/root_bypass.jpg">
+
+<br>
+
+<p>OK 버튼을 눌러주니 <code>console.log</code>에 <code>Root Bypass success</code> 문자가 나오고 루팅 탐지를 우회하고 있는 것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<p><strong>[ 작성중 .. ]</strong></p>
+<br>
+
+<br>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>모바일</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[주요정보통신기반시설 취약점 진단 가이드] U-72 내부 정책에 따른 시스템 로깅 설정 적용 여부 점검</title>
+    <url>/2022/01/25/%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-72%20%EC%A0%95%EC%B1%85%EC%97%90%20%EB%94%B0%EB%A5%B8%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EB%A1%9C%EA%B9%85%20%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h1 id="🔎-점검내용"><a href="#🔎-점검내용" class="headerlink" title="🔎  점검내용"></a>🔎  점검내용</h1><br>
+
+<p>웹페이지에서 오류 발생 시 출력되는 메시지 내용 점검입니다.</p>
+<p>항목코드는 <code>U-72</code>이며, 항목 주요도는 <code>하</code>입니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔔-점검-목적"><a href="#🔔-점검-목적" class="headerlink" title="🔔 점검 목적"></a>🔔 점검 목적</h1><br>
+
+<p>보안 사고 발생 시 원인 파악 및 각종 침해 사실에 대한 확인을 하기 위함입니다.</p>
+<br>
+
+<br>
+
+<h2 id="보안위협"><a href="#보안위협" class="headerlink" title="보안위협"></a>보안위협</h2><br>
+
+<p>로깅 설정이 되어 있지 않을 경우 원인 규명이 어려우며 법적 대응을 위한 충분한 증거로 사용할 수 없습니다.</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🤔-점검-방법"><a href="#🤔-점검-방법" class="headerlink" title="🤔 점검 방법"></a>🤔 점검 방법</h1><br>
+
+<p>환경 구성 후 테스트 해보았습니다.</p>
+<blockquote>
+<p>버전 정보 : CentOS Linux release 7.8.2003 (Core)</p>
+</blockquote>
+<br>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>취약한 서버</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.219.103</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="OS별-점검-파일-위치-및-점검-방법"><a href="#OS별-점검-파일-위치-및-점검-방법" class="headerlink" title="OS별 점검 파일 위치 및 점검 방법"></a>OS별 점검 파일 위치 및 점검 방법</h2><br>
+
+<blockquote>
+<p><strong>양호</strong> : 로그 기록 정책이 정책에 따라 설정되어 수립되어 있으며 보안정책에 따라 로그를 남기고 있을 경우</p>
+</blockquote>
+<blockquote>
+<p><strong>취약</strong> : 로그 기록 정책 미수립 또는 정책에 따라 설정되어 있지 않거나 보안정책에 따라 로그를 남기고 있지 않을 경우</p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    ![solaris](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-72\solaris.png)<br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br /><strong>&lt; SOLARIS 9 이하 버전 &gt;</strong><br />    `# ps -ef</td>
+</tr>
+<tr>
+<td>LINUX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code> (CentOS 6.x 이상 버전의 로그파일명 : <code>rsyslog.conf</code>)<br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    ![linux](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-72\linux.png)<br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br />    `# ps -ef</td>
+</tr>
+<tr>
+<td>AIX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    ![aix](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-72\aix.png)<br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br />    <code># refresh -s syslogd</code> 또는<br />    `# ps -ef</td>
+</tr>
+<tr>
+<td>HP-UX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일 열기<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 아래와 같이 수정 또는 신규 삽입<br />    ![hp-ux](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-72\hp-ux.png)<br /><br />3) 위와 같이 설정 후 SYSLOG 데몬 재시작<br />    <code># /sbin/init.d/syslogd start</code> 또는<br />    `# ps -ef</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/messages&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/secure&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/maillog&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/var/log/cron&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;/dev/console&quot; | grep -v &quot;#&quot;</p>
+<p># cat /etc/rsyslog.conf | grep &quot;*.emerg&quot; | grep -v &quot;#&quot;</p>
+</blockquote>
+<br>
+
+<p>로깅 설정 적용 여부를 확인해주었습니다.</p>
+<br>
+
+<p>![cat](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-72\cat.png)</p>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔒-조치방법"><a href="#🔒-조치방법" class="headerlink" title="🔒 조치방법"></a>🔒 조치방법</h1><br>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>파일 위치 및 점검 방법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SOLARIS,<br />LINUX, AIX,<br />HP-UX</td>
+<td>1) vi 편집기를 이용하여 <code>/etc/syslog.conf</code> 파일을 연 후<br />    <code># vi /etc/syslog.conf</code><br /><br />2) 로깅 설정 구문을 수정 또는 신규 삽입</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="📄-스크립트"><a href="#📄-스크립트" class="headerlink" title="📄 스크립트"></a>📄 스크립트</h1><br>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ProcessResult=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">process=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/messages&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process2=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/secure&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process3=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/maillog&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process4=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/var/log/cron&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process5=`cat /etc/rsyslog.conf | grep <span class="string">&quot;/dev/console&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line">process6=`cat /etc/rsyslog.conf | grep <span class="string">&quot;*.emerg&quot;</span> | grep -v <span class="string">&quot;#&quot;</span>`</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$process</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process2</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process3</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process4</span>&quot;</span> ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process5</span>&quot;</span></span><br><span class="line">] &amp;&amp; [ <span class="string">&quot;<span class="variable">$process6</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        ProcessResult=양호</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        ProcessResult=취약</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e U-72 [정책에 따른 시스템 로깅 설정] : <span class="string">&quot;<span class="variable">$ProcessResult</span>&quot;</span> | tee /root/result/u-72.txt</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>로깅 설정이 되어있으면 <code>양호</code>, 아니면 <code>취약</code> 처리해주었습니다.</p>
+<br>
+
+<p>해당 스크립트를 실행시키면 결과를 터미널에 출력하고, <code>/root/result/u-72</code> 파일에 결과가 저장되도록 만들었습니다.</p>
+<br>
+
+<br>
+
+<p>![script](D:\hexo-site\source\images\주요정보통신기반시설 취약점 진단 가이드\U-72\script.png)</p>
+<br>
+
+<br>
+
+<hr>
+<p>주요정보통신기반시설 취약점 진단 가이드 2021 | <a href="https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&amp;mode=view&amp;p_No=259&amp;b_No=259&amp;d_No=106&amp;ST=T&amp;SV=">https://www.kisa.or.kr/public/laws/laws3_View.jsp?cPage=1&amp;mode=view&amp;p_No=259&amp;b_No=259&amp;d_No=106&amp;ST=T&amp;SV=</a> | KISA | </p>
+]]></content>
+      <categories>
+        <category>주요정보통신기반시설 취약점 진단 가이드</category>
+      </categories>
+      <tags>
+        <tag>시스템보안</tag>
+        <tag>주요정보통신기반시설 취약점 진단 가이드</tag>
+        <tag>UNIX/LINUX</tag>
+      </tags>
+  </entry>
 </search>

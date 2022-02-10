@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="bzX7XUWe3ykyp7JEIMERPXEKJydMTMDTX9Db5xyPdxA" />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[OWASP-MSTG] UnCrackable-Level1">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/02/10/2022-02-10-[OWASP-MSTG]%20UnCrackable-Level1/index.html">
+<meta property="og:site_name" content="Koun9Hwan">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/install.jpg">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/start.jpg">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/jadx_search.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/frida.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/root_bypass.jpg">
+<meta property="article:published_time" content="2022-02-10T07:00:00.000Z">
+<meta property="article:modified_time" content="2022-02-10T15:13:32.255Z">
+<meta property="article:author" content="KoungHwan">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="모바일">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/install.jpg">
+
+
+<link rel="canonical" href="https://koun9hwan.github.io/2022/02/10/2022-02-10-[OWASP-MSTG]%20UnCrackable-Level1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/02/10/2022-02-10-[OWASP-MSTG]%20UnCrackable-Level1/","path":"2022/02/10/2022-02-10-[OWASP-MSTG] UnCrackable-Level1/","title":"[OWASP-MSTG] UnCrackable-Level1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[OWASP-MSTG] UnCrackable-Level1 | Koun9Hwan</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Koun9Hwan</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Study Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-UnCrackable-%EC%9D%B4%EB%9E%80"><span class="nav-text">🤔  UnCrackable 이란?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%8E-Solve"><span class="nav-text">🔎 Solve</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A7%84%EB%8B%A8-%ED%99%98%EA%B2%BD"><span class="nav-text">진단 환경</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%84%A4%EC%B9%98"><span class="nav-text">애플리케이션 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%B6%84%EC%84%9D"><span class="nav-text">애플리케이션 분석</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KoungHwan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/koun9hwan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;koun9hwan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/02/10/2022-02-10-[OWASP-MSTG]%20UnCrackable-Level1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KoungHwan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Koun9Hwan">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [OWASP-MSTG] UnCrackable-Level1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-02-10 16:00:00" itemprop="dateCreated datePublished" datetime="2022-02-10T16:00:00+09:00">2022-02-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-02-11 00:13:32" itemprop="dateModified" datetime="2022-02-11T00:13:32+09:00">2022-02-11</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="🤔-UnCrackable-이란"><a href="#🤔-UnCrackable-이란" class="headerlink" title="🤔  UnCrackable 이란?"></a>🤔  UnCrackable 이란?</h1><br>
+
+<p><code>OWASP</code>에서 만든 취약한 모바일 애플리케이션이며, Android뿐만 아니라 iOS용도 있습니다.</p>
+<br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>[OWASP-MSTG Crackmes]</p><p>GitHub</p>
+<a target="_blank" rel="noopener" href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🔎-Solve"><a href="#🔎-Solve" class="headerlink" title="🔎 Solve"></a>🔎 Solve</h1><br>
+
+<h2 id="진단-환경"><a href="#진단-환경" class="headerlink" title="진단 환경"></a>진단 환경</h2><br>
+
+<blockquote>
+<p>애플리케이션 : UnCrackable-Level1.apk</p>
+</blockquote>
+<blockquote>
+<p>기기 : 삼성 갤럭시 S7 (안드로이드 8.0), (루팅 O)</p>
+<p>기타 : Frida (12.6.11), jadx (1.3.2)</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="애플리케이션-설치"><a href="#애플리케이션-설치" class="headerlink" title="애플리케이션 설치"></a>애플리케이션 설치</h2><br>
+
+<blockquote>
+<p>&gt; adb install UnCrackable-Level1.apk</p>
+</blockquote>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/install.jpg">
+
+<br>
+
+<br>
+
+<h2 id="애플리케이션-분석"><a href="#애플리케이션-분석" class="headerlink" title="애플리케이션 분석"></a>애플리케이션 분석</h2><br>
+
+<p><strong>[ 애플리케이션 실행 ]</strong></p>
+<img src="/images/Android/UnCrackable-Level1/start.jpg">
+
+<br>
+
+<p>해당 애플리케이션을 실행하면 <code>루팅 감지</code>를 하고 OK 버튼을 누르면 애플리케이션이 꺼집니다.</p>
+<br>
+
+<br>
+
+<p><strong>[ 루팅 우회 소스코드 확인 ]</strong></p>
+<p>jadx로 해당 애플리케이션을 디컴파일하여 루팅탐지하는 부분의 코드를 확인해보았습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/jadx_search.png">
+
+<br>
+
+<p>루팅 탐지하는 문구의 내용을 <code>jadx</code>의 텍스트 검색 기능을 사용하여 해당 코드를 확인해보았습니다.</p>
+<br>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* MainActivity 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle bundle)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (c.a() || c.b() || c.c()) &#123;</span><br><span class="line">		a(<span class="string">&quot;Root detected!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (b.a(getApplicationContext())) &#123;</span><br><span class="line">		a(<span class="string">&quot;App is debuggable!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(bundle);</span><br><span class="line">	setContentView(R.layout.activity_main);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 코드를 보면 <code>onCreate</code> 메소드 내부에 <code>a</code> 메소드를 호출하면서 루팅탐지를 하고있습니다.</p>
+<p><code>a</code> 메소드 부분을 따라가서 확인해보았습니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* MainActivity 일부(a 메소드) */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        AlertDialog create = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>).create();</span><br><span class="line">        create.setTitle(str);</span><br><span class="line">        create.setMessage(<span class="string">&quot;This is unacceptable. The app is now going to exit.&quot;</span>);</span><br><span class="line">        create.setButton(-<span class="number">3</span>, <span class="string">&quot;OK&quot;</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123; <span class="comment">// from class: sg.vantagepoint.uncrackable1.MainActivity.1</span></span><br><span class="line">            <span class="meta">@Override</span> <span class="comment">// android.content.DialogInterface.OnClickListener</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialogInterface, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>OnClick</code> 메소드가 작동하면 <code>System.exit(0);</code>이 작동되는 것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<p><strong>[ 후킹 ]</strong></p>
+<p>Frida를 사용해 <code>System.exit(0);</code> 부분을 후킹하여 OK 버튼을 눌러도 해당 코드 작동이 안되도록 재작성해보겠습니다.</p>
+<br>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">// 타임아웃을 방지</span></span><br><span class="line">	Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">// 현재 스레드가 가상머신에 연결되었는지 확인</span></span><br><span class="line">		<span class="keyword">var</span> root_bypass = Java.use(<span class="string">&quot;java.lang.System&quot;</span>); <span class="comment">// exit는 java.lang.System에서 가져오는 메소드</span></span><br><span class="line">		root_bypass.exit.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123; <span class="comment">// 정의된 메소드의 구현 내용을 재작성</span></span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;\nRoot Bypass success&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 <code>자바스크립트</code> 파일을 만들어 실행시켜주었습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/frida.png">
+
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/root_bypass.jpg">
+
+<br>
+
+<p>OK 버튼을 눌러주니 <code>console.log</code>에 <code>Root Bypass success</code> 문자가 나오고 루팅 탐지를 우회하고 있는 것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<p><strong>[ 작성중 .. ]</strong></p>
+<br>
+
+<br>
+
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/%EB%AA%A8%EB%B0%94%EC%9D%BC/" rel="tag"># 모바일</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/25/2022-01-25-%5B%EC%A3%BC%EC%9A%94%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EA%B8%B0%EB%B0%98%EC%8B%9C%EC%84%A4%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EC%A7%84%EB%8B%A8%20%EA%B0%80%EC%9D%B4%EB%93%9C%5D%20U-72%20%EC%A0%95%EC%B1%85%EC%97%90%20%EB%94%B0%EB%A5%B8%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EB%A1%9C%EA%B9%85%20%EC%84%A4%EC%A0%95/" rel="prev" title="[주요정보통신기반시설 취약점 진단 가이드] U-72 내부 정책에 따른 시스템 로깅 설정 적용 여부 점검">
+                  <i class="fa fa-chevron-left"></i> [주요정보통신기반시설 취약점 진단 가이드] U-72 내부 정책에 따른 시스템 로깅 설정 적용 여부 점검
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KoungHwan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"4998be943af873c94c7ef9fd7ac6b840"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
