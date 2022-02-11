@@ -33,8 +33,12 @@
 <meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/jadx_search.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/frida.png">
 <meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/root_bypass.jpg">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/secret_string.jpg">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/jadx_search2.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/frida2.png">
+<meta property="og:image" content="https://koun9hwan.github.io/images/Android/UnCrackable-Level1/return_true.jpg">
 <meta property="article:published_time" content="2022-02-10T07:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-10T15:13:32.255Z">
+<meta property="article:modified_time" content="2022-02-11T06:13:09.954Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="모바일">
@@ -258,7 +262,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-02-11 00:13:32" itemprop="dateModified" datetime="2022-02-11T00:13:32+09:00">2022-02-11</time>
+        <time title="Modified: 2022-02-11 15:13:09" itemprop="dateModified" datetime="2022-02-11T15:13:09+09:00">2022-02-11</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -373,7 +377,7 @@
 
 <br>
 
-<p>해당 <code>자바스크립트</code> 파일을 만들어 실행시켜주었습니다.</p>
+<p>해당 자바스크립트 파일을 만들어 실행시켜주었습니다.</p>
 <br>
 
 <img src="/images/Android/UnCrackable-Level1/frida.png">
@@ -389,7 +393,53 @@
 
 <br>
 
-<p><strong>[ 작성중 .. ]</strong></p>
+<p><strong>[ Secret String 후킹 ]</strong></p>
+<p>Secret String 넣는 곳에 아무 문자나 넣고 VERIFY 버튼을 눌렀더니 틀렸다는 알림창이 나왔습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/secret_string.jpg">
+
+<br>
+
+<br>
+
+<p>루팅 탐지 후킹과 마찬가지로 <code>jadx</code> 텍스트 검색 기능을 이용하여 알림창에 뜬 문자를 입력해주었습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/jadx_search2.png">
+
+<br>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* MainActivity 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">verify</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">	String str;</span><br><span class="line">	String obj = ((EditText) findViewById(R.id.edit_text)).getText().toString();</span><br><span class="line">	AlertDialog create = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>).create();</span><br><span class="line">	<span class="keyword">if</span> (a.a(obj)) &#123;</span><br><span class="line">		create.setTitle(<span class="string">&quot;Success!&quot;</span>);</span><br><span class="line">		str = <span class="string">&quot;This is the correct secret.&quot;</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		create.setTitle(<span class="string">&quot;Nope...&quot;</span>);</span><br><span class="line">		str = <span class="string">&quot;That&#x27;s not it. Try again.&quot;</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 코드를 보면 <code>MainActivity</code> 클래스 내부에 <code>verify</code> 메소드가 있고 그 안에 <code>Nope...</code> 이라는 값이 있습니다.</p>
+<p>우리가 입력한 Secret String은 <code>obj</code> 안에 들어가는 것을 볼 수 있습니다. 해당 값은 if 문 <code>a</code> 클래스 내부에 있는 <code>a</code> 메소드 인자값으로 들어가고 있습니다.</p>
+<p>해당 if 문을 <code>TRUE</code>로 바꾸어주면 성공이라는 메시지가 나옵니다.</p>
+<br>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* a 클래스 일부 */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">a</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">a</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] bArr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            bArr = sg.vantagepoint.a.a.a(b(<span class="string">&quot;8d127684cbc37c17616d806cf50473cc&quot;</span>), Base64.decode(<span class="string">&quot;5UJiFctbmgbDoLXmpL12mkno8HT4Lv8dlat8FxR2GOc=&quot;</span>, <span class="number">0</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            Log.d(<span class="string">&quot;CodeCheck&quot;</span>, <span class="string">&quot;AES error:&quot;</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str.equals(<span class="keyword">new</span> String(bArr));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>a</code> 클래스의 <code>a</code> 메소드를 후킹하여 재작성해주었습니다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">// 타임아웃을 방지</span></span><br><span class="line">	Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	<span class="comment">// 현재 스레드가 가상머신에 연결되었는지 확인</span></span><br><span class="line">		<span class="keyword">var</span> root_bypass = Java.use(<span class="string">&quot;java.lang.System&quot;</span>); <span class="comment">// exit는 java.lang.System에서 가져오는 메소드</span></span><br><span class="line">		root_bypass.exit.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123; <span class="comment">// 정의된 메소드의 구현 내용을 재작성</span></span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;\nRoot Bypass success&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">var</span> returnTrue = Java.use(<span class="string">&quot;sg.vantagepoint.uncrackable1.a&quot;</span>);</span><br><span class="line">		returnTrue.a.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;\nReturn True&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 자바스크립트 파일을 만들어 실행시켜주었습니다.</p>
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/frida2.png">
+
+<br>
+
+<img src="/images/Android/UnCrackable-Level1/return_true.jpg">
+
+<br>
+
+<p>아무 문자나 넣고 VERIFY 버튼을 눌렀더니 성공했다는 알림이 떴습니다.</p>
 <br>
 
 <br>
