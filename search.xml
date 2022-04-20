@@ -18296,4 +18296,67 @@ section 진행 기간
         <tag>뉴스레터</tag>
       </tags>
   </entry>
+  <entry>
+    <title>사상 최악의 취약점이라고 불리는 Log4Shell</title>
+    <url>/2022/04/21/2022-04-20-%EC%82%AC%EC%83%81%20%EC%B5%9C%EC%95%85%EC%9D%98%20%EC%B7%A8%EC%95%BD%EC%A0%90%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%EB%B6%88%EB%A6%AC%EB%8A%94%20Log4Shell/</url>
+    <content><![CDATA[<h1 id="😲-사상-최악의-취약점이라고-불리는-Log4Shell"><a href="#😲-사상-최악의-취약점이라고-불리는-Log4Shell" class="headerlink" title="😲 사상 최악의 취약점이라고 불리는 Log4Shell"></a>😲 사상 최악의 취약점이라고 불리는 Log4Shell</h1><br>
+
+<p>작년에 보안에 관심이 있는 사람이라면 Log4Shell 나 Log4j라는 단어를 한 번쯤은 들어봤을 텐데요.</p>
+<p>그 Log4Shell에 대해 알아보도록 하겠습니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/사상 최대의 취약점이라고 불리는 Log4Shell/Log4Shell_logo.png">
+    <figcaption><br>Log4Shell 로고</figcaption>
+</figure>
+
+<br>
+
+<h2 id="Log4j-는-무엇인가요"><a href="#Log4j-는-무엇인가요" class="headerlink" title="Log4j 는 무엇인가요?"></a>Log4j 는 무엇인가요?</h2><br>
+
+<p>Log4Shell 취약점을 알아보기 전에 Log4j가 무엇인지 부터 알아보도록하겠습니다.</p>
+<p>모든 서버는 시스템을 관리, 유지, 침해사고 대응 등의 이유로 로그를 남깁니다.</p>
+<p>이러한 로그를 기록하는 프레임워크가 바로 Log4j입니다.</p>
+<p>Log4j는 자바 기반의 로그 기록 프레임워크입니다. 즉, 자바를 사용하는 애플리케이션은 Log4j를 사용하는데요. 이 Log4j에 취약점이 발견된 것입니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/사상 최대의 취약점이라고 불리는 Log4Shell/Apache_Log4j_Logo.png">
+    <figcaption><br>Log4j 로고</figcaption>
+</figure>
+
+<br>
+
+<br>
+
+<h2 id="왜-사상-최악의-취약점이라고-불리나요"><a href="#왜-사상-최악의-취약점이라고-불리나요" class="headerlink" title="왜 사상 최악의 취약점이라고 불리나요?"></a>왜 사상 최악의 취약점이라고 불리나요?</h2><br>
+
+<p>사상 최악의 취약점이라고 불리는 이유는 여러가지가 있는데요. </p>
+<p>일단 첫 번째 이유는 자바를 많은 곳에서 사용하고 있기 때문입니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/사상 최대의 취약점이라고 불리는 Log4Shell/tiobe.png">
+    <figcaption><br>출처 : www.tiobe.com</figcaption>
+</figure>
+
+<br>
+
+<p>위 그래프는 프로그래밍 언어 사용률 순위입니다.</p>
+<p>예전부터 지금까지 상위권인 모습을 보이고 있는데요. 그만큼 많은 애플리케이션에서 자바를 사용하고 있는 것을 볼 수 있습니다.</p>
+<p>혹시나 자바를 사용하지 않더라도 미들웨어* 등에서 자바를 사용하고 있을 수 있기 때문에 무조건적으로 안전하다고 할 수 없습니다.</p>
+<br>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>뉴스레터</category>
+      </categories>
+      <tags>
+        <tag>뉴스레터</tag>
+      </tags>
+  </entry>
 </search>
