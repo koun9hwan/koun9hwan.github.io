@@ -24,26 +24,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="크레덴셜 스터핑 (Credential Stuffing)">
-<meta property="og:url" content="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/index.html">
+<meta property="og:title" content="크리덴셜 스터핑 (Credential Stuffing)">
+<meta property="og:url" content="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/index.html">
 <meta property="og:site_name" content="Koun9Hwan">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-20T16:37:34.000Z">
-<meta property="article:modified_time" content="2021-09-20T18:53:19.685Z">
+<meta property="article:modified_time" content="2022-04-27T11:55:30.225Z">
 <meta property="article:author" content="KoungHwan">
 <meta property="article:tag" content="Web">
 <meta property="article:tag" content="보안용어">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/">
+<link rel="canonical" href="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/","path":"2021/09/21/2021-09-21-크레덴셜 스터핑 (Credential Stuffing)/","title":"크레덴셜 스터핑 (Credential Stuffing)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/","path":"2021/09/21/2021-09-21-크리덴셜 스터핑 (Credential Stuffing)/","title":"크리덴셜 스터핑 (Credential Stuffing)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>크레덴셜 스터핑 (Credential Stuffing) | Koun9Hwan</title>
+<title>크리덴셜 스터핑 (Credential Stuffing) | Koun9Hwan</title>
   
 
 
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91%EC%9D%B4%EB%9E%80"><span class="nav-text">🤔 크레덴셜 스터핑이란?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-text">특징</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%A8-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EA%B3%B5%EA%B2%A9%EC%9C%BC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%ED%94%BC%ED%95%B4"><span class="nav-text">🧨 크레덴셜 스터핑 공격으로 인한 피해</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%ED%94%BC%ED%95%B4-%EC%82%AC%EB%A1%80"><span class="nav-text">크레덴셜 스터핑 피해 사례</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%98%84-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EB%B0%A9%EC%96%B4-%EB%B0%8F-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">😄 크레덴셜 스터핑 방어 및 예방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B8%B0%EC%97%85-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%A9%EB%B2%95%EA%B3%BC-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">기업 관점에서의 방법과 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EA%B0%9C%EC%9D%B8-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">사용자(개인) 관점에서의 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C-%EB%AA%A8%EB%8B%88%ED%84%B0-%EA%B8%B0%EB%8A%A5"><span class="nav-text">패스워드 모니터 기능</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A4%94-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91%EC%9D%B4%EB%9E%80"><span class="nav-text">🤔 크리덴셜 스터핑이란?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-text">특징</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%A8-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EA%B3%B5%EA%B2%A9%EC%9C%BC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%ED%94%BC%ED%95%B4"><span class="nav-text">🧨 크리덴셜 스터핑 공격으로 인한 피해</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%ED%94%BC%ED%95%B4-%EC%82%AC%EB%A1%80"><span class="nav-text">크리덴셜 스터핑 피해 사례</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%98%84-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C-%EC%8A%A4%ED%84%B0%ED%95%91-%EB%B0%A9%EC%96%B4-%EB%B0%8F-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">😄 크리덴셜 스터핑 방어 및 예방법</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B8%B0%EC%97%85-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%A9%EB%B2%95%EA%B3%BC-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">기업 관점에서의 방법과 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EA%B0%9C%EC%9D%B8-%EA%B4%80%EC%A0%90%EC%97%90%EC%84%9C%EC%9D%98-%EC%98%88%EB%B0%A9%EB%B2%95"><span class="nav-text">사용자(개인) 관점에서의 예방법</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C-%EB%AA%A8%EB%8B%88%ED%84%B0-%EA%B8%B0%EB%8A%A5"><span class="nav-text">패스워드 모니터 기능</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -221,7 +221,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2021/09/21/2021-09-21-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -234,7 +234,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          크레덴셜 스터핑 (Credential Stuffing)
+          크리덴셜 스터핑 (Credential Stuffing)
         </h1>
 
         <div class="post-meta-container">
@@ -244,10 +244,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-09-21 01:37:34 / Modified: 03:53:19" itemprop="dateCreated datePublished" datetime="2021-09-21T01:37:34+09:00">2021-09-21</time>
+      <time title="Created: 2021-09-21 01:37:34" itemprop="dateCreated datePublished" datetime="2021-09-21T01:37:34+09:00">2021-09-21</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-04-27 20:55:30" itemprop="dateModified" datetime="2022-04-27T20:55:30+09:00">2022-04-27</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -269,11 +275,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="🤔-크레덴셜-스터핑이란"><a href="#🤔-크레덴셜-스터핑이란" class="headerlink" title="🤔 크레덴셜 스터핑이란?"></a>🤔 크레덴셜 스터핑이란?</h1><br>
+        <h1 id="🤔-크리덴셜-스터핑이란"><a href="#🤔-크리덴셜-스터핑이란" class="headerlink" title="🤔 크리덴셜 스터핑이란?"></a>🤔 크리덴셜 스터핑이란?</h1><br>
 
 <mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
 
-<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
+<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
 
 <br>
 
@@ -281,7 +287,7 @@
 
 <h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
 
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
 
 <br>
 
@@ -290,20 +296,20 @@
 <hr>
 <br>
 
-<h1 id="🧨-크레덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크레덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크레덴셜 스터핑 공격으로 인한 피해"></a>🧨 크레덴셜 스터핑 공격으로 인한 피해</h1><br>
+<h1 id="🧨-크리덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크리덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크리덴셜 스터핑 공격으로 인한 피해"></a>🧨 크리덴셜 스터핑 공격으로 인한 피해</h1><br>
 
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
+<mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
 
 <p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
 <br>
 
 <br>
 
-<h2 id="크레덴셜-스터핑-피해-사례"><a href="#크레덴셜-스터핑-피해-사례" class="headerlink" title="크레덴셜 스터핑 피해 사례"></a>크레덴셜 스터핑 피해 사례</h2><br>
+<h2 id="크리덴셜-스터핑-피해-사례"><a href="#크리덴셜-스터핑-피해-사례" class="headerlink" title="크리덴셜 스터핑 피해 사례"></a>크리덴셜 스터핑 피해 사례</h2><br>
 
 <div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>크레덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
+<object class="link-grid-image" data="/images/보안용어/크리덴셜 스터핑/logo.png"></object>
+<p>크리덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
 <a target="_blank" rel="noopener" href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
 </div></div>
 
@@ -314,9 +320,9 @@
 <hr>
 <br>
 
-<h1 id="😄-크레덴셜-스터핑-방어-및-예방법"><a href="#😄-크레덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크레덴셜 스터핑 방어 및 예방법"></a>😄 크레덴셜 스터핑 방어 및 예방법</h1><br>
+<h1 id="😄-크리덴셜-스터핑-방어-및-예방법"><a href="#😄-크리덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크리덴셜 스터핑 방어 및 예방법"></a>😄 크리덴셜 스터핑 방어 및 예방법</h1><br>
 
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
+<mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
 
 <p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
 <br>
@@ -326,7 +332,7 @@
 <h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
 
 <ul>
-<li><mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
+<li><mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
 그러므로 탐지를 통해 방어를 해야 합니다.</li>
 <li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
 <li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
@@ -350,7 +356,7 @@
 <h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
 
 <div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
+<object class="link-grid-image" data="/images/보안용어/크리덴셜 스터핑/logo.png"></object>
 <p>패스워드 모니터</p><p>보안뉴스</p>
 <a target="_blank" rel="noopener" href="https://www.boannews.com/media/view.asp?idx=97978"></a>
 </div></div>
@@ -436,7 +442,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"da72465b5b2b6b36dd2d876fcd118816"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"6a1ad961835200f8d35608be079c9513"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

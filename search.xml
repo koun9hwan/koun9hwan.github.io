@@ -710,108 +710,6 @@
       </tags>
   </entry>
   <entry>
-    <title>크레덴셜 스터핑 (Credential Stuffing)</title>
-    <url>/2021/09/21/2021-09-21-%ED%81%AC%EB%A0%88%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/</url>
-    <content><![CDATA[<h1 id="🤔-크레덴셜-스터핑이란"><a href="#🤔-크레덴셜-스터핑이란" class="headerlink" title="🤔 크레덴셜 스터핑이란?"></a>🤔 크레덴셜 스터핑이란?</h1><br>
-
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
-
-<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
-
-<br>
-
-<br>
-
-<h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
-
-<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
-
-<br>
-
-<br>
-
-<hr>
-<br>
-
-<h1 id="🧨-크레덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크레덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크레덴셜 스터핑 공격으로 인한 피해"></a>🧨 크레덴셜 스터핑 공격으로 인한 피해</h1><br>
-
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
-
-<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
-<br>
-
-<br>
-
-<h2 id="크레덴셜-스터핑-피해-사례"><a href="#크레덴셜-스터핑-피해-사례" class="headerlink" title="크레덴셜 스터핑 피해 사례"></a>크레덴셜 스터핑 피해 사례</h2><br>
-
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>크레덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
-<a href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
-</div></div>
-
-<br>
-
-<br>
-
-<hr>
-<br>
-
-<h1 id="😄-크레덴셜-스터핑-방어-및-예방법"><a href="#😄-크레덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크레덴셜 스터핑 방어 및 예방법"></a>😄 크레덴셜 스터핑 방어 및 예방법</h1><br>
-
-<mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
-
-<p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
-<br>
-
-<br>
-
-<h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
-
-<ul>
-<li><mark class="label danger">크레덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
-그러므로 탐지를 통해 방어를 해야 합니다.</li>
-<li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
-<li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
-<li>회원 가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
-</ul>
-<br>
-
-<br>
-
-<h2 id="사용자-개인-관점에서의-예방법"><a href="#사용자-개인-관점에서의-예방법" class="headerlink" title="사용자(개인) 관점에서의 예방법"></a>사용자(개인) 관점에서의 예방법</h2><br>
-
-<ul>
-<li>사이트에 다중 인증 옵션이 있을 경우 사용합니다.</li>
-<li>각 사이트 별로 다른 비밀번호를 사용해야 합니다.</li>
-<li>비밀번호는 영문, 숫자, 특수 문자, 영어 대문자를 포함하여 강력하게 만들어야 합니다.</li>
-</ul>
-<br>
-
-<br>
-
-<h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
-
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/보안용어/크레덴셜 스터핑/logo.png"></object>
-<p>패스워드 모니터</p><p>보안뉴스</p>
-<a href="https://www.boannews.com/media/view.asp?idx=97978"></a>
-</div></div>
-
-<br>
-
-<p><strong>기사 내용 요약</strong></p>
-<p>엣지 브라우저에서의 ‘패스워드 모니터’ 기능을 키면 다크웹 등 을 스캔해 사용자의 계정 정보가 유출됐는지 파악하고 그것을 알려 주는 기능이 있다고 알려 주는 내용입니다.</p>
-]]></content>
-      <categories>
-        <category>보안용어</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>보안용어</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[Lord of SQLInjection] [3번_goblin] Write UP</title>
     <url>/2021/09/27/2021-09-27-Lord_of_SQLInjection_3_goblin/</url>
     <content><![CDATA[<h1 id="😐-전체-소스코드"><a href="#😐-전체-소스코드" class="headerlink" title="😐 전체 소스코드"></a>😐 전체 소스코드</h1><br>
@@ -18620,6 +18518,370 @@ section 진행 기간
 <hr>
 <p><a name="미들웨어">[1]</a> 미들웨어* : 응용 소프트웨어가 운영체제로부터 제공받는 서비스 이외에 추가적으로 이용할 수 있는 서비스를 제공하는 컴퓨터 소프트웨어</p>
 <p><a name="허니팟">[2]</a> 허니팟* : 해커를 유인하기 위해 고의적으로 취약한 서버를 만들어 이를 모니터링하는 시스템. 공격자의 공격 경로와 공격 수법을 알아내기 위한 목적으로 사용</p>
+]]></content>
+      <categories>
+        <category>뉴스레터</category>
+      </categories>
+      <tags>
+        <tag>뉴스레터</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>크리덴셜 스터핑 (Credential Stuffing)</title>
+    <url>/2021/09/21/2021-09-21-%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91%20(Credential%20Stuffing)/</url>
+    <content><![CDATA[<h1 id="🤔-크리덴셜-스터핑이란"><a href="#🤔-크리덴셜-스터핑이란" class="headerlink" title="🤔 크리덴셜 스터핑이란?"></a>🤔 크리덴셜 스터핑이란?</h1><br>
+
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 등 과 마찬가지로 <u>사용자의 계정을 탈취</u>하는 공격 유형 중 하나입니다.
+
+<mark class="label info">사전 공격(Dictionary Attack)</mark>과 다른 점은 <mark class="label info">사전 공격(Dictionary Attack)</mark>은 쓸만한 비밀번호를 사전처럼 모아두고 그 모아둔 목록을 자동화 공격 툴을 이용해 대입하는 공격이지만 <mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark>은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 것입니다.
+
+<br>
+
+<br>
+
+<h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><br>
+
+<mark class="label success">무차별 대입 공격(Brute force)</mark>과 <mark class="label info">사전 공격(Dictionary Attack)</mark> 같은 경우 대입하는 횟수가 많아 탐지되기가 쉽지만 <mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark>은 <u>대입하는 횟수가 많지 않아</u> 탐지되기 쉽지 않고 눈에 띄지 않습니다.
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="🧨-크리덴셜-스터핑-공격으로-인한-피해"><a href="#🧨-크리덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="🧨 크리덴셜 스터핑 공격으로 인한 피해"></a>🧨 크리덴셜 스터핑 공격으로 인한 피해</h1><br>
+
+<mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark> 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.
+
+<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 DB까지 만지거나 탈취 또한 가능하기 때문에 피해자는 큰 손해를 입습니다.</p>
+<br>
+
+<br>
+
+<h2 id="크리덴셜-스터핑-피해-사례"><a href="#크리덴셜-스터핑-피해-사례" class="headerlink" title="크리덴셜 스터핑 피해 사례"></a>크리덴셜 스터핑 피해 사례</h2><br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/보안용어/크리덴셜 스터핑/logo.png"></object>
+<p>크리덴셜 스터핑 피해 사례</p><p>보안뉴스</p>
+<a href="https://www.boannews.com/media/view.asp?idx=83369&page=1&kind=1"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<hr>
+<br>
+
+<h1 id="😄-크리덴셜-스터핑-방어-및-예방법"><a href="#😄-크리덴셜-스터핑-방어-및-예방법" class="headerlink" title="😄 크리덴셜 스터핑 방어 및 예방법"></a>😄 크리덴셜 스터핑 방어 및 예방법</h1><br>
+
+<mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark> 공격의 방어와 예방법을 크게 두 가지로 나누어봤습니다.
+
+<p>첫 번째는 <code>기업</code> 관점에서의 방어와 에방법 두 번째는 <code>사용자(개인)</code> 관점에서의 예방법으로 나누어봤습니다.</p>
+<br>
+
+<br>
+
+<h2 id="기업-관점에서의-방법과-예방법"><a href="#기업-관점에서의-방법과-예방법" class="headerlink" title="기업 관점에서의 방법과 예방법"></a>기업 관점에서의 방법과 예방법</h2><br>
+
+<ul>
+<li><mark class="label danger">크리덴셜 스터핑(Credential Stuffing)</mark> 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아집니다.
+그러므로 탐지를 통해 방어를 해야 합니다.</li>
+<li>캡챠 같은 인증 방법을 통해 봇을 차단하는 방법이 있습니다.</li>
+<li>2차 비밀번호와 같은 2단계 인증을 통해 예방을 합니다.<br>다중 인증 옵션을 사용 중인 계정의 해킹 방직 성공률은 99.9%라고 합니다.</li>
+<li>회원 가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="사용자-개인-관점에서의-예방법"><a href="#사용자-개인-관점에서의-예방법" class="headerlink" title="사용자(개인) 관점에서의 예방법"></a>사용자(개인) 관점에서의 예방법</h2><br>
+
+<ul>
+<li>사이트에 다중 인증 옵션이 있을 경우 사용합니다.</li>
+<li>각 사이트 별로 다른 비밀번호를 사용해야 합니다.</li>
+<li>비밀번호는 영문, 숫자, 특수 문자, 영어 대문자를 포함하여 강력하게 만들어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="패스워드-모니터-기능"><a href="#패스워드-모니터-기능" class="headerlink" title="패스워드 모니터 기능"></a>패스워드 모니터 기능</h2><br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/보안용어/크리덴셜 스터핑/logo.png"></object>
+<p>패스워드 모니터</p><p>보안뉴스</p>
+<a href="https://www.boannews.com/media/view.asp?idx=97978"></a>
+</div></div>
+
+<br>
+
+<p><strong>기사 내용 요약</strong></p>
+<p>엣지 브라우저에서의 ‘패스워드 모니터’ 기능을 키면 다크웹 등 을 스캔해 사용자의 계정 정보가 유출됐는지 파악하고 그것을 알려 주는 기능이 있다고 알려 주는 내용입니다.</p>
+]]></content>
+      <categories>
+        <category>보안용어</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>보안용어</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>계정탈취 공격, 크리덴셜 스터핑</title>
+    <url>/2022/04/27/2022-04-27-%EA%B3%84%EC%A0%95%20%ED%83%88%EC%B7%A8%20%EA%B3%B5%EA%B2%A9,%20%ED%81%AC%EB%A6%AC%EB%8D%B4%EC%85%9C%20%EC%8A%A4%ED%84%B0%ED%95%91/</url>
+    <content><![CDATA[<h1 id="⁉-계정탈취-공격-크리덴셜-스터핑"><a href="#⁉-계정탈취-공격-크리덴셜-스터핑" class="headerlink" title="⁉ 계정탈취 공격, 크리덴셜 스터핑"></a>⁉ 계정탈취 공격, 크리덴셜 스터핑</h1><br>
+
+<p>무차별 대입공격(Brute force)과 사전 공격(Dictionary Attack)에 대해 들어보셨나요?</p>
+<p>이번에는 이러한 계정 탈취 공격 유형 중 하나인 크리덴셜 스터핑(Credential Stuffing)에 대해 알아보도록 하겠습니다.</p>
+<br>
+
+
+<br>
+
+<h2 id="크리덴셜-스터핑은-무엇인가요"><a href="#크리덴셜-스터핑은-무엇인가요" class="headerlink" title="크리덴셜 스터핑은 무엇인가요?"></a>크리덴셜 스터핑은 무엇인가요?</h2><br>
+
+<p>크리덴셜 스터핑(Credential Stuffing)은 무차별 대입 공격(Brute force)과 사전 공격(Dictionary Attack) 과 같은 계정 탈취 공격 유형 중 하나입니다.</p>
+<p>크리덴셜 스터핑(Credential Stuffing)은 <u>이미 유출된 아이디와 비밀번호</u>를 이용해 다른 사이트에 자동화 기술로 대입하는 공격입니다.</p>
+<br>
+
+<br>
+
+<p>👉🏻 무차별 대입 공격은 무엇인가요?</p>
+<p>무차별 대입 공격은 비밀번호와 같은 인증 정보 등을 알아내기 위해 공격자가 반복적으로 문자를 대입하여 인증정보 등을 탈취하는 공격입니다.</p>
+<p>무차별 대입공격 같은 경우 언젠가는 공격에 성공하지만, 해킹하려는 인증 정보(비밀번호 등)가 길면 그 시간이 오래 걸립니다.</p>
+<p>예를 들어 초당 1,500만 회의 문자 입력을 시도할 경우 7자로 된 비밀번호는 9분만에 뚫을 수 있습니다. 하지만 13자의 비밀번호를 탈취하는 데에는 35만 년이 걸립니다. </p>
+<p>이처럼 패스워드가 길어질수록 매우 많은 시간이 필요하기 때문에 비밀번호 등을 길게 설정하면 무차별 대입 공격을 예방할 수 있습니다.</p>
+<br>
+
+<br>
+
+<p>👉🏻 사전 공격은 무엇인가요?</p>
+<p>자주 사용되는 단어나 문장 비밀번호 등을 사전 형태로 만들어, 그 안에 들어있는 단어, 문장, 비밀번호 등을 대입하여 인증 정보 등을 탈취하는 공격입니다.</p>
+<p>사전 공격 같은 경우, 사전 형태로 만들어진 파일 리스트에 없는 비밀번호를 사용하고 있다면 해킹이 불가능하다는 특징이 있습니다.</p>
+<p>구글에 &quot;dictionary attack password list&quot;과 같이 검색할 경우 비밀번호 리스트 파일을 받을 수 있습니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/크리덴셜 스터핑/password_list.png">
+    <figcaption><br>사전 공격 비밀번호 리스트</figcaption>
+</figure>
+
+<br>
+
+<br>
+
+<h2 id="크리덴셜-스터핑-공격으로-인한-피해"><a href="#크리덴셜-스터핑-공격으로-인한-피해" class="headerlink" title="크리덴셜 스터핑 공격으로 인한 피해"></a>크리덴셜 스터핑 공격으로 인한 피해</h2><br>
+
+<p>크리덴션 스터핑(Credential Stuffing) 공격에 성공한 공격자는 그 계정을 이용해 사기 범죄를 일으킬 수 있습니다.</p>
+<p>혹시나 탈취한 계정의 권한이 높거나 관리자의 계정일 경우에는 데이터베이스 탈취 또한 가능하기 때문에 특히 조심해야겠죠?</p>
+<br>
+
+<p>2020년 한 해 동안 전세계 금융 업계를 대상으로 총 41억 건의 보안 공격이 발생했다고 해요. 그 중 34억 건은 크리덴셜 스터핑(Credential Stuffing) 공격이며, 약 7억건은 SQL 인젝션 등 웹 애플리케이션 공격이라고 합니다.</p>
+<p>이처럼 크리덴셜 스터핑 공격은 발생 빈도가 높고 지금도 점점 높아지고 있다고 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="크리덴셜-스터핑-방어-및-예방법"><a href="#크리덴셜-스터핑-방어-및-예방법" class="headerlink" title="크리덴셜 스터핑 방어 및 예방법"></a>크리덴셜 스터핑 방어 및 예방법</h2><br>
+
+<p>크리덴셜 스터핑(Credential Stuffing) 공격의 방어와 예방법을 크게 두 가지 관점으로 나누어보았습니다.</p>
+<br>
+
+<h3 id="서버-관점"><a href="#서버-관점" class="headerlink" title="서버 관점"></a>서버 관점</h3><ul>
+<li>크리덴셜 스터핑(Credential Stuffing) 공격은 자동화 툴을 이용해 공격하는게 일반적이므로 제한된 시간 안에 로그인 시도가 증가하고, 트래픽의 변화가 생기고, 평소보다 로그인 실패 빈도가 높아지므로 탐지를 통해 방어를 해야 합니다.</li>
+<li>캡챠(CAPTCHA) 같은 인증 방법을 통해 자동화 툴을 차단합니다.</li>
+</ul>
+<figure>
+<img src="/images/뉴스레터/크리덴셜 스터핑/CAPTCHA.png">
+<figcaption><br>구글의 리캡챠</figcaption>
+</figure>
+
+<br>
+
+<ul>
+<li>2차 비밀번호와 같은 2단계 인증을 만들어 예방을 해야 합니다.</li>
+</ul>
+<figure>
+<img src="/images/뉴스레터/크리덴셜 스터핑/naver.png">
+<figcaption><br>네이버 2단계 인증</figcaption>
+</figure>
+
+<br>
+
+<ul>
+<li>회원가입 시 비밀번호 조합을 강력하게 하도록 설정해두어야 합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="클라이언트-관점"><a href="#클라이언트-관점" class="headerlink" title="클라이언트 관점"></a>클라이언트 관점</h3><ul>
+<li>다중 인증 옵션이 있을 경우 사용합니다.</li>
+<li>각 사이트 별로 다른 비밀번호를 사용합니다.</li>
+<li>비밀번호는 영문, 숫자, 특수 문자, 영문 대문자를 포함하여 강력하게 만들어야 합니다.</li>
+<li><u>패스워드 모니터</u>와 같은 기능을 사용합니다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="패스워드-모니터"><a href="#패스워드-모니터" class="headerlink" title="패스워드 모니터?"></a>패스워드 모니터?</h2><br>
+
+<p>클라이언트 관점에 있는 패스워드 모니터라는 기능에 대해 알아보도록 하겠습니다.</p>
+<p>패스워드 모니터는 다크웹 등을 스캔해 사용자의 계정 정보가 유출됐는지 확인하고 이를 사용자에게 알려주는 기능입니다.</p>
+<p>해당 기능은 크롬, 엣지 등의 브라우저에서 제공하고 있습니다.</p>
+<br>
+
+<figure>
+<img src="/images/뉴스레터/크리덴셜 스터핑/chrome.png">
+<figcaption><br>크롬의 패스워드 모니터</figcaption>
+</figure>
+
+<br>
+
+<figure>
+<img src="/images/뉴스레터/크리덴셜 스터핑/edge.png">
+<figcaption><br>엣지의 패스워드 모니터</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>뉴스레터</category>
+      </categories>
+      <tags>
+        <tag>뉴스레터</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>한 곳만 공격했을 뿐인데.. 다른 곳도 공격을 당했다!</title>
+    <url>/2022/05/05/2022-05-05-%ED%95%9C%20%EA%B3%B3%EB%A7%8C%20%EA%B3%B5%EA%B2%A9%ED%96%88%EC%9D%84%20%EB%BF%90%EC%9D%B8%EB%8D%B0..%20%EB%8B%A4%EB%A5%B8%20%EA%B3%B3%EB%8F%84%20%EA%B3%B5%EA%B2%A9%EC%9D%84%20%EB%8B%B9%ED%96%88%EB%8B%A4!/</url>
+    <content><![CDATA[<h1 id="😨-한-곳만-공격했을-뿐인데-다른-곳도-피해를-입는다"><a href="#😨-한-곳만-공격했을-뿐인데-다른-곳도-피해를-입는다" class="headerlink" title="😨 한 곳만 공격했을 뿐인데 다른 곳도 피해를 입는다?"></a>😨 한 곳만 공격했을 뿐인데 다른 곳도 피해를 입는다?</h1><br>
+
+<p>한 곳만 공격해도 여러 곳에 피해 입힐 수 있는 공격이 있는데요.</p>
+<p>이번에는 대규모로 피해를 양산하는 공격인 공급망 공격에 대해 소개하도록 하겠습니다.</p>
+<br>
+
+<br>
+
+<h2 id="공급망-공격은-무엇인가요"><a href="#공급망-공격은-무엇인가요" class="headerlink" title="공급망 공격은 무엇인가요?"></a>공급망 공격은 무엇인가요?</h2><br>
+
+<p>현재 IT 인프라들은 복잡하게 얽혀 있습니다. 그만큼 소프트웨어나 각종 솔루션들이 많은데요.</p>
+<p>이런 소프트웨어나 각종 솔루션 등을 제공하는 기업이 해킹을 당하면 해당 소프트웨어나 각종 솔루션을 사용하는 고객사들이 같이 해킹을 당할 수 있는 공격입니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/공급망 공격/Supply Chain Attack.png">
+    <figcaption><br>공급망 공격 예시</figcaption>
+</figure>
+
+<br>
+
+<p>공급망 공격에 대해 쉽게 설명하기 위해 그림을 가져왔습니다.</p>
+<p>해당 그림을 보면 공격자는 솔루션 제공 업체의 업데이트 서버를 공격을 하여 업데이트 파일에 악성코드를 심는 등의 변조를 합니다.</p>
+<p>솔루션 제공 업체는 변조된 업데이트 파일인 줄 모르고 고객사들에게 업데이트를 배포합니다.</p>
+<p>업데이트를 진행한 고객사에서는 변조된 업데이트 파일로 인해 공격을 당하는 것을 볼 수 있습니다.</p>
+<br>
+
+<p>이처럼 공격자는 솔루션 제공 업체의 시스템만 해킹을 했을 뿐인데 그 솔루션을 제공받는 고객사도 같이 피해를 입는 것을 볼 수 있습니다.</p>
+<p>공격자들 입장에서는 <u>효율이 높은 공격임과 동시에 대규모로 해킹이 가능</u>하기 때문에 공급망 공격 시도가 늘고 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="솔라윈즈-사태"><a href="#솔라윈즈-사태" class="headerlink" title="솔라윈즈 사태?"></a>솔라윈즈 사태?</h2><br>
+
+<p>혹시 솔라윈즈 사태라고 들어보셨나요?</p>
+<p>솔라윈즈 사태는 솔라윈즈 회사의 네트워크 모니터링 솔루션인 오리온(Orion)의 업데이트 파일을 어떠한 해킹 그룹이 감염시킨 사건입니다.</p>
+<br>
+
+<p>솔라윈즈나 고객사들은 해당 업데이트 파일이 감염되어 있는 사실을 모르고 업데이트를 진행하였습니다.</p>
+<p>이를 통해 1만 8천여 개 회사들이 한꺼번에 잠재적인 피해자가 되었습니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/공급망 공격/SolarWinds_Logo.png">
+    <figcaption><br>솔라윈즈 로고</figcaption>
+</figure>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/공급망 공격/orion.png">
+    <figcaption><br>솔라윈즈의 오리온(Orion) 솔루션</figcaption>
+</figure>
+
+<br>
+
+<br>
+
+<h2 id="공급망-공격-대응"><a href="#공급망-공격-대응" class="headerlink" title="공급망 공격 대응"></a>공급망 공격 대응</h2><br>
+
+<p>사실상 공급망 공격은 공급자 역할을 하는 업체가 공격을 당하면 공급 받는 조직들은 당할 수 밖에 없는 구조입니다.</p>
+<p>그만큼 공격자들은 공급망 공격에 집중하고 있습니다.</p>
+<p>최근에는 공격자들이 개발자들을 노리고 외부 라이브러리나 패키지 등을 취약하게 만든 후 유포하여, 개발자들이 취약한 외부 라이브러리나 패키지 등을 사용하도록 유도하고 있다고 합니다. 그러므로 <u>개발 직후 제품을 출시하거나 패치를 배포하기 전, 개발된 소프트웨어에 취약점이 있는지 점검</u>해야 합니다.</p>
+<br>
+
+<p>KISA의 공급망 공격 대응 방안은 아래와 같습니다.</p>
+<br>
+
+<h3 id="인증서-및-개발-시스템-SVN-빌드서버-등-관리"><a href="#인증서-및-개발-시스템-SVN-빌드서버-등-관리" class="headerlink" title="인증서 및 개발 시스템(SVN, 빌드서버 등) 관리"></a>인증서 및 개발 시스템(SVN, 빌드서버 등) 관리</h3><br>
+
+<ul>
+<li>개발 시스템 망 분리</li>
+<li>지정된 관리자 외 시스템 접근 통제</li>
+<li>인터넷 접속 차단</li>
+<li>별도의 인증서 관리 시스템 필요</li>
+<li>인증서 사용 로그 기록 및 승인</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="업데이트-체계-관리"><a href="#업데이트-체계-관리" class="headerlink" title="업데이트 체계 관리"></a>업데이트 체계 관리</h3><br>
+
+<ul>
+<li>업데이트 관련 파일 무결성 검증</li>
+<li>업데이트 서버의 IP, URL 변조 확인</li>
+<li>클라이언트의 업데이트 포트 상시 오픈 금지</li>
+<li>업데이트 파일 업로드 시 신뢰된 사용자만 업로드 할 수 있도록 인증 방식 구현</li>
+<li>업데이트 파일 코드 서명</li>
+</ul>
+<br>
+
+<br>
+
+<p>이 외에도 공급망 공격 사례 분석 및 대응 방안의 자세한 내용이 궁금하시면 아래의 링크에서 확인하실 수 있습니다.</p>
+<figure>
+    <img src="/images/뉴스레터/공급망 공격/kisa.png">
+    <figcaption><br>KISA 공급망 공격 사례 분석 및 대응 방안 보고서</figcaption>
+</figure>
+
+<br>
+
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>공급망 공격 사례 분석 및 대응 방안 보고서</p><p>KISA</p>
+<a href="https://www.boho.or.kr/data/reportView.do?bulletin_writing_sequence=35089"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<h2 id="소프트웨어-공급망-보호-프레임워크-SLSA"><a href="#소프트웨어-공급망-보호-프레임워크-SLSA" class="headerlink" title="소프트웨어 공급망 보호 프레임워크 SLSA"></a>소프트웨어 공급망 보호 프레임워크 SLSA</h2><br>
+
+<p>구글이 소프트웨어 공급망을 보호하기 위한 프레임워크인 SLSA를 개발중이라고 합니다.</p>
+<br>
+
+<p>SLSA는 구글 내부에서 사용된 코드 점검 프로세스인 BAB(Binary Authorization for Borg)에서 탄생했다고 합니다.</p>
+<p>BAB는 내부자 위험 요인을 줄이기 위해 마련된 것으로 구글 내부에서 사용되는 생산성 소프트웨어를 일일이 감사, 점검, 승인하는 프로세스입니다.</p>
+<br>
+
+<p>SLSA는 여러 업계의 합의로 이루어진 보안 지침을 토대로, 소프트웨어 생산자는 이 지침에 따라 소프트웨어를 더욱 안전하게 만들고 소비자는 소프트웨어 패키지의 보안 상태를 기반으로 결정을 내릴 수 있게 도와주는 역할을 한다고 합니다.</p>
+<p>추후 SLSA는 감사가 가능한 메타데이터의 자동 생성을 지원하여 이 메타데이터를 정책 엔진들에게 제공하고 이를 토대로 SLSA 인증서를 제공하는 것이 목표라고 합니다.</p>
 ]]></content>
       <categories>
         <category>뉴스레터</category>
