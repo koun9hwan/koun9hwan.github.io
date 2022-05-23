@@ -19169,7 +19169,7 @@ section 진행 기간
 
 <p>XSS는 Cross Site Scripting의 약자로 웹 애플리케이션에서 많이 나타나는 취약점인데요.</p>
 <p>이 취약점은 웹 사이트 관리자가 아닌 외부 사용자가 웹 페이지에 악성 스크립트를 삽입할 수 있는 취약점입니다.</p>
-<p>XSS의 공격 방식을 Stored XSS, Reflected XSS 이렇게 두 가지로 나누어보았습니다.</p>
+<p>XSS의 공격 방식은 크게 Stored XSS, Reflected XSS, DOM XSS 이렇게 세 가지로 나누어지지만 Stored XSS, Reflected XSS에 대해서만 설명하도록 하겠습니다.</p>
 <br>
 
 <br>
@@ -19187,13 +19187,248 @@ section 진행 기간
 
 <br>
 
-<p>공격자가 XSS 공격에 취약한 웹 사이트에 악성 스크립트를 포함 한 게시물을 웹 사이트에 업로드 합니다.</p>
+<p>공격자가 XSS 공격에 취약한 웹 사이트에 악성 스크립트를 포함한 게시물을 웹 사이트에 업로드 합니다.</p>
 <p>게시글의 URL을 사용자에게 노출하고 사용자가 해당 게시글을 확인하면 URL에 대한 요청을 서버에 전송합니다.</p>
 <p>웹 서버에서 악성 스크립트를 포함한 응답을 전송하며 공격이 수행됩니다.</p>
 <br>
 
 <br>
 
+<p>👉🏻 Reflected XSS</p>
+<p>Reflected XSS는 악성 스크립트를 포함한 URL를 사용자가 클릭하게 유도하여 공격하는 방식입니다.</p>
+<p>Reflected의 뜻은 &quot;반사&quot; 입니다. <u>요청 메시지에 대해 스크립트가 반사되어 돌아와 실행</u>되기 때문에 Reflected XSS라고 이름이 붙여졌습니다.</p>
+<br>
+
+<p>다음은 Reflected XSS의 공격 과정입니다.</p>
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/reflected_xss.png">
+    <figcaption><br>&lt; Reflected XSS 공격 과정 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>공격자가 XSS 공격에 취약한 웹 사이트를 찾아, 악성 스크립트를 포함한 URL를 이메일, 게시판, SNS 등을 이용해 피싱을 합니다.</p>
+<p>사용자가 URL를 클릭하면 악성 스크립트가 삽입된 웹 사이트로 이동되고 입력된 스크립트가 반사되어 실행됩니다.</p>
+<br>
+
+<br>
+
+<h2 id="XSS-실습"><a href="#XSS-실습" class="headerlink" title="XSS 실습"></a>XSS 실습</h2><br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_1.png">
+    <figcaption><br>&lt; XSS 실습 문제 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>해당 문제를 보면 Stored XSS를 이용해 관리자의 쿠키 값을 훔치라고 되어있습니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_2.png">
+    <figcaption><br>&lt; XSS 실습 입력 폼 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>해당 문제에 들어오면 제목과 메시지를 입력할 수 있는 폼이 있습니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_3.png">
+    <figcaption><br>&lt; XSS 테스트 &gt;</figcaption>
+</figure>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_4.png">
+    <figcaption><br>&lt; XSS 취약 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>XSS 취약점이 있는 것을 확인하였습니다.</p>
+<br>
+
+<br>
+
+<p>자신의 서버를 이용하거나 requestbin.net 이라는 사이트를 이용하여 관리자의 쿠키를 훔쳐보도록 하겠습니다.</p>
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_5.png">
+    <figcaption><br>&lt; XSS 공격 스크립트 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>공격 스크립트를 웹 서버에 저장해주었습니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_6.png">
+    <figcaption><br>&lt; XSS 공격 성공 &gt;</figcaption>
+</figure>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/xss_7.png">
+    <figcaption><br>&lt; 관리자 쿠키 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>제 서버에 관리자의 쿠키 값이 들어와 있는 것을 확인할 수 있습니다.</p>
+<br>
+
+<br>
+
+<p>해당 문제는 아래의 링크에서 풀어 보실 수 있습니다.</p>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>Stored XSS 실습</p><p>Root Me</p>
+<a href="https://www.root-me.org/en/Challenges/Web-Client/XSS-Stored-1"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF?"></a>CSRF?</h2><br>
+
+<p>CSRF는 Cross Site Request Forgery의 약자로 웹 애플리케이션에서 많이 나타나는 취약점인데요.</p>
+<p>이 취약점은 피해자가 자신의 의지와는 무관하게 공격자가 의도한 행위를 실행하게 하는 공격입니다.</p>
+<p>CSRF는 공격자가 피해자의 권한을 도용하여 중요 기능(비밀번호 변경 등)을 실행하는 것이 가능해집니다.</p>
+<br>
+
+<p>다음은 CSRF의 공격 과정입니다.</p>
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf.png">
+    <figcaption><br>&lt; CSRF 공격 과정 &gt;</figcaption>
+</figure>
+
+<br>
+
+<br>
+
+<h2 id="CSRF-실습"><a href="#CSRF-실습" class="headerlink" title="CSRF 실습"></a>CSRF 실습</h2><br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_1.png">
+    <figcaption><br>&lt; CSRF 실습 문제 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>해당 문제를 보면 계정을 활성화 하라고 되어있습니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_2.png">
+    <figcaption><br>&lt; 계정 생성 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>계정을 하나 생성해주었습니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_3.png">
+    <figcaption><br>&lt; Contact 화면 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>관리자와 연락할 수 있는 페이지로 추측됩니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_4.png">
+    <figcaption><br>&lt; Profile 화면 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>제 계정의 정보입니다. Status 체크박스가 해제되어 있는 것을 볼 수 있습니다.</p>
+<br>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_5.png">
+    <figcaption><br>&lt; Private 화면 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>관리자가 아직 제 계정을 확인하지 못했다고 기다리라는 문구가 있습니다.</p>
+<br>
+
+<br>
+
+<p>관리자의 권한으로 제 계정의 Status 체크 박스를 선택하도록 만들어야 하는 것으로 보입니다.</p>
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_6.png">
+    <figcaption><br>&lt; CSRF 공격 &gt;</figcaption>
+</figure>
+
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/XSS와 CSRF/csrf_7.png">
+    <figcaption><br>&lt; CSRF 공격 성공 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>Private 화면에 들어가면 기다리라는 문구 대신에 flag 값이 나왔습니다.</p>
+<br>
+
+<br>
+
+<p>해당 문제는 아래의 링크에서 풀어 보실 수 있습니다.</p>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/주요정보통신기반시설 취약점 진단 가이드/U-19/logo.png"></object>
+<p>CSRF 실습</p><p>Root Me</p>
+<a href="https://www.root-me.org/en/Challenges/Web-Client/CSRF-0-protection"></a>
+</div></div>
+
+<br>
+
+<br>
+
+<h2 id="XSS와-CSRF-차이점"><a href="#XSS와-CSRF-차이점" class="headerlink" title="XSS와 CSRF 차이점"></a>XSS와 CSRF 차이점</h2><br>
+
+<p>XSS와 CSRF와 비슷하여 헷갈릴 수 있는데요.</p>
+<p>공격 대상에 따라 구분하면 쉽습니다.</p>
+<p>XSS는 <u>사이트 변조 등을 통해 <strong>클라이언트</strong>에 대한 공격</u>을 합니다.</p>
+<p>반면에 CSRF는 <u>요청을 위조하여 사용자의 권한으로 <strong>서버</strong>에 대한 공격</u>을 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="대응-방안"><a href="#대응-방안" class="headerlink" title="대응 방안"></a>대응 방안</h2><br>
+
+<p>👉🏻 XSS</p>
+<p>사용자의 입력에 대해서는 의심을 하고 검증하는 작업이 필요합니다.</p>
+<p>&#39;&lt;&#39; &#39;&gt;&#39; 와 같은 특수 문자를 필터링 하고 HTML로 변환 처리를 해야 합니다.</p>
+<br>
+
+<br>
+
+<p>👉🏻 CSRF</p>
+<p>CSRF 토큰을 사용해야합니다.</p>
+<p>백 엔드 단에서 요청의 Referrer를 확인하여 도메인이 일치하는지 검증해야 합니다.</p>
 ]]></content>
       <categories>
         <category>뉴스레터</category>
