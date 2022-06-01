@@ -19437,4 +19437,118 @@ section 진행 기간
         <tag>뉴스레터</tag>
       </tags>
   </entry>
+  <entry>
+    <title>접근통제 정책</title>
+    <url>/2022/05/30/2022-05-30-%EC%A0%91%EA%B7%BC%ED%86%B5%EC%A0%9C%20%EC%A0%95%EC%B1%85/</url>
+    <content><![CDATA[<h1 id="⛔-접근통제-정책"><a href="#⛔-접근통제-정책" class="headerlink" title="⛔ 접근통제 정책"></a>⛔ 접근통제 정책</h1><br>
+
+<p>정보보호 3대 요소인 기밀성을 보장하려면 접근통제 정책이 필요합니다.</p>
+<p>접근통제 정책에는 무엇이 있는지 알아보도록 하겠습니다.</p>
+<br>
+
+<br>
+
+<p>👉🏻 정보보호 3대 요소</p>
+<p>정보보호 3대 요소로는 기밀성, 무결성, 가용성이 있는데요. 간단하게 설명해보도록 하겠습니다.</p>
+<br>
+
+<p>[ 기밀성(Confidentiality) ]</p>
+<p>인가된 사용자만 정보 자산에 접근할 수 있도록 해야 합니다.</p>
+<br>
+
+<p>[ 무결성(Integrity) ]</p>
+<p>적절한 권한을 가진 사용자가 인가된 방법으로만 정보를 변경할 수 있도록 해야 합니다.</p>
+<br>
+
+<p>[ 가용성(Availability) ]</p>
+<p>필요한 시점에 정보 자산에 대한 접근이 가능하도록 해야 합니다.</p>
+<br>
+
+<br>
+
+<h2 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h2><br>
+
+<p>MAC는 Mandatory Access Control의 약자로 강제적 접근통제입니다.</p>
+<br>
+
+<p>MAC는 주체와 객체의 등급 기반 접근 권한을 부여합니다.</p>
+<p>어떤 주체가 정보 시스템에 접근하려 할 때 주체와 객체의 등급을 비교하여, 높은 등급의 객체의 정보가 등급이 낮은 주체한테 노출되지 않도록 접근을 제한하는 통제 방법입니다.</p>
+<p>더욱 쉽게 이해할 수 있도록 아래 그림에서 설명하도록 하겠습니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/접근통제 정책/MAC.png">
+    <figcaption><br>&lt; MAC 개념 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>위 사진을 보면 1급 비밀 취급 인가자는 1급 기밀부터 2급 기밀, 3급 기밀, 미분류인 정보까지 모두 접근이 가능합니다.</p>
+<p>반면에 하위 등급의 비밀 취급 인가자는 상위 등급의 기밀을 볼 수 없습니다.</p>
+<p>즉, 주체와 객체의 등급을 비교하여 접근통제를 합니다.</p>
+<br>
+
+<br>
+
+<p>MAC의 특징으로는 규칙이 단순해 관리하기가 용이합니다. 접근통제 정책이 매우 엄격하여 군대같은 민감한 정보의 기밀성을 보장하는데 사용 중입니다.</p>
+<br>
+
+<br>
+
+<h2 id="DAC"><a href="#DAC" class="headerlink" title="DAC"></a>DAC</h2><br>
+
+<p>DAC는 Discretionary Access Control의 약자로 임의적 접근통제입니다.</p>
+<br>
+
+<p>DAC는 주체나 주체가 속해 있는 그룹의 신분에 근거하여 객체에 대한 접근을 제한하는 방법입니다.</p>
+<p>DAC는 객체의 소유자가 접근 권한을 결정하는 정책인데요.</p>
+<p>쉽게 말해 파일의 소유자가 접근 권한을 결정하는 정책입니다.</p>
+<br>
+
+<p>대표적인 예로 리눅스의 권한 관리가 있습니다.</p>
+<figure>
+    <img src="/images/뉴스레터/접근통제 정책/DAC.png">
+    <figcaption><br>&lt; 리눅스 권한 관리 &gt;</figcaption>
+</figure>
+<br>
+
+<br>
+
+<p>DAC의 특징으로는 객체의 소유자가 접근 권한을 임의로 지정하는 자율적인 정책입니다. 실제로 가장 많이 사용하는 접근통제 정책입니다.</p>
+<p>단점으로는 신분 도용 시 통제 방법이 없습니다.</p>
+<br>
+
+<br>
+
+<h2 id="RBAC"><a href="#RBAC" class="headerlink" title="RBAC"></a>RBAC</h2><br>
+
+<p>RBAC는 Role Based Access Control의 약자로 역할 기반의 접근통제입니다.</p>
+<br>
+
+<p>RBAC는 조직 내에서 맡은 역할에 기초하여 정보에 대한 접근 허용 여부를 결정하는 방법입니다.</p>
+<p>즉, 주체 별로 역할을 부여하고, 역할에 따라 권한을 부여하여 접근통제를 합니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/접근통제 정책/RBAC.png">
+    <figcaption><br>&lt; RBAC 개념 &gt;</figcaption>
+</figure>
+
+<br>
+
+<p>만약 사용자 1이 퇴사를 하고 새로운 직원인 사용자 5가 입사를 하였다면 정보마다 별도로 권한을 지정해 줄 필요 없이 역할만 지정해주면 되기 때문에 편리합니다.</p>
+<br>
+
+<br>
+
+<p>RBAC의 특징으로는 조직의 기능 변화나 인사 이동에 따른 접근통제 정책 관리 업무의 효율성을 높일 수 있습니다.</p>
+<p>역할에 따라 설정된 권한만 할당되기에 접근통제 정책 관리가 단순하고 편리합니다.</p>
+]]></content>
+      <categories>
+        <category>뉴스레터</category>
+      </categories>
+      <tags>
+        <tag>뉴스레터</tag>
+      </tags>
+  </entry>
 </search>
