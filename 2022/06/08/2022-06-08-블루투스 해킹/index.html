@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<meta name="google-site-verification" content="bzX7XUWe3ykyp7JEIMERPXEKJydMTMDTX9Db5xyPdxA" />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"koun9hwan.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="블루투스 해킹">
+<meta property="og:url" content="https://koun9hwan.github.io/2022/06/08/2022-06-08-%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4%20%ED%95%B4%ED%82%B9/index.html">
+<meta property="og:site_name" content="Koun9Hwan">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://koun9hwan.github.io/images/뉴스레터/블루투스%20해킹/bluetooth.png">
+<meta property="article:published_time" content="2022-06-08T08:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-08T13:57:00.141Z">
+<meta property="article:author" content="KoungHwan">
+<meta property="article:tag" content="뉴스레터">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://koun9hwan.github.io/images/뉴스레터/블루투스%20해킹/bluetooth.png">
+
+
+<link rel="canonical" href="https://koun9hwan.github.io/2022/06/08/2022-06-08-%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4%20%ED%95%B4%ED%82%B9/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://koun9hwan.github.io/2022/06/08/2022-06-08-%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4%20%ED%95%B4%ED%82%B9/","path":"2022/06/08/2022-06-08-블루투스 해킹/","title":"블루투스 해킹"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>블루투스 해킹 | Koun9Hwan</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Koun9Hwan</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Study Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4-%ED%95%B4%ED%82%B9"><span class="nav-text">블루투스 해킹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B8%94%EB%A3%A8%ED%94%84%EB%A6%B0%ED%8C%85-Blueprinting"><span class="nav-text">블루프린팅(Blueprinting)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B8%94%EB%A3%A8%EC%8A%A4%EB%82%98%ED%95%91-Bluesnarfing"><span class="nav-text">블루스나핑(Bluesnarfing)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B8%94%EB%A3%A8%EB%B2%84%EA%B9%85-Bluebugging"><span class="nav-text">블루버깅(Bluebugging)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B8%94%EB%A3%A8%EC%9E%AC%ED%82%B9-Bluejacking"><span class="nav-text">블루재킹(Bluejacking)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KoungHwan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/koun9hwan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;koun9hwan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://koun9hwan.github.io/2022/06/08/2022-06-08-%EB%B8%94%EB%A3%A8%ED%88%AC%EC%8A%A4%20%ED%95%B4%ED%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KoungHwan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Koun9Hwan">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          블루투스 해킹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-06-08 17:00:00 / Modified: 22:57:00" itemprop="dateCreated datePublished" datetime="2022-06-08T17:00:00+09:00">2022-06-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%EB%89%B4%EC%8A%A4%EB%A0%88%ED%84%B0/" itemprop="url" rel="index"><span itemprop="name">뉴스레터</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="블루투스-해킹"><a href="#블루투스-해킹" class="headerlink" title="블루투스 해킹"></a>블루투스 해킹</h1><br>
+
+<p>요즘 이어폰, 키보드, 노트북, 자동차 등등 과 같은 많은 기기에서 블루투스를 사용하고 있는데요.</p>
+<p>이렇게 많이 곳에서 사용되고 있는 블루투스를 해킹할 수 있다는 사실을 아시나요?</p>
+<p>이번에는 블루투스의 취약점과 위협에 대해 알아보도록 하겠습니다.</p>
+<br>
+
+<figure>
+    <img src="/images/뉴스레터/블루투스 해킹/bluetooth.png">
+    <figcaption><br>&lt; MAC 개념 &gt;</figcaption>
+</figure>
+
+<br>
+
+<br>
+
+<h2 id="블루프린팅-Blueprinting"><a href="#블루프린팅-Blueprinting" class="headerlink" title="블루프린팅(Blueprinting)"></a>블루프린팅(Blueprinting)</h2><br>
+
+<p>블루프린팅은 공격자가 블루투스의 서비스 발견 프로토콜(SDP)을 이용해 공격이 가능한 블루투스 장치를 검색하고 모델을 확인하는 활동을 말합니다.</p>
+<br>
+
+<p>👉🏻 SDP(Service Discovery Protocol) 프로토콜</p>
+<p>블루투스 기기는 MAC 주소와 유사하게 6바이트의 고유 주소가 있습니다. 앞의 3바이트는 제조사에 할당, 나머지 3바이트는 블루투스 기기 별로 할당이 되는데요. 이 3바이트 만으로는 블루투스 기기를 식별하기 힘듭니다.</p>
+<p>이러한 어려움을 해결하고자 서비스 발견 프로토콜(SDP)를 사용하게 되었고, 이를 통해 블루투스 기기를 식별할 수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="블루스나핑-Bluesnarfing"><a href="#블루스나핑-Bluesnarfing" class="headerlink" title="블루스나핑(Bluesnarfing)"></a>블루스나핑(Bluesnarfing)</h2><br>
+
+<p>블루투스의 취약점을 이용해 장비의 임의 파일에 접근하여 정보를 탈취하는 공격입니다.</p>
+<br>
+
+<p>공격자는 블루투스 장치끼리 인증 없이 정보를 간편하게 교환할 수 있는 OPP(OBEX Push Profile)를 사용하여 블루투스 장치에 있는 주소록(.vcf 파일), 달력(.vcs 파일) 등에 접근할 수 있습니다.</p>
+<p>현재의 모바일 소프트웨어에서는 다른 블루투스 장치와 페어링 하기 위한 연결을 사용자가 허용해야 하기 때문에 해당 취약점이 없는 것으로 알려져 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="블루버깅-Bluebugging"><a href="#블루버깅-Bluebugging" class="headerlink" title="블루버깅(Bluebugging)"></a>블루버깅(Bluebugging)</h2><br>
+
+<p>블루투스 장치와 공격 대상 장치를 연결하여 공격 대상 장치에서 임의의 동작을 실행하는 공격입니다.</p>
+<br>
+
+<p>블루투스 기기는 한 번 연결되면 이후에는 다시 연결해주지 않아도 서로 연결이 되는데 이 인증 취약점을 이용하여 공격하는 기법입니다.</p>
+<br>
+
+<br>
+
+<h2 id="블루재킹-Bluejacking"><a href="#블루재킹-Bluejacking" class="headerlink" title="블루재킹(Bluejacking)"></a>블루재킹(Bluejacking)</h2><br>
+
+<p>블루투스를 이용해 블루투스 기기에 스팸 또는 피싱 메시지를 전송하는 공격입니다.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%EB%89%B4%EC%8A%A4%EB%A0%88%ED%84%B0/" rel="tag"># 뉴스레터</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/01/2022-06-01-%EC%A0%91%EA%B7%BC%ED%86%B5%EC%A0%9C%20%EC%A0%95%EC%B1%85/" rel="prev" title="접근통제 정책">
+                  <i class="fa fa-chevron-left"></i> 접근통제 정책
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KoungHwan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"koun9hwan","repo":"blog-comments","client_id":"5ccab05e870b0e138ca8","client_secret":"3592ccc63d9364524a0a6ce592a5ffb9b1f6c867","admin_user":"koun9hwan","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"28fdd72dcce0d160f88a58b2d68e913e"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
